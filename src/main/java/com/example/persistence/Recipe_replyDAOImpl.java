@@ -16,8 +16,8 @@ public class Recipe_replyDAOImpl implements Recipe_replyDAO {
 	SqlSession session;
 
 	@Override
-	public List<Recipe_replyVO> list(int recipe_bno) throws Exception {		
-		return session.selectList(namespace + ".list", recipe_bno);
+	public List<Recipe_replyVO> rlist(int recipe_bno) throws Exception {		
+		return session.selectList(namespace + ".rlist", recipe_bno);
 	}
 
 }

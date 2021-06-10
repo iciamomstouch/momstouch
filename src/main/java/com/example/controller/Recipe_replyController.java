@@ -17,9 +17,9 @@ public class Recipe_replyController {
 	
 	@RequestMapping("reply.json")
 	@ResponseBody
-	public HashMap<String,Object>list(int recipe_bno) throws Exception{
+	public HashMap<String,Object> rlist(int recipe_bno) throws Exception{
 		HashMap<String,Object> map=new HashMap<String,Object>();		
-		map.put("list", dao.list(recipe_bno));		
+		map.put("list", dao.rlist(recipe_bno));		
 		return map;
 	}
 	
