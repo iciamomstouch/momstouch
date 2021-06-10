@@ -21,7 +21,7 @@ import com.example.mapper.QuestionReplyMapper;
 		@Autowired
 		QuestionReplyMapper questionreplyMapper;
 		
-		@RequestMapping("list", method=RequestMethod.GET)
+		@RequestMapping(value="/list", method=RequestMethod.GET)
 		public ResponseEntity<List<QuestionReplyVO>> list(int question_bno, int page){
 			Criteria cri=new Criteria();
 			cri.setPage(page);
@@ -51,14 +51,14 @@ import com.example.mapper.QuestionReplyMapper;
 		 @RequestMapping(value="/{question_rno}", method=RequestMethod.GET)
 			 public ResponseEntity<QuestionReplyVO> read(@PathVariable("question_rno") int question_rno){
 			 try {
-				 return new ResponseEntity<>(QuestionReplyMapper.read(question_rno), HttpStatus.OK);
+				 return new ResponseEntity<>(questionreplyMapper.read(question_rno), HttpStatus.OK);
 			 }catch(Exception e) {
 				 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			 }
 		 }
 		 
 		 @RequestMapping(value="/{question_rno}", method= {RequestMethod.PUT, RequestMethod.PATCH})
-			 public ResponseEntity<String> update(@PathVariable("rno") int question_rno, @RequestBody QuestionReplyVO vo){
+			 public ResponseEntity<String> update(@PathVariable("question_rno") int question_rno, @RequestBody QuestionReplyVO vo){
 			 try {
 				 vo.setQuestion_rno(question_rno);
 				 questionreplyMapper.update(vo);
