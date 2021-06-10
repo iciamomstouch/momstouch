@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="item-left">
-	<a href="/board/list">게시판1</a>
+	<a href="">게시판1</a>
 	<a href="">게시판2</a>
-	<a href="">중고거래</a>
+	<a href="/trade/list">중고거래</a>
 	<a href="/recipe/list">레시피</a>
 	<a href="">질문게시판</a>
 	<a href="/user/list">회원관리</a>
