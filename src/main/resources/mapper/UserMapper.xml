@@ -9,4 +9,19 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_user
 	</select>
+	<select id="read" resultType="com.example.domain.UserVO">
+		select * from tbl_user
+		where user_id=#{user_id}
+	</select>
+	<insert id="insert">
+		insert into tbl_user(user_id, user_pass, user_name, user_email, user_address, user_tel, user_image, user_nick)
+		values(#{user_id}, #{user_pass}, #{user_name}, #{user_email}, #{user_address}, #{user_tel}, #{user_image}, #{user_nick})
+	</insert>
+	<update id="update">
+		update tbl_user set user_name=#{user_name}, user_email=#{user_email}, user_address=#{user_address}, user_tel=#{user_tel}, user_image=#{user_image}, user_nick=#{user_nick}
+		where user_id=#{user_id}
+	</update>
+	<delete id="delete">
+		delete from tbl_user where user_id=#{user_id}
+	</delete>
 </mapper>

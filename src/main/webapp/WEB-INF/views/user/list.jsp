@@ -27,7 +27,7 @@
 			<td width=100>이미지</td>
 		</tr>
 		<c:forEach items="${list}" var="vo">
-		<tr class="row" onClick="location.href='read?id=${vo.user_id}'">
+		<tr class="row" onClick="location.href='read?user_id=${vo.user_id}'">
 			<td>${vo.user_id}</td>
 			<td>${vo.user_name}</td>
 			<td>${vo.user_email}</td>
