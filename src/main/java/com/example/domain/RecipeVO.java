@@ -7,22 +7,16 @@ public class RecipeVO {
 	private String recipe_title;
 	private String recipe_category;
 	private String recipe_ingre;
-	private String recipe_seasoning;
 	private String recipe_content;
 	private String recipe_writer;
 	private String recipe_image;
 	private Date recipe_regdate;
 	private String recipe_updatedate;
 	private int recipe_viewcnt;
-	private double recipe_userRatingAvg;	
+	private double recipe_userRatingAvg;
 	
 	
-	public String getRecipe_seasoning() {
-		return recipe_seasoning;
-	}
-	public void setRecipe_seasoning(String recipe_seasoning) {
-		this.recipe_seasoning = recipe_seasoning;
-	}
+	
 	public double getRecipe_userRatingAvg() {
 		return recipe_userRatingAvg;
 	}
@@ -93,9 +87,9 @@ public class RecipeVO {
 	@Override
 	public String toString() {
 		return "RecipeVO [recipe_bno=" + recipe_bno + ", recipe_title=" + recipe_title + ", recipe_category="
-				+ recipe_category + ", recipe_ingre=" + recipe_ingre + ", recipe_seasoning=" + recipe_seasoning
-				+ ", recipe_content=" + recipe_content + ", recipe_writer=" + recipe_writer + ", recipe_image="
-				+ recipe_image + ", recipe_regdate=" + recipe_regdate + ", recipe_updatedate=" + recipe_updatedate
-				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg + "]";
-	}		
+				+ recipe_category + ", recipe_ingre=" + recipe_ingre + ", recipe_content=" + recipe_content
+				+ ", recipe_writer=" + recipe_writer + ", recipe_image=" + recipe_image + ", recipe_regdate="
+				+ recipe_regdate + ", recipe_updatedate=" + recipe_updatedate + ", recipe_viewcnt=" + recipe_viewcnt
+				+ ", recipe_userRatingAvg=" + recipe_userRatingAvg + "]";
+	}	
 }

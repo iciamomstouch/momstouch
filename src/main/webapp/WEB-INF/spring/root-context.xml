@@ -35,7 +35,7 @@
 	</bean>
 	<bean id="sqlSessionFactory_oracle" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource_oracle" />
-		<property name="mapperLocations" value="classpath:/mapper_oracle/**/*.xml" />
+		<property name="mapperLocations" value="classpath*:/mapper_oracle/**/*.xml" />
 	</bean>
 	<bean id="mapperOracle" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.example.mapper_oracle" />

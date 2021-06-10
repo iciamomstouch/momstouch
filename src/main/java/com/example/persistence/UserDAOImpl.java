@@ -26,25 +26,4 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne(namespace + ".totalCount");
 	}
 
-	@Override
-	public UserVO read(String user_id) throws Exception {		
-		return session.selectOne(namespace + ".read", user_id);
-	}
-
-	@Override
-	public void insert(UserVO vo) throws Exception {
-		session.insert(namespace + ".insert", vo);		
-	}
-
-	@Override
-	public void update(UserVO vo) throws Exception {
-		session.update(namespace + ".update", vo);		
-	}
-
-	@Override
-	public void delete(String user_id) throws Exception {
-		session.delete(namespace + ".delete", user_id);
-		
-	}
-
 }

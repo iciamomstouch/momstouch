@@ -6,9 +6,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/resources/css/home.css"/>
+	<title>맘's터치</title>	
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<title>맘's터치</title>	
 </head>
 <body>
 	<div id="divTop">

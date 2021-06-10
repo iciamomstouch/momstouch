@@ -1,26 +1,15 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Recipe_attachVO {
 	private int recipe_bno;
 	private int recipe_attach_no;
 	private Date regDate;
-	private String recipe_attach_image;
-	private String recipe_attach_text;
+	private ArrayList<String> recipe_attach_image;
+	private ArrayList<String> recipe_attach_text;
 	
-	public String getRecipe_attach_image() {
-		return recipe_attach_image;
-	}
-	public void setRecipe_attach_image(String recipe_attach_image) {
-		this.recipe_attach_image = recipe_attach_image;
-	}
-	public String getRecipe_attach_text() {
-		return recipe_attach_text;
-	}
-	public void setRecipe_attach_text(String recipe_attach_text) {
-		this.recipe_attach_text = recipe_attach_text;
-	}
 	public int getRecipe_bno() {
 		return recipe_bno;
 	}
@@ -39,7 +28,18 @@ public class Recipe_attachVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
+	public ArrayList<String> getRecipe_attach_image() {
+		return recipe_attach_image;
+	}
+	public void setRecipe_attach_image(ArrayList<String> recipe_attach_image) {
+		this.recipe_attach_image = recipe_attach_image;
+	}
+	public ArrayList<String> getRecipe_attach_text() {
+		return recipe_attach_text;
+	}
+	public void setRecipe_attach_text(ArrayList<String> recipe_attach_text) {
+		this.recipe_attach_text = recipe_attach_text;
+	}
 	
 	@Override
 	public String toString() {
