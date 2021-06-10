@@ -14,7 +14,7 @@ import com.example.domain.InfoVO;
 
 @Repository
 public class InfoDAOImpl implements InfoDAO{
-	String namespace="com.example.mapper.BoardMapper";
+	String namespace="com.example.mapper.InfoMapper";
 	@Autowired
 	SqlSession session;
 	@Override
