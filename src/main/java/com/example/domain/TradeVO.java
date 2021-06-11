@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,7 +15,6 @@ public class TradeVO {
 	private int trade_price;
 	private Date trade_regdate;
 	private Date trade_updatedate;
-	
 	private int trade_viewcnt;
 
 	public int getTrade_bno() {

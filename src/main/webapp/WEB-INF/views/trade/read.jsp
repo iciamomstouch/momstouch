@@ -17,7 +17,7 @@
 		<tr>
 			<td>${vo.trade_writer}</td>
 			<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
-			<td>조회수:</td>
+			<td>조회수:${vo.trade_viewcnt}</td>
 		</tr>
 		<tr>
 			<td>${vo.trade_category}</td>

@@ -50,6 +50,18 @@ public class TradeDAOImpl implements TradeDAO{
 		return session.selectList(namespace + ".getAttach", trade_bno);
 	}
 
+	@Override
+	public void addAttach(String trade_attach_image, String trade_bno) throws Exception {
+		session.insert(namespace + ".addAttach", trade_attach_image);
+		
+	}
+
+	@Override
+	public void updateViewcnt(int trade_bno) throws Exception {
+		session.update(namespace + ".updateViewcnt", trade_bno);
+		
+	}
+
 	
 
 }

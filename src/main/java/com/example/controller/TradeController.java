@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,6 +30,14 @@ public class TradeController {
 	
 	@Resource(name="uploadPath")
 	String path;
+	
+	@RequestMapping("getAttach.json")
+	@ResponseBody
+	public HashMap<String, Object> getAttach(int trade_bno) throws Exception{		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", dao.getAttach(trade_bno));
+		return map;
+	}
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(TradeVO  vo, MultipartHttpServletRequest multi) throws Exception{

@@ -35,7 +35,7 @@
 				</td>
 				<td>${vo.trade_category}</td>
 				<td>${vo.trade_title}</td>
-				<td><fmt:formatNumber value="${vo.trade_price}" pattern="#,###"/></td>
+				<td><fmt:formatNumber value="${vo.trade_price}" pattern="#,###원"/></td>
 				<td>${vo.trade_writer}</td>
 				<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
 				<td>♥</td>
