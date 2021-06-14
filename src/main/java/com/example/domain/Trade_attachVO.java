@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Trade_attachVO {
@@ -29,6 +30,5 @@ public class Trade_attachVO {
 		return "Trade_attachVO [trade_attach_image=" + trade_attach_image + ", trade_bno=" + trade_bno + ", regDate="
 				+ regDate + "]";
 	}
-	
-	
+
 }

@@ -19,4 +19,5 @@
 	<c:if test="${user_id == null }">
 		<a href="/user/login">로그인</a>
 	</c:if>
+
 </div>

@@ -131,6 +131,22 @@
 	$("#btnImage").on("click", function(){
 		$(frm.files).click();
 	});
+	
+	//첨부 파일삭제
+	$("#uploadFiles").on("click", "li .del", function(){
+		var li=$(this).parent();
+		var fullName = $(this).attr("fullName");
+		if(!confirm(fullName + "을 삭제하실래요?")) return;
+		$.ajax({
+			type:"get",
+			url:"/deleteFile",
+			data:{"fullName":fullName},
+			success:function(){
+				alert("삭제완료!");
+				li.remove();
+			}
+		})
+	});
 
 </script>
 </html>

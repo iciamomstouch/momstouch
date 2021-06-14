@@ -9,6 +9,9 @@
  		select * from tbl_trade
  		where trade_bno=#{trade_bno}
  	</select>
+ 	<update id="updateViewcnt">
+	 	update tbl_trade set trade_viewcnt=trade_viewcnt + 1 where trade_bno=#{trade_bno}
+	</update>
  	<insert id="insert">
  		insert into tbl_trade(trade_title,trade_category,trade_content,trade_writer,trade_image,trade_price)
  		values(#{trade_title}, #{trade_category}, #{trade_content}, #{trade_writer},#{trade_image},#{trade_price})
@@ -22,6 +25,9 @@
 		set trade_title=#{trade_title}, trade_category=#{trade_category}, trade_content=#{trade_content},trade_writer=#{trade_writer}, trade_image=#{trade_image}, trade_price=#{trade_price}
 		where trade_bno=#{trade_bno}
 	</update>
+	<insert id="addAttach">
+		insert into trade_attach(trade_attach_image, trade_bno) values(#{trade_attach_image}, #{trade_bno})
+	</insert>
 	<select id="getAttach" resultType="com.example.domain.Trade_attachVO">
 		select * from trade_attach where trade_bno=#{trade_bno}
 	</select>

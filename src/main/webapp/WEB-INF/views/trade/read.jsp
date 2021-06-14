@@ -6,6 +6,7 @@
 <html>
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>중고거래 보기</title>
 </head>
@@ -15,22 +16,35 @@
 	<table border=1>
 		<input type="text" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
 		<tr>
-			<td>${vo.trade_writer}</td>
+			<td><input type="text" name="trade_writer" value="${vo.trade_writer}"/></td>
 			<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
-			<td>조회수:</td>
+			<td>조회수:${vo.trade_viewcnt}</td>
 		</tr>
 		<tr>
-			<td>${vo.trade_category}</td>
+			<td>
+				<select name="trade_category" value="${vo.trade_category}">	
+					<option>${vo.trade_category}</option>
+					<option value="구매">구매</option>
+					<option value="판매">판매</option>
+					<option value="나눔">나눔</option>
+				</select>
+			</td>
 			<td colspan=2>${vo.trade_title}</td>
 		</tr>
 		<tr>
 			<td colspan=3>
-				<c:if test="${vo.trade_image==null}">
-					<img src="http://placehold.it/100x80"/>
-				</c:if>
-				<c:if test="${vo.trade_image!=null}">
-					<img src="/displayFile?fullName=${vo.trade_image}" width=100/>
-				</c:if>	
+				<div id="uploaded">
+                	<ul id="attachFiles"></ul>
+                 	<script id="temp" type="text/x-handlebars-template">
+						{{#each list}}
+                  		<li>
+                    		<img src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}" width=50/>
+                     		<input type="text" name="files" value="{{trade_attch_image}}"/>
+                     		<input class="del" type="button" value="삭제" fullName={{trade_attch_image}}/>
+                  		</li>
+						{{/each}}
+                  		</script>
+                  </div>	
 			</td>
 		</tr>
 		<tr>
@@ -49,11 +63,29 @@
 	</form>
 </body>
 <script>
+	var trade_bno=$(frm.trade_bno).val();
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
 		frm.action="delete";
 		frm.method="get";
 		frm.submit();
 	});
+	
+	//첨부파일 출력
+	   getAttach();   
+	   function getAttach(){
+	      $.ajax({
+	         type:"get",
+	         url:"getAttach",
+	         data:{"trade_bno":trade_bno},
+	         dataType:"json",
+	         success:function(data){
+	            var temp = Handlebars.compile($("#temp").html());
+	            $(data).each(function(){	                     
+	            $("#attachFiles").append(temp(data));
+	            })
+	         }
+	      })
+	   }
 </script>
 </html>
