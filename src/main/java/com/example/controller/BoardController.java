@@ -37,8 +37,10 @@ public class BoardController {
 		return "index";
 	}
 	@RequestMapping("insert")
-	public void insert(){
+	public String insert(Model model){
+		model.addAttribute("pageName", "board/insert.jsp");
 		
+		return "index";
 	}
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	@ResponseBody

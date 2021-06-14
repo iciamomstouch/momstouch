@@ -22,8 +22,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int totalCount() throws Exception {		
-		return session.selectOne(namespace + ".totalCount");
+	public int totalCount(Criteria cri) throws Exception {		
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 
 	@Override
@@ -45,6 +45,11 @@ public class UserDAOImpl implements UserDAO {
 	public void delete(String user_id) throws Exception {
 		session.delete(namespace + ".delete", user_id);
 		
+	}
+
+	@Override
+	public UserVO login(String user_id) throws Exception {		
+		return session.selectOne(namespace + ".login", user_id);
 	}
 
 }
