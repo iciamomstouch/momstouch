@@ -3,11 +3,29 @@
 <mapper namespace="com.example.mapper.UserMapper">
 	<select id="list" resultType="com.example.domain.UserVO">
 		select * from tbl_user
+		<if test="searchType == 'user_id'">
+			where user_id like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'user_name'">
+			where user_name like concat('%', #{keyword}, '%')
+		</if> 
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
+		</if>
 		order by user_id desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_user
+		<if test="searchType == 'user_id'">
+			where user_id like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'user_name'">
+			where user_name like concat('%', #{keyword}, '%')
+		</if> 
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
+		</if>
 	</select>
 	<select id="read" resultType="com.example.domain.UserVO">
 		select * from tbl_user
@@ -24,4 +42,8 @@
 	<delete id="delete">
 		delete from tbl_user where user_id=#{user_id}
 	</delete>
+	<select id="login" resultType="com.example.domain.UserVO">
+		select * from tbl_user
+		where user_id=#{user_id}
+	</select>
 </mapper>

@@ -38,6 +38,13 @@
 	<websocket:mapping handler="echoHandler" path="/echo" />
 	<websocket:sockjs />
 	</websocket:handlers>
-	<beans:bean id="echoHandler" class="com.example.controller.EchoHandler" />		
-	
+	<beans:bean id="echoHandler" class="com.example.controller.EchoHandler" />
+	<beans:bean id="AuthInterceptor" class="com.example.interceptor.AuthInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/insert"/>
+			<mapping path="/board/update"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>			
+	</interceptors>	
 </beans:beans>
