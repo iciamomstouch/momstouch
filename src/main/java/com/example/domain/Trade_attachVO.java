@@ -7,14 +7,6 @@ public class Trade_attachVO {
 	private String trade_attach_image;
 	private int trade_bno;
 	private Date regDate;
-	private ArrayList<String> images;
-	
-	public ArrayList<String> getImages() {
-		return images;
-	}
-	public void setImages(ArrayList<String> images) {
-		this.images = images;
-	}
 	public String getTrade_attach_image() {
 		return trade_attach_image;
 	}
@@ -36,6 +28,7 @@ public class Trade_attachVO {
 	@Override
 	public String toString() {
 		return "Trade_attachVO [trade_attach_image=" + trade_attach_image + ", trade_bno=" + trade_bno + ", regDate="
-				+ regDate + ", images=" + images + "]";
+				+ regDate + "]";
 	}
+
 }

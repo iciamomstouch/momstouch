@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
 import com.example.domain.UserVO;
 import com.example.persistence.TradeDAO;
+import com.example.service.TradeService;
 
 @Controller
 @RequestMapping("/trade/")
@@ -28,14 +31,18 @@ public class TradeController {
 	@Autowired
 	TradeDAO dao;
 	
+	@Autowired
+	TradeService service;
+	
 	@Resource(name="uploadPath")
 	String path;
 	
-	@RequestMapping("getAttach.json")
+	@RequestMapping("getAttach")
 	@ResponseBody
 	public HashMap<String, Object> getAttach(int trade_bno) throws Exception{		
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", dao.getAttach(trade_bno));
+		System.out.println(map.toString());
 		return map;
 	}
 	
@@ -88,8 +95,9 @@ public class TradeController {
 	public void insert(){}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public String insert(TradeVO vo, MultipartHttpServletRequest multi) throws Exception{
+	public String insert(TradeVO vo, int trade_bno, MultipartHttpServletRequest multi) throws Exception{
 		//파일 업로드
+		System.out.println(vo.toString());
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//파일명
@@ -103,18 +111,27 @@ public class TradeController {
 		File folder=new File(attPath);
 		if(!folder.exists()) folder.mkdir();
 		for(MultipartFile attFile:files){
+		    ArrayList<String> images = new ArrayList<String>();
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
+				images.add(image);
+
 			}
+			vo.setImages(images);
+			service.insert(vo);
 		}
-		dao.insert(vo);
+	    
 		return "redirect:list";
 	}
 	
 	@RequestMapping("read")
 	public String read(Model model, int trade_bno) throws Exception{
+		int trade_viewcnt=0;
+		service.updateViewcnt(trade_bno);
+		model.addAttribute("trade_viewcnt",trade_viewcnt);
 		model.addAttribute("vo", dao.read(trade_bno));
+		model.addAttribute("list", dao.getAttach(trade_bno));
 		model.addAttribute("pageName", "trade/read.jsp");
 		return "index";
 	}

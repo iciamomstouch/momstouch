@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -13,12 +15,19 @@ public class TradeServiceImpl implements TradeService {
 	@Autowired
 	TradeDAO dao;
 	
-	//게시물 조회
-	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
-	public TradeVO read(int trade_bno) throws Exception {
+	public void updateViewcnt(int trade_bno) throws Exception {
 		dao.updateViewcnt(trade_bno);
-		return dao.read(trade_bno);
 	}
 
+	@Override
+	public void insert(TradeVO vo) throws Exception {
+		dao.insert(vo);
+		System.out.println(vo.toString());
+		ArrayList<String> images = vo.getImages();
+		if(images==null) return;
+		for(String image:images){
+			dao.addAttach(image, vo.getTrade_bno());
+		   }
+	}
 }

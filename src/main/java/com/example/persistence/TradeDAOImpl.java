@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -51,8 +52,11 @@ public class TradeDAOImpl implements TradeDAO{
 	}
 
 	@Override
-	public void addAttach(String trade_attach_image, String trade_bno) throws Exception {
-		session.insert(namespace + ".addAttach", trade_attach_image);
+	public void addAttach(String trade_attach_image, int trade_bno) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("trade_attach_image", trade_attach_image);
+		map.put("trade_bno", trade_bno);
+		session.insert(namespace + ".addAttach", map);
 		
 	}
 
@@ -62,6 +66,6 @@ public class TradeDAOImpl implements TradeDAO{
 		
 	}
 
-	
+
 
 }
