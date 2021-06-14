@@ -126,11 +126,8 @@ public class TradeController {
 	}
 	
 	@RequestMapping("read")
-	public String read(Model model, int trade_bno) throws Exception{
-		int trade_viewcnt=0;
-		service.updateViewcnt(trade_bno);
-		model.addAttribute("trade_viewcnt",trade_viewcnt);
-		model.addAttribute("vo", dao.read(trade_bno));
+	public String read(Model model, int trade_bno) throws Exception{		
+		model.addAttribute("vo", service.read(trade_bno));
 		model.addAttribute("list", dao.getAttach(trade_bno));
 		model.addAttribute("pageName", "trade/read.jsp");
 		return "index";

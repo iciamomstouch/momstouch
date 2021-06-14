@@ -15,9 +15,12 @@ public class TradeServiceImpl implements TradeService {
 	@Autowired
 	TradeDAO dao;
 	
+	@Transactional
 	@Override
-	public void updateViewcnt(int trade_bno) throws Exception {
+	public TradeVO read(int trade_bno) throws Exception {
+		TradeVO vo = dao.read(trade_bno);
 		dao.updateViewcnt(trade_bno);
+		return vo;
 	}
 
 	@Override
