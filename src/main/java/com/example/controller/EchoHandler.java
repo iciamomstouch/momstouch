@@ -1,8 +1,6 @@
 package com.example.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.socket.CloseStatus;
@@ -31,18 +29,8 @@ public class EchoHandler extends TextWebSocketHandler {
 	//클라이언트가 서버로 메세지를 전송했을 때
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		String strMessage=message.getPayload();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String strDate=sdf.format(new Date());
-		strMessage = strMessage + "|" + strDate;
+		// TODO Auto-generated method stub
 		super.handleTextMessage(session, message);
-		
-		System.out.println("id: " + session.getId()+ " message: " + strMessage);
-		
-		//모든 유저에게 메세지 출력
-		for(WebSocketSession webSocketSession : sessionList){
-		webSocketSession.sendMessage(new TextMessage(strMessage));
-		}
 	}
 	
 }

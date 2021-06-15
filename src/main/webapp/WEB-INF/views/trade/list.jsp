@@ -9,7 +9,11 @@
 	<title>중고거래</title>
 	<style>
 		.row {cursor:pointer;}
+		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
+		#pagination .active {background:gray; color:white;}
 	</style>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 </head>
 <body>
 	<h1>중고거래</h1>
@@ -33,15 +37,48 @@
 						<img src="/displayFile?fullName=${vo.trade_image}" width=100/>
 					</c:if>	
 				</td>
-				<td>${vo.trade_category}</td>
-				<td>${vo.trade_title}</td>
-				<td><fmt:formatNumber value="${vo.trade_price}" pattern="#,###원"/></td>
-				<td>${vo.trade_writer}</td>
-				<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
-				<td>♥</td>
+				<td class="trade_category"}>${vo.trade_category}</td>
+				<td class="trade_title">${vo.trade_title}</td>
+				<td class="trade_price"><fmt:formatNumber value="${vo.trade_price}" pattern="#,###원"/></td>
+				<td class="trade_witer">${vo.trade_writer}</td>
+				<td class="trade_regdate"><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
+				<td>
+				${vo.trade_keep}
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<button onClick="location.href='insert'">글작성</button>
+	<hr/>
+	<div id="pagination">
+		<c:if test="${pm.prev}">
+			<span page="${pm.startPage-1}">◀</span>
+		</c:if>
+		<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+			<c:if test="${i==cri.page}">
+				<span page="${i}" class="active">${i}</span>
+			</c:if>	
+			<c:if test="${i!=cri.page}">
+				<span page="${i}">${i}</span>
+			</c:if>
+		</c:forEach>
+		<c:if test="${pm.next}">
+			<span page="${pm.endPage+1}">▶</span>
+		</c:if>
+	</div>	
 </body>
+<script>
+	var totalCount=${pm.totalCount};
+	$("#totalCount").html(totalCount);
+	
+	$("#container").on("click", ".box", function(){
+		var bno=$(this).attr("bno");
+		location.href="read?bno="+bno;	
+	});
+	
+	$("#pagination").on("click", "span", function(){
+		var page=$(this).attr("page");
+		location.href="list?page=" + page;
+	});
+</script>
 </html>

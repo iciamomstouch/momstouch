@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.example.domain.Criteria;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
+import com.example.domain.User_keepVO;
 
 @Repository
 public class TradeDAOImpl implements TradeDAO{
@@ -21,7 +22,11 @@ public class TradeDAOImpl implements TradeDAO{
 	@Override
 	public List<TradeVO> list(Criteria cri) throws Exception {
 		return session.selectList(namespace + ".list",cri);
-		
+	}
+	
+	@Override
+	public int totalCount() throws Exception {
+		return session.selectOne(namespace + ".totalCount");
 	}
 	
 	@Override
@@ -64,6 +69,16 @@ public class TradeDAOImpl implements TradeDAO{
 	public void updateViewcnt(int trade_bno) throws Exception {
 		session.update(namespace + ".updateViewcnt", trade_bno);
 		
+	}
+
+	@Override
+	public int lastBno() throws Exception {		
+		return session.selectOne(namespace + ".lastBno");
+	}
+
+	@Override
+	public List<User_keepVO> keep(int trade_bno) throws Exception {
+		return session.selectList(namespace + ".keep", trade_bno);
 	}
 
 

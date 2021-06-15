@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,7 +35,7 @@ public class UploadController {
 	
 	//파일 업로드 Form
 	@RequestMapping(value="/uploadForm", method=RequestMethod.POST)
-	public void uploadFormPost(MultipartFile file) throws Exception{ 
+	public void uploadFormPost(MultipartFile file) throws Exception{
 		System.out.println("파일 사이즈:" + file.getSize());
 		System.out.println("업로드 패스:" + path);
 		System.out.println("파일타입:" + file.getContentType());

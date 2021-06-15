@@ -44,6 +44,7 @@
 		<interceptor>
 			<mapping path="/board/insert"/>
 			<mapping path="/board/update"/>
+			<mapping path="/trade/insert"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>			
 	</interceptors>	

@@ -5,6 +5,9 @@
  		select * from tbl_trade
  		order by trade_bno desc
  	</select>
+ 	<select id="totalCount" resultType="int">
+		select count(*) from tbl_trade
+	</select>
  	<select id="read" resultType="com.example.domain.TradeVO">
  		select * from tbl_trade
  		where trade_bno=#{trade_bno}
@@ -30,5 +33,11 @@
 	</insert>
 	<select id="getAttach" resultType="com.example.domain.Trade_attachVO">
 		select * from trade_attach where trade_bno=#{trade_bno}
+	</select>
+	<select id="lastBno" resultType="int">
+		select max(trade_bno) from tbl_trade
+	</select>
+	<select id="keep" resultType="com.example.domain.User_keepVO">
+		select * from user_keep where trade_bno=#{trade_bno}
 	</select>
 </mapper>

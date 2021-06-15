@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,15 @@ public class TradeController {
 	public HashMap<String, Object> getAttach(int trade_bno) throws Exception{		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", dao.getAttach(trade_bno));
+		//System.out.println(map.toString());
+		return map;
+	}
+	
+	@RequestMapping("keep")
+	@ResponseBody
+	public HashMap<String, Object> keep(int trade_bno) throws Exception{		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("list", dao.keep(trade_bno));
 		System.out.println(map.toString());
 		return map;
 	}
@@ -92,7 +102,14 @@ public class TradeController {
 	}
 	
 	@RequestMapping("insert")
-	public void insert(){}
+	public String insert(Model model, HttpSession session) throws Exception{
+		int lastBno = dao.lastBno();
+		int bno = lastBno + 1;
+		model.addAttribute("bno", bno);
+		model.addAttribute("user_id", session.getAttribute("user_id"));
+		model.addAttribute("pageName", "trade/insert.jsp");
+		return "index";
+	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(TradeVO vo, int trade_bno, MultipartHttpServletRequest multi) throws Exception{
@@ -110,27 +127,22 @@ public class TradeController {
 		String attPath=path + "/" + vo.getTrade_bno();
 		File folder=new File(attPath);
 		if(!folder.exists()) folder.mkdir();
-		for(MultipartFile attFile:files){
-		    ArrayList<String> images = new ArrayList<String>();
+		ArrayList<String> images = new ArrayList<String>();
+		for(MultipartFile attFile:files){		    
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
 				images.add(image);
-
 			}
-			vo.setImages(images);
-			service.insert(vo);
+			vo.setImages(images);			
 		}
-	    
+		service.insert(vo);	    
 		return "redirect:list";
 	}
 	
 	@RequestMapping("read")
-	public String read(Model model, int trade_bno) throws Exception{
-		int trade_viewcnt=0;
-		service.updateViewcnt(trade_bno);
-		model.addAttribute("trade_viewcnt",trade_viewcnt);
-		model.addAttribute("vo", dao.read(trade_bno));
+	public String read(Model model, int trade_bno) throws Exception{		
+		model.addAttribute("vo", service.read(trade_bno));
 		model.addAttribute("list", dao.getAttach(trade_bno));
 		model.addAttribute("pageName", "trade/read.jsp");
 		return "index";
@@ -138,6 +150,14 @@ public class TradeController {
 	
 	@RequestMapping("list")
 	public String list(Model model, Criteria cri) throws Exception{
+		cri.setPerPageNum(5);
+		
+		PageMaker pm=new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount());
+		
+		model.addAttribute("pm", pm);
+		model.addAttribute("cri", cri);
 		model.addAttribute("list", dao.list(cri));
 		model.addAttribute("pageName", "trade/list.jsp");
 		return "index";

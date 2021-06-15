@@ -5,10 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>중고거래 보기</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+	<link rel="stylesheet" href="/resources/css/trade/style.css"/>
 </head>
 <body>
 	<h1>중고거래 보기</h1>
@@ -33,25 +34,31 @@
 		</tr>
 		<tr>
 			<td colspan=3>
-				<div id="uploaded">
-                	<ul id="attachFiles"></ul>
-                 	<script id="temp" type="text/x-handlebars-template">
-						{{#each list}}
-                  		<li>
-                    		<img src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}" width=50/>
-                     		<input type="text" name="files" value="{{trade_attch_image}}"/>
-                     		<input class="del" type="button" value="삭제" fullName={{trade_attch_image}}/>
-                  		</li>
-						{{/each}}
-                  		</script>
-                  </div>	
+			<div id="slide">
+		  		<input type="radio" name="pos" id="pos1" checked>
+		  		<input type="radio" name="pos" id="pos2">
+		  		<input type="radio" name="pos" id="pos3">
+		 		<input type="radio" name="pos" id="pos4">
+	          		<ul id="attachFiles"></ul>
+	                <script id="temp" type="text/x-handlebars-template">
+					{{#each list}}
+                    	<img class="main_slideImg" src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}" width=200/>
+					{{/each}}
+                  	</script>
+		    	<p class="pos">
+				    <label for="pos1"></label>
+				    <label for="pos2"></label>
+				    <label for="pos3"></label>
+				    <label for="pos4"></label>
+			  	</p>
+		    </div>
 			</td>
 		</tr>
 		<tr>
 			<td colspan=3>${vo.trade_content}</td>
 		<tr>
 		<tr>
-			<td>♡</td>
+			<td>${vo.trade_keep}</td>
 			<td>${vo.trade_price}</td>
 			<td><button>채팅으로 거래하기</button></td>
 		</tr>
@@ -64,6 +71,8 @@
 </body>
 <script>
 	var trade_bno=$(frm.trade_bno).val();
+	
+	
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
 		frm.action="delete";
@@ -87,5 +96,21 @@
 	         }
 	      })
 	   }
+	   
+		//첨부 파일삭제
+		$("#attachFiles").on("click", "li .del", function(){
+			var li=$(this).parent();
+			var fullName = $(this).attr("fullName");
+			if(!confirm(fullName + "을 삭제하실래요?")) return;
+			$.ajax({
+				type:"get",
+				url:"/deleteFile",
+				data:{"fullName":fullName},
+				success:function(){
+					alert("삭제완료!");
+					li.remove();
+				}
+			})
+		});
 </script>
 </html>
