@@ -20,4 +20,5 @@ public interface TradeDAO {
 	public void addAttach(@Param("trade_attach_image") String trade_attach_image, @Param("trade_bno") int trade_bno) throws Exception;
 	public List<Trade_attachVO> getAttach(int trade_bno) throws Exception;
 	public void updateViewcnt(int trade_bno) throws Exception;
+	public int lastBno() throws Exception;
 }

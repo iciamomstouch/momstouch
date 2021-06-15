@@ -16,7 +16,7 @@
 		<table border=1>
 			<tr>
 				<td>번호</td>
-				<td><input type="text" name="trade_bno"/></td>
+				<td><input type="text" name="trade_bno" value="${bno }"/></td>
 			</tr>
 			<tr>
 				<td>제목</td>
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="trade_writer"/></td>
+				<td><input type="text" name="trade_writer" value="${user_id }"/></td>
 			</tr>
 			<tr>
 				<td>가격</td>

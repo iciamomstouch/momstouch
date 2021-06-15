@@ -66,6 +66,11 @@ public class TradeDAOImpl implements TradeDAO{
 		
 	}
 
+	@Override
+	public int lastBno() throws Exception {		
+		return session.selectOne(namespace + ".lastBno");
+	}
+
 
 
 }

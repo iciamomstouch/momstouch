@@ -31,4 +31,7 @@
 	<select id="getAttach" resultType="com.example.domain.Trade_attachVO">
 		select * from trade_attach where trade_bno=#{trade_bno}
 	</select>
+	<select id="lastBno" resultType="int">
+		select max(trade_bno) from tbl_trade
+	</select>
 </mapper>

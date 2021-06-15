@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,7 +93,14 @@ public class TradeController {
 	}
 	
 	@RequestMapping("insert")
-	public void insert(){}
+	public String insert(Model model, HttpSession session) throws Exception{
+		int lastBno = dao.lastBno();
+		int bno = lastBno + 1;
+		model.addAttribute("bno", bno);
+		model.addAttribute("user_id", session.getAttribute("user_id"));
+		model.addAttribute("pageName", "trade/insert.jsp");
+		return "index";
+	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(TradeVO vo, int trade_bno, MultipartHttpServletRequest multi) throws Exception{
@@ -110,18 +118,16 @@ public class TradeController {
 		String attPath=path + "/" + vo.getTrade_bno();
 		File folder=new File(attPath);
 		if(!folder.exists()) folder.mkdir();
-		for(MultipartFile attFile:files){
-		    ArrayList<String> images = new ArrayList<String>();
+		ArrayList<String> images = new ArrayList<String>();
+		for(MultipartFile attFile:files){		    
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
 				images.add(image);
-
 			}
-			vo.setImages(images);
-			service.insert(vo);
+			vo.setImages(images);			
 		}
-	    
+		service.insert(vo);	    
 		return "redirect:list";
 	}
 	
