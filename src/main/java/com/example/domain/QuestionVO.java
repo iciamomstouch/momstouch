@@ -10,8 +10,10 @@ public class QuestionVO {
 	private String question_content;
 	private String question_image;
 	private String question_writer;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_regdate;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_updatedate;
 	private int question_viewcnt;

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
 import com.example.domain.InfoVO;
 import com.example.domain.PageMaker;

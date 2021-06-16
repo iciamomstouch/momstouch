@@ -10,8 +10,10 @@ public class QuestionReplyVO {
 	private String question_reply;
 	private String question_reply_image;
 	private String question_replyer;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_replydate;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_replyupdate_date;
 	

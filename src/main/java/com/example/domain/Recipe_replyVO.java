@@ -2,11 +2,15 @@ package com.example.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Recipe_replyVO {
 	private int recipe_rno;
 	private int recipe_bno;
 	private String recipe_reply;
 	private double recipe_userRating;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_replydate;
 	
 	public int getRecipe_rno() {

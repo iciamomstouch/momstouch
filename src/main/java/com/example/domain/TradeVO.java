@@ -13,7 +13,11 @@ public class TradeVO {
 	private String trade_writer;
 	private String trade_image;
 	private int trade_price;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date trade_regdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date trade_updatedate;
 	private int trade_viewcnt;
 	private ArrayList<String> images;

@@ -1,13 +1,10 @@
 package com.example.persistence;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.Criteria;
-import com.example.domain.RecipeVO;
-import com.example.domain.Recipe_attachVO;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
 

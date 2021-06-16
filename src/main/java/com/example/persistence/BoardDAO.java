@@ -16,5 +16,6 @@ public interface BoardDAO {
 	public void delete(int board_bno) throws Exception;
 	public void update(BoardVO vo) throws Exception;
 	public void updateViewCnt(int board_bno);
+	public void updateReply(@Param("board_bno")int board_bno, @Param("amount") int amount);
 	
 }

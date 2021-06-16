@@ -2,6 +2,8 @@ package com.example.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class RecipeVO {
 	private int recipe_bno;
 	private String recipe_title;
@@ -11,7 +13,11 @@ public class RecipeVO {
 	private String recipe_content;
 	private String recipe_writer;
 	private String recipe_image;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_regdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private String recipe_updatedate;
 	private int recipe_viewcnt;
 	private double recipe_userRatingAvg;	

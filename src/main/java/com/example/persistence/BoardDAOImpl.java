@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -57,6 +58,14 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int totalCount(Criteria cri) throws Exception {		
 		return session.selectOne(namespace + ".totalCount", cri);
+	}
+
+	@Override
+	public void updateReply(int board_bno, int amount) {		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("board_bno", board_bno);
+		map.put("amount", amount);
+		session.update(namespace + ".updateReply", map);
 	}
 
 	

@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
-import com.example.domain.UserVO;
 import com.example.persistence.BoardDAO;
 import com.example.service.BoardService;
 

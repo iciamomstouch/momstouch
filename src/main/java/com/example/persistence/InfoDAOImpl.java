@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,6 +51,14 @@ public class InfoDAOImpl implements InfoDAO{
 	@Override
 	public int totalCount(Criteria cri) throws Exception {		
 		return session.selectOne(namespace + ".totalCount", cri);
+	}
+
+	@Override
+	public void updateReply(int info_bno, int amount) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("info_bno", info_bno);
+		map.put("amount", amount);
+		session.update(namespace + ".updateReply", map);		
 	}
 	
 

@@ -1,7 +1,6 @@
 package com.example.domain;
 
 import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class InfoVO {
@@ -10,9 +9,9 @@ public class InfoVO {
 	private String info_content;
 	private String info_image;
 	private String info_writer;
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date info_regdate;
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date info_updatedate;
 	private String info_viewcnt;
 	private String info_replycnt;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-
 import com.example.domain.Criteria;
 import com.example.domain.InfoVO;
 
@@ -16,5 +15,5 @@ public interface InfoDAO {
 	public void delete(int info_bno) throws Exception;
 	public void update(InfoVO vo) throws Exception;
 	public void updateViewCnt(int info_bno);
-	
+	public void updateReply(@Param("info_bno")int info_bno, @Param("amount") int amount);
 }

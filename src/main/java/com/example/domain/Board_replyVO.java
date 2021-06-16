@@ -1,7 +1,6 @@
 package com.example.domain;
 
 import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board_replyVO {
@@ -9,7 +8,8 @@ public class Board_replyVO {
 	private int board_bno;
 	private String board_reply;
 	private String board_replyer;
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date board_replydate;
 	
 	public int getBoard_rno() {
