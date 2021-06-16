@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+#divTop{text-align:center;}
+#divBottom{text-align:center;border-top:1px solid gray;}
+#divMenu{padding:20px;overflow:hidden;border-top:1px solid gray;border-bottom:1px solid gray;width:1460px;margin:0px auto;margin-top:10px;}
+.item-left a{float:left;margin-right:100px;}
+.item-right{float:right;}
+#divMenu a{text-decoration:none; color:black;}
+#divMenu a:hover{background:gray; color:white; font-weight:bold;}
+#divContent{width:1460px;margin:0px auto;padding:10px;}
+.panel-title{font-style:italic;}
