@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,6 +51,26 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public List<Recipe_attachVO> getAttach(int recipe_bno) throws Exception {		
 		return session.selectList(namespace + ".getAttach", recipe_bno);
+	}
+
+	@Override
+	public void updateViewcnt(int recipe_bno) throws Exception {
+		session.update(namespace + ".updateViewcnt", recipe_bno);
+		
+	}
+
+	@Override
+	public void addAttach(String recipe_attach_image, int recipe_bno) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("recipe_attach_image", recipe_attach_image);
+		map.put("recipe_bno", recipe_bno);
+		session.insert(namespace + ".addAttach", map);
+		
+	}
+
+	@Override
+	public int lastBno() throws Exception {
+		return session.selectOne(namespace + ".lastBno");
 	}
 
 }

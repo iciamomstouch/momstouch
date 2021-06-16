@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class RecipeVO {
@@ -15,20 +16,9 @@ public class RecipeVO {
 	private String recipe_updatedate;
 	private int recipe_viewcnt;
 	private double recipe_userRatingAvg;	
+	private ArrayList<String> images;
+	private ArrayList<String> texts;
 	
-	
-	public String getRecipe_seasoning() {
-		return recipe_seasoning;
-	}
-	public void setRecipe_seasoning(String recipe_seasoning) {
-		this.recipe_seasoning = recipe_seasoning;
-	}
-	public double getRecipe_userRatingAvg() {
-		return recipe_userRatingAvg;
-	}
-	public void setRecipe_userRatingAvg(double recipe_userRatingAvg) {
-		this.recipe_userRatingAvg = recipe_userRatingAvg;
-	}
 	public int getRecipe_bno() {
 		return recipe_bno;
 	}
@@ -52,6 +42,12 @@ public class RecipeVO {
 	}
 	public void setRecipe_ingre(String recipe_ingre) {
 		this.recipe_ingre = recipe_ingre;
+	}
+	public String getRecipe_seasoning() {
+		return recipe_seasoning;
+	}
+	public void setRecipe_seasoning(String recipe_seasoning) {
+		this.recipe_seasoning = recipe_seasoning;
 	}
 	public String getRecipe_content() {
 		return recipe_content;
@@ -89,13 +85,33 @@ public class RecipeVO {
 	public void setRecipe_viewcnt(int recipe_viewcnt) {
 		this.recipe_viewcnt = recipe_viewcnt;
 	}
-	
+	public double getRecipe_userRatingAvg() {
+		return recipe_userRatingAvg;
+	}
+	public void setRecipe_userRatingAvg(double recipe_userRatingAvg) {
+		this.recipe_userRatingAvg = recipe_userRatingAvg;
+	}
+	public ArrayList<String> getImages() {
+		return images;
+	}
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
+	public ArrayList<String> getTexts() {
+		return texts;
+	}
+	public void setTexts(ArrayList<String> texts) {
+		this.texts = texts;
+	}
 	@Override
 	public String toString() {
 		return "RecipeVO [recipe_bno=" + recipe_bno + ", recipe_title=" + recipe_title + ", recipe_category="
 				+ recipe_category + ", recipe_ingre=" + recipe_ingre + ", recipe_seasoning=" + recipe_seasoning
 				+ ", recipe_content=" + recipe_content + ", recipe_writer=" + recipe_writer + ", recipe_image="
 				+ recipe_image + ", recipe_regdate=" + recipe_regdate + ", recipe_updatedate=" + recipe_updatedate
-				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg + "]";
-	}		
+				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg + ", images="
+				+ images + ", texts=" + texts + "]";
+	}
+	
+		
 }
