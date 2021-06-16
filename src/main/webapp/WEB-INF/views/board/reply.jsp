@@ -22,21 +22,57 @@
 	</script>	
 
 	<script>
-		var board_bno="${vo.board_bno }";
+	var board_bno="${vo.board_bno }";
+	
+	getList();
+	
+	function getList(){
+		$.ajax({
+			url:"reply.json",
+			type:"get",
+			data:{"board_bno":board_bno},
+			dataType:"json",
+			success:function(data){				
+				var rTemp=Handlebars.compile($("#rTemp").html());
+				$("#rtbl").html(rTemp(data));				
+			}
+		});
+	}
 		
-		getList();
-		
-		function getList(){
-			$.ajax({
-				url:"/board/reply.json",
-				type:"get",
-				data:{"board_bno":board_bno},
-				dataType:"json",
-				success:function(data){				
-					var rTemp=Handlebars.compile($("#rTemp").html());
-					$("#rtbl").html(rTemp(data));				
-				}
-			});
-		}		
+	//댓글 삭제
+	$("#rtbl").on("click", ".row .btnDelete", function(){
+	var rno=$(this).attr("rno");
+	if(!confirm(rno + "을(를) 삭제하실래요?")) return;
+		$.ajax({
+			type:"get",
+			url:"reply/delete",
+			data:{"board_rno":rno},
+			success:function(){
+				alert("삭제완료!");
+				getList();
+			}
+		});
+	});
+	
+	//댓글 등록
+	$("#btnInsert").on("click", function(){
+		var reply=$("#txtReply").val();
+		var replyer="user01";
+		if(reply==""){
+			alert("내용을 입력하세요!");
+			return;
+		}
+		$.ajax({
+			type:"post",
+			url:"reply/insert",
+			data:{"board_bno":board_bno, "board_reply":reply, "board_replyer":replyer},
+			success:function(){
+				alert("댓글추가완료!");
+				$("#txtReply").val("");
+				getList();
+			}
+		});
+	});	
+	
 	</script>
 </html>

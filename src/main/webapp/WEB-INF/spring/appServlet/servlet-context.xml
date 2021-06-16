@@ -42,8 +42,8 @@
 	<beans:bean id="AuthInterceptor" class="com.example.interceptor.AuthInterceptor"/>
 	<interceptors>
 		<interceptor>
-			<mapping path="/board/insert"/>
-			<mapping path="/board/update"/>
+			<mapping path="/board/insert"/>			
+			<mapping path="/info/insert"/>
 			<mapping path="/trade/insert"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>			

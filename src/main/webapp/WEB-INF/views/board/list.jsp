@@ -35,6 +35,7 @@
 			<td width=200>제목</td>
 			<td width=100>작성자</td>
 			<td width=200>작성일</td>
+			<td width=100>댓글수</td>
 			<td width=100>조회수</td>
 		</tr>
 		{{#each list}}
@@ -44,6 +45,7 @@
 			<td width=200>{{board_title}}</td>
 			<td width=100>{{board_writer}}</td>
 			<td width=200>{{board_regdate}}</td>
+			<td width=100>{{board_replycnt}}</td>
 			<td width=100>{{board_viewcnt}}</td>
 		</tr>
 		{{/each}}

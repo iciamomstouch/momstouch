@@ -20,29 +20,65 @@
 	<script id="rTemp" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row">
-			<td width=50>{{recipe_rno}}</td>
-			<td width=300>{{recipe_reply}}</td>
-			<td>{{recipe_replydate}}</td>
-			<td><button class="btnDelete" rno="{{recipe_rno}}">삭제</button></td>
+			<td width=50>{{info_rno}}</td>
+			<td width=100>{{info_replyer}}</td>
+			<td width=300>{{info_reply}}</td>
+			<td>{{info_replydate}}</td>
+			<td><button class="btnDelete" rno="{{info_rno}}">삭제</button></td>
 		</tr>
 		{{/each}}
 	</script>	
 </body>
-<script>
-	var recipe_bno="${vo.recipe_bno }";	
+	<script>
+	var info_bno="${vo.info_bno }";
+	
 	getList();	
 
 	function getList(){
 		$.ajax({
-			url:"/recipe/reply.json",
+			url:"reply.json",
 			type:"get",
-			data:{"recipe_bno":recipe_bno},
+			data:{"info_bno":info_bno},
 			dataType:"json",
 			success:function(data){				
 				var rTemp=Handlebars.compile($("#rTemp").html());
 				$("#rtbl").html(rTemp(data));				
 			}
 		});
-	}	
-</script>
+	}
+	//댓글 삭제
+	$("#rtbl").on("click", ".row .btnDelete", function(){
+	var rno=$(this).attr("rno");
+	if(!confirm(rno + "을(를) 삭제하실래요?")) return;
+		$.ajax({
+			type:"get",
+			url:"reply/delete",
+			data:{"info_rno":rno},
+			success:function(){
+				alert("삭제완료!");
+				getList();
+			}
+		});
+	});
+	
+	//댓글 등록
+	$("#btnInsert").on("click", function(){
+		var reply=$("#txtReply").val();
+		var replyer="user08";
+		if(reply==""){
+			alert("내용을 입력하세요!");
+			return;
+		}
+		$.ajax({
+			type:"post",
+			url:"reply/insert",
+			data:{"info_bno":info_bno, "info_reply":reply, "info_replyer":replyer},
+			success:function(){
+				alert("댓글추가완료!");
+				$("#txtReply").val("");
+				getList();
+			}
+		});
+	});
+	</script>
 </html>
