@@ -10,6 +10,7 @@ import com.example.domain.Criteria;
 
 public interface BoardDAO {
 	public List<BoardVO> list(Criteria cri) throws Exception;
+	public int totalCount(Criteria cri) throws Exception;
 	public void insert(BoardVO vo) throws Exception;
 	public BoardVO read(int board_bno) throws Exception;
 	public void delete(int board_bno) throws Exception;

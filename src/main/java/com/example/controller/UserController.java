@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -36,6 +37,14 @@ public class UserController {
 	
 	@Resource(name="uploadPath")
 	String path;
+	
+	@RequestMapping("alist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public List<UserVO> alistJson(Criteria cri) throws Exception{
+		List<UserVO> array = new ArrayList<>();
+		array = dao.list(cri);
+		return array;
+	}
 	
 	@RequestMapping("list")
 	public String list(Model model) throws Exception{		

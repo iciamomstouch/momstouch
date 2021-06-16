@@ -1,5 +1,9 @@
 package com.example.domain;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BoardVO {
 	private int board_bno;
 	private String board_title;
@@ -7,8 +11,10 @@ public class BoardVO {
 	private String board_content;
 	private String board_image;
 	private String board_writer;
-	private String board_regdate;
-	private String board_updatedate;
+	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	private Date board_regdate;
+	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	private Date board_updatedate;
 	private String board_viewcnt;
 	private String board_replycnt;
 	
@@ -48,16 +54,17 @@ public class BoardVO {
 	public void setBoard_writer(String board_writer) {
 		this.board_writer = board_writer;
 	}
-	public String getBoard_regdate() {
+	
+	public Date getBoard_regdate() {
 		return board_regdate;
 	}
-	public void setBoard_regdate(String board_regdate) {
+	public void setBoard_regdate(Date board_regdate) {
 		this.board_regdate = board_regdate;
 	}
-	public String getBoard_updatedate() {
+	public Date getBoard_updatedate() {
 		return board_updatedate;
 	}
-	public void setBoard_updatedate(String board_updatedate) {
+	public void setBoard_updatedate(Date board_updatedate) {
 		this.board_updatedate = board_updatedate;
 	}
 	public String getBoard_viewcnt() {

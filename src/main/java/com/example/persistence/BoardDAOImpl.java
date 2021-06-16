@@ -54,6 +54,11 @@ public class BoardDAOImpl implements BoardDAO{
 		
 	}
 
+	@Override
+	public int totalCount(Criteria cri) throws Exception {		
+		return session.selectOne(namespace + ".totalCount", cri);
+	}
+
 	
 	
 	

@@ -5,34 +5,100 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>게시판 목록</title>
+	<title>게시판1</title>
 	<style>
 		.row {cursor:pointer;}
 	</style>
 </head>
 <body>
-	<h1>[게시판 목록]</h1>
+	<h1>[게시판1 목록]</h1>
+	<div id="condition" style="margin-bottom:5px;">
+		<div id="left">		
+			<select id="searchType">
+				<option value="board_title">제목</option>
+				<option value="board_category">카테고리</option>
+				<option value="board_content">내용</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>
+		<div id="right"></div>
+	</div>
 	<button onClick="location.href='insert'">글쓰기</button>
-	<table border=1>
-	<tr class="row" onClick="location.href='read?boar_bno=${vo.board_bno}'">
-			<td width=100>글번호</td>
-			<td width=500>카테고리</td>
-			<td width=100>제목</td>
+	<div id="list">
+		<table id="tbl" border=1 width=800></table>
+		<script id="temp" type="text/x-handlebars-template">
+		<tr class="title">
+			<td width=50>글번호</td>
+			<td width=100>카테고리</td>
+			<td width=200>제목</td>
 			<td width=100>작성자</td>
-			<td width=100>작성일</td>
+			<td width=200>작성일</td>
 			<td width=100>조회수</td>
 		</tr>
-	<c:forEach items="${list}" var="vo">
-	
-		<tr class="row" onClick="location.href='read?board_bno=${vo.board_bno}'">
-			<td width=100>${vo.board_bno}</td>
-			<td width=100>${vo.board_category}</td>
-			<td width=500>${vo.board_title}</td>
-			<td width=100>${vo.board_writer}</td>
-			<td width=100>${vo.board_regdate}</td>
-			<td width=100>${vo.board_viewcnt}</td>
+		{{#each list}}
+		<tr class="row" onClick="location.href='read?board_bno={{board_bno}}'">
+			<td width=50>{{board_bno}}</td>
+			<td width=100>{{board_category}}</td>
+			<td width=200>{{board_title}}</td>
+			<td width=100>{{board_writer}}</td>
+			<td width=200>{{board_regdate}}</td>
+			<td width=100>{{board_viewcnt}}</td>
 		</tr>
-	</c:forEach>
-	</table>
+		{{/each}}
+		</script>	
+	</div>
+	<div id="pagination" style="margin-top:5px;"></div>
 </body>
+<script type="text/javascript">
+	var page=1;
+	getList();
+	$("#keyword").on("keydown", function(e){
+		if(e.keyCode==13){
+			page=1;
+			getList();
+		}
+	})
+	$("#btnSearch").on("click", function(){		
+			page=1;
+			getList();		
+	})
+	function getList(){
+		var searchType=$("#searchType").val();
+		var keyword=$("#keyword").val();
+		$.ajax({
+			type:"get",
+			url:"list.json",
+			dataType:"json",
+			data:{"page":page, "keyword":keyword, "searchType":searchType},
+			success:function(result){
+				var temp=Handlebars.compile($("#temp").html());
+				$("#tbl").html(temp(result));
+				$("#total").html("검색수 : " + result.pm.totalCount);
+				
+				//페이징 목록 출력
+				var str = "";
+				var prev = result.pm.startPage-1;
+				var next = result.pm.endPage+1;
+				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
+				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
+					if(i==page){
+						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+					}else{
+						str += "[<a href='" + i +"'>" + i + "</a>] ";
+					}					
+				}
+				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
+				$("#pagination").html(str);
+			}
+		})
+	}
+	
+	$("#pagination").on("click", "a", function(e){
+		e.preventDefault();
+		page = $(this).attr("href");
+		getList();
+	});
+</script>
 </html>
