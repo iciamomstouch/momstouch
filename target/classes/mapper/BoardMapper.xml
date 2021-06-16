@@ -45,6 +45,11 @@
  		where board_bno=#{board_bno}
  	</update>
  	
+ 	<update id="updateReply">
+		update tbl_board set board_replycnt= board_replycnt + #{amount}
+		where board_bno=#{board_bno}
+	</update>
+ 	
  	<delete id="delete">
  		delete from tbl_board
  		where board_bno=#{board_bno}

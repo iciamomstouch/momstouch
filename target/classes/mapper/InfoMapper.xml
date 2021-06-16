@@ -39,6 +39,11 @@
  		where info_bno = #{info_bno}
  	</update>
  	
+ 	<update id="updateReply">
+		update tbl_info set info_replycnt= info_replycnt + #{amount}
+		where info_bno=#{info_bno}
+	</update>
+ 	
  	<delete id="delete">
  		delete from tbl_info
  		where info_bno = #{info_bno}
