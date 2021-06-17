@@ -58,7 +58,7 @@
 	<jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script>
-	//글쓰기 삭제
+	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
 		frm.action="delete";
@@ -66,7 +66,7 @@
 		frm.submit();
 	});
 
-	//글쓰기 수정
+	//게시글 수정
 	$(frm).on("submit", function(e){
 			e.preventDefault();
 			var info_title=$(frm.info_title).val();
