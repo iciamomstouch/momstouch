@@ -2,20 +2,24 @@ package com.example.service;
 
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.RecipeVO;
-import com.example.domain.TradeVO;
 import com.example.persistence.RecipeDAO;
-import com.example.persistence.TradeDAO;
+
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
 	@Autowired
 	RecipeDAO dao;
+	
+	@Resource(name="uploadPath")
+	String path;
 	
 	@Transactional
 	@Override
@@ -36,5 +40,16 @@ public class RecipeServiceImpl implements RecipeService {
 		for(String image:images){
 			dao.addAttach(image, vo.getRecipe_bno());
 		   }
+	}
+
+	@Override
+	public void update(RecipeVO vo) throws Exception {
+		dao.update(vo);
+		ArrayList<String> images = vo.getImages();
+		if(images==null) return;
+		for(String image:images){
+			dao.addAttach(image, vo.getRecipe_bno());
+		}
+		
 	}
 }

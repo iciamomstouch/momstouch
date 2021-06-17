@@ -73,4 +73,10 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return session.selectOne(namespace + ".lastBno");
 	}
 
+	@Override
+	public void updateReply(int recipe_bno, int recipe_rno) throws Exception {
+		session.update(namespace + ".updateReply", recipe_rno);
+		
+	}
+
 }

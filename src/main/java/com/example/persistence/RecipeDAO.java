@@ -19,4 +19,5 @@ public interface RecipeDAO {
 	public void updateViewcnt(int recipe_bno) throws Exception;
 	public void addAttach(@Param("recipe_image") String recipe_attach_image, @Param("recipe_bno") int recipe_bno) throws Exception;
 	public int lastBno() throws Exception;
+	public void updateReply(int recipe_bno, int recipe_rno) throws Exception;
 }
