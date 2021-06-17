@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("insert")
-	public String insert(Model model){
+	public String insert(Model model, HttpSession session){
+		model.addAttribute("user_id", session.getAttribute("user_id"));
 		model.addAttribute("pageName", "board/insert.jsp");		
 		return "index";
 	}
