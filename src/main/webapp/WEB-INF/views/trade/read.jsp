@@ -30,7 +30,7 @@
 					<option value="나눔">나눔</option>
 				</select>
 			</td>
-			<td colspan=2>${vo.trade_title}</td>
+			<td colspan=2><input type="text" name="trade_title" value="${vo.trade_title}"/></td>
 		</tr>
 		<tr>
 			<td colspan=3>
@@ -55,11 +55,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan=3>${vo.trade_content}</td>
+			<td colspan=3>
+				<textarea rows="10" cols="52" name="trade_content">${vo.trade_content}</textarea>
+			</td>
 		<tr>
 		<tr>
-			<td>${vo.trade_keep}</td>
-			<td>${vo.trade_price}</td>
+			<td>♥</td>
+			<td><input type="number" name=""trade_price" value="${vo.trade_price}"/></td>
 			<td><button>채팅으로 거래하기</button></td>
 		</tr>
 	</table>

@@ -17,68 +17,94 @@
 </head>
 <body>
 	<h1>중고거래</h1>
-	<table border=1 style=margin-top:10px;>
-		<tr>
-			<td>이미지</td>
-			<td>카테고리</td>
-			<td>제목</td>
-			<td>가격</td>
-			<td>작성자</td>
-			<td>작성일</td>
-			<td>관심목록</td>
-		</tr>
-		<c:forEach items="${list}" var="vo">
-			<tr class="row" onClick="location.href='read?trade_bno=${vo.trade_bno}'">
-				<td class="trade_image">
-					<c:if test="${vo.trade_image==null}">
-						<img src="http://placehold.it/100x80"/>
-					</c:if>
-					<c:if test="${vo.trade_image!=null}">
-						<img src="/displayFile?fullName=${vo.trade_image}" width=100/>
-					</c:if>	
-				</td>
-				<td class="trade_category"}>${vo.trade_category}</td>
-				<td class="trade_title">${vo.trade_title}</td>
-				<td class="trade_price"><fmt:formatNumber value="${vo.trade_price}" pattern="#,###원"/></td>
-				<td class="trade_witer">${vo.trade_writer}</td>
-				<td class="trade_regdate"><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
-				<td>
-				${vo.trade_keep}
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<button onClick="location.href='insert'">글작성</button>
+	<div id="condition" style="margin-bottom:5px;">
+		<div id="left">
+			<select id="searchType">
+				<option value="trade_title">제목</option>
+				<option value="trade_writer">작성자</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>
+		<div id="right"></div>
+		<span id="totalCount">${pm.totalCount }</span>
+	</div>
+	<table id="tbl" border=1></table>
+	<script id="temp" type="text/x-handlebars-template">
+	<tr class="title">
+		<td>이미지</td>
+		<td>카테고리</td>
+		<td>제목</td>
+		<td>가격</td>
+		<td>작성자</td>
+		<td>작성일</td>
+	</tr>
+	{{#each list}}
+	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
+		<td><img src="/displayFile?fullName={{trade_image}}" width=100/></td>
+		<td>{{trade_category}}</td>
+		<td>{{trade_title}}</td>
+		<td>{{trade_price}}</td>
+		<td>{{trade_writer}}</td>
+		<td>{{trade_regdate}}</td>
+	</tr>
+	{{/each}}
+	</script>
 	<hr/>
-	<div id="pagination">
-		<c:if test="${pm.prev}">
-			<span page="${pm.startPage-1}">◀</span>
-		</c:if>
-		<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
-			<c:if test="${i==cri.page}">
-				<span page="${i}" class="active">${i}</span>
-			</c:if>	
-			<c:if test="${i!=cri.page}">
-				<span page="${i}">${i}</span>
-			</c:if>
-		</c:forEach>
-		<c:if test="${pm.next}">
-			<span page="${pm.endPage+1}">▶</span>
-		</c:if>
-	</div>	
+	<div id="pagination" style="margin-top:5px;"></div>
 </body>
 <script>
-	var totalCount=${pm.totalCount};
-	$("#totalCount").html(totalCount);
-	
-	$("#container").on("click", ".box", function(){
-		var bno=$(this).attr("bno");
-		location.href="read?bno="+bno;	
-	});
-	
-	$("#pagination").on("click", "span", function(){
-		var page=$(this).attr("page");
-		location.href="list?page=" + page;
-	});
+var page=1;
+getList();
+
+
+$("#keyword").on("keydown", function(e){
+	if(e.keyCode==13){
+		page=1;
+		getList();
+	}
+})
+$("#btnSearch").on("click", function(){		
+		page=1;
+		getList();		
+})
+function getList(){
+	var searchType=$("#searchType").val();
+	var keyword=$("#keyword").val();
+	$.ajax({
+		type:"get",
+		url:"list.json",
+		dataType:"json",
+		data:{"page":page, "keyword":keyword, "searchType":searchType},
+		success:function(result){
+			var temp=Handlebars.compile($("#temp").html());
+			$("#tbl").html(temp(result));
+			$("#total").html("검색수 : " + result.pm.totalCount);
+			
+			//페이징 목록 출력
+			var str = "";
+			var prev = result.pm.startPage-1;
+			var next = result.pm.endPage+1;
+			if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
+			for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
+				if(i==page){
+					str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+				}else{
+					str += "[<a href='" + i +"'>" + i + "</a>] ";
+				}					
+			}
+			if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
+			$("#pagination").html(str);
+		}
+	})
+}
+
+$("#pagination").on("click", "a", function(e){
+	e.preventDefault();
+	page = $(this).attr("href");
+	getList();
+});
+      
 </script>
 </html>
