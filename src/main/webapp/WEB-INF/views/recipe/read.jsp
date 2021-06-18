@@ -62,7 +62,8 @@
 					<script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
 					<ol>
-						<img src="/displayFile?fullName={{recipe_attach_image}}" width=150/>						
+						<img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=150/>	
+						<input type="button" class="del" value="삭제" fullName="{{recipe_attach_image}}"/>					
 						<input type="text" value="{{recipe_attach_text}}" size=50/>						
 					</ol>
 					{{/each}}	
@@ -144,14 +145,14 @@
 	}
 	
 	//파일 삭제
-	$("#attachFiles").on("click", "li .del", function(){
-		var li = $(this).parent();
+	$("#attachFiles").on("click", "ol .del", function(){
+		var ol = $(this).parent();
 		var image = $(this).attr("fullName");
 		if(!confirm(image + "파일을 삭제하실래요?")) return;
 		$.ajax({
 			type:"get",
 			url:"/deleteFile",
-			data:{"fullName":image},
+			data:{"fullName":image, "recipe_bno":recipe_bno},
 			success:function(){
 				alert("삭제완료");
 				li.remove();

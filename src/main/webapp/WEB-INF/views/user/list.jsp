@@ -30,7 +30,7 @@
 	</div>
 	<button onClick="location.href='insert'">회원등록</button>
 	<div id="list">
-		<table id="tbl"></table>
+		<table id="tbl" border=1></table>
 		<script id="temp" type="text/x-handlebars-template">
 			<tr class="title">
 				<td width=100>아이디</td>

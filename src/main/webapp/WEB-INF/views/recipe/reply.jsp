@@ -23,14 +23,49 @@
 			<td width=50>{{recipe_rno}}</td>
 			<td width=300>{{recipe_reply}}</td>
 			<td>{{recipe_replydate}}</td>
-			<td><button class="btnDelete" rno="{{recipe_rno}}">삭제</button></td>
+			<td><button class="btnDelete" recipe_rno="{{recipe_rno}}">삭제</button></td>
 		</tr>
 		{{/each}}
 	</script>	
 </body>
 <script>
 	var recipe_bno="${vo.recipe_bno }";	
-	getList();	
+	getList();
+	
+	$("#rtbl").on("click", ".row .btnDelete", function(){
+		var rno=$(this).attr("recipe_rno");
+		if(!confirm(recipe_rno + "을(를) 삭제하시겠습니까?")) return;
+		$.ajax({
+			type:"get",
+			url:"/reply/delete",
+			data:{"recipe_rno":recipe_rno},
+			success:function(){
+				alert("삭제 완료!");
+				getList();
+			}
+		});
+	});
+	$("#txtReply").on("keydown", function(e){
+		if(e.keyCode==13) $("#btnInsert").click();
+	})
+	
+	$("#btnInsert").on("click", function(){
+		var reply=$("#txtReply").val();
+		if(reply==""){
+			alert("내용을 입력해주세요!");
+			return;
+		}
+		$.ajax({
+			type:"post",
+			url:"reply/insert",
+			data:{"recipe_bno":recipe_bno, "reply":reply},
+			success:function(){
+				alert("댓글 추가 완료!");
+				$("#txtReply").val("");
+				getList();
+			}
+		});
+	});
 
 	function getList(){
 		$.ajax({

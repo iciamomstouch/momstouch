@@ -29,12 +29,12 @@
 		<table id="tbl" border=1 width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">
-			<td width=50>글번호</td>			
+			<td width=60>글번호</td>			
 			<td width=200>제목</td>
 			<td width=100>작성자</td>
 			<td width=200>작성일</td>
-			<td width=100>댓글수</td>
-			<td width=100>조회수</td>
+			<td width=60>댓글수</td>
+			<td width=60>조회수</td>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?info_bno={{info_bno}}'">
