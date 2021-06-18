@@ -1,37 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.TradeMapper">
+
  	<select id="list" resultType="com.example.domain.TradeVO">
  		select * from tbl_trade
+ 		<if test="searchType == 'trade_title'">
+			where trade_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'trade_writer'">
+			where trade_writer like concat('%', #{keyword}, '%')
+		</if>
  		order by trade_bno desc
+ 		limit #{pageStart}, #{perPageNum}
  	</select>
+ 	
+ 	<select id="totalCount" resultType="int">
+		select count(*) from tbl_trade
+		<if test="searchType == 'trade_title'">
+			where trade_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'trade_writer'">
+			where trade_writer like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
  	<select id="read" resultType="com.example.domain.TradeVO">
  		select * from tbl_trade
  		where trade_bno=#{trade_bno}
  	</select>
+ 	
  	<update id="updateViewcnt">
 	 	update tbl_trade set trade_viewcnt=trade_viewcnt + 1 where trade_bno=#{trade_bno}
 	</update>
+	
  	<insert id="insert">
  		insert into tbl_trade(trade_title,trade_category,trade_content,trade_writer,trade_image,trade_price)
  		values(#{trade_title}, #{trade_category}, #{trade_content}, #{trade_writer},#{trade_image},#{trade_price})
  	</insert>
+ 	
  	 <delete id="delete">
  		delete from tbl_trade
  		where trade_bno=#{trade_bno}
  	</delete>
+ 	
  	<update id="update">
 		update tbl_trade 
 		set trade_title=#{trade_title}, trade_category=#{trade_category}, trade_content=#{trade_content},trade_writer=#{trade_writer}, trade_image=#{trade_image}, trade_price=#{trade_price}
 		where trade_bno=#{trade_bno}
 	</update>
+	
 	<insert id="addAttach">
 		insert into trade_attach(trade_attach_image, trade_bno) values(#{trade_attach_image}, #{trade_bno})
 	</insert>
+	
 	<select id="getAttach" resultType="com.example.domain.Trade_attachVO">
 		select * from trade_attach where trade_bno=#{trade_bno}
 	</select>
+	
 	<select id="lastBno" resultType="int">
 		select max(trade_bno) from tbl_trade
 	</select>
+	
+	<select id="keep" resultType="int">
+		select tt.*, tuk.*
+		from tbl_trade tt,tbl_user_keep tuk
+		where tt.trade_bno=tuk.trade_bno
+	</select>
+	
 </mapper>
