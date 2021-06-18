@@ -10,9 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +20,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
-import com.example.domain.UserVO;
 import com.example.persistence.TradeDAO;
 import com.example.service.TradeService;
 
@@ -43,6 +40,15 @@ public class TradeController {
 	public HashMap<String, Object> getAttach(int trade_bno) throws Exception{		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", dao.getAttach(trade_bno));
+		//System.out.println(map.toString());
+		return map;
+	}
+	
+	@RequestMapping("keep")
+	@ResponseBody
+	public HashMap<String, Object> keep(int trade_bno) throws Exception{		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("list", dao.keep(trade_bno));
 		System.out.println(map.toString());
 		return map;
 	}
@@ -139,9 +145,25 @@ public class TradeController {
 		return "index";
 	}
 	
+	@RequestMapping("list.json")
+	@ResponseBody
+	public HashMap<String, Object> listJson(Criteria cri) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.list(cri));	
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
 	@RequestMapping("list")
 	public String list(Model model, Criteria cri) throws Exception{
-		model.addAttribute("list", dao.list(cri));
 		model.addAttribute("pageName", "trade/list.jsp");
 		return "index";
 	}
