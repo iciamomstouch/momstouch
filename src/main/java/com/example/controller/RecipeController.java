@@ -73,8 +73,7 @@ public class RecipeController {
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
 			}
-		}
-		
+		}		
 		dao.update(vo);
 		return "redirect:list";
 	}
@@ -85,7 +84,7 @@ public class RecipeController {
 		if(vo.getRecipe_image()!=null){
 			new File(path + "/" + vo.getRecipe_image()).delete();
 		}		
-		dao.delete(recipe_bno);
+		service.delete(recipe_bno);
 		return "redirect:list";
 	}
 	
@@ -100,9 +99,9 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public String insert(RecipeVO vo, int recipe_bno, MultipartHttpServletRequest multi) throws Exception{
+	public String insert(RecipeVO vo, MultipartHttpServletRequest multi) throws Exception{
 		//파일 업로드
-		System.out.println(vo.toString());
+		
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//파일명
@@ -123,7 +122,7 @@ public class RecipeController {
 				images.add(image);
 			}
 			vo.setImages(images);			
-		}
+		}		
 		service.insert(vo);	    
 		return "redirect:list";
 	}

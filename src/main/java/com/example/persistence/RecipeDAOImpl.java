@@ -57,16 +57,7 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public void updateViewcnt(int recipe_bno) throws Exception {
 		session.update(namespace + ".updateViewcnt", recipe_bno);
 		
-	}
-
-	@Override
-	public void addAttach(String recipe_attach_image, int recipe_bno) throws Exception {
-		HashMap<String,Object> map = new HashMap<>();
-		map.put("recipe_attach_image", recipe_attach_image);
-		map.put("recipe_bno", recipe_bno);
-		session.insert(namespace + ".addAttach", map);
-		
-	}
+	}	
 
 	@Override
 	public int lastBno() throws Exception {
@@ -77,6 +68,21 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public void updateReply(int recipe_bno, int recipe_rno) throws Exception {
 		session.update(namespace + ".updateReply", recipe_rno);
 		
+	}
+
+	@Override
+	public void addAttach(String recipe_attach_no, String recipe_attach_image, String recipe_attach_text, int recipe_bno) throws Exception {		
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("recipe_attach_no", recipe_attach_no);
+		map.put("recipe_attach_image", recipe_attach_image);
+		map.put("recipe_attach_text", recipe_attach_text);
+		map.put("recipe_bno", recipe_bno);
+		session.insert(namespace + ".addAttach", map);
+	}
+
+	@Override
+	public void delAttach(int recipe_bno) throws Exception {
+		session.delete(namespace + ".delAttach", recipe_bno);		
 	}
 
 }

@@ -20,14 +20,14 @@ public class Recipe_replyServiceImpl implements Recipe_replyService{
 	@Override
 	public void insert(Recipe_replyVO vo) throws Exception {
 		dao2.insert(vo);
-		dao1.updateReply(vo.getRecipe_bno(), 1);		
+		//dao1.updateReply(vo.getRecipe_bno(), 1);		
 	}
 	
 	@Transactional
 	@Override
 	public void delete(int recipe_rno) throws Exception {
 		Recipe_replyVO vo=dao2.read(recipe_rno);
-		dao1.updateReply(vo.getRecipe_bno(), -1);
+		//dao1.updateReply(vo.getRecipe_bno(), -1);
 		dao2.delete(recipe_rno);
 		
 	}

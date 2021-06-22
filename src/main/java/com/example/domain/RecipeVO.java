@@ -19,10 +19,23 @@ public class RecipeVO {
 	private Date recipe_regdate;
 	private String recipe_updatedate;
 	private int recipe_viewcnt;
-	private double recipe_userRatingAvg;	
+	private double recipe_userRatingAvg;
+	private ArrayList<String> recipe_attach_no;
 	private ArrayList<String> images;
-	private ArrayList<String> texts;
+	private ArrayList<String> recipe_attach_text;
 	
+	public ArrayList<String> getRecipe_attach_text() {
+		return recipe_attach_text;
+	}
+	public void setRecipe_attach_text(ArrayList<String> recipe_attach_text) {
+		this.recipe_attach_text = recipe_attach_text;
+	}
+	public ArrayList<String> getRecipe_attach_no() {
+		return recipe_attach_no;
+	}
+	public void setRecipe_attach_no(ArrayList<String> recipe_attach_no) {
+		this.recipe_attach_no = recipe_attach_no;
+	}
 	public int getRecipe_bno() {
 		return recipe_bno;
 	}
@@ -101,21 +114,16 @@ public class RecipeVO {
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
 	}
-	public ArrayList<String> getTexts() {
-		return texts;
-	}
-	public void setTexts(ArrayList<String> texts) {
-		this.texts = texts;
-	}
+	
 	@Override
 	public String toString() {
 		return "RecipeVO [recipe_bno=" + recipe_bno + ", recipe_title=" + recipe_title + ", recipe_category="
 				+ recipe_category + ", recipe_ingre=" + recipe_ingre + ", recipe_seasoning=" + recipe_seasoning
 				+ ", recipe_content=" + recipe_content + ", recipe_writer=" + recipe_writer + ", recipe_image="
 				+ recipe_image + ", recipe_regdate=" + recipe_regdate + ", recipe_updatedate=" + recipe_updatedate
-				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg + ", images="
-				+ images + ", texts=" + texts + "]";
-	}
-	
+				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg
+				+ ", recipe_attach_no=" + recipe_attach_no + ", images=" + images + ", recipe_attach_text="
+				+ recipe_attach_text + "]";
+	}		
 		
 }
