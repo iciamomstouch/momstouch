@@ -15,19 +15,19 @@
 		<table border=1>
 			<tr>
 				<td>번호</td>
-				<td><input type="text" name="recipe_bno" value="${bno}"/></td>
+				<td colspan=3><input type="text" name="recipe_bno" value="${bno}" size=50/></td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="recipe_title"/></td>
+				<td colspan=3><input type="text" name="recipe_title" size=50/></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="recipe_writer" value="${user_id}"/></td>
+				<td colspan=3><input type="text" name="recipe_writer" value="${user_id}" size=50/></td>
 			</tr>
 			<tr>
 				<td>카테고리</td>
-				<td>
+				<td colspan=3>
 					<select name="recipe_category">
 						<option value="산모">산모</option>
 						<option value="초기">초기</option>
@@ -38,53 +38,84 @@
 				</td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td>
-					<textarea rows="10" cols="52" name="recipe_content"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>재료</td>
-				<td>
-					<textarea rows="5" cols="52" name="recipe_ingre"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>양념장</td>
-				<td>
-					<textarea rows="5" cols="52" name="recipe_seasoning"></textarea>
-				</td>
-			</tr>
-			<tr>
 				<td width=100>이미지</td>
-				<td width=300>
+				<td width=300 colspan=3>
 					<img src="http://placehold.it/150x120" width=150 id="image"/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="첨부이미지" id="btnImage"/></td>
-				<td style="height:150px;padding:10px;">
-	            	<input type="file" name="files" accept="image/*" multiple style="display:none"/>
-	     			<div id="uploaded">
-	                	<ul id="uploadFiles"></ul>
-	                 	<script id="temp" type="text/x-handlebars-template">
-                  		<li>
-                    		<img src="/displayFile?fullName={{fullName}}" width=50/>
-                     		<input type="text" name="files" value="{{fullName}}"/>
-                     		<input class="del" type="button" value="삭제" fullName={{fullName}}/>
-                  		</li>
-                  		</script>
-	              	</div>
-            	</td>
+				<td>내용</td>
+				<td colspan=3>
+					<textarea rows="10" cols="52" name="recipe_content"></textarea>
+				</td>
 			</tr>
+			<tr>
+				<td>재료</td>
+				<td colspan=3>
+					<textarea rows="5" cols="52" name="recipe_ingre"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>양념장</td>
+				<td colspan=3>
+					<textarea rows="5" cols="52" name="recipe_seasoning"></textarea>
+				</td>
+			</tr>
+			<tbody id="attach_list">			
+			<tr>				
+	     		<td>
+	     			<input type="text" name="recipe_attach_no" value="1"/>
+	     		</td>
+	     		<td width=300>
+					<img src="http://placehold.it/150x120" width=150 id="image1"/>
+					<input type="file" name="files"/>
+				</td>
+				<td>
+					<textarea rows="5" cols="52" name="recipe_attach_text"></textarea>
+				</td>
+				<td>
+					<button type="button">삭제</button>
+				</td>            	
+			</tr>
+			</tbody>
 		</table>
 		<input type="submit" value="새글등록"/>
 		<input type="reset" value="등록취소"/>
 		<input type="button" value="목록이동" onClick="location.href='list'"/>
+		<input type="button" value="행추가" onclick="add_new_row('attach_list',0);"/>
+		
 	</form>
 </body>
 <script>
+	var num_rows=1;
+	var new_row_num=1;
+	function add_new_row(obj,n) {
+	    $("#num_rows").val(++num_rows);
+	    var tag = ""
+	    tag +="<tr id='tr_id"+(new_row_num + n)+ "'>\n";
+	    tag +="<td>"+"<input type='text' name='recipe_attach_no' value='" + ((new_row_num + n) +1)+ "'/></td>\n";
+	    tag +="<td>\n";
+	    tag +="<img src='http://placehold.it/150x120' width=150 id='image" + ((new_row_num + n) +1) + "'/>\n";
+	    tag +="<input type='file' name='files'/>\n";	   
+	    tag +="</td>\n";
+	    tag +="<td>\n";
+	  	tag +="<textarea rows='5' cols='52' name='recipe_attach_text'></textarea>"
+	  	tag +="</td>\n";
+	  	tag +="<td>\n";
+	    tag +="<button type='button'>삭제</button>\n";
+	    tag +="</td>\n";
+	    tag +="</tr>\n";
+	  
+	    $("#"+obj).append(tag);
+	    new_row_num++;
+	}
+	
+	$('#attach_list').on("click", "button", function() {
+	    $(this).closest("tr").remove()
+	});
+	
+	//게시글 등록
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		
@@ -102,11 +133,21 @@
 	
 	$("#image").on("click", function(){
 		$(frm.file).click();
-	});
+	});	
 	//이미지 미리보기
 	$(frm.file).on("change", function(){
 		var file=$(frm.file)[0].files[0];
 		$("#image").attr("src", URL.createObjectURL(file));
+	});
+	
+	$(".images").on("click", function(){
+		$(frm.files).click();
+	});
+	
+	//이미지 미리보기
+	$(frm.files).on("change", function(){
+		var file=$(frm.files)[0].files[0];
+		$(".images").attr("src", URL.createObjectURL(file));
 	});
 	
 	//첨부 파일들을 선택한경우

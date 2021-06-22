@@ -62,8 +62,7 @@
 					<script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
 					<ol>
-						<img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=150/>	
-						<input type="button" class="del" value="삭제" fullName="{{recipe_attach_image}}"/>					
+						<img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=150/>										
 						<input type="text" value="{{recipe_attach_text}}" size=50/>						
 					</ol>
 					{{/each}}	

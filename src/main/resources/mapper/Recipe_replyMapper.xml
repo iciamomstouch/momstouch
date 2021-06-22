@@ -7,8 +7,8 @@
 		order by recipe_rno desc
 	</select>
 	<insert id="insert">
-		insert into recipe_reply(recipe_rno, recipe_bno, recipe_reply, recipe_replyer, recipe_userRating)
-		values(seq_reply.nextval, #{recipe_bno},#{recipe_reply},#{recipe_replyer},#{recipe_userRating})
+		insert into recipe_reply(recipe_bno, recipe_reply, recipe_replyer, recipe_userRating)
+		values(#{recipe_bno}, #{recipe_reply}, #{recipe_replyer}, #{recipe_userRating})
 	</insert>
 	<delete id="delete">
 		delete from recipe_reply where recipe_rno=#{recipe_rno}

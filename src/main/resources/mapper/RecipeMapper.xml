@@ -23,8 +23,8 @@
 	</insert>
 	
 	<insert id="addAttach">
-		insert into recipe_attach(recipe_bno, recipe_attach_image, recipe_attach_text)
-		values(#{recipe_bno}, #{recipe_attach_image}, #{recipe_attach_text})
+		insert into recipe_attach(recipe_bno, recipe_attach_no, recipe_attach_image, recipe_attach_text)
+		values(#{recipe_bno}, #{recipe_attach_no}, #{recipe_attach_image}, #{recipe_attach_text})
 	</insert>
 	
 	<update id="update">
@@ -36,8 +36,14 @@
 		delete from tbl_recipe where recipe_bno=#{recipe_bno}
 	</delete>
 	
+	<delete id="delAttach">
+		delete from recipe_attach where recipe_bno=#{recipe_bno}
+	</delete>
+	
 	<select id="getAttach" resultType="com.example.domain.Recipe_attachVO">
-		select * from recipe_attach where recipe_bno=#{recipe_bno}
+		select * from recipe_attach
+		where recipe_bno=#{recipe_bno}
+		order by recipe_attach_no
 	</select>
 	
 	<update id="updateViewcnt">
