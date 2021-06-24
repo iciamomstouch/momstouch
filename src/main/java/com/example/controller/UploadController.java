@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,8 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.persistence.RecipeDAO;
+
 @Controller
 public class UploadController {
+	@Autowired
+	RecipeDAO dao;
+	
 	@Resource(name="uploadPath")
 	String path;
 	
@@ -68,11 +74,14 @@ public class UploadController {
 	}
 	
 	//파일 삭제
-	@ResponseBody
-	@RequestMapping("/deleteFile")
-	public void deleteFile(String fullName){
-		new File(path + "/" + fullName).delete();
-	}
+		@ResponseBody
+		@RequestMapping("/deleteFile")
+		public void deleteFile(String fullName, int recipe_bno, int recipe_attach_no) throws Exception{		
+			if(fullName!=null){
+				dao.delAttach2(recipe_bno, recipe_attach_no);
+				new File(path + "/" + recipe_bno + "/" + fullName).delete();
+			}		
+		}
 	
 	//파일 다운로드
 	@ResponseBody

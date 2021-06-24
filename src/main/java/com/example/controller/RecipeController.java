@@ -35,6 +35,30 @@ public class RecipeController {
 	@Resource(name="uploadPath")
 	String path;
 	
+
+	@RequestMapping("list")
+	public String list(Model model) throws Exception{
+		model.addAttribute("pageName", "recipe/list.jsp");
+		return "index";
+	}
+	
+	@RequestMapping("list.json")
+	@ResponseBody
+	public HashMap<String, Object> listJson(Criteria cri) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.list(cri));	
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}	
+	
 	@RequestMapping("getAttach.json")
 	@ResponseBody
 	public HashMap<String, Object> getAttach(int recipe_bno) throws Exception{		
@@ -42,6 +66,13 @@ public class RecipeController {
 		map.put("list", dao.getAttach(recipe_bno));
 		System.out.println(map.toString());
 		return map;
+	}
+	
+	@RequestMapping("update")
+	public String update(Model model, int recipe_bno) throws Exception{
+		model.addAttribute("vo", dao.read(recipe_bno));
+		model.addAttribute("pageName", "recipe/update.jsp");
+		return "index";
 	}
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
@@ -68,13 +99,16 @@ public class RecipeController {
 		String attPath=path + "/" + vo.getRecipe_bno();
 		File folder=new File(attPath);
 		if(!folder.exists()) folder.mkdir();
-		for(MultipartFile attFile:files){
+		ArrayList<String> images = new ArrayList<String>();
+		for(MultipartFile attFile:files){		    
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
+				images.add(image);
 			}
+			vo.setImages(images);			
 		}		
-		dao.update(vo);
+		service.update(vo);
 		return "redirect:list";
 	}
 		
@@ -135,17 +169,14 @@ public class RecipeController {
 		return "index";
 	}
 	
-	@RequestMapping("list")
-	public String list(Model model, Criteria cri) throws Exception{
-		PageMaker pm=new PageMaker();
-		
-		pm.setCri(cri);
-		pm.setTotalCount(dao.totalCount());
-		
-		model.addAttribute("pm",pm);
-		model.addAttribute("list", dao.list(cri));
-		model.addAttribute("pageName", "recipe/list.jsp");
-		return "index";
+	@RequestMapping("deleteFile")
+	public String deleteFile(int recipe_bno, int recipe_attach_no) throws Exception{
+		RecipeVO vo = dao.read(recipe_bno);
+		if(vo.getRecipe_image()!=null){
+			new File(path + "/" + vo.getRecipe_image()).delete();
+		}		
+		service.delete(recipe_bno);
+		return "redirect:list";
 	}
 	
 }

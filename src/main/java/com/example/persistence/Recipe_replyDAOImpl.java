@@ -37,4 +37,9 @@ public class Recipe_replyDAOImpl implements Recipe_replyDAO {
 		return session.selectOne(namespace + ".read", recipe_rno);
 	}
 
+	@Override
+	public void deleteAll(int recipe_bno) throws Exception {
+		session.delete(namespace + ".deleteAll", recipe_bno);		
+	}
+
 }

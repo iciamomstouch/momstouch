@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.Recipe_replyVO;
 import com.example.persistence.Recipe_replyDAO;
+import com.example.service.Recipe_replyService;
 
 @Controller
 @RequestMapping("/recipe/")
 public class Recipe_replyController {
 	@Autowired
 	Recipe_replyDAO dao;
+	
+	@Autowired
+	Recipe_replyService service;
 	
 	@RequestMapping("reply.json")
 	@ResponseBody
@@ -28,13 +32,13 @@ public class Recipe_replyController {
 	@RequestMapping(value="reply/insert", method=RequestMethod.POST)
 	@ResponseBody
 	public void insert(Recipe_replyVO vo) throws Exception{		
-		dao.insert(vo);		
+		service.insert(vo);		
 	}
 	
 	@RequestMapping("reply/delete")
 	@ResponseBody
 	public void delete(int recipe_rno) throws Exception{
-		dao.delete(recipe_rno);
+		service.delete(recipe_rno);
 	}	
 	
 	

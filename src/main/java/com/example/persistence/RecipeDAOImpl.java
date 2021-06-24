@@ -24,8 +24,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	}
 
 	@Override
-	public int totalCount() throws Exception {		
-		return session.selectOne(namespace + ".totalCount");
+	public int totalCount(Criteria cri) throws Exception {		
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 
 	@Override
@@ -85,4 +85,21 @@ public class RecipeDAOImpl implements RecipeDAO{
 		session.delete(namespace + ".delAttach", recipe_bno);		
 	}
 
+	@Override
+	public void updateUserRating(int recipe_bno) throws Exception {		
+		session.update(namespace + ".updateUserRating", recipe_bno);
+	}
+
+	@Override
+	public void delAttach2(int recipe_bno, int recipe_attach_no) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("recipe_attach_no", recipe_attach_no);
+		map.put("recipe_bno", recipe_bno);
+		session.delete(namespace + ".delAttach2", map);
+	}
+
+	@Override
+	public void addAttach2(Recipe_attachVO attachVO) throws Exception {
+		session.update(namespace + ".addAttach", attachVO);		
+	}
 }

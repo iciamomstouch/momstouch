@@ -41,7 +41,7 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("list.json")
-	@ResponseBody //ë°ì´í„° ìì²´ë¥¼ ë¦¬í„´í• ë•Œ
+	@ResponseBody //µ¥ÀÌÅÍ ÀÚÃ¼¸¦ ¸®ÅÏÇÒ¶§
 	public HashMap<String, Object> listJson(Criteria cri) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		cri.setPerPageNum(10);
@@ -69,11 +69,11 @@ public class QuestionController {
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)	
 	public String insert(QuestionVO vo, MultipartHttpServletRequest multi) throws Exception{		
-		//íŒŒì¼ ì—…ë¡œë“œ
+		//ÆÄÀÏ ¾÷·Îµå
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
-			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//íŒŒì¼ëª…
-			file.transferTo(new File(path + "/" + image));//íŒŒì¼ì´ë™
+			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//ÆÄÀÏ¸í
+			file.transferTo(new File(path + "/" + image));//ÆÄÀÏÀÌµ¿
 			vo.setQuestion_image(image);
 		}
 		dao.insert(vo);
@@ -98,13 +98,13 @@ public class QuestionController {
 	public String update(QuestionVO vo, MultipartHttpServletRequest multi) throws Exception{
 		QuestionVO oldVO = dao.read(vo.getQuestion_bno());
 		String oldImage = oldVO.getQuestion_image();
-		//ëŒ€í‘œ ì´ë¯¸ì§€ íŒŒì¼ ì—…ë¡œë“œ
+		//´ëÇ¥ ÀÌ¹ÌÁö ÆÄÀÏ ¾÷·Îµå
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
-			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//íŒŒì¼ëª…
-			file.transferTo(new File(path + "/" + image));//íŒŒì¼ì´ë™
+			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//ÆÄÀÏ¸í
+			file.transferTo(new File(path + "/" + image));//ÆÄÀÏÀÌµ¿
 			vo.setQuestion_image(image);
-			//ì˜ˆì „ ì´ë¯¸ì§€ê°€ ìˆì„ ê²½ìš°ì—ë§Œ ì‚­ì œ			
+			//¿¹Àü ÀÌ¹ÌÁö°¡ ÀÖÀ» °æ¿ì¿¡¸¸ »èÁ¦			
 			if(oldImage!=null){
 				new File(path + "/" + oldImage).delete();
 			}
@@ -139,11 +139,11 @@ public class QuestionController {
 		String question_title = "RE:" + oldVO.getQuestion_title();
 		vo.setQuestion_title(question_title);
 		
-		//íŒŒì¼ ì—…ë¡œë“œ
+		//ÆÄÀÏ ¾÷·Îµå
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
-			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//íŒŒì¼ëª…
-			file.transferTo(new File(path + "/" + image));//íŒŒì¼ì´ë™
+			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//ÆÄÀÏ¸í
+			file.transferTo(new File(path + "/" + image));//ÆÄÀÏÀÌµ¿
 			vo.setQuestion_image(image);
 		}
 		dao.insert2(vo);
