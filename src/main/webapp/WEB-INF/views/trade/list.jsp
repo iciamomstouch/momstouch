@@ -26,9 +26,7 @@
 			<input type="text" id="keyword" placeholder="검색어"/>
 			<input type="button" id="btnSearch" value="검 색"/>
 			<span id="total"></span>
-		</div>
-		<div id="right"></div>
-		<span id="totalCount">${pm.totalCount }</span>
+		</div>			
 	</div>
 	<button onClick="location.href='insert'">게시글등록</button>
 	<table id="tbl" border=1></table>

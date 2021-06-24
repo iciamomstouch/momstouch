@@ -39,10 +39,13 @@
 	<script id="rTemp" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row">
-			<td width=50>{{recipe_rno}}</td>
-			<td width=100>{{recipe_replyer}}</td>
-			<td width=300>{{recipe_reply}}</td>
-			<td>{{recipe_replydate}}</td>
+			<td width=50 rowspan=2>{{recipe_rno}}</td>
+			<td width=100>{{recipe_replyer}}</td>			
+			<td width=200>{{recipe_replydate}}</td>
+			<td>{{recipe_userRating}}</td>
+		</tr>
+		<tr class="row">			
+			<td colspan=2>{{recipe_reply}}</td>			
 			<td><button class="btnDelete" recipe_rno="{{recipe_rno}}">삭제</button></td>
 		</tr>
 		{{/each}}

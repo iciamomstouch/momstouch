@@ -4,12 +4,30 @@
 
 	<select id="list" resultType="com.example.domain.RecipeVO">
 		select * from tbl_recipe
+		<if test="searchType == 'recipe_title'">
+			where recipe_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'recipe_ingre'">
+			where recipe_ingre like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'recipe_writer'">
+			where recipe_writer like concat('%', #{keyword}, '%')
+		</if>
 		order by recipe_bno desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_recipe
+		<if test="searchType == 'recipe_title'">
+			where recipe_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'recipe_ingre'">
+			where recipe_ingre like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'recipe_writer'">
+			where recipe_writer like concat('%', #{keyword}, '%')
+		</if>
 	</select>
 	
 	<select id="read" resultType="com.example.domain.RecipeVO">
@@ -40,6 +58,10 @@
 		delete from recipe_attach where recipe_bno=#{recipe_bno}
 	</delete>
 	
+	<delete id="delAttach2">
+		delete from recipe_attach where recipe_bno=#{recipe_bno} and recipe_attach_no=#{recipe_attach_no}
+	</delete>
+	
 	<select id="getAttach" resultType="com.example.domain.Recipe_attachVO">
 		select * from recipe_attach
 		where recipe_bno=#{recipe_bno}
@@ -53,5 +75,10 @@
 	<select id="lastBno" resultType="int">
 		select max(recipe_bno) from tbl_recipe
 	</select>
+	
+	<update id="updateUserRating">
+	 	update tbl_recipe set recipe_userRatingAvg=(select avg(recipe_userRating) from recipe_reply where recipe_bno = #{recipe_bno})
+	 	where recipe_bno = #{recipe_bno};
+	</update>
 	
 </mapper>
