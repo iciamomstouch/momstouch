@@ -99,9 +99,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("read")
-	public void read(int board_bno, Model model) throws Exception{
+	public String read(int board_bno, Model model) throws Exception{
 		model.addAttribute("vo", service.read(board_bno));
+		model.addAttribute("pageName", "board/read.jsp");
+		return "index";
 	}
+	
 	@RequestMapping("delete")
 	public String read(int board_bno) throws Exception{
 		dao.delete(board_bno);

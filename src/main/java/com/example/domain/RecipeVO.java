@@ -17,6 +17,8 @@ public class RecipeVO {
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_regdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private String recipe_updatedate;
 	private int recipe_viewcnt;	
 	private double recipe_userRatingAvg;

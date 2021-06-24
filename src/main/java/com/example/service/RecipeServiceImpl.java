@@ -42,17 +42,19 @@ public class RecipeServiceImpl implements RecipeService {
 			map1.put("recipe_attach_no", noList.get(i));
 			map1.put("recipe_attach_image", imageList.get(i));
 			map1.put("recipe_attach_text", textList.get(i));
+			map1.put("recipe_bno", vo.getRecipe_bno());
 			testList.add(map1);
 		}
 				
-		//System.out.println(testList.toString());
+		System.out.println(testList.toString());
 		if(testList==null) return;
 		for(HashMap<String, Object> map:testList){
 			Recipe_attachVO attachVO = new Recipe_attachVO();
 			attachVO.setRecipe_attach_no((String) map.get("recipe_attach_no"));
 			attachVO.setRecipe_attach_image((String) map.get("recipe_attach_image"));
 			attachVO.setRecipe_attach_text((String) map.get("recipe_attach_text"));
-			dao.addAttach(attachVO.getRecipe_attach_no(), attachVO.getRecipe_attach_image(), attachVO.getRecipe_attach_text(), vo.getRecipe_bno());
+			attachVO.setRecipe_bno((int) map.get("recipe_bno"));
+			dao.addAttach(attachVO);
 		   }
 	}
 	
@@ -81,7 +83,7 @@ public class RecipeServiceImpl implements RecipeService {
 			attachVO.setRecipe_attach_image((String) map.get("recipe_attach_image"));
 			attachVO.setRecipe_attach_text((String) map.get("recipe_attach_text"));
 			attachVO.setRecipe_bno((int) map.get("recipe_bno"));
-			dao.addAttach2(attachVO);
+			dao.addAttach(attachVO);
 		   }
 	}
 	

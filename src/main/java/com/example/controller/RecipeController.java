@@ -70,6 +70,9 @@ public class RecipeController {
 	
 	@RequestMapping("update")
 	public String update(Model model, int recipe_bno) throws Exception{
+		int lastAttachNo = dao.lastAttachNo(recipe_bno);
+		int attachNo = lastAttachNo + 1;
+		model.addAttribute("attachNo", attachNo);
 		model.addAttribute("vo", dao.read(recipe_bno));
 		model.addAttribute("pageName", "recipe/update.jsp");
 		return "index";
@@ -77,7 +80,7 @@ public class RecipeController {
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(RecipeVO  vo, MultipartHttpServletRequest multi) throws Exception{
-		RecipeVO oldVO = dao.read(vo.getRecipe_bno());
+		RecipeVO oldVO = dao.read(vo.getRecipe_bno());		
 		
 		//파일업로드
 		MultipartFile file=multi.getFile("file");
