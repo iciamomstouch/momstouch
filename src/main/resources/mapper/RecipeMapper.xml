@@ -76,6 +76,10 @@
 		select max(recipe_bno) from tbl_recipe
 	</select>
 	
+	<select id="lastAttachNo" resultType="int">
+		select max(recipe_attach_no) from recipe_attach where recipe_bno=#{recipe_bno}
+	</select>
+	
 	<update id="updateUserRating">
 	 	update tbl_recipe set recipe_userRatingAvg=(select avg(recipe_userRating) from recipe_reply where recipe_bno = #{recipe_bno})
 	 	where recipe_bno = #{recipe_bno};

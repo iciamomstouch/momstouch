@@ -7,7 +7,7 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>레시피 등록하기</title>
+	<title>레시피</title>
 </head>
 <body>
 	<h1>레시피 수정하기</h1>
@@ -80,14 +80,13 @@
 						<td><input type="button" class="del" value="삭제" fullName="{{recipe_attach_image}}" num="{{recipe_attach_no}}"/></td>					
 					</tr>
 					{{/each}}	
-					</script>
-				</div>					
+					</script>									
 				</td>
 			</tr>
 			<tbody id="attach_list">			
 			<tr>				
 	     		<td>
-	     			<input type="text" name="recipe_attach_no" value="1"/>
+	     			<input type="text" name="recipe_attach_no" value="${attachNo}"/>
 	     		</td>
 	     		<td width=300>
 					<img src="http://placehold.it/150x120" width=150 id="image1"/>
@@ -111,7 +110,7 @@
 </body>
 <script>
 	var num_rows=1;
-	var new_row_num=1;
+	var new_row_num=${attachNo};
 	function add_new_row(obj,n) {
 	    $("#num_rows").val(++num_rows);
 	    var tag = ""

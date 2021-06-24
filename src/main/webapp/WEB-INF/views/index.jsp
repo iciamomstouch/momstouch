@@ -12,7 +12,8 @@
 </head>
 <body>
 	<div id="divTop">
-		<h1>[맘스터치]</h1>		
+		<h1>[맘스터치]</h1>
+		<div id="weather"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
 		<div id="divMenu">
 			<jsp:include page="menu.jsp"/>
 		</div>		
@@ -25,8 +26,34 @@
 	</div>
 	
 	<div id="divBottom">
-		<h4>인천일보 아카데미</h4>
-		
+		<h4>인천일보 아카데미</h4>		
 	</div>
 </body>
+<script>
+	var weather = [];
+	getWeather();
+	function getWeather() { //다음 날씨 정보 출력
+		$.ajax({
+			type : "get",
+			url : "/daum.json",
+			success : function(data) {
+				$("#today").html(data.date);
+				var i = 0;
+				$(data.list).each(function() {
+					weather[i] = this.part + " " + this.ico + " " + this.temper + " " + this.wa;
+					i++;
+				});
+				i = 0;
+				var interval = setInterval(function() {
+					$("#daum_weather").html(weather[i]);
+					if (i < weather.length - 1) {
+						i++;
+					} else {
+						i = 0;
+					}
+				}, 1000);
+			}
+		});
+	}
+</script>
 </html>
