@@ -45,6 +45,7 @@
 			<mapping path="/board/insert"/>			
 			<mapping path="/info/insert"/>
 			<mapping path="/trade/insert"/>
+			<mapping path="/recipe/insert"/>
 			<mapping path="/question/insert"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>			

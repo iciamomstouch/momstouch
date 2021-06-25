@@ -7,19 +7,19 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>레시피 게시판</title>
+	<title>레시피</title>
 </head>
 <body>
-	<h1>레시피 등록하기</h1>
+	<h1>레시피 수정하기</h1>
 	<form name="frm" enctype="multipart/form-data">
 		<table border=1>
 			<tr>
 				<td>번호</td>
-				<td colspan=3><input type="text" name="recipe_bno" value="${bno}" size=50/></td>
+				<td colspan=3><input type="text" name="recipe_bno" value="${vo.recipe_bno}" size=50/></td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td colspan=3><input type="text" name="recipe_title" size=50/></td>
+				<td colspan=3><input type="text" name="recipe_title" value="${vo.recipe_title}" size=50/></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -38,34 +38,55 @@
 				</td>
 			</tr>
 			<tr>
-				<td width=100>이미지</td>
-				<td width=300 colspan=3>
-					<img src="http://placehold.it/150x120" width=150 id="image"/>
+				<td>요리이미지</td>
+				<td>
+					<c:if test="${vo.recipe_image==null }">
+						<img src="http://placehold.it/300x240" width=300 id="image"/>
+					</c:if>
+					<c:if test="${vo.recipe_image!=null }">
+						<img src="/displayFile?fullName=${vo.recipe_image }" width=300 id="image"/>
+					</c:if>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
 				<td colspan=3>
-					<textarea rows="10" cols="52" name="recipe_content"></textarea>
+					<textarea rows="10" cols="52" name="recipe_content">${vo.recipe_content}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>재료</td>
 				<td colspan=3>
-					<textarea rows="5" cols="52" name="recipe_ingre"></textarea>
+					<textarea rows="5" cols="52" name="recipe_ingre">${vo.recipe_ingre}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>양념장</td>
 				<td colspan=3>
-					<textarea rows="5" cols="52" name="recipe_seasoning"></textarea>
+					<textarea rows="5" cols="52" name="recipe_seasoning">${vo.recipe_seasoning}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>조리순서</td>
+				<td style="height:150px;padding:10px;" colspan=3>					
+					<table id="attachFiles"></table>
+					<script id="temp" type="text/x-handlebars-template">
+					{{#each list}}
+					<tr>
+						<td>{{recipe_attach_no}}</td>
+						<td><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=100/></td>									
+						<td><textarea rows="8" cols="35" >{{recipe_attach_text}}</textarea></td>
+						<td><input type="button" class="del" value="삭제" fullName="{{recipe_attach_image}}" num="{{recipe_attach_no}}"/></td>					
+					</tr>
+					{{/each}}	
+					</script>									
 				</td>
 			</tr>
 			<tbody id="attach_list">			
 			<tr>				
 	     		<td>
-	     			<input type="text" name="recipe_attach_no" value="1"/>
+	     			<input type="text" name="recipe_attach_no" value="${attachNo}"/>
 	     		</td>
 	     		<td width=300>
 					<img src="http://placehold.it/150x120" width=150 id="image1"/>
@@ -80,7 +101,7 @@
 			</tr>
 			</tbody>
 		</table>
-		<input type="submit" value="새글등록"/>
+		<input type="submit" value="레시피 수정"/>
 		<input type="reset" value="등록취소"/>
 		<input type="button" value="목록이동" onClick="location.href='list'"/>
 		<input type="button" value="행추가" onclick="add_new_row('attach_list',0);"/>
@@ -89,7 +110,7 @@
 </body>
 <script>
 	var num_rows=1;
-	var new_row_num=1;
+	var new_row_num=${attachNo};
 	function add_new_row(obj,n) {
 	    $("#num_rows").val(++num_rows);
 	    var tag = ""
@@ -119,14 +140,14 @@
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		
-		var trade_title=$(frm.trade_title).val();
-		if(trade_title==""){
+		var recipe_title=$(frm.recipe_title).val();
+		if(recipe_title==""){
 			alert("제목을 입력하세요!");
 			return;
 		}
 		
-		if(!confirm("새글을 등록하실래요?")) return;
-		frm.action="insert";
+		if(!confirm("수정하실래요?")) return;
+		frm.action="update";
 		frm.method="post";
 		frm.submit();
 	});
@@ -182,21 +203,39 @@
 		$(frm.files).click();
 	});
 	
-	//첨부 파일삭제
-	$("#uploadFiles").on("click", "li .del", function(){
-		var li=$(this).parent();
-		var fullName = $(this).attr("fullName");
-		if(!confirm(fullName + "을 삭제하실래요?")) return;
+	//파일 삭제
+	$("#attachFiles").on("click", "tr td .del", function(){
+		var recipe_bno=$(frm.recipe_bno).val();
+		var image = $(this).attr("fullName");
+		var num = $(this).attr("num");
+		if(!confirm(image + "파일을 삭제하실래요?")) return;
+		$(this).closest("tr").remove();
 		$.ajax({
 			type:"get",
 			url:"/deleteFile",
-			data:{"fullName":fullName},
+			data:{"fullName":image, "recipe_bno":recipe_bno, "recipe_attach_no":num},
 			success:function(){
-				alert("삭제완료!");
-				li.remove();
+				alert("삭제완료");
+				
+			}
+		})		
+	});
+	
+	//첨부파일 출력
+	getAttach();	
+	function getAttach(){
+		var recipe_bno=$(frm.recipe_bno).val();
+		$.ajax({
+			type:"get",
+			url:"getAttach.json",
+			data:{"recipe_bno":recipe_bno},
+			dataType:"json",
+			success:function(data){				
+				var temp = Handlebars.compile($("#temp").html());								
+				$("#attachFiles").append(temp(data));				
 			}
 		})
-	});
+	}
 
 </script>
 </html>

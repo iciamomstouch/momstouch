@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>게시판2</title>
+	<link rel="stylesheet" href="/resources/css/board.css"/>
 	<style>
 		.row {cursor:pointer;}
 	</style>
@@ -26,7 +27,7 @@
 	</div>
 	<button onClick="location.href='insert'">글쓰기</button>
 	<div id="list">
-		<table id="tbl" border=1 width=800></table>
+		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">
 			<td width=60>글번호</td>			

@@ -7,33 +7,34 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<title>상품정보</title>
+	<title>레시피게시판</title>
 	<style>
 		#listFile img{width:150px; margin:0px 10px 10px 0px;}
+		 input[type=text] {padding: 5px; margin: 0px;}
 	</style>
 </head>
 <body>
-	<h1>[상품정보]</h1>
+	<h1>[레시피정보]</h1>
 	<form name="frm" encType="multipart/form-data">
 		<table border=1 width=500>
 			<tr>
-				<td>레시피 번호</td>
-				<td><input type="text" name="recipe_bno" value="${vo.recipe_bno }" readOnly/>
+				<td>번호</td>
+				<td><input type="text" name="recipe_bno" value="${vo.recipe_bno }" readOnly size=50 />
 			</tr>
 			<tr>
-				<td>레시피 작성자</td>
-				<td><input type="text" name="recipe_writer" value="${vo.recipe_writer }" readOnly/>
+				<td>작성자</td>
+				<td><input type="text" name="recipe_writer" value="${vo.recipe_writer }" readOnly size=50 />
+			</tr>			
+			<tr>
+				<td>제목</td>
+				<td><input type="text" name="recipe_title" value="${vo.recipe_title }" size=50 />
 			</tr>
 			<tr>
-				<td>레시피 제목</td>
-				<td><input type="text" name="recipe_title" value="${vo.recipe_title }"/>
+				<td>카테고리</td>
+				<td><input type="text" name="recipe_category" value="${vo.recipe_category }" size=50 />
 			</tr>
 			<tr>
-				<td>레시피 카테고리</td>
-				<td><input type="text" name="recipe_category" value="${vo.recipe_category }"/>
-			</tr>
-			<tr>
-				<td>상품이미지</td>
+				<td>요리이미지</td>
 				<td>
 					<c:if test="${vo.recipe_image==null }">
 						<img src="http://placehold.it/300x240" width=300 id="image"/>
@@ -45,36 +46,38 @@
 				</td>
 			</tr>
 			<tr>
-				<td>레시피 내용</td>
+				<td>내용</td>
 				<td><input type="text" name="recipe_content" value="${vo.recipe_content }" size=50/>
 			</tr>
 			<tr>
-				<td>레시피 재료</td>
+				<td>재료</td>
 				<td><input type="text" name="recipe_ingre" value="${vo.recipe_ingre }" size=50/>
+			</tr>
+			<tr>
+				<td>양념</td>
+				<td><input type="text" name="recipe_seasoning" value="${vo.recipe_seasoning }" size=50/>
 			</tr>			
 			<tr>
-				<td><input type="button" id="btnImage" value="첨부이미지"/></td>
+				<td>조리순서</td>
 				<td style="height:150px;padding:10px;">
 					<input type="file" name="files" accept="image/*" multiple style="display:none;"/> 
 					<div id="listFile"></div>
 					<div id="attach">
-					<ul id="attachFiles"></ul>
+					<table id="attachFiles"></table>
 					<script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
-					<ol>
-						<img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=150/>	
-						<input type="button" class="del" value="삭제" fullName="{{recipe_attach_image}}"/>					
-						<input type="text" value="{{recipe_attach_text}}" size=50/>						
-					</ol>
+					<tr>
+						<td><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=100/></td>									
+						<td><textarea rows="8" cols="35" >{{recipe_attach_text}}</textarea></td>					
+					</tr>
 					{{/each}}	
 					</script>
 				</div>					
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="상품수정"/>
-		<input type="reset" value="수정취소"/>
-		<input type="button" value="상품삭제" id="btnDelete"/>
+		<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'"/>		
+		<input type="button" value="게시글삭제" id="btnDelete"/>
 		<input type="button" value="목록이동" onClick="location.href='list'"/>
 	</form>
 	 <hr/>
