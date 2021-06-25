@@ -7,37 +7,36 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<title>레시피</title>
+	<link rel="stylesheet" href="/resources/css/recipe.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}							
 	</style>
 </head>
 <body>
-	<h1>[레시피목록]</h1>
-	<div>
-		<button onClick="location.href='insert'">레시피등록</button>		
+	<div id="btninsert">
+		<button onClick="location.href='insert'" id="btninsert">WRITING</button>		
 	</div>
-	<div id="condition" style="margin-bottom:5px;">
-		<div id="left">
-			<select id="searchType">
-				<option value="recipe_title">요리명</option>
-				<option value="recipe_ingre">요리재료</option>
-				<option value="recipe_writer">작성자</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
-		</div>	
+		<h3>TIP📢</h3>
+	<div id="tip">
+		<p>초기: 4~6개월 &nbsp;&nbsp;&nbsp;
+		        중기: 7~9개월&nbsp;&nbsp;&nbsp; 
+		        후기: 10~12개월&nbsp;&nbsp;&nbsp; 
+		        완료기: 12개월 이상</p>
+
+	</div>
+	<div id="condition">
+			
 		<div>
-			<span><button>산모</button></span>
-			<span><button>4~6개월</button></span>
-			<span><button>7~9개월</button></span>
-			<span><button>10~12개월</button></span>
-			<span><button>12개월 이상</button></span>
+			<span><button id="btn01">산모</button></span>
+			<span><button id="btn02">초기</button></span>
+			<span><button id="btn03">중기</button></span>
+			<span><button id="btn04">후기</button></span>
+			<span><button id="btn05">완료기</button></span>
 		</div>
 	</div>	
 	
-	<table border=1 id="tbl"></table>
+	<table id="tbl"></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
 		<td width=200>이미지</td>
@@ -58,13 +57,23 @@
 	</tr>
 	{{/each}}
 	</script>
+	<div id="left">
+			<select id="searchType">
+				<option value="recipe_title">요리명</option>
+				<option value="recipe_ingre">요리재료</option>
+				<option value="recipe_writer">작성자</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg){
 			var userRatingAvg = (Math.round(recipe_userRatingAvg*10))/10;
 			return userRatingAvg;
 		})
 	</script>
-	<hr/>
+
 	<div id="pagination" style="margin-top:5px;"></div>			
 </body>
 <script>
@@ -89,7 +98,7 @@
 			type:"get",
 			url:"list.json",
 			dataType:"json",
-			data:{"page":page, "keyword":keyword, "searchType":searchType},
+			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":10},
 			success:function(result){
 				var temp=Handlebars.compile($("#temp").html());
 				$("#tbl").html(temp(result));

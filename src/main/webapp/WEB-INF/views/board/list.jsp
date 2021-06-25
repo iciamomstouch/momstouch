@@ -5,29 +5,21 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>게시판1</title>
+	<title>오늘</title>
+	<link rel="stylesheet" href="/resources/css/board.css"/>
 	<style>
 		.row {cursor:pointer;}
 	</style>
 </head>
 <body>
-	<h1>[게시판1 목록]</h1>
 	<div id="condition" style="margin-bottom:5px;">
-		<div id="left">		
-			<select id="searchType">
-				<option value="board_title">제목</option>
-				<option value="board_category">카테고리</option>
-				<option value="board_content">내용</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
+		<div id="btninsert">
+			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>
-		<div id="right"></div>
 	</div>
-	<button onClick="location.href='insert'">글쓰기</button>
+	
 	<div id="list">
-		<table id="tbl" border=1 width=800></table>
+		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">
 			<td width=60>글번호</td>
@@ -40,16 +32,26 @@
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?board_bno={{board_bno}}'">
-			<td width=50>{{board_bno}}</td>
-			<td width=100>{{board_category}}</td>
-			<td width=200>{{board_title}}</td>
-			<td width=100>{{board_writer}}</td>
-			<td width=200>{{board_regdate}}</td>
-			<td width=100>{{board_replycnt}}</td>
-			<td width=100>{{board_viewcnt}}</td>
+			<td>{{board_bno}}</td>
+			<td>{{board_category}}</td>
+			<td>{{board_title}}</td>
+			<td>{{board_writer}}</td>
+			<td>{{board_regdate}}</td>
+			<td>{{board_replycnt}}</td>
+			<td>{{board_viewcnt}}</td>
 		</tr>
 		{{/each}}
-		</script>	
+		</script>
+		<div id="left">		
+			<select id="searchType">
+				<option value="board_title">제목</option>
+				<option value="board_category">카테고리</option>
+				<option value="board_content">내용</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>	
 	</div>
 	<div id="pagination" style="margin-top:5px;"></div>
 </body>
@@ -73,7 +75,7 @@
 			type:"get",
 			url:"list.json",
 			dataType:"json",
-			data:{"page":page, "keyword":keyword, "searchType":searchType},
+			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":10},
 			success:function(result){
 				var temp=Handlebars.compile($("#temp").html());
 				$("#tbl").html(temp(result));

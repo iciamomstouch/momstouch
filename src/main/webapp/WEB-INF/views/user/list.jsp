@@ -8,6 +8,7 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<title>회원관리</title>
+	<link rel="stylesheet" href="/resources/css/board.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}

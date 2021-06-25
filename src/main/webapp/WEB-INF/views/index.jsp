@@ -8,11 +8,31 @@
 	<link rel="stylesheet" href="/resources/css/home.css"/>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<title>맘's터치</title>	
+	<title>FIRST TIME</title>	
 </head>
 <body>
 	<div id="divTop">
-		<h1>[맘스터치]</h1>
+		<div id="sidemenu">
+			<jsp:include page="leftmenu.jsp"/>
+			<div class="close"></div>
+		</div>
+		<div class="btnside"></div>
+		
+		<span><img src="/resources/image/logo.png" class="logo" onClick="location.href='/'"/></span>
+		
+		<span class="login">
+			<c:if test="${user_id != null }">
+				<span>${user_id}님</span>
+				<a href="/user/logout">
+					<img src="/resources/css/person-x-fill.svg" class="logout">
+				</a>
+			</c:if>
+			<c:if test="${user_id == null }">
+				<a href="/user/login">
+					<img src="/resources/css/person-fill.svg" class="login"/>
+				</a>
+			</c:if>
+		</span>
 		<div id="weather"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
 		<div id="divMenu">
 			<jsp:include page="menu.jsp"/>
@@ -55,5 +75,14 @@
 			}
 		});
 	}
+	
+
+	$(".btnside").click(function () {
+	    $("#sidemenu").addClass("open");
+	});
+	$(".close").click(function () {
+	    $("#sidemenu").removeClass("open");
+	});
+
 </script>
 </html>

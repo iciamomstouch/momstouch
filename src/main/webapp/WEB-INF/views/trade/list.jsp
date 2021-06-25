@@ -7,6 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>중고거래</title>
+	<link rel="stylesheet" href="/resources/css/tralist.css"/>
 	<style>
 		.row {cursor:pointer;}
 		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
@@ -16,20 +17,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 </head>
 <body>
-	<h1>중고거래</h1>
 	<div id="condition" style="margin-bottom:5px;">
-		<div id="left">
-			<select id="searchType">
-				<option value="trade_title">제목</option>
-				<option value="trade_writer">작성자</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
+		<div id="btninsert">
+			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>			
 	</div>
-	<button onClick="location.href='insert'">게시글등록</button>
-	<table id="tbl" border=1></table>
+	
+	<table id="tbl"></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
 		<td>이미지</td>
@@ -50,7 +44,15 @@
 	</tr>
 	{{/each}}
 	</script>
-	<hr/>
+	<div id="left" style="margin-top:10px;">
+			<select id="searchType">
+				<option value="trade_title">제목</option>
+				<option value="trade_writer">작성자</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>
 	<div id="pagination" style="margin-top:5px;"></div>
 </body>
 <script>
@@ -75,7 +77,7 @@ function getList(){
 		type:"get",
 		url:"list.json",
 		dataType:"json",
-		data:{"page":page, "keyword":keyword, "searchType":searchType},
+		data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":10},
 		success:function(result){
 			var temp=Handlebars.compile($("#temp").html());
 			$("#tbl").html(temp(result));
