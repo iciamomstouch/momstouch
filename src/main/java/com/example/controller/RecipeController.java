@@ -44,9 +44,9 @@ public class RecipeController {
 	
 	@RequestMapping("list.json")
 	@ResponseBody
-	public HashMap<String, Object> listJson(Criteria cri) throws Exception{
+	public HashMap<String, Object> listJson(Criteria cri, int perPageNum) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		cri.setPerPageNum(5);
+		cri.setPerPageNum(perPageNum);
 		
 		map.put("list", dao.list(cri));	
 		PageMaker pm = new PageMaker();

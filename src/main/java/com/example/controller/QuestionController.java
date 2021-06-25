@@ -42,9 +42,9 @@ public class QuestionController {
 	
 	@RequestMapping("list.json")
 	@ResponseBody //데이터 자체를 리턴할때
-	public HashMap<String, Object> listJson(Criteria cri) throws Exception{
+	public HashMap<String, Object> listJson(Criteria cri, int perPageNum) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		cri.setPerPageNum(10);
+		cri.setPerPageNum(perPageNum);
 		
 		map.put("list", dao.list(cri));		
 		PageMaker pm = new PageMaker();
