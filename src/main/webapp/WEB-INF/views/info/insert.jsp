@@ -5,7 +5,7 @@
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>게시판1</title>
+	<title>게시판2</title>
 </head>
 <body>
 	<h1>[글쓰기등록]</h1>
@@ -13,28 +13,15 @@
 		<table border=1 width=500>
 			<tr>
 				<td width=100>작성자</td>
-				<td><input type="text" name="board_writer" size=50 value="${user_id }"/></td>
+				<td><input type="text" name="info_writer" size=50 value="${user_id }"/></td>
 			</tr>
 			<tr>
 				<td width=100>제목</td>
-				<td><input type="text" name="board_title" size=50/></td>
-			</tr>			
-			<tr>
-				<td width=100>카테고리</td>
-				<td>
-					<select name="board_category">
-						<option value="정보">[정보]</option>
-						<option value="유머">[유머]</option>
-						<option value="이슈">[이슈]</option>
-						<option value="계층">[계층]</option>
-						<option value="감동">[감동]</option>
-						<option value="기타">[기타]</option>
-					</select>
-				</td>
-			</tr>			
+				<td><input type="text" name="info_title" size=50/></td>
+			</tr>						
 			<tr>
 				<td colspan=2>
-					<textarea rows="10" cols="80" name="board_content"></textarea>
+					<textarea rows="10" cols="80" name="info_content"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -55,8 +42,8 @@
 $(frm).on("submit", function(e){
 	e.preventDefault();
 	
-	var board_title=$(frm.board_title).val();
-	if(board_title==""){
+	var info_title=$(frm.info_title).val();
+	if(info_title==""){
 		alert("제목을 입력하세요!");
 		return;
 	}

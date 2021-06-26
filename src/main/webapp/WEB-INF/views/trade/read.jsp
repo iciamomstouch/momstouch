@@ -9,7 +9,17 @@
 	<title>중고거래 보기</title>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<link rel="stylesheet" href="/resources/css/trade/style.css"/>
+	<!--<link rel="stylesheet" href="/resources/css/trade/style.css"/>-->
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<style>
+		.swiper-container {
+			width: 600px;
+			height: 300px;
+		}
+	</style>
 </head>
 <body>
 	<h1>중고거래 보기</h1>
@@ -34,23 +44,26 @@
 		</tr>
 		<tr>
 			<td colspan=3>
-			<div id="slide">
-		  		<input type="radio" name="pos" id="pos1" checked>
-		  		<input type="radio" name="pos" id="pos2">
-		  		<input type="radio" name="pos" id="pos3">
-		 		<input type="radio" name="pos" id="pos4">
-	          		<ul id="attachFiles"></ul>
+			<!-- Slider main container -->
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+  				<div id="attachFiles" class="swiper-wrapper">
 	                <script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
-                    	<img class="main_slideImg" src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}" width=200/>
+                    	<div class="swiper-slide">
+							<img src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}"width=200/>
+						</div>
 					{{/each}}
                   	</script>
-		    	<p class="pos">
-				    <label for="pos1"></label>
-				    <label for="pos2"></label>
-				    <label for="pos3"></label>
-				    <label for="pos4"></label>
-			  	</p>
+            	</div>
+            	<!-- If we need pagination -->
+  				<div class="swiper-pagination"></div>
+  				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+				
+				<!-- If we need scrollbar -->
+				<div class="swiper-scrollbar"></div>
 		    </div>
 			</td>
 		</tr>
@@ -65,15 +78,13 @@
 			<td><button>채팅으로 거래하기</button></td>
 		</tr>
 	</table>
-	<input type="submit" value="글수정"/>
-	<input type="reset" value="수정취소"/>
+	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"/>
 	<input type="button" value="글삭제" id="btnDelete"/>
 	<input type="button" value="목록이동" onClick="location.href='list'"/>
 	</form>
 </body>
 <script>
 	var trade_bno=$(frm.trade_bno).val();
-	
 	
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
@@ -94,25 +105,32 @@
 	            var temp = Handlebars.compile($("#temp").html());
 	            $(data).each(function(){	                     
 	            $("#attachFiles").append(temp(data));
-	            })
+	            
+	            const swiper = new Swiper('.swiper-container', {
+	      		  // Optional parameters
+	      		  direction: 'horizontal',
+	      		  loop: true,
+	      	
+	      		  // If we need pagination
+	      		  pagination: {
+	      		    el: '.swiper-pagination',
+	      		  },
+	      	
+	      		  // Navigation arrows
+	      		  navigation: {
+	      		    nextEl: '.swiper-button-next',
+	      		    prevEl: '.swiper-button-prev',
+	      		  },
+	      	
+	      		  // And if we need scrollbar
+	      		  scrollbar: {
+	      		    el: '.swiper-scrollbar',
+	      		  },
+	      		});
+	            });
 	         }
-	      })
+	      });
 	   }
-	   
-		//첨부 파일삭제
-		$("#attachFiles").on("click", "li .del", function(){
-			var li=$(this).parent();
-			var fullName = $(this).attr("fullName");
-			if(!confirm(fullName + "을 삭제하실래요?")) return;
-			$.ajax({
-				type:"get",
-				url:"/deleteFile",
-				data:{"fullName":fullName},
-				success:function(){
-					alert("삭제완료!");
-					li.remove();
-				}
-			})
-		});
+
 </script>
 </html>
