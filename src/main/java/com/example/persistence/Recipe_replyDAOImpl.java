@@ -20,4 +20,26 @@ public class Recipe_replyDAOImpl implements Recipe_replyDAO {
 		return session.selectList(namespace + ".rlist", recipe_bno);
 	}
 
+	@Override
+	public void insert(Recipe_replyVO vo) throws Exception {
+		session.insert(namespace + ".insert", vo);
+		
+	}
+
+	@Override
+	public void delete(int recipe_rno) throws Exception {
+		session.delete(namespace + ".delete", recipe_rno);
+		
+	}
+
+	@Override
+	public Recipe_replyVO read(int recipe_rno) throws Exception {
+		return session.selectOne(namespace + ".read", recipe_rno);
+	}
+
+	@Override
+	public void deleteAll(int recipe_bno) throws Exception {
+		session.delete(namespace + ".deleteAll", recipe_bno);		
+	}
+
 }

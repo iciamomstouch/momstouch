@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Criteria;
 import com.example.domain.QuestionVO;
 
 @Repository
@@ -16,13 +17,13 @@ public class QuestionDAOImpl implements QuestionDAO{
 	SqlSession session;
 
 	@Override
-	public List<QuestionVO> list() throws Exception {	
-		return session.selectList(namespace + ".list");
+	public List<QuestionVO> list(Criteria cri) throws Exception {	
+		return session.selectList(namespace + ".list", cri);
 	}
 
 	@Override
-	public int totalCount() throws Exception {		
-		return session.selectOne(namespace + ".totalCount");
+	public int totalCount(Criteria cri) throws Exception {		
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 
 	@Override
@@ -44,6 +45,21 @@ public class QuestionDAOImpl implements QuestionDAO{
 	@Override
 	public void delete(int question_bno) throws Exception {
 		session.delete(namespace + ".delete", question_bno);
+	}
+
+	@Override
+	public int lastBno() throws Exception {		
+		return session.selectOne(namespace + ".lastBno");
+	}
+
+	@Override
+	public void insert2(QuestionVO vo) throws Exception {
+		session.insert(namespace + ".insert2", vo);
+	}
+
+	@Override
+	public void updateViewCnt(int question_bno) throws Exception {
+		session.update(namespace + ".updateViewCnt", question_bno);
 	}
 
 }

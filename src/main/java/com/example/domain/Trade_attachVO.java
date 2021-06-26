@@ -1,6 +1,5 @@
 package com.example.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Trade_attachVO {

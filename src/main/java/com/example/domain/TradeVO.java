@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TradeVO{
+public class TradeVO {
 	private int trade_bno;
 	private String trade_title;
 	private String trade_category;
@@ -14,11 +14,11 @@ public class TradeVO{
 	private String trade_image;
 	private int trade_price;
 	
-	@JsonFormat(pattern="yyyy-MM-dd kk:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date trade_regdate;
-	@JsonFormat(pattern="yyyy-MM-dd kk:mm:ss", timezone="Asia/Seoul")
-	private Date trade_updatedate;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	private Date trade_updatedate;
 	private int trade_viewcnt;
 	private ArrayList<String> images;
 	public int getTrade_bno() {

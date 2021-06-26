@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,8 +24,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	}
 
 	@Override
-	public int totalCount() throws Exception {		
-		return session.selectOne(namespace + ".totalCount");
+	public int totalCount(Criteria cri) throws Exception {		
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 
 	@Override
@@ -52,4 +53,48 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return session.selectList(namespace + ".getAttach", recipe_bno);
 	}
 
+	@Override
+	public void updateViewcnt(int recipe_bno) throws Exception {
+		session.update(namespace + ".updateViewcnt", recipe_bno);
+		
+	}	
+
+	@Override
+	public int lastBno() throws Exception {
+		return session.selectOne(namespace + ".lastBno");
+	}
+
+	@Override
+	public void updateReply(int recipe_bno, int recipe_rno) throws Exception {
+		session.update(namespace + ".updateReply", recipe_rno);
+		
+	}
+
+	@Override
+	public void delAttach(int recipe_bno) throws Exception {
+		session.delete(namespace + ".delAttach", recipe_bno);		
+	}
+
+	@Override
+	public void updateUserRating(int recipe_bno) throws Exception {		
+		session.update(namespace + ".updateUserRating", recipe_bno);
+	}
+
+	@Override
+	public void delAttach2(int recipe_bno, int recipe_attach_no) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("recipe_attach_no", recipe_attach_no);
+		map.put("recipe_bno", recipe_bno);
+		session.delete(namespace + ".delAttach2", map);
+	}
+
+	@Override
+	public void addAttach(Recipe_attachVO attachVO) throws Exception {
+		session.update(namespace + ".addAttach", attachVO);		
+	}
+
+	@Override
+	public int lastAttachNo(int reipce_bno) throws Exception {	
+		return session.selectOne(namespace + ".lastAttachNo", reipce_bno);
+	}
 }

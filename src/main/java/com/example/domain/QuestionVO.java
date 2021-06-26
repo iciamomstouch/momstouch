@@ -6,12 +6,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class QuestionVO {
 	private int question_bno;
+	private int question_grpno;
+	private int  question_grpord;
+	private int question_depth;
 	private String question_title;
 	private String question_content;
 	private String question_image;
 	private String question_writer;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_regdate;
+	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_updatedate;
 	private int question_viewcnt;
@@ -21,6 +26,24 @@ public class QuestionVO {
 	}
 	public void setQuestion_bno(int question_bno) {
 		this.question_bno = question_bno;
+	}
+	public int getQuestion_grpno() {
+		return question_grpno;
+	}
+	public void setQuestion_grpno(int question_grpno) {
+		this.question_grpno = question_grpno;
+	}
+	public int getQuestion_grpord() {
+		return question_grpord;
+	}
+	public void setQuestion_grpord(int question_grpord) {
+		this.question_grpord = question_grpord;
+	}
+	public int getQuestion_depth() {
+		return question_depth;
+	}
+	public void setQuestion_depth(int question_depth) {
+		this.question_depth = question_depth;
 	}
 	public String getQuestion_title() {
 		return question_title;
@@ -67,13 +90,10 @@ public class QuestionVO {
 	
 	@Override
 	public String toString() {
-		return "QuestionVO [question_bno=" + question_bno + ", question_title=" + question_title + ", question_content="
-				+ question_content + ", question_image=" + question_image + ", question_writer=" + question_writer
-				+ ", question_regdate=" + question_regdate + ", question_updatedate=" + question_updatedate
-				+ ", question_viewcnt=" + question_viewcnt + "]";
-	}
-	
-	
-	
-	
+		return "QuestionVO [question_bno=" + question_bno + ", question_grpno=" + question_grpno + ", question_grpord="
+				+ question_grpord + ", question_depth=" + question_depth + ", question_title=" + question_title
+				+ ", question_content=" + question_content + ", question_image=" + question_image + ", question_writer="
+				+ question_writer + ", question_regdate=" + question_regdate + ", question_updatedate="
+				+ question_updatedate + ", question_viewcnt=" + question_viewcnt + "]";
+	}	
 }

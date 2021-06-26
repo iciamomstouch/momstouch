@@ -1,20 +1,16 @@
 package com.example.persistence;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-
 import com.example.domain.Criteria;
-import com.example.domain.RecipeVO;
-import com.example.domain.Recipe_attachVO;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
 import com.example.domain.User_keepVO;
 
 public interface TradeDAO {
 	public List<TradeVO> list(Criteria cri) throws Exception;
-	public int totalCount() throws Exception;
+	public int totalCount(Criteria cri) throws Exception;
 	public TradeVO read(int trade_bno) throws Exception;
 	public void insert(TradeVO vo) throws Exception;
 	public void delete(int trade_bno)throws Exception;
@@ -24,4 +20,5 @@ public interface TradeDAO {
 	public void updateViewcnt(int trade_bno) throws Exception;
 	public int lastBno() throws Exception;
 	public List<User_keepVO> keep(int trade_bno) throws Exception;
+	public void delAttach(int trade_bno) throws Exception;
 }

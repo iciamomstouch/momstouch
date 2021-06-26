@@ -1,15 +1,21 @@
 package com.example.domain;
 
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class InfoVO {
 	private int info_bno;
 	private String info_title;
 	private String info_content;
 	private String info_image;
 	private String info_writer;
-	private String info_regdate;
-	private String info_updatedate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	private Date info_regdate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	private Date info_updatedate;
 	private String info_viewcnt;
 	private String info_replycnt;
+	
 	public int getInfo_bno() {
 		return info_bno;
 	}
@@ -39,17 +45,17 @@ public class InfoVO {
 	}
 	public void setInfo_writer(String info_writer) {
 		this.info_writer = info_writer;
-	}
-	public String getInfo_regdate() {
+	}	
+	public Date getInfo_regdate() {
 		return info_regdate;
 	}
-	public void setInfo_regdate(String info_regdate) {
+	public void setInfo_regdate(Date info_regdate) {
 		this.info_regdate = info_regdate;
 	}
-	public String getInfo_updatedate() {
+	public Date getInfo_updatedate() {
 		return info_updatedate;
 	}
-	public void setInfo_updatedate(String info_updatedate) {
+	public void setInfo_updatedate(Date info_updatedate) {
 		this.info_updatedate = info_updatedate;
 	}
 	public String getInfo_viewcnt() {

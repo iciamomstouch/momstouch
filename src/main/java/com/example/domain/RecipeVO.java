@@ -1,6 +1,9 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RecipeVO {
 	private int recipe_bno;
@@ -11,23 +14,29 @@ public class RecipeVO {
 	private String recipe_content;
 	private String recipe_writer;
 	private String recipe_image;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_regdate;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private String recipe_updatedate;
-	private int recipe_viewcnt;
-	private double recipe_userRatingAvg;	
+	private int recipe_viewcnt;	
+	private double recipe_userRatingAvg;
+	private ArrayList<String> recipe_attach_no;
+	private ArrayList<String> images;
+	private ArrayList<String> recipe_attach_text;
 	
-	
-	public String getRecipe_seasoning() {
-		return recipe_seasoning;
+	public ArrayList<String> getRecipe_attach_text() {
+		return recipe_attach_text;
 	}
-	public void setRecipe_seasoning(String recipe_seasoning) {
-		this.recipe_seasoning = recipe_seasoning;
+	public void setRecipe_attach_text(ArrayList<String> recipe_attach_text) {
+		this.recipe_attach_text = recipe_attach_text;
 	}
-	public double getRecipe_userRatingAvg() {
-		return recipe_userRatingAvg;
+	public ArrayList<String> getRecipe_attach_no() {
+		return recipe_attach_no;
 	}
-	public void setRecipe_userRatingAvg(double recipe_userRatingAvg) {
-		this.recipe_userRatingAvg = recipe_userRatingAvg;
+	public void setRecipe_attach_no(ArrayList<String> recipe_attach_no) {
+		this.recipe_attach_no = recipe_attach_no;
 	}
 	public int getRecipe_bno() {
 		return recipe_bno;
@@ -52,6 +61,12 @@ public class RecipeVO {
 	}
 	public void setRecipe_ingre(String recipe_ingre) {
 		this.recipe_ingre = recipe_ingre;
+	}
+	public String getRecipe_seasoning() {
+		return recipe_seasoning;
+	}
+	public void setRecipe_seasoning(String recipe_seasoning) {
+		this.recipe_seasoning = recipe_seasoning;
 	}
 	public String getRecipe_content() {
 		return recipe_content;
@@ -89,6 +104,18 @@ public class RecipeVO {
 	public void setRecipe_viewcnt(int recipe_viewcnt) {
 		this.recipe_viewcnt = recipe_viewcnt;
 	}
+	public double getRecipe_userRatingAvg() {
+		return recipe_userRatingAvg;
+	}
+	public void setRecipe_userRatingAvg(double recipe_userRatingAvg) {
+		this.recipe_userRatingAvg = recipe_userRatingAvg;
+	}
+	public ArrayList<String> getImages() {
+		return images;
+	}
+	public void setImages(ArrayList<String> images) {
+		this.images = images;
+	}
 	
 	@Override
 	public String toString() {
@@ -96,6 +123,9 @@ public class RecipeVO {
 				+ recipe_category + ", recipe_ingre=" + recipe_ingre + ", recipe_seasoning=" + recipe_seasoning
 				+ ", recipe_content=" + recipe_content + ", recipe_writer=" + recipe_writer + ", recipe_image="
 				+ recipe_image + ", recipe_regdate=" + recipe_regdate + ", recipe_updatedate=" + recipe_updatedate
-				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg + "]";
+				+ ", recipe_viewcnt=" + recipe_viewcnt + ", recipe_userRatingAvg=" + recipe_userRatingAvg
+				+ ", recipe_attach_no=" + recipe_attach_no + ", images=" + images + ", recipe_attach_text="
+				+ recipe_attach_text + "]";
 	}		
+		
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.TradeVO;
@@ -22,16 +21,33 @@ public class TradeServiceImpl implements TradeService {
 		dao.updateViewcnt(trade_bno);
 		return vo;
 	}
-	
-	@Transactional
+
 	@Override
 	public void insert(TradeVO vo) throws Exception {
 		dao.insert(vo);
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		ArrayList<String> images = vo.getImages();
 		if(images==null) return;
 		for(String image:images){
 			dao.addAttach(image, vo.getTrade_bno());
 		   }
+	}
+
+	@Override
+	public void update(TradeVO vo) throws Exception {
+		dao.update(vo);
+		//System.out.println(vo.toString());
+		ArrayList<String> images = vo.getImages();
+		if(images==null) return;
+		for(String image:images){
+			dao.addAttach(image, vo.getTrade_bno());
+		   }
+	}
+	
+	@Transactional
+	@Override
+	public void delete(int trade_bno) throws Exception {
+		dao.delAttach(trade_bno);
+		dao.delete(trade_bno);		
 	}
 }

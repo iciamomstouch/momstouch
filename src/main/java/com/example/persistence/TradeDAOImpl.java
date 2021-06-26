@@ -25,8 +25,8 @@ public class TradeDAOImpl implements TradeDAO{
 	}
 	
 	@Override
-	public int totalCount() throws Exception {
-		return session.selectOne(namespace + ".totalCount");
+	public int totalCount(Criteria cri) throws Exception {
+		return session.selectOne(namespace + ".totalCount", cri);
 	}
 	
 	@Override
@@ -81,6 +81,8 @@ public class TradeDAOImpl implements TradeDAO{
 		return session.selectList(namespace + ".keep", trade_bno);
 	}
 
-
-
+	@Override
+	public void delAttach(int trade_bno) throws Exception {
+		session.delete(namespace + ".delAttach", trade_bno);		
+	}
 }
