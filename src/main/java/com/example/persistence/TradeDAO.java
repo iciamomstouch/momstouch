@@ -20,4 +20,5 @@ public interface TradeDAO {
 	public void updateViewcnt(int trade_bno) throws Exception;
 	public int lastBno() throws Exception;
 	public List<User_keepVO> keep(int trade_bno) throws Exception;
+	public void delAttach(int trade_bno) throws Exception;
 }

@@ -73,15 +73,22 @@ public class UploadController {
 		return image;
 	}
 	
-	//파일 삭제
-		@ResponseBody
-		@RequestMapping("/deleteFile")
-		public void deleteFile(String fullName, int recipe_bno, int recipe_attach_no) throws Exception{		
-			if(fullName!=null){
-				dao.delAttach2(recipe_bno, recipe_attach_no);
-				new File(path + "/" + recipe_bno + "/" + fullName).delete();
-			}		
-		}
+	//파일삭제
+	@ResponseBody
+	@RequestMapping("/deleteFile")
+	public void deleteFile(String fullName, int recipe_bno, int recipe_attach_no) throws Exception{		
+		if(fullName!=null){
+			dao.delAttach2(recipe_bno, recipe_attach_no);
+			new File(path + "/" + recipe_bno + "/" + fullName).delete();
+		}		
+	}
+	
+	//중고거래 파일삭제
+	@ResponseBody
+	@RequestMapping("/trade_deleteFile")
+	public void deleteFile(String fullName){
+		new File(path + "/" + fullName).delete();
+	}
 	
 	//파일 다운로드
 	@ResponseBody

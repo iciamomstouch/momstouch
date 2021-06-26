@@ -53,6 +53,13 @@ public class TradeController {
 		return map;
 	}
 	
+	@RequestMapping("update")
+	public String update(Model model, int trade_bno) throws Exception{
+		model.addAttribute("vo", dao.read(trade_bno));
+		model.addAttribute("pageName", "trade/update.jsp");
+		return "index";
+	}
+	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(TradeVO  vo, MultipartHttpServletRequest multi) throws Exception{
 		TradeVO oldVO = dao.read(vo.getTrade_bno());
@@ -77,14 +84,23 @@ public class TradeController {
 		String attPath=path + "/" + vo.getTrade_bno();
 		File folder=new File(attPath);
 		if(!folder.exists()) folder.mkdir();
-		for(MultipartFile attFile:files){
+		ArrayList<String> images = new ArrayList<String>();
+		for(MultipartFile attFile:files){		    
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
+				images.add(image);
+				//예전이미지가 존재하면 삭제
+				System.out.println("....." + oldVO.getImages());
+				if(oldVO.getImages()!=null){
+					new File(path +"/"+oldVO.getImages()).delete();
+				}
+			}else{
+				vo.setImages(images);
 			}
 		}
-		
-		dao.update(vo);
+		service.update(vo);
+		System.out.println(vo.toString());
 		return "redirect:list";
 	}
 		
@@ -167,4 +183,23 @@ public class TradeController {
 		model.addAttribute("pageName", "trade/list.jsp");
 		return "index";
 	}
+	
+	@RequestMapping("tlist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public List<TradeVO> tlistJson(Criteria cri) throws Exception{
+		List<TradeVO> array = new ArrayList<>();
+		array = dao.list(cri);
+		return array;
+	}
+	
+	@RequestMapping("deleteFile")
+	public String deleteFile(int trade_bno) throws Exception{
+		TradeVO vo = dao.read(trade_bno);
+		if(vo.getTrade_image()!=null){
+			new File(path + "/" + vo.getTrade_image()).delete();
+		}		
+		service.delete(trade_bno);
+		return "redirect:list";
+	}
+
 }
