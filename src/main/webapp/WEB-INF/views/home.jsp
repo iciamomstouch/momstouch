@@ -168,7 +168,7 @@
 				var page=1;
 				$.ajax({
 					type:"get",
-					url:"recipe/list.json",
+					url:"/recipe/list.json",
 					dataType:"json",
 					data:{"page":page, "perPageNum":5},
 					success:function(result){
@@ -221,3 +221,6 @@
 		});
 	}
 	</script>
+	
+	<!-- 지도--------------------------------------------------------------- -->
+	<h2 onClick="location.href='map/map'">지도</h2>
