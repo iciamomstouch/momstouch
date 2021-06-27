@@ -2,6 +2,7 @@
 
 *{font-family: '빙그레체';}
 
+
 #divTop{width:800px;
 		heigth:50px;
 		margin:0px auto;
@@ -33,6 +34,7 @@
     	background-position: center;
     	cursor: pointer;
     	margin-left:150px;}    	
+.logid{width:200px;}
 
 .logo{width:150px;
 	heigth:50px;
@@ -97,7 +99,7 @@
 .item a{width:200px;
 		float:center;
 		text-align:center;
-		margin:50px;
+		margin:60px;
 		}
 		
 .item-left{float:left;

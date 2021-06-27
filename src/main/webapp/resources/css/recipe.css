@@ -7,8 +7,12 @@ h3{text-align:left;}
 #tip{width:800px;
 	float:center;
 	text-align:center;
+	margin-top:10px;
 	border: 3px dotted black;
 	border-radius:5px;}
+	
+#atitle{text-align:center;
+		font-weight:bold;}	
 
 #tbl {border-collapse: separate;
   		border-spacing: 1px;
