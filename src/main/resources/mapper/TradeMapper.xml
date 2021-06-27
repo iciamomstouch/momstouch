@@ -38,10 +38,20 @@
  		values(#{trade_title}, #{trade_category}, #{trade_content}, #{trade_writer},#{trade_image},#{trade_price})
  	</insert>
  	
- 	 <delete id="delete">
+ 	<delete id="delete">
  		delete from tbl_trade
  		where trade_bno=#{trade_bno}
  	</delete>
+ 	
+ 	<delete id="delAttach">
+		delete from trade_attach
+		where trade_bno=#{trade_bno}
+	</delete>
+
+	<delete id="delAttach2">
+		delete from trade_attach 
+		where trade_bno=#{trade_bno} and trade_attach_image=#{trade_attach_image}
+	</delete>
  	
  	<update id="update">
 		update tbl_trade 
@@ -66,5 +76,7 @@
 		from tbl_trade tt,tbl_user_keep tuk
 		where tt.trade_bno=tuk.trade_bno
 	</select>
+	
+
 	
 </mapper>

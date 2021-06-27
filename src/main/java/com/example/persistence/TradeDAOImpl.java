@@ -85,4 +85,14 @@ public class TradeDAOImpl implements TradeDAO{
 	public void delAttach(int trade_bno) throws Exception {
 		session.delete(namespace + ".delAttach", trade_bno);		
 	}
+
+	@Override
+	public void delAttach2(String trade_attach_image, int trade_bno) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("trade_attach_image", trade_attach_image);
+		map.put("trade_bno", trade_bno);
+		session.delete(namespace + ".delAttach2", map);
+		
+	}
+	
 }

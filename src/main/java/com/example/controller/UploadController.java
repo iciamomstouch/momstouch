@@ -86,8 +86,9 @@ public class UploadController {
 	//중고거래 파일삭제
 	@ResponseBody
 	@RequestMapping("/trade_deleteFile")
-	public void deleteFile(String fullName){
-		new File(path + "/" + fullName).delete();
+	public void tradeDeleteFile(String fullName, int trade_bno, int trade_attach_image) throws Exception{
+		dao.delAttach2(trade_bno, trade_attach_image);
+		new File(path + "/" + trade_bno + "/" + fullName).delete();
 	}
 	
 	//파일 다운로드
