@@ -63,7 +63,7 @@
                   		<li>
                     		<img src="/displayFile?fullName={{fullName}}" width=50/>
                      		<input type="text" name="files" value="{{fullName}}"/>
-                     		<input class="del" type="button" value="삭제" fullName="{{fullName}}"/>
+                     		<input class="del" type="button" value="삭제" fullName={{fullName}}/>
                   		</li>
                   		</script>
 	              	</div>
@@ -139,7 +139,7 @@
 		if(!confirm(fullName + "을 삭제하실래요?")) return;
 		$.ajax({
 			type:"get",
-			url:"/trade_deleteFile",
+			url:"/deleteFile",
 			data:{"fullName":fullName},
 			success:function(){
 				alert("삭제완료!");

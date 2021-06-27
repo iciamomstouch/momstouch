@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>오늘</title>
-	<link rel="stylesheet" href="/resources/css/board.css"/>
+	<link rel="stylesheet" href="/resources/css/blist.css"/>
 	<style>
 		.row {cursor:pointer;}
 	</style>

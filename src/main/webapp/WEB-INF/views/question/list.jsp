@@ -7,7 +7,7 @@
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>질문게시판</title>
-	<link rel="stylesheet" href="/resources/css/board.css"/>
+	<link rel="stylesheet" href="/resources/css/blist.css"/>
 </head>
 <body>
 	<div id="condition" style="margin-bottom:5px;">

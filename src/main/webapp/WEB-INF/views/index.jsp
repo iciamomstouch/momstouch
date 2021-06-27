@@ -22,7 +22,7 @@
 		
 		<span class="login">
 			<c:if test="${user_id != null }">
-				<span>${user_id}님</span>
+				<span class="logid">${user_id}님</span>
 				<a href="/user/logout">
 					<img src="/resources/css/person-x-fill.svg" class="logout">
 				</a>
@@ -33,7 +33,7 @@
 				</a>
 			</c:if>
 		</span>
-		<div id="weather"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
+		<div id="weather" style="text-align:right;"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
 		<div id="divMenu">
 			<jsp:include page="menu.jsp"/>
 		</div>		
