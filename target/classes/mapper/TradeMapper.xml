@@ -43,6 +43,16 @@
  		where trade_bno=#{trade_bno}
  	</delete>
  	
+ 	<delete id="delAttach">
+		delete from trade_attach
+		where trade_bno=#{trade_bno}
+	</delete>
+
+	<delete id="delAttach2">
+		delete from trade_attach 
+		where trade_attach_image=#{trade_attach_image}
+	</delete>
+ 	
  	<update id="update">
 		update tbl_trade 
 		set trade_title=#{trade_title}, trade_category=#{trade_category}, trade_content=#{trade_content},trade_writer=#{trade_writer}, trade_image=#{trade_image}, trade_price=#{trade_price}, trade_updatedate=#{trade_updatedate}
