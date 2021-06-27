@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.persistence.RecipeDAO;
+import com.example.persistence.TradeDAO;
 
 @Controller
 public class UploadController {
 	@Autowired
 	RecipeDAO dao;
+	
+	@Autowired
+	TradeDAO tdao;
 	
 	@Resource(name="uploadPath")
 	String path;
@@ -86,8 +90,12 @@ public class UploadController {
 	//중고거래 파일삭제
 	@ResponseBody
 	@RequestMapping("/trade_deleteFile")
-	public void deleteFile(String fullName){
-		new File(path + "/" + fullName).delete();
+	public void deleteFile(String fullName, int trade_bno) throws Exception{
+		if(fullName!=null){
+			tdao.delAttach2(fullName);
+			new File(path + "/" + trade_bno + "/" + fullName).delete();
+		}
+		
 	}
 	
 	//파일 다운로드

@@ -21,4 +21,5 @@ public interface TradeDAO {
 	public int lastBno() throws Exception;
 	public List<User_keepVO> keep(int trade_bno) throws Exception;
 	public void delAttach(int trade_bno) throws Exception;
+	public void delAttach2(String trade_attach_image) throws Exception;
 }

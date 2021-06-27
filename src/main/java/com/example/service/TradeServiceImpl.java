@@ -21,7 +21,8 @@ public class TradeServiceImpl implements TradeService {
 		dao.updateViewcnt(trade_bno);
 		return vo;
 	}
-
+	
+	
 	@Override
 	public void insert(TradeVO vo) throws Exception {
 		dao.insert(vo);
@@ -32,7 +33,8 @@ public class TradeServiceImpl implements TradeService {
 			dao.addAttach(image, vo.getTrade_bno());
 		   }
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(TradeVO vo) throws Exception {
 		dao.update(vo);

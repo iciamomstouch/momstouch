@@ -110,7 +110,7 @@ public class TradeController {
 		if(vo.getTrade_image()!=null){
 			new File(path + "/" + vo.getTrade_image()).delete();
 		}		
-		dao.delete(trade_bno);
+		service.delete(trade_bno);
 		return "redirect:list";
 	}
 	
