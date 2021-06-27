@@ -168,7 +168,7 @@
 				var page=1;
 				$.ajax({
 					type:"get",
-					url:"recipe/list.json",
+					url:"/recipe/list.json",
 					dataType:"json",
 					data:{"page":page, "perPageNum":5},
 					success:function(result){
