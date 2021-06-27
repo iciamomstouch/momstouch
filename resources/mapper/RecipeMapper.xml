@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RecipeMapper">
+
+	<select id="list" resultType="com.example.domain.RecipeVO">
+		select * from tbl_recipe
+		order by recipe_bno desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		select count(*) from tbl_recipe
+	</select>
+	
+	<select id="read" resultType="com.example.domain.RecipeVO">
+		select * from tbl_recipe
+		where recipe_bno=#{recipe_bno}
+	</select>
+	
+	<insert id="insert">
+		insert into tbl_recipe(recipe_title, recipe_category, recipe_ingre, recipe_seasoning, recipe_content, recipe_writer, recipe_image)
+		values(#{recipe_title}, #{recipe_category}, #{recipe_ingre}, #{recipe_seasoning}, #{recipe_content}, #{recipe_writer}, #{recipe_image})
+	</insert>
+	
+	<insert id="addAttach">
+		insert into recipe_attach(recipe_bno, recipe_attach_image, recipe_attach_text)
+		values(#{recipe_bno}, #{recipe_attach_image}, #{recipe_attach_text})
+	</insert>
+	
+	<update id="update">
+		update tbl_recipe set recipe_title=#{recipe_title}, recipe_category=#{recipe_category}, recipe_ingre=#{recipe_ingre}, recipe_seasoning=#{recipe_seasoning}, recipe_content=#{recipe_content}, recipe_image=#{recipe_image}
+		where recipe_bno=#{recipe_bno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_recipe where recipe_bno=#{recipe_bno}
+	</delete>
+	
+	<select id="getAttach" resultType="com.example.domain.Recipe_attachVO">
+		select * from recipe_attach where recipe_bno=#{recipe_bno}
+	</select>
+	
+	<update id="updateViewcnt">
+	 	update tbl_recipe set recipe_viewcnt=recipe_viewcnt + 1 where recipe_bno=#{recipe_bno}
+	</update>
+	
+	<select id="lastBno" resultType="int">
+		select max(recipe_bno) from tbl_recipe
+	</select>
+	
+</mapper>
