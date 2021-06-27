@@ -68,7 +68,7 @@
                   			<li>
                     			<img src="/displayFile?fullName={{trade_bno}}/{{trade_attach_image}}" width=100/>
                					<input type="text" name="files" value="{{trade_attach_image}}"/>
-                     			<input class="del" type="button" value="삭제" fullName="{{trade_bno}}/{{trade_attach_image}}"/>
+                     			<input class="del" type="button" value="삭제" fullName="{{trade_attach_image}}"/>
                   			</li>
 						{{/each}}
                   		</script>
@@ -140,14 +140,14 @@ var trade_bno=$(frm.trade_bno).val();
 	});
 	
 	//첨부 파일삭제
-	$("#uploadFiles").on("click", "li .del", function(){
+	$("#attachFiles").on("click", "li .del", function(){
 		var li=$(this).parent();
-		var fullName = $(this).attr("fullName");
+		var fullName = $(this).attr("fullName");		
 		if(!confirm(fullName + "을 삭제하실래요?")) return;
 		$.ajax({
 			type:"get",
-			url:"/deleteFile",
-			data:{"fullName":fullName},
+			url:"/trade_deleteFile",
+			data:{"fullName":fullName, "trade_bno":trade_bno},
 			success:function(){
 				alert("삭제완료!");
 				li.remove();

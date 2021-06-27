@@ -34,7 +34,7 @@
     	background-position: center;
     	cursor: pointer;
     	margin-left:150px;}    	
-.logid{width:200px;}
+.logid{width:100px;}
 
 .logo{width:150px;
 	heigth:50px;
@@ -99,7 +99,7 @@
 .item a{width:200px;
 		float:center;
 		text-align:center;
-		margin:60px;
+		margin:50px;
 		}
 		
 .item-left{float:left;
