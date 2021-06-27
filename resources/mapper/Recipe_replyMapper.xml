@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Recipe_replyMapper">
+	<select id="rlist" resultType="com.example.domain.Recipe_replyVO">
+		select * from recipe_reply
+		where recipe_bno=#{recipe_bno}
+		order by recipe_rno desc
+	</select>
+	<insert id="insert">
+		insert into recipe_reply(recipe_bno, recipe_reply, recipe_replyer, recipe_userRating)
+		values(#{recipe_bno}, #{recipe_reply}, #{recipe_replyer}, #{recipe_userRating})
+	</insert>
+	<delete id="delete">
+		delete from recipe_reply where recipe_rno=#{recipe_rno}
+	</delete>
+	<delete id="deleteAll">
+		delete from recipe_reply where recipe_bno=#{recipe_bno}
+	</delete>
+</mapper>

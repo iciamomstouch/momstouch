@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Board_replyMapper">
+	<select id="rlist" resultType="com.example.domain.Board_replyVO">
+		select * from board_reply
+		where board_bno=#{board_bno}
+		order by board_rno desc
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) from board_reply
+		where board_bno=#{board_bno}
+	</select>
+	<insert id="insert">
+		insert into board_reply(board_bno, board_reply, board_replyer)
+		values(#{board_bno}, #{board_reply}, #{board_replyer})
+	</insert>
+	<delete id="delete">
+		delete from board_reply where board_rno=#{board_rno}
+	</delete>
+	<select id="read" resultType="com.example.domain.Board_replyVO">
+		select * from board_reply
+		where board_rno=#{board_rno}
+	</select>
+</mapper>
