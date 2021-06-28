@@ -127,7 +127,7 @@ public class TradeController {
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(TradeVO vo, int trade_bno, MultipartHttpServletRequest multi) throws Exception{
 		//파일 업로드
-		System.out.println(vo.toString());
+		
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//파일명
