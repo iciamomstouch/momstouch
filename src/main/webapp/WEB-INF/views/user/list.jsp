@@ -8,6 +8,7 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<title>회원관리</title>
+	<link rel="stylesheet" href="/resources/css/board.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}
@@ -30,7 +31,7 @@
 	</div>
 	<button onClick="location.href='insert'">회원등록</button>
 	<div id="list">
-		<table id="tbl"></table>
+		<table id="tbl" border=1></table>
 		<script id="temp" type="text/x-handlebars-template">
 			<tr class="title">
 				<td width=100>아이디</td>

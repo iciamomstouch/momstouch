@@ -1,45 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>질문게시판 글쓰기</title>
+	<link rel="stylesheet" href="/resources/css/question/insert.css"/>
+	<title>질문게시판</title>
 </head>
 <body>
-	<h2>질문게시판 글쓰기</h2>
-	<form name="frm" action="insert" method="post">
-	 <table class="tbl" border=1 width=500>
-		 <tr>
-			 <td width=100>제목</td>
-			 <td><input type="text" name="question_title" size=50></td>
+	<form name="frm" encType="multipart/form-data">
+	<input type="hidden" name="question_grpno" value="${bno}"/>
+
+	 <table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">
+	 	 <tr>
+			 <td colspan=2 id="id">${user_id}</td>
 		 </tr>
 		 <tr>
-			 <td width=100>내용</td>
-			 <td>
-			 <textarea rows="10" cols="52" name="question_content"></textarea>
+			 <td colspan=2 id="title">
+			 	<input type="text" name="question_title" size=90 placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">
 			 </td>
 		 </tr>
 		 <tr>
-			 <td>작성자</td>
-			 <td><input type="text" name="question_writer" value="user00" readonly size=10></td>
-		 </tr>
+			 <td colspan=2 id="content">
+			 	<textarea rows="10" cols="90" name="question_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left; padding-top:10px;"></textarea>
+			 </td>
+		 </tr>		
+		 <tr>
+			<td colspan="2" id="img">
+				<img src="http://placehold.it/300x240" id="image" width=300 id="image"/>
+				<input type="file" name="file" style="display:none;"/>
+			</td>
+		</tr>
 	 </table>
-	 <input type="submit" value="저장">
-	 <input type="reset" value="취소">
-	 <input type="button" value="목록" onClick="location.href='list'">
+	 <input type="submit" value="게시글 등록" id="btnUpdate">
+	 <input type="reset" value="취소" id="btnReset">
+	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
 </body>
-
 <script>
 	$(frm).on("submit", function(e){
 		e.preventDefault();
-		if(!confirm("게시물을 등록하실래요?")) return;
-		frm.submit();
+		
+		var question_title=$(frm.question_title).val();
+		if(question_title==""){
+			alert("제목을 입력하세요!");
+			return;
+		}
+		
+		if(!confirm("게시글을 등록하실래요?")) return;
+		frm.action="insert";
+		frm.method="post";
+		frm.submit();	
 	});
+	
+	$("#image").on("click", function() {
+		$(frm.file).click();
+	});
+	
+	//이미지 미리보기
+	$(frm.file).on("change", function() {
+		var file = $(frm.file)[0].files[0];
+		$("#image").attr("src", URL.createObjectURL(file));
+	});	
 </script>
 </html>

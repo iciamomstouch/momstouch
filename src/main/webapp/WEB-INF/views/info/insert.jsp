@@ -5,37 +5,27 @@
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="/resources/css/board/insert.css"/>
-	<title>오늘</title>
+	<link rel="stylesheet" href="/resources/css/info/insert.css"/>
+	<title>정보방</title>
 </head>
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">
 			<tr>
-				<td id="id">${user_id}</td>
+				<td colspan=2 id="id">${user_id}</td>
 			</tr>
 			<tr>
-				<td>
-					<select name="board_category" id="option">
-						<option value="정보">정보</option>
-						<option value="유머">유머</option>
-						<option value="이슈">이슈</option>
-						<option value="계층">계층</option>
-						<option value="감동">감동</option>
-						<option value="기타">기타</option>
-					</select>
-				</td>
-				<td id="title"><input type="text" name="board_title" size=60  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
-			</tr>			
+				<td colspan=2 id="title"><input type="text" name="info_title" size=90  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
+			</tr>
 			<tr>
 				<td colspan="2" id="img">
 					<img src="http://placehold.it/800x600" id="image" width=800/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
-			</tr>			
+			</tr>						
 			<tr>
 				<td colspan=2 id="content">
-					<textarea rows="10" cols="85" name="board_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
+					<textarea rows="10" cols="90" name="info_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
 				</td>
 			</tr>
 						
@@ -50,8 +40,8 @@
 $(frm).on("submit", function(e){
 	e.preventDefault();
 	
-	var board_title=$(frm.board_title).val();
-	if(board_title==""){
+	var info_title=$(frm.info_title).val();
+	if(info_title==""){
 		alert("제목을 입력하세요!");
 		return;
 	}

@@ -6,48 +6,46 @@
 <html>
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="/resources/css/board/read.css"/>
-	<title>오늘</title>
+	<link rel="stylesheet" href="/resources/css/info/read.css"/>
+	<title>정보방</title>
 	
 </head>
 <body>
 	<form name="frm" encType="multipart/form-data">
-		<input type="hidden" name="board_bno" value="${vo.board_bno}"/>
-		<table class="tbl" style="width:750px; text-align:center; margin-bottom:10px;">
+		<input type="hidden" name="info_bno" value="${vo.info_bno}"/>
+		<table width=800>
 			<tr>
-				<td colspan="2" id="bwriter">${vo.board_writer}</td>
+				<td colspan="2" id="iwriter">${vo.info_writer}</td>
 			</tr>
 			<tr>
-				<td id="bcate">${vo.board_category}</td>
-				<td id="bdate"><fmt:formatDate pattern="MM-dd HH:mm:ss" value="${vo.board_regdate}" /></td>
+				<td id="idate"><fmt:formatDate pattern="MM-dd HH:mm:ss" value="${vo.info_regdate }" /></td>
 			</tr>
 			<tr>
-				<td colspan="2" id="bimg">
-					<c:if test="${vo.board_image==null }">
+				<td colspan="2" id="iimg">
+					<c:if test="${vo.info_image==null }">
 						<img src="http://placehold.it/800x800" width=800 id="image"/>
 					</c:if>
-					<c:if test="${vo.board_image!=null }">
-						<img src="/displayFile?fullName=${vo.board_image }" width=800 id="image"/>
+					<c:if test="${vo.info_image!=null }">
+						<img src="/displayFile?fullName=${vo.info_image }" width=800 id="image"/>
 					</c:if>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="bheart">
+				<td colspan="2" id="iheart">
 					<img src="/resources/css/heart.svg" class="heart">
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="bvcnt">조회수: ${vo.board_viewcnt}</td>
+				<td colspan="2" id="ivcnt">조회수: ${vo.info_viewcnt}</td>
 			</tr>			
 			<tr>
-				<td colspan=2 id="btitle">${vo.board_title}</td>
-			</tr>
-			
+				<td colspan=2 id="ititle">${vo.info_title}</td>
+			</tr>	
 			<tr>
-				<td colspan=2 id="bcont">${vo.board_content}</td>
+				<td colspan=2 id="icont">${vo.info_content}</td>
 			</tr>		
 		</table>
 		<input type="submit" value="수정" id="btnUpdate"/>
@@ -58,7 +56,7 @@
 	<jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script>
-	//글쓰기 삭제
+	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
 		frm.action="delete";
@@ -66,11 +64,11 @@
 		frm.submit();
 	});
 
-	//글쓰기 수정
+	//게시글 수정
 	$(frm).on("submit", function(e){
 			e.preventDefault();
-			var board_title=$(frm.board_title).val();
-			if(board_title==""){
+			var info_title=$(frm.info_title).val();
+			if(info_title==""){
 				alert("제목을 입력하세요!");
 				return;
 			}

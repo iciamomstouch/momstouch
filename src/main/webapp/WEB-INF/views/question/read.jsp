@@ -6,41 +6,76 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>질문게시판 글쓰기</title>
+	<link rel="stylesheet" href="/resources/css/question/read.css"/>
+	<title>질문게시판</title>
 </head>
 <body>
-	<h2>질문게시판 글쓰기</h2>
-	<form name="frm">
-	 <table class="tbl" border=1 width=500>
-		 <tr>
-			 <td width=100>번호</td>
+	<form name="frm" encType="multipart/form-data">
+	 
+	 <table class="tbl" style="width: 800px; margin-bottom:10px;">
+		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
 		 </tr>
-		 <tr>
-			 <td width=100>제목</td>
-			 <td><input type="text" name="question_title" size=50 value="${vo.question_title}" readonly></td>
+		  <tr id="qtop">
+			 <td width=150 id="qwriter">${vo.question_writer}</td>
+			 <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.question_regdate}" /></td>
+			 <td width=150>조회수:${vo.question_viewcnt}</td>
 		 </tr>
 		 <tr>
-			 <td width=100>내용</td>
-			 <td><textarea rows="10" cols="52" name="question_content" readonly>${vo.question_content}</textarea></td>
+			 <td colspan="3" id="qtitle">${vo.question_title}</td>
 		 </tr>
 		 <tr>
-			 <td>작성자</td>
-			 <td><input type="text" name="question_writer" value="user00" readonly size=10></td>
-		 </tr>
+			<td colspan="3" id="qimg">
+				<c:if test="${vo.question_image==null }">
+					<img src="http://placehold.it/300x240" width=300 id="image"/>
+				</c:if>
+				<c:if test="${vo.question_image!=null }">
+					<img src="/displayFile?fullName=${vo.question_image }" width=300 id="image"/>
+				</c:if>
+				<input type="file" name="file" style="display:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" id="qcont">${vo.question_content}</td>
+		</tr>		 		
 	 </table>
-	 <input type="button" value="수정" onClick="location.href='update?question_bno=${vo.question_bno}'">
-	 
-	 <input type="button" value="삭제" onClick="funDelete();">
-	 <input type="button" value="목록" onClick="location.href='list'">
+	 <input type="submit" value="수정" id="btnUpdate">	 
+	 <input type="button" value="삭제" id="btnDelete">
+	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
+	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
 </body>
 <script>
- function funDelete(){
-	 if(!confirm("삭제하시겠습니까?")) return;
-	 frm.action="delete";
-	 frm.method="post"
-	 frm.submit();
- }
+	//게시글 삭제
+	$("#btnDelete").on("click", function(){
+		if(!confirm("삭제하실래요?")) return;
+		frm.action="delete";
+		frm.method="post";
+		frm.submit();
+	});
+	
+	//게시글 수정
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		var info_title=$(frm.info_title).val();
+		if(info_title==""){
+			alert("제목을 입력하세요!");
+			return;
+		}
+		if(!confirm("게시글을 수정하실래요?")) return;
+		frm.action="update";
+		frm.method="post";
+		frm.submit();
+	});
+	
+	$("#image").on("click", function() {
+		$(frm.file).click();
+	});
+	
+	//이미지 미리보기
+	$(frm.file).on("change", function() {
+		var file = $(frm.file)[0].files[0];
+		$("#image").attr("src", URL.createObjectURL(file));
+	});
 </script>
 </html>
