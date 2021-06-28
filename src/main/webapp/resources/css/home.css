@@ -1,131 +1,80 @@
 @CHARSET "UTF-8";
 
-*{font-family: '빙그레체';}
+h2{float:left;}
+
+.title{font-weight:bold;}
 
 
-#divTop{width:800px;
-		heigth:50px;
-		margin:0px auto;
-		text-align:center;}	
-		
-#weather{margin:0px auto;
-		heigth:50px;}				
+#tbl1 {
+		border-collapse: separate;
+  		border-spacing: 1px;
+  		text-align: center;
+  		line-height: 1.5;
+  		border-top: 1px solid #ccc;
+  		margin : 20px 10px;} 		
+ 		 
+#tbl1 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;
+  		font-size:15px;
+  		cursor: pointer;}
+  		
+#rcnt{font-weight:bold;} 		 	
 
-#divBottom{text-align:center;
-		width:800px;
-		margin:0px auto;
-		border-top:1px solid gray;}
-		
-.login{	width:30px;
-		heigth:50px;
- 	    position: absolute;
-    	margin:0px auto;
-    	background-size: 50%;
-    	background-repeat: no-repeat;
-    	background-position: center;
-    	cursor: pointer;
-    	margin-left:150px;}
-.logout{width:30px;
-		heigth:50px;
- 	    position: absolute;
-    	margin:0px auto;
-    	background-size: 50%;
-    	background-repeat: no-repeat;
-    	background-position: center;
-    	cursor: pointer;
-    	margin-left:150px;}    	
-.logid{width:100px;}
+#tbl2 {border-collapse: separate;
+  		border-spacing: 1px;
+  		text-align: center;
+  		line-height: 1.5;
+  		border-top: 1px solid #ccc;
+  		margin : 20px 10px;} 		
+ 		 
+#tbl2 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;
+  		cursor: pointer;}  	
 
-.logo{width:150px;
-	heigth:50px;
-	cursor: pointer;}
-		
-.btnside {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    margin:0px auto;
-    top: 0px;
-    z-index: 1;
-    background-image: url('/resources/css/list.svg');
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-}
-
-.close {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    background-image: url('/resources/css/x-circle-fill.svg');
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-}
-
-#sidemenu {
-    width: 150px;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    left: -152px;
-    z-index: 10;
-    border: 1px solid #c9c9c9;
-    background-color: white;
-    text-align: center;
-    transition: All 0.2s ease;
-    -webkit-transition: All 0.2s ease;
-    -moz-transition: All 0.2s ease;
-    -o-transition: All 0.2s ease;
-}
-
-#sidemenu.open {
-    left: 0px;
-}		
-		
-#divMenu{padding:10px;
-		overflow:hidden;
-		border-top:hidden;
-		border-bottom:1px solid gray;
-		width:800px;
-		margin:0px auto;
-		}
-		
-.item a{width:200px;
-		float:center;
-		text-align:center;
-		margin:50px;
-		}
-		
-.item-left{float:left;
-			margin:0px auto;
-			margin-top:50px;
-			padding:20px;}
-
-
-#divMenu a{
-		 font-size:15px;
-		 text-decoration:none;
-		 color:black;}
-		
-#divMenu a:hover{
-				text-decoration:bold;
-				color:black; 
-				font-weight:bold;
-				padding-bottom:7px;
-				border-bottom:5px solid black;}
-								
-				
-#divContent{text-align:center;
-			width:800px;
-			margin:0px auto;
-			padding:10px;}
-			
+#tbl3 {float:center;
+	  width:800px;
+	  overflow: hidden;}
 	
-			
-.panel-title{font-style:italic;}
+.box {width:130px;
+	height:210px;
+	padding:5px;
+	margin:5px;
+	margin-left:13px;
+	background:white;
+	color:black;
+	float:left; 
+	font-size:15px;
+	cursor: pointer;}
+.img{text-align:center;}
+.tratitle{text-align:left;
+		text-overflow: ellipsis;}
+.price{text-align:left;
+	  font-weight: bold;}
+	  
+#list4{width:800px;}
+	   
+#tbl4{
+	 padding:10px;
+	 text-align:left;
+	 box-shadow: 10px 5px 5px gray;
+	 margin-top:50px;
+	 margin-bottom:50px;}
+	 	   
+	  	
+#tbl5 {border-collapse: separate;
+  		border-spacing: 1px;
+  		text-align: center;
+  		line-height: 1.5;
+  		border-top: 1px solid #ccc;
+  		margin : 20px 10px;} 		
+ 		 
+#tbl5 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;
+  		cursor: pointer;}	
+	 			

@@ -5,37 +5,36 @@
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>게시판2</title>
+	<link rel="stylesheet" href="/resources/css/info/insert.css"/>
+	<title>정보방</title>
 </head>
 <body>
-	<h1>[글쓰기등록]</h1>
 	<form name="frm" encType="multipart/form-data">
-		<table border=1 width=500>
+		<input type="hidden" name="info_writer" value="${user_id}" />
+		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">			
 			<tr>
-				<td width=100>작성자</td>
-				<td><input type="text" name="info_writer" size=50 value="${user_id }"/></td>
+				<td colspan=2 id="id">${user_id}</td>
 			</tr>
 			<tr>
-				<td width=100>제목</td>
-				<td><input type="text" name="info_title" size=50/></td>
-			</tr>						
-			<tr>
-				<td colspan=2>
-					<textarea rows="10" cols="80" name="info_content"></textarea>
-				</td>
+				<td colspan=2 id="title"><input type="text" name="info_title" size=90  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td>이미지</td>
-				<td>
-					<img src="http://placehold.it/150x120" id="image" width=150/>
+				<td colspan="2" id="img">
+					<img src="http://placehold.it/800x600" id="image" width=800/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
-			</tr>			
+			</tr>						
+			<tr>
+				<td colspan=2 id="content">
+					<textarea rows="10" cols="90" name="info_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
+				</td>
+			</tr>
+						
 			
 		</table>
-		<input type="submit" value="게시글등록" />
-		<input type="reset" value="등록취소"/>
-		<input type="button" value="목록이동" onClick="location.href='list'"/>
+		<input type="submit" value="게시글등록" id="btnUpdate"/>
+		<input type="reset" value="등록취소" id="btnReset"/>
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
 	</form>
 </body>
 <script>

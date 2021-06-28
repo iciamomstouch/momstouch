@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<link rel="stylesheet" href="/resources/css/reply.css"/>
+		<link rel="stylesheet" href="/resources/css/board/reply.css"/>
 	</head>
 	<div style="width: 800px; padding:10px;">
 		<input type="text" size=80 id="txtReply"/>

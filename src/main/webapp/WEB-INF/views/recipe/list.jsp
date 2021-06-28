@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<title>레시피</title>
-	<link rel="stylesheet" href="/resources/css/recipe.css"/>
+	<link rel="stylesheet" href="/resources/css/recipe/list.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}							

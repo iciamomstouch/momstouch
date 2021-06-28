@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>정보방</title>
-	<link rel="stylesheet" href="/resources/css/blist.css"/>
+	<link rel="stylesheet" href="/resources/css/info/list.css"/>
 	<style>
 		.row {cursor:pointer;}
 	</style>

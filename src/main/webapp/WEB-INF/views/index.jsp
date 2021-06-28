@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="/resources/css/home.css"/>
+	<link rel="stylesheet" href="/resources/css/index.css"/>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<title>FIRST TIME</title>	

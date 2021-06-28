@@ -5,7 +5,7 @@
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>댓글목록</title>
-	<link rel="stylesheet" href="/resources/css/reply2.css"/>
+	<link rel="stylesheet" href="/resources/css/info/reply.css"/>
 	<style>
 		a {text-decoration:none; color:blue;}
 		.active{color:red; font-weight: bold;}
