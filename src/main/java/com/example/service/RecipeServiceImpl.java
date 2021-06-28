@@ -47,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 				
 		System.out.println(testList.toString());
-		if(testList==null) return;
+		
 		for(HashMap<String, Object> map:testList){
 			Recipe_attachVO attachVO = new Recipe_attachVO();
 			attachVO.setRecipe_attach_no((String) map.get("recipe_attach_no"));
@@ -76,7 +76,7 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 				
 		System.out.println(testList.toString());
-		if(testList==null) return;
+		
 		for(HashMap<String, Object> map:testList){
 			Recipe_attachVO attachVO = new Recipe_attachVO();
 			attachVO.setRecipe_attach_no((String) map.get("recipe_attach_no"));
