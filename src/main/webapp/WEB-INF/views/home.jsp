@@ -99,13 +99,12 @@
 	
 	<!-- 레시피 게시판--------------------------------------------------------------- -->
 	<h2>레시피</h2>
-	<div class="swiper-container">
-	<div id="attachFiles" class="swiper-wrapper">
-	<div id="list4">
-		<table id="tbl4"></table>
+	<div class="swiper-container">	
+	<div id="list4" class="swiper-wrapper">		
 		<script id="temp4" type="text/x-handlebars-template">
 		{{#each list}}
 		<div class="swiper-slide">
+		<table>
 		<tr class="recipe_box" onClick="location.href='recipe/read?recipe_bno={{recipe_bno}}'">
 			<td rowspan="3"><img src="/displayFile?fullName={{recipe_image}}" width=300/></td>
 			<td style="width:300px;font-size:20px; padding-left:10px;">:{{recipe_category}}</td>
@@ -118,6 +117,7 @@
 		<tr>
 			<td><img src="/resources/image/04.png" width=100 class="star04"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
 		</tr>
+		</table>
 		</div>
 		{{/each}}
 		</script>
@@ -143,15 +143,15 @@
 			var page = 1;
 			$.ajax({
 				type : "get",
-				url : "recipe/list.json",
+				url : "/recipe/list.json",
 				dataType : "json",
 				data : {
 					"page" : page,
-					"perPageNum" : 1
+					"perPageNum" : 5
 				},
 				success : function(result) {
 					var temp = Handlebars.compile($("#temp4").html());
-					$("#tbl4").html(temp(result));
+					$("#list4").html(temp(result));
 					
 					const swiper = new Swiper('.swiper-container', {
 						// 슬라이드를 버튼으로 움직일 수 있습니다.
