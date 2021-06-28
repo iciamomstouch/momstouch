@@ -6,36 +6,26 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/question-read.css"/>
 	<title>질문게시판</title>
 </head>
 <body>
-	<h2>[질문게시판 읽기]</h2>
 	<form name="frm" encType="multipart/form-data">
-	 <input type="text" name="question_grpno" value="${vo.question_grpno }"/>
-	 <table class="tbl" border=1 width=600>
-		 <tr>
-			 <td width=100>번호</td>
+	 
+	 <table class="tbl" style="width: 800px; margin-bottom:10px;">
+		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
 		 </tr>
-		  <tr>
-			 <td width=100>작성자</td>
-			 <td><input type="text" name="question_writer" value="${vo.question_writer}" readonly size=50></td>
+		  <tr id="qtop">
+			 <td width=150 id="qwriter">${vo.question_writer}</td>
+			 <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.question_regdate}" /></td>
+			 <td width=150>조회수:${vo.question_viewcnt}</td>
 		 </tr>
 		 <tr>
-			<td>작성일</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.question_regdate }" /></td>
-		</tr>
-		<tr>
-			<td>조회수</td>
-			<td><input type="text" name="question_viewcnt" value="${vo.question_viewcnt}" readonly size=50/></td>
-		</tr>
-		 <tr>
-			 <td width=100>제목</td>
-			 <td><input type="text" name="question_title" size=50 value="${vo.question_title}" size=50/></td>
+			 <td colspan="3" id="qtitle">${vo.question_title}</td>
 		 </tr>
 		 <tr>
-			<td>이미지</td>
-			<td>
+			<td colspan="3" id="qimg">
 				<c:if test="${vo.question_image==null }">
 					<img src="http://placehold.it/300x240" width=300 id="image"/>
 				</c:if>
@@ -46,14 +36,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td width=100>내용</td>
-			<td><textarea rows="10" cols="50" name="question_content">${vo.question_content}</textarea></td>
+			<td colspan="3" id="qcont">${vo.question_content}</td>
 		</tr>		 		
 	 </table>
-	 <input type="submit" value="수정">	 
+	 <input type="submit" value="수정" id="btnUpdate">	 
 	 <input type="button" value="삭제" id="btnDelete">
-	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'">
-	 <input type="button" value="목록" onClick="location.href='list'">
+	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
+	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
 </body>
 <script>

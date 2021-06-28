@@ -7,7 +7,7 @@
 	<title>Insert title here</title>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
- 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=99fc73c0b157f0cc943b0f40fbf34711"></script>
+ 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=99fc73c0b157f0cc943b0f40fbf34711&libraries=services"></script>
 </head>
 <body>
 	<div id="divHeader"><h2>장소 검색</h2></div>
@@ -17,6 +17,10 @@
 		<select id="size">
 			<option value=5>5행 출력</option>
 			<option value=10>10행 출력</option>
+		</select>
+		<select id="sortBy">
+			<option value=accuracy>정확도 순</option>
+			<option value=distance>거리순</option>
 		</select>
 	 	검색데이타:<span id="total"></span>
  	</div>
@@ -90,12 +94,13 @@ $("#tbl").on("click", ".row button", function(){
 function getList(){
 	query=$("#query").val();
 	size=$("#size").val();
+	sortBy=$("#sortBy").val();
 		$.ajax({
 			type:"get", 
 			url:"https://dapi.kakao.com/v2/local/search/keyword.json", 
 			headers:{"Authorization":"KakaoAK 2c24467c55f72e8bf88cecfd0c84f74f"}, 
 			dataType:"json", 
-			data:{"query":query,"page":page,"size":size}, 
+			data:{"query":query,"page":page,"size":size, "sortBy":sortBy}, 
 			success:function(data){
 				var template = Handlebars.compile($("#temp").html());
 				$("#tbl").html(template(data));

@@ -5,26 +5,28 @@
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>댓글목록</title>
+	<link rel="stylesheet" href="/resources/css/reply2.css"/>
 	<style>
 		a {text-decoration:none; color:blue;}
 		.active{color:red; font-weight: bold;}
 	</style>
 </head>
 <body>
-	<h1>[댓글 목록]</h1>
-	<div style="padding:10px;">
-		<input type="text" size=50 id="txtReply"/>
+	<div style="width: 800px; padding:10px;">
+		<input type="text" size=80 id="txtReply"/>
 		<input type="button" value="댓글입력" id="btnInsert">		
 	</div>
-	<table id="rtbl" border=1></table>
+	<table id="rtbl"></table>
 	<script id="rTemp" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row">
-			<td width=50>{{info_rno}}</td>
-			<td width=100>{{info_replyer}}</td>
-			<td width=300>{{info_reply}}</td>
-			<td>{{info_replydate}}</td>
-			<td><button class="btnDelete" rno="{{info_rno}}">삭제</button></td>
+			<td id="i_rno">{{info_rno}}</td>
+			<td id="i_rer">{{info_replyer}}</td>
+			<td id="i_rdate">{{info_replydate}}</td>
+			<td id="idel"><button class="btnDelete" rno="{{info_rno}}">❌</button></td>
+		</tr>
+		<tr>
+			<td colspan="3" id="i_rely">{{info_reply}}</td>			
 		</tr>
 		{{/each}}
 	</script>	

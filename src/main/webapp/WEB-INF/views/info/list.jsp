@@ -5,27 +5,19 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>게시판2</title>
-	<link rel="stylesheet" href="/resources/css/board.css"/>
+	<title>정보방</title>
+	<link rel="stylesheet" href="/resources/css/blist.css"/>
 	<style>
 		.row {cursor:pointer;}
 	</style>
 </head>
 <body>
-	<h1>[게시판2 목록]</h1>
 	<div id="condition" style="margin-bottom:5px;">
-		<div id="left">		
-			<select id="searchType">
-				<option value="info_title">제목</option>				
-				<option value="info_content">내용</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
+		<div id="btninsert">
+			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>
-		<div id="right"></div>
 	</div>
-	<button onClick="location.href='insert'">글쓰기</button>
+	
 	<div id="list">
 		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
@@ -47,7 +39,16 @@
 			<td width=100>{{info_viewcnt}}</td>
 		</tr>
 		{{/each}}
-		</script>	
+		</script>
+		<div id="left">		
+			<select id="searchType">
+				<option value="info_title">제목</option>				
+				<option value="info_content">내용</option>
+			</select>
+			<input type="text" id="keyword" placeholder="검색어"/>
+			<input type="button" id="btnSearch" value="검 색"/>
+			<span id="total"></span>
+		</div>	
 	</div>
 	<div id="pagination" style="margin-top:5px;"></div>
 </body>

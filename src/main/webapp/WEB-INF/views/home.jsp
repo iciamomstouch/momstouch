@@ -4,8 +4,9 @@
  	
 	<link rel="stylesheet" href="/resources/css/board.css"/>
  	<!-- 게시판1--------------------------------------------------------------- -->
+
 	<h2>오늘</h2>
-	
+
 	<div id="list1">
 		<table id="tbl1" width=800></table>
 		<script id="temp1" type="text/x-handlebars-template">
@@ -13,17 +14,13 @@
 			<td width=100>카테고리</td>
 			<td width=200>제목</td>
 			<td width=100>작성자</td>
-			<td width=200>작성일</td>
-			<td width=50>댓글수</td>
 			<td width=50>조회수</td>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='board/read?board_bno={{board_bno}}'">
 			<td>{{board_category}}</td>
-			<td>{{board_title}}</td>
+			<td>{{board_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{board_replycnt}}]</span></td>
 			<td>{{board_writer}}</td>
-			<td>{{board_regdate}}</td>
-			<td>{{board_replycnt}}</td>
 			<td>{{board_viewcnt}}</td>
 		</tr>
 		{{/each}}
@@ -40,7 +37,7 @@
 			type:"get",
 			url:"/board/list.json",
 			dataType:"json",
-			data:{"page":page, "perPageNum":5},
+			data:{"page":page, "perPageNum":3},
 			success:function(result){
 				var temp=Handlebars.compile($("#temp1").html());
 				$("#tbl1").html(temp(result));
@@ -49,49 +46,7 @@
 	}
 	</script>
 	
-	<!-- 게시판2--------------------------------------------------------------- -->
-	<h2>문의게시판</h2>
 	
-	<div id="list2">
-		<table id="tbl2" width=800></table>
-		<script id="temp2" type="text/x-handlebars-template">
-		<tr class="title">		
-			<td width=300>제목</td>
-			<td width=100>작성자</td>
-			<td width=200>작성일</td>
-			<td width=50>댓글수</td>
-			<td width=50>조회수</td>
-		</tr>
-		{{#each list}}
-		<tr class="row" onClick="location.href='info/read?info_bno={{info_bno}}'">		
-			<td>{{info_title}}</td>
-			<td>{{info_writer}}</td>
-			<td>{{info_regdate}}</td>
-			<td>{{info_replycnt}}</td>
-			<td>{{info_viewcnt}}</td>
-		</tr>
-		{{/each}}
-		</script>	
-	</div>
-	
-	<hr/>
-	
-	<script>	
-	getList2();
-	function getList2(){
-		var page=1;			
-		$.ajax({
-			type:"get",
-			url:"/info/list.json",
-			dataType:"json",
-			data:{"page":page, "perPageNum":5},
-			success:function(result){
-				var temp=Handlebars.compile($("#temp2").html());
-				$("#tbl2").html(temp(result));
-			}
-		});
-	}	
-	</script>
 	
 	<!-- 중고거래 게시판--------------------------------------------------------------- -->
 	<h2>중고거래</h2>
@@ -136,24 +91,20 @@
 	<h2>레시피</h2>
 	
 	<div id="list4">
-		<table border=1 id="tbl4"></table>
+		<table id="tbl4"></table>
 		<script id="temp4" type="text/x-handlebars-template">
-		<tr class="title">
-			<td width=200>이미지</td>
-			<td width=100>카테고리</td>
-			<td width=200>제목</td>
-			<td width=100>평점</td>
-			<td width=100>작성자</td>
-			<td width=200>작성일</td>
-		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='recipe/read?recipe_bno={{recipe_bno}}'">
-			<td><img src="/displayFile?fullName={{recipe_image}}" width=100/></td>
-			<td>{{recipe_category}}</td>
-			<td>{{recipe_title}}</td>
-			<td>{{format recipe_userRatingAvg}}<span>/5</span></td>
-			<td>{{recipe_writer}}</td>
-			<td>{{recipe_regdate}}</td>
+		<tr class="recipe_box" onClick="location.href='recipe/read?recipe_bno={{recipe_bno}}'">
+			<td rowspan="3"><img src="/displayFile?fullName={{recipe_image}}" width=300/></td>
+			<td style="width:300px;font-size:20px; padding-left:10px;">:{{recipe_category}}</td>
+		</tr>
+		<tr>
+			<td style="width:300px; font-weight:bold; font-size:30px; text-overflow: ellipsis; padding-left:10px;">
+				"{{recipe_title}}"
+			</td>
+		</tr>
+		<tr>
+			<td><img src="/resources/image/04.png" width=100 class="star04"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
 		</tr>
 		{{/each}}
 		</script>
@@ -168,9 +119,9 @@
 				var page=1;
 				$.ajax({
 					type:"get",
-					url:"/recipe/list.json",
+					url:"recipe/list.json",
 					dataType:"json",
-					data:{"page":page, "perPageNum":5},
+					data:{"page":page, "perPageNum":1},
 					success:function(result){
 						var temp=Handlebars.compile($("#temp4").html());
 						$("#tbl4").html(temp(result));
@@ -181,46 +132,40 @@
 	</div>
 	<hr/>
 	
-	<!-- 질문 게시판--------------------------------------------------------------- -->
-	<h2>질문 게시판</h2>
-	<div id="list5">
-		<table id="tbl5" width=800></table>
-		<script id="temp5" type="text/x-handlebars-template">
-		<tr class="title">
-			<td width=50>글번호</td>			
-			<td width=300>제목</td>
-			<td width=100>작성자</td>
-			<td width=200>작성일</td>			
-			<td width=50>조회수</td>
+	<!-- 게시판2--------------------------------------------------------------- -->
+	<h2>정보방</h2>
+	
+	<div id="list2">
+		<table id="tbl2" width=800></table>
+		<script id="temp2" type="text/x-handlebars-template">
+		<tr class="title">		
+			<td>제목</td>
+			<td>작성자</td>
+			<td>조회수</td>
 		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='question/read?question_bno={{question_bno}}'">
-			<td>{{question_bno}}</td>			
-			<td>{{question_title}}</td>
-			<td>{{question_writer}}</td>
-			<td class="bregdate">{{question_regdate}}</td>			
-			<td>{{question_viewcnt}}</td>
+		<tr class="row" onClick="location.href='info/read?info_bno={{info_bno}}'">		
+			<td>{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
+			<td>{{info_writer}}</td>
+			<td>{{info_viewcnt}}</td>
 		</tr>
 		{{/each}}
 		</script>	
-	</div>	
+	</div>
 	
-	<script>
-	getList5();
-	function getList5(){
-		var page=1;
+	<script>	
+	getList2();
+	function getList2(){
+		var page=1;			
 		$.ajax({
 			type:"get",
-			url:"/question/list.json",
+			url:"/info/list.json",
 			dataType:"json",
-			data:{"page":page, "perPageNum":5},
+			data:{"page":page, "perPageNum":3},
 			success:function(result){
-				var temp=Handlebars.compile($("#temp5").html());
-				$("#tbl5").html(temp(result));
+				var temp=Handlebars.compile($("#temp2").html());
+				$("#tbl2").html(temp(result));
 			}
 		});
-	}
-	</script>
-	
-	<!-- 지도--------------------------------------------------------------- -->
-	<h2 onClick="location.href='map/map'">지도</h2>
+	}	
+	</script>	

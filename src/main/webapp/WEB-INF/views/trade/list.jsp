@@ -23,7 +23,7 @@
 		</div>			
 	</div>
 	
-	<table id="tbl"></table>
+	<table id="tbl" width=800></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
 		<td>이미지</td>

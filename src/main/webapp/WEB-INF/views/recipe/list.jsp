@@ -17,12 +17,14 @@
 	<div id="btninsert">
 		<button onClick="location.href='insert'" id="btninsert">WRITING</button>		
 	</div>
-		<h3>TIP📢</h3>
 	<div id="tip">
-		<p>초기: 4~6개월 &nbsp;&nbsp;&nbsp;
-		        중기: 7~9개월&nbsp;&nbsp;&nbsp; 
-		        후기: 10~12개월&nbsp;&nbsp;&nbsp; 
-		        완료기: 12개월 이상</p>
+		<p>
+			<a id="atitle">이유식 개월 수</a>
+		    <a>초기: 4~6개월/</a>
+		    <a>중기: 7~9개월 /</a> 
+		    <a>후기: 10~12개월/</a>
+		    <a>완료기: 12개월 이상</a>
+	    </p>
 
 	</div>
 	<div id="condition">

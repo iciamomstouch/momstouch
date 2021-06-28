@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
-.title{font-weight:bold;}
+.title{font-weight:bold;
+	  }
 
 #tbl {border-collapse: separate;
   		border-spacing: 1px;
@@ -9,18 +10,17 @@
   		border-top: 1px solid #ccc;
   		overflow: hidden;
   		text-overflow: ellipsis;
-  		margin : 20px 10px;} 		
+  		margin : 20px 10px;
+  		margin-top:10px;} 		
  		 
-#tbl td{
-		text-align:center;
+#tbl td{text-align:center;
 		padding: 10px;
-  		vertical-align: middle;
+  		vertical-align: top;
   		border-bottom: 1px solid #ccc;
   		overflow: hidden;
   		text-overflow: ellipsis;
   		font-size:15px;
-  		margin: 0px auto;
-  		cursor: pointer;}
+  		cursor: pointer;} 
   		
 #btninsert{width:800px;
 		float:center;
@@ -42,7 +42,7 @@
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
-		
+				
 #btnSearch{width:50px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
@@ -52,4 +52,3 @@
 		font-size:10px;
 		font-weight:bold; 
 		cursor: pointer;}
-		}				

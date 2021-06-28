@@ -2,21 +2,24 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
-	<h1>[댓글 목록]</h1>
-	<div style="padding:10px;">
-		<input type="text" size=50 id="txtReply"/>
+	<head>
+		<link rel="stylesheet" href="/resources/css/reply.css"/>
+	</head>
+	<div style="width: 800px; padding:10px;">
+		<input type="text" size=80 id="txtReply"/>
 		<input type="button" value="댓글입력" id="btnInsert">		
 	</div>
-	<table id="rtbl" border=1></table>
+	<table id="rtbl"></table>
 	<script id="rTemp" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row">
-			<td width=50>{{board_rno}}</td>
-			<td width=100>{{board_replyer}}</td>
-			<td width=300>{{board_reply}}</td>
-			<td>{{board_replydate}}</td>
-			<td><button class="btnDelete" rno="{{board_rno}}">삭제</button></td>
+			<td id="b_rno">{{board_rno}}</td>
+			<td id="b_rer">{{board_replyer}}</td>
+			<td id="b_rdate">{{board_replydate}}</td>
+			<td id="rdel"><button class="btnDelete" rno="{{board_rno}}">❌</button></td>
+		</tr>
+		<tr>
+			<td colspan="3" id="b_rely">{{board_reply}}</td>			
 		</tr>
 		{{/each}}
 	</script>	
