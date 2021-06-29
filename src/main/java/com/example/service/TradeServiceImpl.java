@@ -26,7 +26,7 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public void insert(TradeVO vo) throws Exception {
 		dao.insert(vo);
-		//System.out.println(vo.toString());
+		System.out.println(vo.toString());
 		ArrayList<String> images = vo.getImages();
 		if(images==null) return;
 		for(String image:images){

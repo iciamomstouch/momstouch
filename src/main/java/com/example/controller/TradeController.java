@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,7 +128,7 @@ public class TradeController {
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(TradeVO vo, int trade_bno, MultipartHttpServletRequest multi) throws Exception{
 		//파일 업로드
-		System.out.println(vo.toString());
+		
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();//파일명
@@ -201,5 +202,10 @@ public class TradeController {
 		service.delete(trade_bno);
 		return "redirect:list";
 	}
-
+	
+	@RequestMapping("chat")
+	public String chat(Model model) throws Exception{
+		model.addAttribute("pageName", "trade/chat.jsp");
+		return "index";
+	}
 }
