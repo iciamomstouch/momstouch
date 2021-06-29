@@ -57,6 +57,7 @@
 				<td style="border-bottom: 1px solid #ccc;"><input type="button" value="상세이미지" style="border:none; background:white; cursor: pointer; text-align:left; font-size:15px;" id="btnImage" /></td>
 				<td style="height:150px;padding:10px;border-bottom: 1px solid #ccc;">
 	            	<input type="file" name="files" accept="image/*" multiple style="display:none"/>
+	            	<div id="listFile"></div>
 	     			<div id="uploaded">
 	                	<ul id="uploadFiles"></ul>
 	                 	<script id="temp" type="text/x-handlebars-template">
@@ -79,6 +80,7 @@
 </body>
 <script>
 var trade_bno=$(frm.trade_bno).val();
+	//게시글 수정
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		
@@ -86,8 +88,7 @@ var trade_bno=$(frm.trade_bno).val();
 		if(trade_title==""){
 			alert("제목을 입력하세요!");
 			return;
-		}
-		
+		}		
 		if(!confirm("글을 수정등록하실래요?")) return;
 		frm.action="update";
 		frm.method="post";
@@ -105,31 +106,13 @@ var trade_bno=$(frm.trade_bno).val();
 	});
 	
 	//첨부 파일들을 선택한경우
-	   $(frm.files).on("change", function(){
-	      var files=$(frm.files)[0].files;
-	      $.each(files, function(index, file){
-	         uploadFile(file);
-	      });
-	   });	
-	   
-	function uploadFile(file){
-		if(file == null) return;
-   		var formData=new FormData();
-   		formData.append("file", file);
-   
-	   	$.ajax({
-	     	type:"post",
-	      	url:"/uploadFile",
-	      	processData:false,
-	      	contentType:false,
-	      	data:formData,
-	      	success:function(data){
-	         	var temp=Handlebars.compile($("#temp").html());
-	         	var tempData={"fullName":data};
-	         	$("#uploadFiles").append(temp(tempData));
-	      	}
+	$(frm.files).on("change", function(){
+		var files=$(frm.files)[0].files;//파일을 여러개 선택할경우		
+		$.each(files, function(index, file){
+			var str = "<img src='" + URL.createObjectURL(file) + "'/>";
+			$("#listFile").append(str);
 		});
-	}
+	});	
 	
 	$("#btnImage").on("click", function(){
 		$(frm.files).click();

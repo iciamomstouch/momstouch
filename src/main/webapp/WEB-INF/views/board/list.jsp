@@ -19,26 +19,38 @@
 	</div>
 	
 	<div id="list">
-		<table id="tbl" width=800></table>
+		<table id="tbl" style="width:600px; margin: 0px auto;"></table>
 		<script id="temp" type="text/x-handlebars-template">
-		<tr class="title">
-			<td width=60>글번호</td>
-			<td width=100>카테고리</td>
-			<td width=200>제목</td>
-			<td width=100>작성자</td>
-			<td width=200>작성일</td>
-			<td width=60>댓글수</td>
-			<td width=60>조회수</td>
-		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='read?board_bno={{board_bno}}'">
-			<td>{{board_bno}}</td>
-			<td>{{board_category}}</td>
-			<td>{{board_title}}</td>
-			<td>{{board_writer}}</td>
-			<td>{{board_regdate}}</td>
-			<td>{{board_replycnt}}</td>
-			<td>{{board_viewcnt}}</td>
+		<tr class="row" >
+			<tr>
+				<td id="bwriter">{{board_writer}}</td>
+				<td id="bvcnt">조회수: {{board_viewcnt}}</td>
+			</tr>
+			<tr>
+				<td id="bcate">{{board_category}}</td>
+				<td id="bdate">{{board_regdate}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
+					<c:if test="${vo.board_image==null }">
+						<img src="http://placehold.it/600x600" width=600 id="image"/>
+					</c:if>
+					<c:if test="${vo.board_image!=null }">
+						<img src="/displayFile?fullName=${vo.board_image }" width=800 id="image"/>
+					</c:if>
+					<input type="file" name="file" style="display:none;"/>
+				</td>
+			</tr>
+			<tr>
+				<td id="breply">댓글수: {{board_replycnt}}</td>
+				<td id="bheart">
+					<img src="/resources/css/heart.svg" class="heart">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" id="btitle" onClick="location.href='read?board_bno={{board_bno}}'">{{board_title}}</td>
+			</tr>
 		</tr>
 		{{/each}}
 		</script>

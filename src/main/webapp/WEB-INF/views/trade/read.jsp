@@ -9,41 +9,24 @@
 	<title>중고거래 보기</title>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<!--<link rel="stylesheet" href="/resources/css/trade/style.css"/>-->
+	<link rel="stylesheet" href="/resources/css/trade/read.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<style>
 		.swiper-container {
-			width: 600px;
+			width: 300px;
 			height: 300px;
 		}
 	</style>
 </head>
 <body>
-	<h1>중고거래 보기</h1>
 	<form name="frm" enctype="multipart/form-data">
-	<input type="text" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
-	<table border=1>		
+	<input type="hidden" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
+	<table id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;">		
 		<tr>
-			<td><input type="text" name="trade_writer" value="${vo.trade_writer}"/></td>
-			<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
-			<td>조회수:${vo.trade_viewcnt}</td>
-		</tr>
-		<tr>
-			<td>
-				<select name="trade_category" value="${vo.trade_category}">	
-					<option>${vo.trade_category}</option>
-					<option value="구매">구매</option>
-					<option value="판매">판매</option>
-					<option value="나눔">나눔</option>
-				</select>
-			</td>
-			<td colspan=2><input type="text" name="trade_title" value="${vo.trade_title}"/></td>
-		</tr>
-		<tr>
-			<td colspan=3>
+			<td rowspan=6>
 			<!-- Slider main container -->
 			<div class="swiper-container">
 				<!-- Additional required wrapper -->
@@ -60,24 +43,37 @@
   				<div class="swiper-pagination"></div>
   				<!-- If we need navigation buttons -->
 				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>				
+				<div class="swiper-button-next"></div>
+				
+				
 		    </div>
 			</td>
 		</tr>
-		<tr>
-			<td colspan=3>
-				<textarea rows="10" cols="52" name="trade_content">${vo.trade_content}</textarea>
-			</td>
-		<tr>
-		<tr>
-			<td>♥</td>
-			<td><input type="number" name=""trade_price" value="${vo.trade_price}"/></td>
-			<td><button>채팅으로 거래하기</button></td>
+		<tr style="border-bottom: 1px solid #ccc;">
+			<td id="twriter">${vo.trade_writer}</td>
+			<td id="theart"><img src="/resources/css/heart.svg" class="heart"></td>
+			<td id="chat"><img src="/resources/css/chat-left-dots.svg" class="chat" onClick="location.href='chat'" style="cursor:pointer;"></td>
 		</tr>
+		<tr>	
+			<td colspan="2" id="tdate"><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
+			<td id="tvcnt">조회수:${vo.trade_viewcnt}</td>
+		</tr>
+		<tr>
+			<td id="tcate">${vo.trade_category}</td>
+			<td colspan=2 id="ttitle">${vo.trade_title}</td>
+		</tr>
+		<tr>
+			<td colspan=3 id="tprice">${vo.trade_price}원</td>			
+		</tr>
+		<tr>
+			<td colspan=3 id="tcont">
+				<textarea rows="10" cols="52" name="trade_content" style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">${vo.trade_content}</textarea>
+			</td>
+		<tr>		
 	</table>
-	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"/>
+	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate"/>
 	<input type="button" value="글삭제" id="btnDelete"/>
-	<input type="button" value="목록이동" onClick="location.href='list'"/>
+	<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
 	</form>
 </body>
 <script>

@@ -1,9 +1,10 @@
 @CHARSET "UTF-8";
 
-h2{float:left;}
+h2{float:left; margin:0px auto;}
 
 .title{font-weight:bold;}
 
+hr{width:800px;}
 
 #tbl1 {
 		border-collapse: separate;
@@ -20,7 +21,11 @@ h2{float:left;}
   		font-size:15px;
   		cursor: pointer;}
   		
-#rcnt{font-weight:bold;} 		 	
+#rcnt{font-weight:bold;}
+
+#list2{width:800px;
+	   float: center;
+	   margin: 0px auto;}	 	
 
 #tbl2 {border-collapse: separate;
   		border-spacing: 1px;

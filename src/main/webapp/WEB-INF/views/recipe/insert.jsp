@@ -64,9 +64,10 @@
 					<img src="http://placehold.it/150x120" width=150 id="image1"/>
 					<input type="file" name="files"/>
 				</td>
-				<td colspan=2>
+				<td colspan="2">
 					<textarea rows="5" cols="40" name="recipe_attach_text"></textarea>
-				</td>				           	
+				</td>
+            	
 			</tr>
 			</tbody>
 		</table>
@@ -92,7 +93,7 @@
 	  	tag +="<textarea rows='5' cols='52' name='recipe_attach_text'></textarea>"
 	  	tag +="</td>\n";
 	  	tag +="<td>\n";
-	    tag +="<button type='button'><img src='/resources/css/dash-circle-fill.svg' class='x'></button>\n";
+	    tag +="<button type='button'><img src='/resources/css/dash-circle-fill.svg'></button>\n";
 	    tag +="</td>\n";
 	    tag +="</tr>\n";
 	  

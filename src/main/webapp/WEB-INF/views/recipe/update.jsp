@@ -125,7 +125,7 @@
 	    $(this).closest("tr").remove()
 	});
 	
-	//게시글 등록
+	//게시글 수정
 	$(frm).on("submit", function(e){
 		e.preventDefault();
 		

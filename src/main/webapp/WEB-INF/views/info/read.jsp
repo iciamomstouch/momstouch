@@ -15,7 +15,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="info_bno" value="${vo.info_bno}"/>
-		<table width=800>
+		<table id="tbl" style="width:600px; margin: 0px auto;">
 			<tr>
 				<td colspan="2" id="iwriter">${vo.info_writer}</td>
 			</tr>
@@ -62,7 +62,25 @@
 		frm.action="delete";
 		frm.method="get";
 		frm.submit();
-	});	
+	});
+
+	//게시글 수정
+	$(frm).on("submit", function(e){
+			e.preventDefault();
+			var info_title=$(frm.info_title).val();
+			if(info_title==""){
+				alert("제목을 입력하세요!");
+				return;
+			}
+			if(!confirm("게시글을 수정하실래요?")) return;
+			frm.action="update";
+			frm.method="post";
+			frm.submit();
+	});
+
+	$("#image").on("click", function() {
+		$(frm.file).click();
+	});
 
 	//이미지 미리보기
 	$(frm.file).on("change", function() {
