@@ -104,9 +104,17 @@ public class InfoController {
 		model.addAttribute("pageName", "info/read.jsp");		
 		return "index";
 	}
+	
 	@RequestMapping("delete")
 	public String read(int info_bno) throws Exception{
 		dao.delete(info_bno);
 		return "redirect:list";
+	}
+	
+	@RequestMapping("update")
+	public String update(int info_bno, Model model) throws Exception{
+		model.addAttribute("vo", dao.read(info_bno));
+		model.addAttribute("pageName", "info/update.jsp");
+		return "index";
 	}
 }

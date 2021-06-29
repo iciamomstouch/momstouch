@@ -110,4 +110,11 @@ public class BoardController {
 		dao.delete(board_bno);
 		return "redirect:list";
 	}
+	
+	@RequestMapping("update")
+	public String update(int board_bno, Model model) throws Exception{
+		model.addAttribute("vo", dao.read(board_bno));
+		model.addAttribute("pageName", "board/update.jsp");
+		return "index";
+	}
 }
