@@ -89,18 +89,12 @@ public class TradeController {
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
-				images.add(image);
-				//예전이미지가 존재하면 삭제
-				System.out.println("....." + oldVO.getImages());
-				if(oldVO.getImages()!=null){
-					new File(path +"/"+oldVO.getImages()).delete();
-				}
-			}else{
-				vo.setImages(images);
+				images.add(image);				
 			}
+			vo.setImages(images);			
 		}
-		service.update(vo);
 		System.out.println(vo.toString());
+		service.update(vo);		
 		return "redirect:list";
 	}
 		
@@ -200,6 +194,12 @@ public class TradeController {
 		}		
 		service.delete(trade_bno);
 		return "redirect:list";
+	}
+	
+	@RequestMapping("chat")
+	public String chat(Model model) throws Exception{
+		model.addAttribute("pageName", "trade/chat.jsp");
+		return "index";
 	}
 
 }

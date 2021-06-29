@@ -17,8 +17,8 @@ public class TradeServiceImpl implements TradeService {
 	@Transactional
 	@Override
 	public TradeVO read(int trade_bno) throws Exception {
-		TradeVO vo = dao.read(trade_bno);
 		dao.updateViewcnt(trade_bno);
+		TradeVO vo = dao.read(trade_bno);		
 		return vo;
 	}
 	
@@ -38,7 +38,7 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public void update(TradeVO vo) throws Exception {
 		dao.update(vo);
-		//System.out.println(vo.toString());
+		System.out.println(vo.toString());
 		ArrayList<String> images = vo.getImages();
 		if(images==null) return;
 		for(String image:images){
