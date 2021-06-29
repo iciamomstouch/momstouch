@@ -75,7 +75,7 @@
 		<tr>
 			<td>♥</td>
 			<td><input type="number" name=""trade_price" value="${vo.trade_price}"/></td>
-			<td><button>채팅으로 거래하기</button></td>
+			<td><input type="button" value="채팅으로 거래하기"  onClick="location.href='chat'"/></td>
 		</tr>
 	</table>
 	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"/>

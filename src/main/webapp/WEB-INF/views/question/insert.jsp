@@ -6,42 +6,37 @@
 <head>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/question/insert.css"/>
 	<title>질문게시판</title>
 </head>
 <body>
-	<h2>질문게시판 글쓰기</h2>
 	<form name="frm" encType="multipart/form-data">
-	 <input type="text" name="question_grpno" value="${bno }"/>
-	 <table class="tbl" border=1 width=500>
+	<input type="hidden" name="question_grpno" value="${bno}"/>
+	<input type="hidden" name="question_writer" value="${user_id}" />
+	 <table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">
 	 	 <tr>
-			 <td>작성자</td>
-			 <td>
-			 	<input type="text" name="question_writer" value="${user_id }" readonly size=50>
+			 <td colspan=2 id="id">${user_id}</td>
+		 </tr>
+		 <tr>
+			 <td colspan=2 id="title">
+			 	<input type="text" name="question_title" size=90 placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">
 			 </td>
 		 </tr>
 		 <tr>
-			 <td width=100>제목</td>
-			 <td>
-			 	<input type="text" name="question_title" size=50>
-			 </td>
-		 </tr>
-		 <tr>
-			 <td width=100>내용</td>
-			 <td>
-			 	<textarea rows="10" cols="52" name="question_content"></textarea>
+			 <td colspan=2 id="content">
+			 	<textarea rows="10" cols="90" name="question_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left; padding-top:10px;"></textarea>
 			 </td>
 		 </tr>		
 		 <tr>
-			<td>이미지</td>
-			<td>
-				<img src="http://placehold.it/150x120" id="image" width=150/>
+			<td colspan="2" id="img">
+				<img src="http://placehold.it/300x240" id="image" width=300 id="image"/>
 				<input type="file" name="file" style="display:none;"/>
 			</td>
 		</tr>
 	 </table>
-	 <input type="submit" value="게시글 등록">
-	 <input type="reset" value="취소">
-	 <input type="button" value="목록" onClick="location.href='list'">
+	 <input type="submit" value="게시글 등록" id="btnUpdate">
+	 <input type="reset" value="취소" id="btnReset">
+	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
 </body>
 <script>

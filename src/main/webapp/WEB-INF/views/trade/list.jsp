@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>중고거래</title>
-	<link rel="stylesheet" href="/resources/css/tralist.css"/>
+	<link rel="stylesheet" href="/resources/css/trade/list.css"/>
 	<style>
 		.row {cursor:pointer;}
 		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}

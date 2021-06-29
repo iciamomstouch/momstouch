@@ -8,71 +8,66 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>중고거래 새 글작성</title>
+	<link rel="stylesheet" href="/resources/css/trade/insert.css"/>
+	<title>중고거래  글작성</title>
 </head>
 <body>
-	<h1>중고거래 새 글작성</h1>
 	<form name="frm" enctype="multipart/form-data">
-		<table border=1>
+		<input type="hidden" name="trade_bno" value="${bno}"/>
+		<input type="hidden" name="trade_writer" value="${user_id}" />
+		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">
 			<tr>
-				<td>번호</td>
-				<td><input type="text" name="trade_bno" value="${bno }"/></td>
+				<td id="id">${user_id}</td>
 			</tr>
 			<tr>
-				<td>제목</td>
-				<td><input type="text" name="trade_title"/></td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td><input type="text" name="trade_writer" value="${user_id }"/></td>
-			</tr>
-			<tr>
-				<td>가격</td>
-				<td><input type="number" name="trade_price"/></td>
-			</tr>
-			<tr>
-				<td>카테고리</td>
 				<td>
-					<select name="trade_category">
+					<select name="trade_category" id="option">
 						<option value="구매">구매</option>
 						<option value="판매">판매</option>
 						<option value="나눔">나눔</option>
 					</select>
 				</td>
-			</tr>
+				<td id="title"><input type="text" name="trade_title" size=60  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
+			</tr>		
 			<tr>
-				<td>내용</td>
-				<td>
-					<textarea rows="10" cols="52" name="trade_content"></textarea>
+				<td colspan="2" id="price" style="text-align:left;">
+					<input type="number" name="trade_price" size=90  placeholder="가격을 기재해주세요." style="font-size: 20px;background-color:transparent;border:0 solid black;text-align:left;"/><a style="font-size: 25px;
+	  				font-weight:bold;">원</a>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan=2 id="content">
+					<textarea rows="10" cols="90" name="trade_content"  placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;padding-top:10px;"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td width=100>이미지</td>
-				<td width=300>
-					<img src="http://placehold.it/150x120" width=150 id="image"/>
+				<td width=100 id="img" style="text-align:center;">대표 이미지</td>
+				<td id="img">
+					<img src="http://placehold.it/300x200" width=300 id="image"/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="첨부이미지" id="btnImage"/></td>
-				<td style="height:150px;padding:10px;">
+				<td style="border-bottom: 1px solid #ccc;"><input type="button" value="상세이미지" style="border:none; background:white; cursor: pointer; text-align:left; font-size:15px;" id="btnImage" /></td>
+				<td style="height:150px;padding:10px;border-bottom: 1px solid #ccc;">
 	            	<input type="file" name="files" accept="image/*" multiple style="display:none"/>
 	     			<div id="uploaded">
 	                	<ul id="uploadFiles"></ul>
 	                 	<script id="temp" type="text/x-handlebars-template">
-                  		<li>
-                    		<img src="/displayFile?fullName={{fullName}}" width=50/>
+                  		<li style="text-align:left;">
+                    		<img src="/displayFile?fullName={{fullName}}" width=300/>
                      		<input type="text" name="files" value="{{fullName}}"/>
-                     		<input class="del" type="button" value="삭제" fullName={{fullName}}/>
+                     		<input class="del" type="button" value="❌" fullName={{fullName}}/>
                   		</li>
                   		</script>
 	              	</div>
             	</td>
 			</tr>
 		</table>
-		<input type="submit" value="새글등록"/>
-		<input type="reset" value="등록취소"/>
-		<input type="button" value="목록이동" onClick="location.href='list'"/>
+		<input type="submit" value="새글등록" id="btnUpdate"/>
+		<input type="reset" value="등록취소" id="btnReset"/>
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
 	</form>
 </body>
 <script>

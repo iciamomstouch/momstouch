@@ -28,22 +28,17 @@ var markers = [];
 var lat;
 var lon;
 var locPosition;
-
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
-
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption);
-
 //장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
-
 //지도에 idle 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'idle', searchPlaces);
-
+//kakao.maps.event.addListener(map, 'idle', searchPlaces);
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
     
@@ -88,7 +83,6 @@ if (navigator.geolocation) {
         
     displayMarker2(locPosition, message);
 }
-
 	function displayMarker2(locPosition, message) {
 	
 	    // 마커를 생성합니다
@@ -116,38 +110,27 @@ if (navigator.geolocation) {
 	function locationLoadSuccess(pos){
 	    // 현재 위치 받아오기
 	    var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
-
 	    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
 	    map.panTo(currentPos);
-
 	    // 마커 생성
 	    var marker = new kakao.maps.Marker({
 	        position: currentPos
 	    });
-
 	    // 기존에 마커가 있다면 제거
 	    marker.setMap(null);
 	    marker.setMap(map);
 	};
-
 	function locationLoadError(pos){
 	    alert('위치 정보를 가져오는데 실패했습니다.');
 	};
-
 	// 위치 가져오기 버튼 클릭시
 	function getCurrentPosBtn(){
 	    navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
 	};
-
-
-
 //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
-
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
     // LatLngBounds 객체에 좌표를 추가합니다
     var bounds = new kakao.maps.LatLngBounds();
@@ -158,7 +141,6 @@ function placesSearchCB (data, status, pagination) {
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
 }
-
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) { 
     // 마커를 생성하고 지도에 표시합니다
@@ -176,10 +158,8 @@ function displayMarker(place) {
     
 	marker.setMap(map); // 지도 위에 마커를 표출합니다
    	markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
    	return marker;
 }
-
 //지도 위에 표시되고 있는 마커를 모두 제거합니다
 function removeMarker() {
 	for ( var i = 0; i < markers.length; i++ ) {
