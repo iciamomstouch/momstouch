@@ -24,8 +24,8 @@
 <body>
 	<h1>중고거래 보기</h1>
 	<form name="frm" enctype="multipart/form-data">
-	<table border=1>
-		<input type="text" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
+	<input type="text" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
+	<table border=1>		
 		<tr>
 			<td><input type="text" name="trade_writer" value="${vo.trade_writer}"/></td>
 			<td><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
@@ -60,10 +60,7 @@
   				<div class="swiper-pagination"></div>
   				<!-- If we need navigation buttons -->
 				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-				
-				<!-- If we need scrollbar -->
-				<div class="swiper-scrollbar"></div>
+				<div class="swiper-button-next"></div>				
 		    </div>
 			</td>
 		</tr>

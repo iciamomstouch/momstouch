@@ -39,7 +39,7 @@
 			<td colspan="3" id="qcont">${vo.question_content}</td>
 		</tr>		 		
 	 </table>
-	 <input type="submit" value="수정" id="btnUpdate">	 
+	 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 
 	 <input type="button" value="삭제" id="btnDelete">
 	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
 	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
@@ -52,25 +52,7 @@
 		frm.action="delete";
 		frm.method="post";
 		frm.submit();
-	});
-	
-	//게시글 수정
-	$(frm).on("submit", function(e){
-		e.preventDefault();
-		var info_title=$(frm.info_title).val();
-		if(info_title==""){
-			alert("제목을 입력하세요!");
-			return;
-		}
-		if(!confirm("게시글을 수정하실래요?")) return;
-		frm.action="update";
-		frm.method="post";
-		frm.submit();
-	});
-	
-	$("#image").on("click", function() {
-		$(frm.file).click();
-	});
+	});	
 	
 	//이미지 미리보기
 	$(frm.file).on("change", function() {

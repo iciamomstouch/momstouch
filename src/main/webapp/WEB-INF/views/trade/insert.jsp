@@ -57,8 +57,8 @@
 	                 	<script id="temp" type="text/x-handlebars-template">
                   		<li style="text-align:left;">
                     		<img src="/displayFile?fullName={{fullName}}" width=300/>
-                     		<input type="text" name="files" value="{{fullName}}"/>
-                     		<input class="del" type="button" value="❌" fullName={{fullName}}/>
+                     		<input type="text" name="files" value="{{fullName}}" />
+                     		<input class="del" type="button" value="❌" fullName="{{fullName}}" />
                   		</li>
                   		</script>
 	              	</div>
@@ -89,6 +89,7 @@
 	$("#image").on("click", function(){
 		$(frm.file).click();
 	});
+	
 	//이미지 미리보기
 	$(frm.file).on("change", function(){
 		var file=$(frm.file)[0].files[0];

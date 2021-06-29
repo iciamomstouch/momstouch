@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/info/insert.css"/>
+	<title>정보방</title>
+</head>
+<body>
+	<form name="frm" encType="multipart/form-data">
+		<input type="hidden" name="info_writer" value="${user_id}" />
+		<input type="hidden" name="info_bno" value="${vo.info_bno}"/>
+		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">			
+			<tr>
+				<td colspan=2 id="id">${user_id}</td>
+			</tr>
+			<tr>
+				<td colspan=2 id="title"><input type="text" name="info_title" value="${vo.info_title}" size=90  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" id="iimg">
+					<c:if test="${vo.info_image==null }">
+						<img src="http://placehold.it/800x800" width=800 id="image"/>
+					</c:if>
+					<c:if test="${vo.info_image!=null }">
+						<img src="/displayFile?fullName=${vo.info_image }" width=800 id="image"/>
+					</c:if>
+					<input type="file" name="file" style="display:none;"/>
+				</td>
+			</tr>						
+			<tr>
+				<td colspan=2 id="content">
+					<textarea rows="10" cols="90" name="info_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">${vo.info_content}</textarea>
+				</td>
+			</tr>			
+		</table>
+		<input type="submit" value="게시글수정" id="btnUpdate"/>
+		<input type="reset" value="수정취소" id="btnReset"/>
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
+	</form>
+</body>
+<script>
+//게시글 수정
+$(frm).on("submit", function(e){
+		e.preventDefault();
+		var info_title=$(frm.info_title).val();
+		if(info_title==""){
+			alert("제목을 입력하세요!");
+			return;
+		}
+		if(!confirm("게시글을 수정하실래요?")) return;
+		frm.action="update";
+		frm.method="post";
+		frm.submit();
+});
+
+$("#image").on("click", function() {
+	$(frm.file).click();
+});
+
+//이미지 미리보기
+$(frm.file).on("change", function() {
+	var file = $(frm.file)[0].files[0];
+	$("#image").attr("src", URL.createObjectURL(file));
+});
+
+</script>
+</html>
