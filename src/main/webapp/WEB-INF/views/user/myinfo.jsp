@@ -49,13 +49,13 @@
     <br/>
     
     <div>
-    	<button id="btnShow">내가 쓴 글 보기</button>    	 
-    	<button>내가 쓴 댓글 보기</button>
+    	<button id="btnShow1">내가 쓴 글 보기</button>    	 
+    	<button id="btnShow2">내가 쓴 댓글 보기</button>
     	<button onClick="location.href='update?user_id=${vo.user_id }'">내정보 수정</button>
     </div>
     
     <div id="ulist"> 
-    <button id="btnHidden">숨기기</button>  
+    <button id="btnHidden1">숨기기</button>  
     <div id="list1">
 		<table id="tbl1" width=800></table>
 		<script id="temp1" type="text/x-handlebars-template">
@@ -176,19 +176,136 @@
 	}
 	</script>	
     </div>
+    
     <script>
-
-  //게시글 숨기기 보이기
-  $("#ulist").hide();
-  $("#btnShow").on("click",function(){
-  	$("#ulist").show();  	
-  });
-  
-  $("#btnHidden").on("click",function(){
-  	$("#ulist").hide();  
-  });
+	  //게시글 숨기기 보이기
+	  $("#ulist").hide();
+	  $("#btnShow1").on("click",function(){
+	  	$("#ulist").show();  	
+	  });
+	  
+	  $("#btnHidden1").on("click",function(){
+	  	$("#ulist").hide();  
+	  });
     </script>
-  
+    
+    <div id="rlist"> 
+    <button id="btnHidden2">숨기기</button>  
+    <div id="rlist1">
+		<table id="rtbl1" width=800></table>
+		<script id="rtemp1" type="text/x-handlebars-template">		
+		{{#each list}}
+		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">			
+			<td>{{board_reply}}</td>
+			<td>{{board_replyer}}</td>
+			<td>{{board_replydate}}</td>
+		</tr>
+		{{/each}}
+		</script>	
+	</div>
+	
+	<hr/>
+	<br/>
+	
+	<script>	
+	getList4();
+	function getList4(){
+		var board_replyer = "${vo.user_id }";
+		var page=1;
+		$.ajax({
+			type:"get",
+			url:"/board/uReply.json",
+			dataType:"json",
+			data:{"page":page, "board_replyer":board_replyer},
+			success:function(result){
+				var temp=Handlebars.compile($("#rtemp1").html());
+				$("#rtbl1").html(temp(result));
+			}
+		});
+	}
+	</script>
+	
+	<div id="rlist2">
+		<table id="rtbl2" width=800></table>
+		<script id="rtemp2" type="text/x-handlebars-template">		
+		{{#each list}}
+		<tr class="row" onClick="location.href='/info/read?info_bno={{info_bno}}'">			
+			<td>{{info_reply}}</td>
+			<td>{{info_replyer}}</td>
+			<td>{{info_replydate}}</td>
+		</tr>
+		{{/each}}
+		</script>	
+	</div>
+	
+	<hr/>
+	<br/>
+	
+	<script>	
+	getList5();
+	
+	function getList5(){
+		var info_replyer = "${vo.user_id }";
+		var page=1;		
+		$.ajax({
+			type:"get",
+			url:"/info/uReply.json",
+			dataType:"json",
+			data:{"page":page, "info_replyer":info_replyer},
+			success:function(result){
+				var temp=Handlebars.compile($("#rtemp2").html());
+				$("#rtbl2").html(temp(result));
+			}
+		});
+	}
+	</script>
+	
+	<div id="rlist3">
+		<table id="rtbl3"></table>		
+		<script id="rtemp3" type="text/x-handlebars-template">
+		{{#each list}}
+		<tr class="row" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">			
+			<td>{{recipe_reply}}</td>
+			<td>{{recipe_replyer}}</td>
+			<td>{{recipe_replydate}}</td>
+		</tr>
+		{{/each}}
+		</script>
+	</div>
+	
+	<hr/>
+	<br/>
+	
+	<script>
+	getList6();
+	function getList6(){
+		var recipe_replyer = "${vo.user_id}";
+		var page=1;
+		$.ajax({
+			type:"get",
+			url:"/recipe/uReply.json",
+			dataType:"json",
+			data:{"page":page, "recipe_replyer":recipe_replyer},
+			success:function(result){
+				var temp=Handlebars.compile($("#rtemp3").html());
+				$("#rtbl3").html(temp(result));
+			}
+		});
+	}
+	</script>	
+    </div>
+    
+    <script>
+	  //게시글 숨기기 보이기
+	  $("#rlist").hide();
+	  $("#btnShow2").on("click",function(){
+	  	$("#rlist").show();  	
+	  });
+	  
+	  $("#btnHidden2").on("click",function(){
+	  	$("#rlist").hide();  
+	  });
+    </script>  
     
     <h2>즐겨찾기</h2>
     <div>board</div>

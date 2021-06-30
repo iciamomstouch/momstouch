@@ -66,7 +66,7 @@
 	//댓글 등록
 	$("#btnInsert").on("click", function(){
 		var reply=$("#txtReply").val();
-		var replyer="user08";
+		var replyer="${user_id}";
 		if(reply==""){
 			alert("내용을 입력하세요!");
 			return;
