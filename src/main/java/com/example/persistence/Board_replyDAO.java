@@ -10,4 +10,5 @@ public interface Board_replyDAO {
 	public void insert(Board_replyVO vo) throws Exception;
 	public void delete(int board_rno) throws Exception;
 	public Board_replyVO read(int board_rno) throws Exception;
+	public List<Board_replyVO> ulist(String board_replyer) throws Exception;
 }

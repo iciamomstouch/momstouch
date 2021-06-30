@@ -22,14 +22,12 @@ public class Recipe_replyDAOImpl implements Recipe_replyDAO {
 
 	@Override
 	public void insert(Recipe_replyVO vo) throws Exception {
-		session.insert(namespace + ".insert", vo);
-		
+		session.insert(namespace + ".insert", vo);	
 	}
 
 	@Override
 	public void delete(int recipe_rno) throws Exception {
-		session.delete(namespace + ".delete", recipe_rno);
-		
+		session.delete(namespace + ".delete", recipe_rno);		
 	}
 
 	@Override
@@ -40,6 +38,11 @@ public class Recipe_replyDAOImpl implements Recipe_replyDAO {
 	@Override
 	public void deleteAll(int recipe_bno) throws Exception {
 		session.delete(namespace + ".deleteAll", recipe_bno);		
+	}
+
+	@Override
+	public List<Recipe_replyVO> ulist(String recipe_replyer) throws Exception {		
+		return session.selectList(namespace + ".ulist", recipe_replyer);
 	}
 
 }
