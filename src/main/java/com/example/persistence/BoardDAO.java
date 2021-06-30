@@ -17,5 +17,6 @@ public interface BoardDAO {
 	public void update(BoardVO vo) throws Exception;
 	public void updateViewCnt(int board_bno);
 	public void updateReply(@Param("board_bno")int board_bno, @Param("amount") int amount);
+	public List<BoardVO> ulist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("board_writer")String board_writer) throws Exception;
 	
 }

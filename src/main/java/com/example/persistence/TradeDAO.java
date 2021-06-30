@@ -22,4 +22,5 @@ public interface TradeDAO {
 	public List<User_keepVO> keep(int trade_bno) throws Exception;
 	public void delAttach(int trade_bno) throws Exception;
 	public void delAttach2(String trade_attach_image) throws Exception;
+	public List<TradeVO> ulist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("trade_writer")String trade_writer) throws Exception;
 }

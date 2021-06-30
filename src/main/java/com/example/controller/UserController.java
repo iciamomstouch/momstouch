@@ -70,11 +70,16 @@ public class UserController {
 	}
 	
 	@RequestMapping("insert")
-	public void insert(){}
+	public String insert(Model model){
+		model.addAttribute("pageName", "user/insert.jsp");
+		return "index";
+	}
 	
-	@RequestMapping("read")
-	public void read(Model model, String user_id) throws Exception{
+	@RequestMapping("update")
+	public String read(Model model, String user_id) throws Exception{
 		model.addAttribute("vo", dao.read(user_id));
+		model.addAttribute("pageName", "user/update.jsp");
+		return "index";
 	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
@@ -173,6 +178,13 @@ public class UserController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
+		return "index";
+	}
+	
+	@RequestMapping("myinfo")
+	public String myinfo(Model model, String user_id) throws Exception{
+		model.addAttribute("vo", dao.read(user_id));
+		model.addAttribute("pageName", "user/myinfo.jsp");
 		return "index";
 	}
 }

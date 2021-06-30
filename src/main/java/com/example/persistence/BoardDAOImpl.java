@@ -19,8 +19,7 @@ public class BoardDAOImpl implements BoardDAO{
 	SqlSession session;
 	
 	@Override
-	public List<BoardVO> list(Criteria cri) throws Exception {
-		
+	public List<BoardVO> list(Criteria cri) throws Exception {		
 		return  session.selectList(namespace+ ".list", cri);
 	}
 
@@ -31,8 +30,7 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public BoardVO read(int board_bno) throws Exception {
-		
+	public BoardVO read(int board_bno) throws Exception {		
 		 return session.selectOne(namespace + ".read",board_bno);
 	}
 	
@@ -66,6 +64,15 @@ public class BoardDAOImpl implements BoardDAO{
 		map.put("board_bno", board_bno);
 		map.put("amount", amount);
 		session.update(namespace + ".updateReply", map);
+	}
+
+	@Override
+	public List<BoardVO> ulist(int pageStart, int perPageNum, String board_writer) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("board_writer", board_writer);		
+		return session.selectList(namespace + ".ulist", map);
 	}
 
 	

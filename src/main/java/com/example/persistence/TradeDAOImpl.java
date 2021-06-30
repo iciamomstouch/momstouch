@@ -90,4 +90,13 @@ public class TradeDAOImpl implements TradeDAO{
 	public void delAttach2(String trade_attach_image) throws Exception {		
 		session.delete(namespace + ".delAttach2", trade_attach_image);
 	}
+
+	@Override
+	public List<TradeVO> ulist(int pageStart, int perPageNum, String trade_writer) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("trade_writer", trade_writer);		
+		return session.selectList(namespace + ".ulist", map);
+	}
 }

@@ -2,6 +2,8 @@ package com.example.persistence;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.example.domain.Criteria;
 import com.example.domain.QuestionVO;
 
@@ -15,4 +17,5 @@ public interface QuestionDAO {
 	public void delete(int question_bno) throws Exception;
 	public void updateViewCnt(int question_bno) throws Exception;
 	public int lastBno() throws Exception;
+	public List<QuestionVO> ulist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("question_writer")String question_writer) throws Exception;
 }

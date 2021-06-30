@@ -15,6 +15,13 @@
 		</if>
 		order by board_bno desc
 		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="ulist" resultType="com.example.domain.BoardVO">
+		select * from tbl_board
+		where board_writer = #{board_writer}	
+		order by board_bno desc
+		limit #{pageStart}, #{perPageNum}		
 	</select>	
 	
  	<select id="read" resultType="com.example.domain.BoardVO">

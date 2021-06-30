@@ -172,6 +172,23 @@ public class TradeController {
 		return map;
 	}
 	
+	@RequestMapping("ulist.json")
+	@ResponseBody
+	public HashMap<String, Object> ulistJson(Criteria cri, String trade_writer) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.ulist(cri.getPageStart(), cri.getPerPageNum(), trade_writer));	
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
 	@RequestMapping("list")
 	public String list(Model model, Criteria cri) throws Exception{
 		model.addAttribute("pageName", "trade/list.jsp");
