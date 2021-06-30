@@ -71,10 +71,13 @@
 		select max(trade_bno) from tbl_trade
 	</select>
 	
-	<select id="keep" resultType="int">
-		select tt.*, tuk.*
-		from tbl_trade tt,tbl_user_keep tuk
-		where tt.trade_bno=tuk.trade_bno
-	</select>
-	
+	<update id="keepUpdate">
+		update tbl_trade
+	 	set trade_keep = case
+		 	when trade_keep= 0 then 1
+		 	when trade_keep= 1 then 0
+			else trade_keep
+			end
+		where trade_bno=#{trade_bno}
+	</update>
 </mapper>
