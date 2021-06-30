@@ -9,7 +9,7 @@
 	<title>중고거래</title>
 	<link rel="stylesheet" href="/resources/css/trade/list.css"/>
 	<style>
-		.row {cursor:pointer;}
+		.trade_title {cursor:pointer;}
 		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
 		#pagination .active {background:gray; color:white;}
 	</style>
@@ -32,15 +32,17 @@
 		<td>가격</td>
 		<td>작성자</td>
 		<td>작성일</td>
+		<td>keep</td>
 	</tr>
 	{{#each list}}
-	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
+	<tr class="row">
 		<td><img src="/displayFile?fullName={{trade_image}}" width=100/></td>
 		<td>{{trade_category}}</td>
-		<td>{{trade_title}}</td>
+		<td class="trade_title" onClick="location.href='read?trade_bno={{trade_bno}}'">{{trade_title}}</td>
 		<td>{{trade_price}}</td>
 		<td>{{trade_writer}}</td>
 		<td>{{trade_regdate}}</td>
+		<td class="trade_keep"><img src={{printImage trade_keep}}></td>
 	</tr>
 	{{/each}}
 	</script>
@@ -56,6 +58,17 @@
 	<div id="pagination" style="margin-top:5px;"></div>
 </body>
 <script>
+//keep 이미지
+Handlebars.registerHelper("printImage",function(trade_keep){
+	var src;
+	if(trade_keep==0){
+		src="/resources/css/heart.svg"; 
+	}else{
+		src="/resources/css/heart-fill.svg";
+	}
+	return src;
+	});
+	
 var page=1;
 getList();
 
@@ -105,6 +118,18 @@ $("#pagination").on("click", "a", function(e){
 	e.preventDefault();
 	page = $(this).attr("href");
 	getList();
+});
+
+//즐겨찾기
+$(".trade_keep").on("click", function(){
+	var trade_keep = $(this).attr("fullName");		
+	$.ajax({
+		type:"get",
+		url:"/keepUpdate",
+		data:{"trade_bno":trade_bno},
+		success:function(){
+		}
+	})
 });
       
 </script>

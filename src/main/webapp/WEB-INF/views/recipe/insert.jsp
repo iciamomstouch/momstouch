@@ -64,14 +64,10 @@
 					<img src="http://placehold.it/150x120" width=150 id="image1"/>
 					<input type="file" name="files"/>
 				</td>
-				<td>
+				<td colspan="2">
 					<textarea rows="5" cols="40" name="recipe_attach_text"></textarea>
 				</td>
-				<td>
-					<button type="button">
-						<img src="/resources/css/dash-circle-fill.svg" class="x">
-					</button>
-				</td>            	
+            	
 			</tr>
 			</tbody>
 		</table>
@@ -88,7 +84,7 @@
 	    $("#num_rows").val(++num_rows);
 	    var tag = ""
 	    tag +="<tr id='tr_id"+(new_row_num + n)+ "'>\n";
-	    tag +="<td>"+"<input type='text' name='recipe_attach_no' value='" + ((new_row_num + n) +1)+ "'/></td>\n";
+	    tag +="<td>"+"<input type='hidden' name='recipe_attach_no' value='" + ((new_row_num + n) +1)+ "'/></td>\n";
 	    tag +="<td>\n";
 	    tag +="<img src='http://placehold.it/150x120' width=150 id='image" + ((new_row_num + n) +1) + "'/>\n";
 	    tag +="<input type='file' name='files'/>\n";	   
@@ -97,7 +93,7 @@
 	  	tag +="<textarea rows='5' cols='52' name='recipe_attach_text'></textarea>"
 	  	tag +="</td>\n";
 	  	tag +="<td>\n";
-	    tag +="<button type='button'>삭제</button>\n";
+	    tag +="<button type='button'><img src='/resources/css/dash-circle-fill.svg'></button>\n";
 	    tag +="</td>\n";
 	    tag +="</tr>\n";
 	  

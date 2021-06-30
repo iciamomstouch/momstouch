@@ -16,6 +16,7 @@
  	<!-- 게시판1--------------------------------------------------------------- -->
 
 	<h2>오늘</h2>
+	<br/>
 
 	<div id="list1">
 		<table id="tbl1" width=800></table>
@@ -38,6 +39,7 @@
 	</div>
 	
 	<hr/>
+	<br/>
 	
 	<script>	
 	getList1();
@@ -60,7 +62,7 @@
 	
 	<!-- 중고거래 게시판--------------------------------------------------------------- -->
 	<h2>중고거래</h2>
-	
+	<br/>
 	<div id="list3">
 		<table id="tbl3"></table>		
 		<script id="temp3" type="text/x-handlebars-template">
@@ -78,6 +80,9 @@
 		</script>
 	</div>
 	
+	<hr/>
+	<br/>
+	
 	<script>
 	getList3();
 	function getList3(){
@@ -93,12 +98,11 @@
 			}
 		});
 	}
-	</script>
-	
-	<hr/>
+	</script>	
 	
 	<!-- 레시피 게시판--------------------------------------------------------------- -->
 	<h2>레시피</h2>
+	<br/>
 	<div class="swiper-container">	
 	<div id="list4" class="swiper-wrapper">		
 		<script id="temp4" type="text/x-handlebars-template">
@@ -126,12 +130,13 @@
 	<div class="swiper-pagination"></div>
 	<!-- If we need navigation buttons -->
 	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
-
-	<!-- If we need scrollbar -->
-	<div class="swiper-scrollbar"></div>
+	<div class="swiper-button-next"></div>	
+	
 	</div>
-	</div>
+	
+	<hr/>
+	<br/>
+	
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg) {
 			var userRatingAvg = (Math.round(recipe_userRatingAvg * 10)) / 10;
@@ -180,13 +185,12 @@
 				}
 			});
 		}
-	</script>	
-	</div>
-	<hr/>
+	</script>
 	
 	<!-- 게시판2--------------------------------------------------------------- -->
-	<h2>정보방</h2>
 	
+	<h2>정보방</h2>
+	<br/>
 	<div id="list2">
 		<table id="tbl2" width=800></table>
 		<script id="temp2" type="text/x-handlebars-template">

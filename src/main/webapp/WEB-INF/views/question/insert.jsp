@@ -28,7 +28,7 @@
 			 </td>
 		 </tr>		
 		 <tr>
-			<td colspan="2" id="img">
+			<td colspan="2" id="img" style="text-align:center;">
 				<img src="http://placehold.it/300x240" id="image" width=300 id="image"/>
 				<input type="file" name="file" style="display:none;"/>
 			</td>

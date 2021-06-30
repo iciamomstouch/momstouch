@@ -15,7 +15,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="info_bno" value="${vo.info_bno}"/>
-		<table width=800>
+		<table id="tbl" style="width:600px; margin: 0px auto;">
 			<tr>
 				<td colspan="2" id="iwriter">${vo.info_writer}</td>
 			</tr>
@@ -48,7 +48,7 @@
 				<td colspan=2 id="icont">${vo.info_content}</td>
 			</tr>		
 		</table>
-		<input type="submit" value="수정" id="btnUpdate"/>
+		<input type="button" value="수정" id="btnUpdate" onClick="location.href='update?info_bno=${vo.info_bno}'"/>
 		<input type="button" value="삭제" id="btnDelete"/>
 		<input type="button" value="목록" onClick="location.href='list'" id="btnList"/>
 	</form>
