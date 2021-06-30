@@ -77,7 +77,7 @@ public class TradeDAOImpl implements TradeDAO{
 	}
 
 	@Override
-	public List<User_keepVO> keep(int trade_bno) throws Exception {
+	public List<TradeVO> keep(int trade_bno) throws Exception {
 		return session.selectList(namespace + ".keep", trade_bno);
 	}
 
@@ -89,5 +89,11 @@ public class TradeDAOImpl implements TradeDAO{
 	@Override
 	public void delAttach2(String trade_attach_image) throws Exception {		
 		session.delete(namespace + ".delAttach2", trade_attach_image);
+	}
+
+	@Override
+	public void keepUpdate(int trade_bno) throws Exception {
+		session.update(namespace + ".keepUpdate", trade_bno);
+		
 	}
 }

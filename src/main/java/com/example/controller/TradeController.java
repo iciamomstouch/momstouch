@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,18 +89,12 @@ public class TradeController {
 			if(!attFile.isEmpty()){
 				String image=System.currentTimeMillis()+"_"+attFile.getOriginalFilename();
 				attFile.transferTo(new File(attPath + "/" + image));
-				images.add(image);
-				//예전이미지가 존재하면 삭제
-				System.out.println("....." + oldVO.getImages());
-				if(oldVO.getImages()!=null){
-					new File(path +"/"+oldVO.getImages()).delete();
-				}
-			}else{
-				vo.setImages(images);
+				images.add(image);				
 			}
+			vo.setImages(images);			
 		}
-		service.update(vo);
 		System.out.println(vo.toString());
+		service.update(vo);		
 		return "redirect:list";
 	}
 		
@@ -166,7 +159,7 @@ public class TradeController {
 	@ResponseBody
 	public HashMap<String, Object> listJson(Criteria cri, int perPageNum) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		cri.setPerPageNum(perPageNum);
+		cri.setPerPageNum(5);
 		
 		map.put("list", dao.list(cri));	
 		PageMaker pm = new PageMaker();
@@ -207,5 +200,11 @@ public class TradeController {
 	public String chat(Model model) throws Exception{
 		model.addAttribute("pageName", "trade/chat.jsp");
 		return "index";
+	}
+	
+	@RequestMapping("keepUpdate")
+	@ResponseBody
+	public void keepUpdate(int trade_bno) throws Exception{
+		dao.keepUpdate(trade_bno);
 	}
 }
