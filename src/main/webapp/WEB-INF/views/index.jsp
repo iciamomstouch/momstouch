@@ -22,7 +22,7 @@
 		
 		<span class="login">
 			<c:if test="${user_id != null }">
-				<span class="logid">${user_id}님</span>
+				<span class="logid" onClick="location.href='/user/myinfo?user_id=${user_id}'">${user_id}님</span>
 				<a href="/user/logout">
 					<img src="/resources/css/person-x-fill.svg" class="logout">
 				</a>
