@@ -17,6 +17,13 @@
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
+	<select id="ulist" resultType="com.example.domain.QuestionVO">
+		select * from tbl_question
+		where question_writer=#{question_writer}
+		order by question_grpno desc, question_grpord asc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+	
 	<select id="read" resultType="com.example.domain.QuestionVO">
 		select * from tbl_question where question_bno=#{question_bno}
 	</select>
