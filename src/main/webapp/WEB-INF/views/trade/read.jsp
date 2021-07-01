@@ -43,15 +43,20 @@
   				<div class="swiper-pagination"></div>
   				<!-- If we need navigation buttons -->
 				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-				
-				
+				<div class="swiper-button-next"></div>				
 		    </div>
 			</td>
 		</tr>
 		<tr style="border-bottom: 1px solid #ccc;">
 			<td id="twriter">${vo.trade_writer}</td>
-			<td id="theart"><img src="/resources/css/heart.svg" class="heart"></td>
+			<td id="theart">
+				<c:if test="${keep.trade_keep==1 }">
+					<img src="/resources/css/heart-fill.svg" class="heart">
+				</c:if>
+				<c:if test="${keep.trade_keep!=1 }">
+					<img src="/resources/css/heart.svg" class="heart">
+				</c:if>	
+			</td>
 			<td id="chat"><img src="/resources/css/chat-left-dots.svg" class="chat" onClick="location.href='chat'" style="cursor:pointer;"></td>
 		</tr>
 		<tr>	
@@ -124,6 +129,58 @@
 	         }
 	      });
 	   }
+	   
+	 //즐겨찾기 추가 삭제
+		$(".heart").on("click", function(){
+			var trade_bno = "${vo.trade_bno}";
+			var user_id = "${user_id}";
+			
+			if(user_id==null || user_id==""){
+				alert("로그인이 필요한 기능입니다.")
+			}else{
+				alert(trade_bno + user_id);
+				$.ajax({
+					type:"get",
+					url:"keepRead.json",			
+					data:{"trade_bno":trade_bno, "user_id":user_id},			
+					success:function(result){				
+						var strUid=result.user_id;
+						var keep=result.trade_keep;
+						alert(strUid + keep);
+						if(strUid == user_id){
+							if(keep == 0){						
+								$.ajax({
+									type:"post",
+									url:"keepUpdate",
+									data:{"trade_bno":trade_bno, "user_id":user_id, "trade_keep":1},
+									success:function(){
+										alert("즐겨찾기 추가!");									
+									}
+								});
+							}else{
+								$.ajax({
+									type:"post",
+									url:"keepUpdate",
+									data:{"trade_bno":trade_bno, "user_id":user_id, "trade_keep":0},
+									success:function(){
+										alert("즐겨찾기 삭제!");									
+									}
+								});
+							}					
+						}else{					
+							$.ajax({
+								type:"post",
+								url:"keepInsert",
+								data:{"trade_bno":trade_bno, "user_id":user_id, "trade_keep":1},
+								success:function(){
+									alert("즐겨찾기 추가!");								
+								}
+							});
+						}
+					}
+				});
+			}
+		})
 
 </script>
 </html>
