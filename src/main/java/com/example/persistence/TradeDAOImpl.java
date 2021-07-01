@@ -74,12 +74,7 @@ public class TradeDAOImpl implements TradeDAO{
 	@Override
 	public int lastBno() throws Exception {		
 		return session.selectOne(namespace + ".lastBno");
-	}
-
-	@Override
-	public List<User_keepVO> keep(int trade_bno) throws Exception {
-		return session.selectList(namespace + ".keep", trade_bno);
-	}
+	}	
 
 	@Override
 	public void delAttach(int trade_bno) throws Exception {
@@ -98,5 +93,32 @@ public class TradeDAOImpl implements TradeDAO{
 		map.put("perPageNum", perPageNum);
 		map.put("trade_writer", trade_writer);		
 		return session.selectList(namespace + ".ulist", map);
+	}
+
+	@Override
+	public User_keepVO keepRead(int trade_bno, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("trade_bno", trade_bno);
+		map.put("user_id", user_id);
+		return session.selectOne(namespace + ".keepRead", map);
+	}
+
+	@Override
+	public void keepInsert(User_keepVO vo) throws Exception {
+		session.insert(namespace + ".keepInsert", vo);
+	}
+
+	@Override
+	public void keepUpdate(User_keepVO vo) throws Exception {
+		session.update(namespace + ".keepUpdate", vo);
+	}
+
+	@Override
+	public List<TradeVO> klist(int pageStart, int perPageNum, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("user_id", user_id);		
+		return session.selectList(namespace + ".klist", map);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TradeVO {
+public class TradeVO extends User_keepVO{
 	private int trade_bno;
 	private String trade_title;
 	private String trade_category;

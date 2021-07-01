@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.RecipeVO;
+import com.example.domain.User_keepVO;
 import com.example.persistence.RecipeDAO;
 import com.example.service.RecipeService;
 
@@ -165,7 +166,10 @@ public class RecipeController {
 	}
 	
 	@RequestMapping("read")
-	public String read(Model model, int recipe_bno) throws Exception{		
+	public String read(Model model, int recipe_bno, HttpSession session) throws Exception{
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("로그인아이디............" + user_id);
+		model.addAttribute("keep", dao.keepRead(recipe_bno, user_id));
 		model.addAttribute("vo", service.read(recipe_bno));
 		model.addAttribute("list", dao.getAttach(recipe_bno));
 		model.addAttribute("pageName", "recipe/read.jsp");
@@ -180,6 +184,40 @@ public class RecipeController {
 		}		
 		service.delete(recipe_bno);
 		return "redirect:list";
+	}
+	
+	@RequestMapping("keepRead.json")
+	@ResponseBody
+	public User_keepVO keepRead(int recipe_bno, String user_id) throws Exception{		
+		return dao.keepRead(recipe_bno, user_id);
+	}
+	
+	@RequestMapping(value="keepInsert", method=RequestMethod.POST)
+	public void keepInsert(User_keepVO vo) throws Exception{
+		dao.keepInsert(vo);
+	}
+	
+	@RequestMapping(value="keepUpdate", method=RequestMethod.POST)
+	public void keepUpdate(User_keepVO vo) throws Exception{
+		System.out.println(vo.toString());
+		dao.keepUpdate(vo);
+	}
+	
+	@RequestMapping("klist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public HashMap<String, Object> klistJson(Criteria cri, String user_id) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.klist(cri.getPageStart(), cri.getPerPageNum(), user_id));		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
 	}
 	
 }

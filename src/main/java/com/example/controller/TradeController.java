@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
+import com.example.domain.User_keepVO;
 import com.example.persistence.TradeDAO;
 import com.example.service.TradeService;
 
@@ -41,15 +42,6 @@ public class TradeController {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", dao.getAttach(trade_bno));
 		//System.out.println(map.toString());
-		return map;
-	}
-	
-	@RequestMapping("keep")
-	@ResponseBody
-	public HashMap<String, Object> keep(int trade_bno) throws Exception{		
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("list", dao.keep(trade_bno));
-		System.out.println(map.toString());
 		return map;
 	}
 	
@@ -148,7 +140,10 @@ public class TradeController {
 	}
 	
 	@RequestMapping("read")
-	public String read(Model model, int trade_bno) throws Exception{		
+	public String read(Model model, int trade_bno, HttpSession session) throws Exception{
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("로그인아이디............" + user_id);
+		model.addAttribute("keep", dao.keepRead(trade_bno, user_id));
 		model.addAttribute("vo", service.read(trade_bno));
 		model.addAttribute("list", dao.getAttach(trade_bno));
 		model.addAttribute("pageName", "trade/read.jsp");
@@ -218,5 +213,38 @@ public class TradeController {
 		model.addAttribute("pageName", "trade/chat.jsp");
 		return "index";
 	}
-
+	
+	@RequestMapping("keepRead.json")
+	@ResponseBody
+	public User_keepVO keepRead(int trade_bno, String user_id) throws Exception{		
+		return dao.keepRead(trade_bno, user_id);
+	}
+	
+	@RequestMapping(value="keepInsert", method=RequestMethod.POST)
+	public void keepInsert(User_keepVO vo) throws Exception{
+		dao.keepInsert(vo);
+	}
+	
+	@RequestMapping(value="keepUpdate", method=RequestMethod.POST)
+	public void keepUpdate(User_keepVO vo) throws Exception{
+		System.out.println(vo.toString());
+		dao.keepUpdate(vo);
+	}
+	
+	@RequestMapping("klist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public HashMap<String, Object> klistJson(Criteria cri, String user_id) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.klist(cri.getPageStart(), cri.getPerPageNum(), user_id));		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
+import com.example.domain.User_keepVO;
 import com.example.persistence.BoardDAO;
 import com.example.service.BoardService;
 
@@ -99,8 +100,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping("read")
-	public String read(int board_bno, Model model) throws Exception{
-		model.addAttribute("vo", service.read(board_bno));
+	public String read(int board_bno, Model model, HttpSession session) throws Exception{
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("로그인아이디............" + user_id);
+		model.addAttribute("keep", dao.keepRead(board_bno, user_id));
+		model.addAttribute("vo", service.read(board_bno));		
 		model.addAttribute("pageName", "board/read.jsp");
 		return "index";
 	}
@@ -133,5 +137,38 @@ public class BoardController {
 		map.put("cri", cri);
 		
 		return map;
+	}
+	
+	@RequestMapping("klist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public HashMap<String, Object> klistJson(Criteria cri, String user_id) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.klist(cri.getPageStart(), cri.getPerPageNum(), user_id));		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
+	@RequestMapping("keepRead.json")
+	@ResponseBody
+	public User_keepVO keepRead(int board_bno, String user_id) throws Exception{		
+		return dao.keepRead(board_bno, user_id);
+	}
+	
+	@RequestMapping(value="keepInsert", method=RequestMethod.POST)
+	public void keepInsert(User_keepVO vo) throws Exception{
+		dao.keepInsert(vo);
+	}
+	
+	@RequestMapping(value="keepUpdate", method=RequestMethod.POST)
+	public void keepUpdate(User_keepVO vo) throws Exception{
+		dao.keepUpdate(vo);
 	}
 }

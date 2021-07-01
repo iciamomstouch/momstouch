@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.example.domain.Criteria;
 import com.example.domain.RecipeVO;
 import com.example.domain.Recipe_attachVO;
+import com.example.domain.User_keepVO;
 
 @Repository
 public class RecipeDAOImpl implements RecipeDAO{
@@ -96,5 +97,32 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public int lastAttachNo(int reipce_bno) throws Exception {	
 		return session.selectOne(namespace + ".lastAttachNo", reipce_bno);
+	}
+
+	@Override
+	public User_keepVO keepRead(int recipe_bno, String user_id) throws Exception {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("recipe_bno", recipe_bno);
+		return session.selectOne(namespace + ".keepRead", map);
+	}
+
+	@Override
+	public void keepInsert(User_keepVO vo) throws Exception {
+		session.insert(namespace + ".keepInsert", vo);
+	}
+
+	@Override
+	public void keepUpdate(User_keepVO vo) throws Exception {
+		session.update(namespace + ".keepUpdate", vo);
+	}
+
+	@Override
+	public List<RecipeVO> klist(int pageStart, int perPageNum, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("user_id", user_id);		
+		return session.selectList(namespace + ".klist", map);
 	}
 }

@@ -18,9 +18,12 @@ public interface TradeDAO {
 	public void addAttach(@Param("trade_attach_image") String trade_attach_image, @Param("trade_bno") int trade_bno) throws Exception;
 	public List<Trade_attachVO> getAttach(int trade_bno) throws Exception;
 	public void updateViewcnt(int trade_bno) throws Exception;
-	public int lastBno() throws Exception;
-	public List<User_keepVO> keep(int trade_bno) throws Exception;
+	public int lastBno() throws Exception;	
 	public void delAttach(int trade_bno) throws Exception;
 	public void delAttach2(String trade_attach_image) throws Exception;
 	public List<TradeVO> ulist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("trade_writer")String trade_writer) throws Exception;
+	public List<TradeVO> klist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("user_id")String user_id) throws Exception;
+	public User_keepVO keepRead(@Param("trade_bno")int trade_bno, @Param("user_id")String user_id) throws Exception;
+	public void keepInsert(User_keepVO vo) throws Exception;
+	public void keepUpdate(User_keepVO vo) throws Exception;
 }

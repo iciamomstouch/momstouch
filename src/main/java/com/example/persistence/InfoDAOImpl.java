@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Criteria;
 import com.example.domain.InfoVO;
+import com.example.domain.User_keepVO;
 
 @Repository
 public class InfoDAOImpl implements InfoDAO{
@@ -59,6 +60,33 @@ public class InfoDAOImpl implements InfoDAO{
 		map.put("info_bno", info_bno);
 		map.put("amount", amount);
 		session.update(namespace + ".updateReply", map);		
+	}
+
+	@Override
+	public User_keepVO keepRead(int info_bno, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("info_bno", info_bno);
+		map.put("user_id", user_id);
+		return session.selectOne(namespace + ".keepRead", map);
+	}
+
+	@Override
+	public void keepInsert(User_keepVO vo) throws Exception {
+		session.insert(namespace + ".keepInsert", vo);
+	}
+
+	@Override
+	public void keepUpdate(User_keepVO vo) throws Exception {
+		session.update(namespace + ".keepUpdate", vo);
+	}
+
+	@Override
+	public List<InfoVO> klist(int pageStart, int perPageNum, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("user_id", user_id);		
+		return session.selectList(namespace + ".klist", map);
 	}
 	
 
