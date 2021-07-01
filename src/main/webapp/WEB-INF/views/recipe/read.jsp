@@ -121,59 +121,39 @@
 				$("#attachFiles").append(temp(data));				
 			}
 		})
-	}
+	}	
 	
-	//즐겨찾기 추가 삭제
-	$(".heart").on("click", function(){
-		var recipe_bno = "${vo.recipe_bno}";
-		var user_id = "${user_id}";
-		
-		if(user_id==null || user_id==""){
-			alert("로그인이 필요한 기능입니다.")
-		}else{
-			alert(recipe_bno + user_id);
-			$.ajax({
-				type:"get",
-				url:"keepRead.json",			
-				data:{"recipe_bno":recipe_bno, "user_id":user_id},			
-				success:function(result){				
-					var strUid=result.user_id;
-					var keep=result.recipe_keep;
-					alert(strUid + keep);
-					if(strUid == user_id){
-						if(keep == 0){						
-							$.ajax({
-								type:"post",
-								url:"keepUpdate",
-								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
-								success:function(){
-									alert("즐겨찾기 추가!");									
-								}
-							});
-						}else{
-							$.ajax({
-								type:"post",
-								url:"keepUpdate",
-								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":0},
-								success:function(){
-									alert("즐겨찾기 삭제!");									
-								}
-							});
-						}					
-					}else{					
-						$.ajax({
-							type:"post",
-							url:"keepInsert",
-							data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
-							success:function(){
-								alert("즐겨찾기 추가!");								
-							}
-						});
-					}
-				}
-			});
-		}
-	})
-	
+	/*첨부 파일들을 선택한경우
+	   $(frm.files).on("change", function(){
+	      var files=$(frm.files)[0].files;
+	      $.each(files, function(index, file){
+	         uploadFile(file);
+	      });
+	   });*/
+	   
+	/*첨부이미지 업로드
+	function uploadFile(file){
+      if(file == null) return;
+      var formData=new FormData();
+      formData.append("file", file);
+      formData.append("pcode", pcode);
+      $.ajax({
+         type:"post",
+         url:"/uploadFile",
+         processData:false,
+         contentType:false,
+         data:formData,
+         success:function(data){
+            var temp=Handlebars.compile($("#temp").html());
+            var tempData={"fullName":data};
+            $("#uploadFiles").append(temp(tempData));
+         }
+      });
+   }*/
+   
+   /*
+   $("#btnImage").on("click", function(){
+      $(frm.files).click();
+   });*/
 </script>
 </html>

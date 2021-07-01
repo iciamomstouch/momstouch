@@ -35,12 +35,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="iheart">
-					<c:if test="${keep.info_keep==1 }">
-						<img src="/resources/css/heart-fill.svg" class="heart">
-					</c:if>
-					<c:if test="${keep.info_keep!=1 }">
-						<img src="/resources/css/heart.svg" class="heart">
-					</c:if>	
+					<img src="/resources/css/heart.svg" class="heart">
 				</td>
 			</tr>
 			<tr>
@@ -92,58 +87,6 @@
 		var file = $(frm.file)[0].files[0];
 		$("#image").attr("src", URL.createObjectURL(file));
 	});
-	
-	//즐겨찾기 추가 삭제
-	$(".heart").on("click", function(){
-		var info_bno = "${vo.info_bno}";
-		var user_id = "${user_id}";
-		
-		if(user_id==null || user_id==""){
-			alert("로그인이 필요한 기능입니다.")
-		}else{
-			alert(info_bno + user_id);
-			$.ajax({
-				type:"get",
-				url:"keepRead.json",			
-				data:{"info_bno":info_bno, "user_id":user_id},			
-				success:function(result){				
-					var strUid=result.user_id;
-					var keep=result.info_keep;
-					alert(strUid + keep);
-					if(strUid == user_id){
-						if(keep == 0){						
-							$.ajax({
-								type:"post",
-								url:"keepUpdate",
-								data:{"info_bno":info_bno, "user_id":user_id, "info_keep":1},
-								success:function(){
-									alert("즐겨찾기 추가!");									
-								}
-							});
-						}else{
-							$.ajax({
-								type:"post",
-								url:"keepUpdate",
-								data:{"info_bno":info_bno, "user_id":user_id, "info_keep":0},
-								success:function(){
-									alert("즐겨찾기 삭제!");									
-								}
-							});
-						}					
-					}else{					
-						$.ajax({
-							type:"post",
-							url:"keepInsert",
-							data:{"info_bno":info_bno, "user_id":user_id, "info_keep":1},
-							success:function(){
-								alert("즐겨찾기 추가!");								
-							}
-						});
-					}
-				}
-			});
-		}
-	})
 
 </script>
 </html>

@@ -11,22 +11,22 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="info_writer" value="${user_id}" />
-		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">			
+		<table class="tbl" style="width:600px; margin: 0px auto; margin-bottom:10px;">			
 			<tr>
 				<td colspan=2 id="id">${user_id}</td>
 			</tr>
 			<tr>
-				<td colspan=2 id="title"><input type="text" name="info_title" size=90  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
+				<td colspan=2 id="title"><input type="text" name="info_title" size=60  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
 				<td colspan="2" id="img">
-					<img src="http://placehold.it/800x600" id="image" width=800/>
+					<img src="http://placehold.it/600x600" id="image" width=600/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>						
 			<tr>
 				<td colspan=2 id="content">
-					<textarea rows="10" cols="90" name="info_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
+					<textarea rows="10" cols="60" name="info_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
 				</td>
 			</tr>
 						
