@@ -12,15 +12,12 @@ h3{text-align:left;}
 	border-radius:5px;}
 	
 #atitle{text-align:center;
-		font-weight:bold;}	
+		font-weight:bold;}  			
 
 #tbl {border-collapse: separate;
   		border-spacing: 1px;
   		text-align: center;
   		line-height: 1.5;
-  		border-top: 1px solid #ccc;
-  		overflow: hidden;
-  		text-overflow: ellipsis;
   		margin : 20px 10px;} 		
  		 
 #tbl td{text-align:center;
@@ -29,6 +26,7 @@ h3{text-align:left;}
   		border-bottom: 1px solid #ccc;
   		overflow: hidden;
   		text-overflow: ellipsis;
+  		white-space: nowrap;
   		font-size:15px;
   		cursor: pointer;}
   		
@@ -52,7 +50,17 @@ h3{text-align:left;}
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}		
+		cursor: pointer;}	
+		
+#btnSearch{width:50px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:10px;
+		font-weight:bold; 
+		cursor: pointer;}			
 
 #condition{margin-top:10px;}
 

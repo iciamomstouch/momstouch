@@ -1,33 +1,18 @@
 @CHARSET "UTF-8";
 
+#tbl{border-collapse:separate;
+	border-spacing:20px;
+     margin:10px;}
 
-#question_bno{display:none;}
+#tbl td{padding-top:10px;
+		padding-bottom:10px;
+		text-align: left;
+		vertical-align: middle;
+		border-bottom: 3px solid #ccc;}
+		
+#tbl th{border-left: 3px solid #8E35EF;}		
 
-#qtop{text-align:center;}
-
-#qwriter{font-weight:bold;}	
-
-#qtitle{width:600px;
-		height:50px;
-		text-align:left;
-		margin: 0px auto;
-		padding:10px;
-		font-size:20px;
-		font-weight:bold;
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;}
-
-#qimg{width:300px;
-	height:240px;
-	text-align:left;
-	padding:10px;
-	border-bottom: 1px solid #ccc;;}
-	
-#qcont{text-align:left;
-	padding:10px;
-	border-bottom: 1px solid #ccc;}
-
-#btnUpdate{width:100px;
+#btnInsert{width:100px;
 		border:5px solid black; 
 		border-radius:5px; 
 		background:black; 
@@ -36,7 +21,7 @@
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
-#btnUpdate:hover{width:100px;
+#btnInsert:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
 		background:#8E35EF; 
@@ -46,7 +31,7 @@
 		font-weight:bold; 
 		cursor: pointer;}
 		
-#btnDelete{width:100px;
+#btnReset{width:100px;
 		border:5px solid black; 
 		border-radius:5px; 
 		background:black; 
@@ -55,26 +40,7 @@
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
-#btnDelete:hover{width:100px;
-		border:5px solid red; 
-		border-radius:5px; 
-		background:red; 
-		color:white;
-		padding:0px 3px 0px 3px;
-		font-size:15px;
-		font-weight:bold; 
-		cursor: pointer;}
-
-#btnReply{width:100px;
-		border:5px solid black; 
-		border-radius:5px; 
-		background:black; 
-		color:#8E35EF;
-		padding:0px 3px 0px 3px;
-		font-size:15px;
-		font-weight:bold; 
-		cursor: pointer;}												
-#btnReply:hover{width:100px;
+#btnReset:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
 		background:#8E35EF; 
@@ -92,7 +58,7 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}												
+		cursor: pointer;}
 #btnList:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
@@ -101,4 +67,4 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}		
+		cursor: pointer;}				
