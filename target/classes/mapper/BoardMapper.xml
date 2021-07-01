@@ -22,6 +22,13 @@
 		where board_writer = #{board_writer}	
 		order by board_bno desc
 		limit #{pageStart}, #{perPageNum}		
+	</select>
+	
+	<select id="klist" resultType="com.example.domain.BoardVO">
+		select * from board_keep
+		where user_id = #{user_id} and board_keep=1	
+		order by board_bno desc
+		limit #{pageStart}, #{perPageNum}		
 	</select>	
 	
  	<select id="read" resultType="com.example.domain.BoardVO">
@@ -66,6 +73,22 @@
  		update tbl_board set 
  		board_title=#{board_title}, board_category=#{board_category}, board_content=#{board_content}, board_writer=#{board_writer}, board_image=#{board_image}
  		where board_bno=#{board_bno}
- 	</update>
+ 	</update> 	
+ 	
+ 	<select id="keepRead" resultType="com.example.domain.User_keepVO">
+ 		select * from tbl_user_keep
+ 		where board_bno=#{board_bno} and user_id=#{user_id}
+ 	</select>
+ 	
+ 	<insert id="keepInsert">
+ 		insert into tbl_user_keep(user_id, board_bno, board_keep)
+ 		values(#{user_id}, #{board_bno}, #{board_keep})
+ 	</insert>
+ 	 	
+ 	<update id="keepUpdate">
+ 		update tbl_user_keep set 
+ 		board_keep=#{board_keep}
+ 		where board_bno=#{board_bno} and user_id=#{user_id}
+ 	</update> 
  	
 </mapper>
