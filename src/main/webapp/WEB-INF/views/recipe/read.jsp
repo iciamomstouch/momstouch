@@ -33,7 +33,15 @@
 				</td>
 			</tr>			
 			<tr>
-				<td  colspan="2" id="rcate">${vo.recipe_category }</td>
+				<td id="rcate">${vo.recipe_category }</td>
+				<td id="bheart">
+					<c:if test="${keep.recipe_keep==1 }">
+						<img src="/resources/css/heart-fill.svg" class="heart">
+					</c:if>
+					<c:if test="${keep.recipe_keep!=1 }">
+						<img src="/resources/css/heart.svg" class="heart">
+					</c:if>					
+				</td>
 			</tr>
 			<tr>	
 				<td  colspan="2" id="rtitle">${vo.recipe_title }</td>
