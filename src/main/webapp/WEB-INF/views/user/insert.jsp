@@ -7,59 +7,59 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<link rel="stylesheet" href="/resources/css/user/insert.css"/>
 	<title>회원관리</title>
 </head>
 <body>
-	<h1>[회원등록]</h1>
 	<form name="frm" encType="multipart/form-data">		
-		<table border=1>
+		<table id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;">
 			<tr>
-				<td width=100>아이디</td>
-				<td width=300><input type="text" name="user_id" size=30 value="user06"/></td>
+				<th width=100>아이디</th>
+				<td width=300><input type="text" name="user_id" size=30 placeholder="아이디를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td width=100>비밀번호</td>
-				<td width=300><input type="password" name="user_pass" size=30 value="pass"/></td>
+				<th width=100>비밀번호</th>
+				<td width=300><input type="password" name="user_pass" size=30 placeholder="비밀번호를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>			
 			<tr>
-				<td width=100>닉네임</td>
-				<td width=300><input type="text" name="user_nick" size=30 /></td>
+				<th width=100>닉네임</th>
+				<td width=300><input type="text" name="user_nick" size=30 placeholder="닉네임을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td width=100>이메일</td>
-				<td width=300><input type="text" name="user_email" size=30 /></td>
+				<th width=100>이메일</th>
+				<td width=300><input type="text" name="user_email" size=30 placeholder="이메일을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td width=100>이름</td>
-				<td width=300><input type="text" name="user_name" size=30 /></td>
+				<th width=100>이름</th>
+				<td width=300><input type="text" name="user_name" size=30 placeholder="이름을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td width=100>전화번호</td>
-				<td width=300><input type="text" name="user_tel" size=30 /></td>
+				<th width=100>전화번호</th>
+				<td width=300><input type="text" name="user_tel" size=30 placeholder="전화번호를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>
 			<tr>
-				<td width=100 rowspan=2 class="title">주소</td>
+				<th width=100 rowspan=2 class="title">주소</th>
 				<td>
-					<input type="text" id="address1" size=30 readonly>
+					<input type="text" id="address1" size=30 readonly placeholder="주소를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">
 					<input type="button" value="검색" id="btnSearch">
 				</td>
 			</tr>
 			<tr>
 				<td width=400>
-					<input type="text" name="user_address" size=50 placeholder="나머지주소입력">
+					<input type="text" name="user_address" size=50 placeholder="나머지 상세 주소를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">
 				</td>
 			</tr>
 			<tr>
-				<td width=100>이미지</td>
+				<th width=100>이미지</th>
 				<td width=300>
 					<img src="http://placehold.it/150x120" width=150 id="image"/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="회원등록"/>
-		<input type="reset" value="등록취소"/>		
-		<input type="button" value="목록이동" onClick="location.href='list'"/>
+		<input type="submit" value="회원등록" id="btnInsert"/>
+		<input type="reset" value="등록취소" id="btnReset"/>		
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
 	</form>
 </body>
 <script>

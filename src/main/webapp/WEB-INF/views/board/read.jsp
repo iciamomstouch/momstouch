@@ -15,7 +15,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="board_bno" value="${vo.board_bno}"/>
-		<table class="tbl" style="width:750px; text-align:center; margin-bottom:10px;">
+		<table class="tbl" style="width:600px; margin:0px auto; margin-bottom:10px;">
 			<tr>
 				<td colspan="2" id="bwriter">${vo.board_writer}</td>
 			</tr>
@@ -101,7 +101,8 @@
 								url:"keepUpdate",
 								data:{"board_bno":board_bno, "user_id":user_id, "board_keep":1},
 								success:function(){
-									alert("즐겨찾기 추가!");									
+									alert("즐겨찾기 추가!");
+									location.reload();
 								}
 							});
 						}else{
@@ -110,7 +111,8 @@
 								url:"keepUpdate",
 								data:{"board_bno":board_bno, "user_id":user_id, "board_keep":0},
 								success:function(){
-									alert("즐겨찾기 삭제!");									
+									alert("즐겨찾기 삭제!");
+									location.reload();
 								}
 							});
 						}					
@@ -120,7 +122,8 @@
 							url:"keepInsert",
 							data:{"board_bno":board_bno, "user_id":user_id, "board_keep":1},
 							success:function(){
-								alert("즐겨찾기 추가!");								
+								alert("즐겨찾기 추가!");
+								location.reload();
 							}
 						});
 					}

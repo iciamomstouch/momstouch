@@ -10,7 +10,35 @@
 	<link rel="stylesheet" href="/resources/css/recipe/list.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}							
+		#pagination .active{color:red;}	
+		.box {width:230px;
+			  height:300px;
+			  padding:5px;
+			  margin:5px;
+			  margin-left:13px;
+			  background:white;
+			  color:black;
+			  float:left; 
+			  cursor: pointer;}
+		.img{text-align:center;
+			margin-bottom:5px;}
+		.rcate{width:30px;
+			   margin-left:5px;
+			   font-size:15px;
+			   color:#0080FF;
+			   text-align:left;}
+		.rtitle{width:200px;
+				margin-left:5px;
+				font-size:20px;
+				font-weight:bold;
+				text-align:left;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;}
+		.rwriter{text-align:left;
+				margin-left:5px;}
+		.ravg{text-align:left;
+		      vertical-align: middle;}								
 	</style>
 </head>
 <body>
@@ -38,40 +66,35 @@
 		</div>
 	</div>	
 	
-	<table id="tbl"></table>
+	<table id="tbl" style="width:800px; margin:0px auto; margin-bottom:10px;"></table>
 	<script id="temp" type="text/x-handlebars-template">
-	<tr class="title">
-		<td width=200>이미지</td>
-		<td width=100>카테고리</td>
-		<td width=200>제목</td>
-		<td width=100>평점</td>
-		<td width=100>작성자</td>
-		<td width=200>작성일</td>
-	</tr>
+	<tr>
+	<td>
 	{{#each list}}
-	<tr class="row" onClick="location.href='read?recipe_bno={{recipe_bno}}'">
-		<td><img src="/displayFile?fullName={{recipe_image}}" width=100/></td>
-		<td>{{recipe_category}}</td>
-		<td>{{recipe_title}}</td>
-		<td>{{format recipe_userRatingAvg}}<span>/5</span></td>
-		<td>{{recipe_writer}}</td>
-		<td>{{recipe_regdate}}</td>
-	</tr>
+	<div class="box" onClick="location.href='read?recipe_bno={{recipe_bno}}'">
+		<div class="img"><img src="/displayFile?fullName={{recipe_image}}" width=230/></div>
+		<div class="rcate">{{recipe_category}}</div>
+		<div class="rtitle">{{recipe_title}}</div>
+		<div class="rwriter">{{recipe_writer}}</div>
+		<div class="ravg"><img src="/resources/image/00.png" width=150 class="star00"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
+	</div>
 	{{/each}}
+	</td>
+	</tr>
 	</script>
 	<div id="left">
-			<select id="searchType">
-				<option value="recipe_title">요리명</option>
-				<option value="recipe_ingre">요리재료</option>
-				<option value="recipe_writer">작성자</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
-		</div>
+		<select id="searchType">
+			<option value="recipe_title">요리명</option>
+			<option value="recipe_ingre">요리재료</option>
+			<option value="recipe_writer">작성자</option>
+		</select>
+		<input type="text" id="keyword" placeholder="검색어"/>
+		<input type="button" id="btnSearch" value="검 색"/>
+		<span id="total"></span>
+	</div>
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg){
-			var userRatingAvg = (Math.round(recipe_userRatingAvg*10))/10;
+			var userRatingAvg = (Math.round(recipe_userRatingAvg));
 			return userRatingAvg;
 		})
 	</script>
@@ -100,7 +123,7 @@
 			type:"get",
 			url:"list.json",
 			dataType:"json",
-			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":10},
+			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":9},
 			success:function(result){
 				var temp=Handlebars.compile($("#temp").html());
 				$("#tbl").html(temp(result));

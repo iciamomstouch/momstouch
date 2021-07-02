@@ -3,5 +3,6 @@
 
 <div class="item-left">
 	<a href="/info/list">정보방</a><br/><br/>
-	<a href="/user/list">회원관리</a>	
+	<a href="/user/list">회원관리</a><br/><br/>
+	<a href="/question/list">질문게시판</a>	
 </div>

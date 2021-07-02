@@ -8,14 +8,14 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<title>회원관리</title>
-	<link rel="stylesheet" href="/resources/css/board.css"/>
+	<link rel="stylesheet" href="/resources/css/user/list.css"/>
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}
+		.row{background:pink;}
 	</style>
 </head>
 <body>
-	<h1>[회원목록]</h1>
 	<div id="condition" style="margin-bottom:5px;">
 		<div id="left">
 			<select id="searchType">
@@ -31,28 +31,31 @@
 	</div>
 	<button onClick="location.href='insert'">회원등록</button>
 	<div id="list">
-		<table id="tbl" border=1></table>
+		<table id="tbl" border=1 style="width:600px; margin: 0px auto; margin-bottom:30px;"></table>
 		<script id="temp" type="text/x-handlebars-template">
-			<tr class="title">
-				<td width=100>아이디</td>
-				<td width=100>이름</td>
-				<td width=200>이메일</td>
-				<td width=200>전화번호</td>
-				<td width=200>주소</td>
-				<td width=100>닉네임</td>
-				<td width=100>이미지</td>
-			</tr>
 		{{#each list}}
 			<tr class="row" onClick="location.href='read?user_id={{user_id}}'">
-				<td>{{user_id}}</td>
-				<td>{{user_name}}</td>
-				<td>{{user_email}}</td>
-				<td>{{user_tel}}</td>
-				<td>{{user_address}}</td>
-				<td>{{user_nick}}</td>
-				<td>
-					<img src="/displayFile?fullName={{user_image}}" width=100/>
-				</td>
+				<tr>
+					<td rowspan=7 id="image"><img src="/displayFile?fullName={{user_image}}" width=100/></td>
+				</tr>
+				<tr>
+					<td id="uid">{{user_id}}</td>
+				</tr>
+				<tr>
+					<td id="uname">{{user_name}}</td>
+				</tr>
+				<tr>
+					<td id="unick">{{user_nick}}</td>
+				</tr>
+				<tr>
+					<td id="utel">{{user_tel}}</td>
+				</tr>
+				<tr>
+					<td id="uadd">{{user_address}}</td>
+				</tr>
+				<tr>
+					<td id="uemail">{{user_email}}</td>
+				</tr>
 			</tr>
 		{{/each}}
 		</script>	

@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+
+#rwriter{font-weight:bold;
+		font-size:20px;
+		text-align:left;}
+		
+#rcate{width:50px;
+	  text-align:left;
+	  color:#0080FF;}
+
+#rdate{text-align:left;
+	   color:#6E6E6E;}
+
+#rtitle{text-align:left;
+		font-weight:bold;
+		font-size:25px;
+		text-overflow: ellipsis;}
+		
+#rcont1{text-align:center;
+		font-size:15px;
+		border:5px solid #F2F2F2; 
+		border-radius:10px;
+		background: #F2F2F2;
+		padding:10px;
+		margin-bottom:30px;}
+		
+#rcont2{text-align:center;
+		font-size:15px;
+		border:5px solid #F2F2F2; 
+		border-radius:10px;
+		background: #F2F2F2;
+		padding:10px;
+		margin-bottom:30px;}
+		
+#rcont3{text-align:center;
+		font-size:15px;
+		border:5px solid #F2F2F2; 
+		border-radius:10px;
+		background: #F2F2F2;
+		padding:10px;
+		margin-bottom:30px;}
+		
+#rno{border-bottom: 1px solid #ccc;}						
+		
+#btnUpdate{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnUpdate:hover{width:100px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+		
+#btnDelete{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnDelete:hover{width:100px;
+		border:5px solid red; 
+		border-radius:5px; 
+		background:red; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+		
+#btnList{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}												
+#btnList:hover{width:100px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}								
+	  				

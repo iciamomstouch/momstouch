@@ -11,7 +11,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="board_writer" value="${user_id}" />
-		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">			
+		<table class="tbl" style="width:600px; margin:0px auto; margin-bottom:10px;">			
 			<tr>
 				<td id="id">${user_id}</td>
 			</tr>
@@ -26,17 +26,17 @@
 						<option value="기타">기타</option>
 					</select>
 				</td>
-				<td id="title"><input type="text" name="board_title" size=60  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
+				<td id="title"><input type="text" name="board_title" size=40  placeholder="제목을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
 			</tr>			
 			<tr>
 				<td colspan="2" id="img">
-					<img src="http://placehold.it/800x600" id="image" width=800/>
+					<img src="http://placehold.it/600x600" id="image" width=600/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>			
 			<tr>
 				<td colspan=2 id="content">
-					<textarea rows="10" cols="85" name="board_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
+					<textarea rows="10" cols="60" name="board_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"></textarea>
 				</td>
 			</tr>
 						

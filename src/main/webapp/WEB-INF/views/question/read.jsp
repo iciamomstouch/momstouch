@@ -12,7 +12,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 	 
-	 <table class="tbl" style="width: 800px; margin-bottom:10px;">
+	 <table class="tbl" style="width: 600px; margin:0px auto; margin-bottom:10px;">
 		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
 		 </tr>

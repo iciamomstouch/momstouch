@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+
+#tbl{border-collapse:separate;
+	border-spacing:20px;
+     margin:10px;}
+
+#tbl td{padding-top:10px;
+		padding-bottom:10px;
+		text-align: left;
+		vertical-align: middle;
+		border-bottom: 3px solid #ccc;}
+		
+#tbl th{border-left: 3px solid #8E35EF;}		
+
+#btnInsert{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnInsert:hover{width:100px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+		
+#btnReset{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnReset:hover{width:100px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+		
+#btnList{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnList:hover{width:100px;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}				

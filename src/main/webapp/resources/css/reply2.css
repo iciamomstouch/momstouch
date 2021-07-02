@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+#txtReply{text-align:left;}
+
+#rtbl{width:800px;
+	 background:#D8D8D8;
+	 border:5px solid #D8D8D8; 
+	 border-radius:5px;}
+	 
+.rTemp{margin:10px;}	 
+
+#i_rno{display:none;}
+
+#i_rer{width:100px;
+	   font-weight:bold;
+	   font-size:15px;}
+
+#i_rdate{text-align:left;
+		font-size:10px;}
+
+#idel{text-align:right;}
+
+#i_rely{padding-left:20px;
+	  text-align:left;	  
+	  }		
+
+#xbtn{width:30px;
+	 heigth:50px;
+ 	 position: absolute;
+     margin:0px auto;
+     background-size: 50%;
+     background-repeat: no-repeat;
+     background-position: center;
+     }
+     
+button{cursor: pointer;
+		border:none;
+		background:#D8D8D8;}
+		
+		
+#btnInsert{width:100px;
+		float:center;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+		}
+#btnInsert:hover{width:100px;
+		float:center;
+		border:5px solid #8E35EF; 
+		border-radius:5px; 
+		background:#8E35EF; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}		     
