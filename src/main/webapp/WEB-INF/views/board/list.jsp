@@ -33,13 +33,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
-					<c:if test="${vo.board_image==null }">
-						<img src="http://placehold.it/600x600" width=600 id="image"/>
-					</c:if>
-					<c:if test="${vo.board_image!=null }">
-						<img src="/displayFile?fullName=${vo.board_image }" width=800 id="image"/>
-					</c:if>
-					<input type="file" name="file" style="display:none;"/>
+					<img src="/displayFile?fullName={{board_image}}" width=800 id="image"/>	
 				</td>
 			</tr>
 			<tr>
