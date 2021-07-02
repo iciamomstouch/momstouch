@@ -155,7 +155,8 @@
 								url:"keepUpdate",
 								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
 								success:function(){
-									alert("즐겨찾기 추가!");									
+									alert("즐겨찾기 추가!");
+									location.reload();
 								}
 							});
 						}else{
@@ -164,7 +165,8 @@
 								url:"keepUpdate",
 								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":0},
 								success:function(){
-									alert("즐겨찾기 삭제!");									
+									alert("즐겨찾기 삭제!");
+									location.reload();
 								}
 							});
 						}					
@@ -174,7 +176,8 @@
 							url:"keepInsert",
 							data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
 							success:function(){
-								alert("즐겨찾기 추가!");								
+								alert("즐겨찾기 추가!");
+								location.reload();
 							}
 						});
 					}
