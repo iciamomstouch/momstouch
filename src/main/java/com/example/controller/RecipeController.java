@@ -209,7 +209,7 @@ public class RecipeController {
 	@ResponseBody //데이터 자체를 리턴할때
 	public HashMap<String, Object> klistJson(Criteria cri, String user_id) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		cri.setPerPageNum(5);
+		cri.setPerPageNum(6);
 		
 		map.put("list", dao.klist(cri.getPageStart(), cri.getPerPageNum(), user_id));		
 		PageMaker pm = new PageMaker();
