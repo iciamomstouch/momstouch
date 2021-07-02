@@ -12,6 +12,10 @@
 			width: 800px;
 			height: 300px;
 		}
+		.tratitle{overflow: hidden;
+				text-align:left;
+				text-overflow: ellipsis;}
+
 	</style>
  	<!-- 게시판1--------------------------------------------------------------- -->
 
@@ -137,7 +141,7 @@
 	
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg) {
-			var userRatingAvg = (Math.round(recipe_userRatingAvg * 10)) / 10;
+			var userRatingAvg = (Math.round(recipe_userRatingAvg));
 			return userRatingAvg;
 		});
 

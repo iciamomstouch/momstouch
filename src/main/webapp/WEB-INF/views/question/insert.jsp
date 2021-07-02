@@ -13,7 +13,7 @@
 	<form name="frm" encType="multipart/form-data">
 	<input type="hidden" name="question_grpno" value="${bno}"/>
 	<input type="hidden" name="question_writer" value="${user_id}" />
-	 <table class="tbl" style="width:600px; margin: 0px auto; margin-bottom:10px;">
+	<table class="tbl" style="width:600px; margin: 0px auto; margin-bottom:10px;">
 	 	 <tr>
 			 <td colspan=2 id="id">${user_id}</td>
 		 </tr>
@@ -24,7 +24,7 @@
 		 </tr>
 		 <tr>
 			 <td colspan=2 id="content">
-			 	<textarea rows="10" cols="65" name="question_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left; padding-top:10px;"></textarea>
+			 	<textarea rows="10" cols="60" name="question_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left; padding-top:10px;"></textarea>
 			 </td>
 		 </tr>		
 		 <tr>

@@ -38,7 +38,7 @@
 		.rwriter{text-align:left;
 				margin-left:5px;}
 		.ravg{text-align:left;
-		      vertical-align: middle;}									
+		      vertical-align: middle;}								
 	</style>
 </head>
 <body>
@@ -83,18 +83,18 @@
 	</tr>
 	</script>
 	<div id="left">
-			<select id="searchType">
-				<option value="recipe_title">요리명</option>
-				<option value="recipe_ingre">요리재료</option>
-				<option value="recipe_writer">작성자</option>
-			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
-			<span id="total"></span>
-		</div>
+		<select id="searchType">
+			<option value="recipe_title">요리명</option>
+			<option value="recipe_ingre">요리재료</option>
+			<option value="recipe_writer">작성자</option>
+		</select>
+		<input type="text" id="keyword" placeholder="검색어"/>
+		<input type="button" id="btnSearch" value="검 색"/>
+		<span id="total"></span>
+	</div>
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg){
-			var userRatingAvg = (Math.round(recipe_userRatingAvg*10))/10;
+			var userRatingAvg = (Math.round(recipe_userRatingAvg));
 			return userRatingAvg;
 		})
 	</script>

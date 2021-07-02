@@ -31,14 +31,14 @@
 			</tr>		
 			<tr>
 				<td colspan="2" id="price" style="text-align:left;">
-					<input type="number" name="trade_price" size=90  placeholder="가격을 기재해주세요." style="font-size: 20px;background-color:transparent;border:0 solid black;text-align:left;"/><a style="font-size: 25px;
+					<input type="number" name="trade_price" size=90 placeholder="가격을 기재해주세요." style="font-size: 20px;background-color:transparent;border:0 solid black;text-align:left;"/><a style="font-size: 25px;
 	  				font-weight:bold;">원</a>
 				</td>
 			</tr>
 			
 			<tr>
 				<td colspan=2 id="content">
-					<textarea rows="10" cols="70" name="trade_content"  placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;padding-top:10px;"></textarea>
+					<textarea rows="10" cols="70" name="trade_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;padding-top:10px;"></textarea>
 				</td>
 			</tr>
 			<tr>

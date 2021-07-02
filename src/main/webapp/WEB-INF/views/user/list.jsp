@@ -31,10 +31,11 @@
 	</div>
 	<button onClick="location.href='insert'">회원등록</button>
 	<div id="list">
-		<table id="tbl" border=1 style="width:600px; margin: 0px auto; margin-bottom:30px;"></table>
+		<div id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;"></div>
 		<script id="temp" type="text/x-handlebars-template">
 		{{#each list}}
-			<tr class="row" onClick="location.href='read?user_id={{user_id}}'">
+		<table style="width:550px;border:2px solid black;" onClick="location.href='/user/update?user_id={{user_id}}'">
+			<tr class="row">
 				<tr>
 					<td rowspan=7 id="image"><img src="/displayFile?fullName={{user_image}}" width=100/></td>
 				</tr>
@@ -57,6 +58,8 @@
 					<td id="uemail">{{user_email}}</td>
 				</tr>
 			</tr>
+		</table>
+		<br/>
 		{{/each}}
 		</script>	
 	</div>
