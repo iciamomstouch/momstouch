@@ -163,11 +163,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="keepInsert", method=RequestMethod.POST)
+	@ResponseBody
 	public void keepInsert(User_keepVO vo) throws Exception{
 		dao.keepInsert(vo);
 	}
 	
 	@RequestMapping(value="keepUpdate", method=RequestMethod.POST)
+	@ResponseBody
 	public void keepUpdate(User_keepVO vo) throws Exception{
 		dao.keepUpdate(vo);
 	}
