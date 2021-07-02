@@ -43,10 +43,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td id="breply">댓글수: {{board_replycnt}}</td>
-				<td id="bheart">
-					<img src="/resources/css/heart.svg" class="heart">
-				</td>
+				<td colspan="2" id="breply">댓글수: {{board_replycnt}}</td>				
 			</tr>
 			<tr>
 				<td colspan="2" id="btitle" onClick="location.href='read?board_bno={{board_bno}}'">{{board_title}}</td>
