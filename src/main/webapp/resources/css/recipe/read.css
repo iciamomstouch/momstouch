@@ -11,6 +11,12 @@
 #rdate{text-align:left;
 	   color:#6E6E6E;}
 
+#bheart{height:50px;
+		text-align:right;}
+
+.heart{width:30px;
+	  margin-right:10px;}
+
 #rtitle{text-align:left;
 		font-weight:bold;
 		font-size:25px;
