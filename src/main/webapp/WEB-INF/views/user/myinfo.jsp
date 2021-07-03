@@ -30,26 +30,29 @@
     <h2>마이 페이지</h2>
     
     <div width=600>
-    	<table id="tbl" style="width:600px; height:150px; margin: 0px auto;">
+    	<table id="tbl" style="width:600px; height:200px; margin: 0px auto;">
     		<tr>
     			<td rowspan=4 width=150 id="mimage">
     				<c:if test="${vo.user_image==null }">
-						<img src="http://placehold.it/150x100" width=150 id="image"/>
+						<img src="http://placehold.it/150x150" width=150 id="image"/>
 					</c:if>
 					<c:if test="${vo.user_image!=null }">
-						<img src="/displayFile?fullName=${vo.user_image }" width=150 height=100 id="image"/>
+						<img src="/displayFile?fullName=${vo.user_image }" width=150 height=150 id="image"/>
 					</c:if>
 					<input type="file" name="file" style="display:none;"/>
     			</td>
-    			<td id="mid">${vo.user_nick }님(${vo.user_id })</td>
+    			<td colspan=2 id="mid">${vo.user_nick }님(${vo.user_id })</td>
     		</tr>
     		<tr>
+    			<td width=30><img src="/resources/image/phone.png" width=30 id="phone"/></td>
     			<td id="mtel">${vo.user_tel }</td>
     		</tr>
     		<tr>
-    			<td id="madd">${vo.user_address }</td>
+    			<td width=30><img src="/resources/image/add.png" width=30 id="add"/></td>
+    			<td id="madd" width=300>${vo.user_address }</td>
     		</tr>
     		<tr>
+    			<td width=30><img src="/resources/image/email.png" width=30 id="email"/></td>
     			<td id="memail">${vo.user_email }</td>
     		</tr>
     	</table>
@@ -66,7 +69,7 @@
     <hr/>
     <div id="ulist"> 
     <button id="btnHidden1">
-    	<img src='/resources/css/dash-circle-fill.svg' class="xbtn">
+    	<img src='/resources/css/x-square.svg' class="xbtn">
     </button>  
     <div id="list1">
 		<table id="tbl1" width=800></table>

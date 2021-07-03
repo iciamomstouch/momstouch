@@ -10,11 +10,11 @@
 	<style>
 		.swiper-container {
 			width: 800px;
-			height: 300px;
-		}
+			height: 300px;}
 		.tratitle{overflow: hidden;
 				text-align:left;
-				text-overflow: ellipsis;}
+				text-overflow: ellipsis;
+				white-space: nowrap;}
 
 	</style>
  	<!-- 게시판1--------------------------------------------------------------- -->
@@ -26,10 +26,10 @@
 		<table id="tbl1" width=800></table>
 		<script id="temp1" type="text/x-handlebars-template">
 		<tr class="title">
-			<td width=100>카테고리</td>
-			<td width=200>제목</td>
-			<td width=100>작성자</td>
-			<td width=50>조회수</td>
+			<th width=100>카테고리</th>
+			<th width=200>제목</th>
+			<th width=100>작성자</th>
+			<th width=50>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='board/read?board_bno={{board_bno}}'">
@@ -197,9 +197,9 @@
 		<table id="tbl2" width=800></table>
 		<script id="temp2" type="text/x-handlebars-template">
 		<tr class="title">		
-			<td>제목</td>
-			<td>작성자</td>
-			<td>조회수</td>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='info/read?info_bno={{info_bno}}'">		

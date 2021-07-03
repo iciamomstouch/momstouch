@@ -89,7 +89,9 @@
 			<option value="recipe_writer">작성자</option>
 		</select>
 		<input type="text" id="keyword" placeholder="검색어"/>
-		<input type="button" id="btnSearch" value="검 색"/>
+		<button>
+				<img src="/resources/css/search.svg" class="search">
+			</button>
 		<span id="total"></span>
 	</div>
 	<script>
