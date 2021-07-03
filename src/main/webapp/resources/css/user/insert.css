@@ -67,4 +67,23 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}				
+		cursor: pointer;}	
+		
+#btnDel{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}
+#btnDel:hover{width:100px;
+		border:5px solid red; 
+		border-radius:5px; 
+		background:red; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}					

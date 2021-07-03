@@ -3,7 +3,8 @@
 
 #question_bno{display:none;}
 
-#qtop{text-align:center;}
+#qtop{text-align:center;
+	}
 
 #qwriter{font-weight:bold;}	
 
@@ -14,6 +15,7 @@
 		padding:10px;
 		font-size:20px;
 		font-weight:bold;
+		background: #efefef;
 		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;}
 

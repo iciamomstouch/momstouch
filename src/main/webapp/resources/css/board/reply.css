@@ -1,60 +1,33 @@
 @CHARSET "UTF-8";
 
-#txtReply{text-align:left;}
+#rtbl{border-collapse: collapse;}
 
-#rtbl{width:800px;
-	 background:#D8D8D8;
-	 border:5px solid #D8D8D8; 
-	 border-radius:5px;}
-	 
-.rTemp{margin:10px;}	 
+#xbtn{background:#D8D8D8;}
+    
+     
 
-#b_rno{display:none;}
-
-#b_rer{width:100px;
-	   font-weight:bold;
-	   font-size:15px;}
-
+		
+#b_rer{text-align:left;
+		text-size:15px;
+		font-weight:bold;
+		width:100px;}
+		
 #b_rdate{text-align:left;
-		font-size:10px;}
-
+		text-size:8px;
+		color:#A4A4A4;}
+		
 #rdel{text-align:right;}
 
-#b_rely{padding-left:20px;
-	  text-align:left;}		
+#b_rely{text-align:left;
+		padding-left:10px;}						
+		
 
-#xbtn{width:30px;
-	 heigth:50px;
- 	 position: absolute;
-     margin:0px auto;
-     background-size: 50%;
-     background-repeat: no-repeat;
-     background-position: center;
-     }
-     
-button{cursor: pointer;
-		border:none;
-		background:#D8D8D8;}
+input[type=text]{font-size: 20px;
+				padding:5px;
+				background-color:transparent;
+				border:0 solid black;
+				text-align:left;}
 		
-		
-#btnInsert{width:100px;
-		float:center;
-		border:5px solid black; 
-		border-radius:5px; 
-		background:black; 
-		color:#8E35EF;
-		padding:0px 3px 0px 3px;
-		font-size:15px;
-		font-weight:bold; 
-		cursor: pointer;}
-		}
-#btnInsert:hover{width:100px;
-		float:center;
-		border:5px solid #8E35EF; 
-		border-radius:5px; 
-		background:#8E35EF; 
-		color:white;
-		padding:0px 3px 0px 3px;
-		font-size:15px;
-		font-weight:bold; 
-		cursor: pointer;}		     
+	
+.btnInsert{width:30px;
+		  }		     
