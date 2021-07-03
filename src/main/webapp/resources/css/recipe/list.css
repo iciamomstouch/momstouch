@@ -4,6 +4,12 @@
 
 h3{text-align:left;}
 
+button{height:30px;
+		border:none;
+		background:white;
+		text-align:center;}		
+.search{width:20px;} 
+
 #tip{width:800px;
 	float:center;
 	text-align:center;
@@ -52,15 +58,7 @@ h3{text-align:left;}
 		font-weight:bold; 
 		cursor: pointer;}	
 		
-#btnSearch{width:50px;
-		border:5px solid #8E35EF; 
-		border-radius:5px; 
-		background:#8E35EF; 
-		color:white;
-		padding:0px 3px 0px 3px;
-		font-size:10px;
-		font-weight:bold; 
-		cursor: pointer;}			
+			
 
 #condition{margin-top:10px;}
 
