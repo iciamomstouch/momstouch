@@ -12,7 +12,7 @@
 	</style>
 </head>
 <body>
-	<div id="condition" style="margin-bottom:5px;">
+	<div id="condition" style="margin-bottom:10px;">
 		<div id="btninsert">
 			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>
@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
-					<img src="/displayFile?fullName={{board_image}}" width=800 id="image"/>	
+					<img src="/displayFile?fullName={{board_image}}" width=600 id="image"/>					
 				</td>
 			</tr>
 			<tr>
@@ -52,7 +52,9 @@
 				<option value="board_content">내용</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<button>
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
+			</button>
 			<span id="total"></span>
 		</div>	
 	</div>

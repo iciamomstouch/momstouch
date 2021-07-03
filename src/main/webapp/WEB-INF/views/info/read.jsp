@@ -25,10 +25,10 @@
 			<tr>
 				<td colspan="2" id="iimg">
 					<c:if test="${vo.info_image==null }">
-						<img src="http://placehold.it/800x800" width=800 id="image"/>
+						<img src="http://placehold.it/600x600" width=600 id="image"/>
 					</c:if>
 					<c:if test="${vo.info_image!=null }">
-						<img src="/displayFile?fullName=${vo.info_image }" width=800 id="image"/>
+						<img src="/displayFile?fullName=${vo.info_image }" width=600 id="image"/>
 					</c:if>
 					<input type="file" name="file" style="display:none;"/>
 				</td>

@@ -50,7 +50,9 @@
 				<option value="trade_writer">작성자</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<button>
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
+			</button>
 			<span id="total"></span>
 		</div>
 	<div id="pagination" style="margin-top:5px;"></div>

@@ -76,7 +76,7 @@
 		<div class="rcate">{{recipe_category}}</div>
 		<div class="rtitle">{{recipe_title}}</div>
 		<div class="rwriter">{{recipe_writer}}</div>
-		<div class="ravg"><img src="/resources/image/00.png" width=150 class="star00"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
+		<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" width=150 class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
 	</div>
 	{{/each}}
 	</td>
@@ -89,7 +89,9 @@
 			<option value="recipe_writer">작성자</option>
 		</select>
 		<input type="text" id="keyword" placeholder="검색어"/>
-		<input type="button" id="btnSearch" value="검 색"/>
+		<button>
+			<img src="/resources/css/search.svg" id="btnSearch" class="search">
+		</button>
 		<span id="total"></span>
 	</div>
 	<script>

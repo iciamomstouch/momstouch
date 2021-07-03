@@ -23,62 +23,36 @@
 				text-overflow: ellipsis;
 				white-space: nowrap;}
 		.price{text-align:left;}
-		.trawriter{text-align:left;}
-		
-		.rbox {width:230px;
-			  height:300px;
-			  padding:5px;
-			  margin:5px;
-			  margin-left:13px;
-			  background:white;
-			  color:black;
-			  float:left; 
-			  cursor: pointer;}
-		.rimg{text-align:center;
-			margin-bottom:5px;}
-		.rcate{width:30px;
-			   margin-left:5px;
-			   font-size:15px;
-			   color:#0080FF;
-			   text-align:left;}
-		.rtitle{width:200px;
-				margin-left:5px;
-				font-size:20px;
-				font-weight:bold;
-				text-align:left;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;}
-		.rwriter{text-align:left;
-				margin-left:5px;}
-		.ravg{text-align:left;
-		      vertical-align: middle;}				
+		.trawriter{text-align:left;}			
 		</style>
 	</head>
 	
     <h2>마이 페이지</h2>
     
     <div width=600>
-    	<table id="tbl" style="width:600px; height:150px; margin: 0px auto;">
+    	<table id="tbl" style="width:600px; height:200px; margin: 0px auto;">
     		<tr>
     			<td rowspan=4 width=150 id="mimage">
     				<c:if test="${vo.user_image==null }">
-						<img src="http://placehold.it/150x100" width=150 id="image"/>
+						<img src="http://placehold.it/150x150" width=150 id="image"/>
 					</c:if>
 					<c:if test="${vo.user_image!=null }">
-						<img src="/displayFile?fullName=${vo.user_image }" width=150 height=100 id="image"/>
+						<img src="/displayFile?fullName=${vo.user_image }" width=150 height=150 id="image"/>
 					</c:if>
 					<input type="file" name="file" style="display:none;"/>
     			</td>
-    			<td id="mid">${vo.user_nick }님(${vo.user_id })</td>
+    			<td colspan=2 id="mid">${vo.user_nick }님(${vo.user_id })</td>
     		</tr>
     		<tr>
+    			<td width=30><img src="/resources/image/phone.png" width=30 id="phone"/></td>
     			<td id="mtel">${vo.user_tel }</td>
     		</tr>
     		<tr>
-    			<td id="madd">${vo.user_address }</td>
+    			<td width=30><img src="/resources/image/add.png" width=30 id="add"/></td>
+    			<td id="madd" width=300>${vo.user_address }</td>
     		</tr>
     		<tr>
+    			<td width=30><img src="/resources/image/email.png" width=30 id="email"/></td>
     			<td id="memail">${vo.user_email }</td>
     		</tr>
     	</table>
@@ -95,7 +69,7 @@
     <hr/>
     <div id="ulist"> 
     <button id="btnHidden1">
-    	<img src='/resources/css/dash-circle-fill.svg' class="xbtn">
+    	<img src='/resources/css/x-square.svg' class="xbtn">
     </button>  
     <div id="list1">
 		<table id="tbl1" width=800></table>
@@ -231,9 +205,7 @@
     </script>
     
     <div id="rlist"> 
-    <button id="btnHidden2">
-    	<img src='/resources/css/dash-circle-fill.svg' class="xbtn">
-    </button>  
+    <button id="btnHidden2">숨기기</button>  
     <div id="rlist1">
 		<table id="rtbl1" width=800></table>
 		<script id="rtemp1" type="text/x-handlebars-template">		
@@ -370,8 +342,9 @@
 			<td>{{board_regdate}}</td>
 		</tr>
 		{{/each}}
-		</script>		
-	<hr/>
+		</script>
+		
+
 	<br/>
 	
 	<script>	
@@ -410,10 +383,8 @@
 			<td>{{info_regdate}}</td>
 		</tr>
 		{{/each}}
-	</script>
-		
-	<hr/>
-	<br/>	
+		</script>	
+	</div>
 	
 	<script>	
 	getList2();
@@ -431,55 +402,13 @@
 			}
 		});
 	}	
-	</script>
-	</div>
+	</script>	
     
-    <div id="recipe_keep">
-    	<table id="tbl_keep4" style="width:800px; margin:0px auto; margin-bottom:10px;"></table>
-		<script id="temp_keep4" type="text/x-handlebars-template">
-		<tr>
-			<td>
-			{{#each list}}
-			<div class="rbox" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">
-				<div class="rimg"><img src="/displayFile?fullName={{recipe_image}}" width=230/></div>
-				<div class="rcate">{{recipe_category}}</div>
-				<div class="rtitle">{{recipe_title}}</div>
-				<div class="rwriter">{{recipe_writer}}</div>
-				<div class="ravg"><img src="/resources/image/00.png" width=150 class="star00"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
-			</div>
-			{{/each}}
-			</td>
-		</tr>
-		</script>
-		<script>
-		Handlebars.registerHelper("format", function(recipe_userRatingAvg){
-			var userRatingAvg = (Math.round(recipe_userRatingAvg));
-			return userRatingAvg;
-		})
-	</script>
-    </div>
+    <div id="recipe_keep"></div>
     
-    <hr/>
     <br/>
     
-    <script>
-    getList4();
-    function getList4(){
-    	var user_id = "${vo.user_id }";
-		var page=1;
-		$.ajax({
-			type:"get",
-			url:"/recipe/klist.json",
-			dataType:"json",
-			data:{"page":page, "user_id":user_id},
-			success:function(result){
-				var temp=Handlebars.compile($("#temp_keep4").html());
-				$("#tbl_keep4").html(temp(result));
-			}
-		});
-    }
-    </script>
-    
+    <hr/>
     <h2>찜한 물건 보기</h2>
     <div id="trade_keep">
     	<table id="tbl_keep3"></table>		
@@ -491,7 +420,7 @@
 			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
 			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
 			<div class="price">:{{trade_price}}원</div>
-			<div >{{trade_writer}}</div>
+			<div class="trawriter">{{trade_writer}}</div>
 		</div>
 		{{/each}}
 		</td>
@@ -517,6 +446,6 @@
 				$("#tbl_keep3").html(temp(result));
 			}
 		});
-	}	
+	}
 	</script>    
     

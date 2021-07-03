@@ -63,14 +63,12 @@
 					<input type="file" name="files" accept="image/*" multiple style="display:none;"/> 
 					<div id="listFile"></div>
 					<div id="attach">
-					<table id="attachFiles" style="margin:0 auto;"></table>
+					<table id="attachFiles" style="margin:0 auto; padding-top:30px;"></table>
 					<script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
 					<tr>
-						<td colspan="2" ><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=200/></td>
-					</tr>
-					<tr>									
-						<td colspan="2"><textarea rows="8" cols="50" >{{recipe_attach_text}}</textarea></td>					
+						<td colspan="2"><textarea style="border: none; font-size:20px;" rows="5" cols="40" >{{recipe_attach_text}}</textarea></td>
+						<td colspan="2" ><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=200/></td>	
 					</tr>
 					{{/each}}	
 					</script>

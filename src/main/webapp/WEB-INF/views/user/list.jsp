@@ -12,49 +12,69 @@
 	<style>
 		#pagination a{text-decoration:none;color:green;}
 		#pagination .active{color:red;}
-		.row{background:pink;}
+		.row{cursor: pointer;}
 	</style>
 </head>
 <body>
-	<div id="condition" style="margin-bottom:5px;">
+	<div id="condition" width="800" style="margin-bottom:30px;">
+		<div id="right">
+		<button onClick="location.href='insert'" id="btnplus">
+				<img src="/resources/css/plus-circle-fill.svg" class="plus">
+		</button>
+		</div>
 		<div id="left">
 			<select id="searchType">
 				<option value="user_id">아이디</option>
 				<option value="user_name">이름</option>
 				<option value="user_nick">닉네임</option>
 			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<input type="text" id="keyword" placeholder="검색어를 입력해주세요" style="width:400px; font-size: 15px;background-color:transparent;border:0 solid black; border-bottom: 3px solid black; text-align:left;"/>
+			<button>
+				<img src="/resources/css/search.svg" class="search">
+			</button>
 			<span id="total"></span>
+			
 		</div>
-		<div id="right"></div>
 	</div>
-	<button onClick="location.href='insert'">회원등록</button>
+	
 	<div id="list">
 		<div id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;"></div>
 		<script id="temp" type="text/x-handlebars-template">
 		{{#each list}}
-		<table style="width:550px;border:2px solid black;" onClick="location.href='/user/update?user_id={{user_id}}'">
+		<table style="width:550px;
+					height:180px;
+					margin: 0px auto;
+					border:5px solid #f2f2f2;
+					border-radius:5px; 
+					background:#f2f2f2;
+					color:black;
+					cursor: pointer;" 
+					onClick="location.href='/user/update?user_id={{user_id}}'">
 			<tr class="row">
 				<tr>
-					<td rowspan=7 id="image"><img src="/displayFile?fullName={{user_image}}" width=100/></td>
+					<td rowspan=7><img src="/displayFile?fullName={{user_image}}" width=100 id="image"/></td>
 				</tr>
 				<tr>
-					<td id="uid">{{user_id}}</td>
+					<td id="uid" colspan=2>{{user_id}}</td>
 				</tr>
 				<tr>
+					<td width=30 ><img src="/resources/image/name.png" width=30 id="name"/></td>
 					<td id="uname">{{user_name}}</td>
 				</tr>
 				<tr>
+					<td width=30><img src="/resources/image/nick.png" width=30 id="nick"/></td>
 					<td id="unick">{{user_nick}}</td>
 				</tr>
 				<tr>
+					<td width=30><img src="/resources/image/phone.png" width=30 id="phone"/></td>
 					<td id="utel">{{user_tel}}</td>
 				</tr>
 				<tr>
-					<td id="uadd">{{user_address}}</td>
+					<td width=30><img src="/resources/image/add.png" width=30 id="add"/></td>
+					<td id="uadd" width=300>{{user_address}}</td>
 				</tr>
 				<tr>
+					<td width=30><img src="/resources/image/email.png" width=30 id="email"/></td>
 					<td id="uemail">{{user_email}}</td>
 				</tr>
 			</tr>
