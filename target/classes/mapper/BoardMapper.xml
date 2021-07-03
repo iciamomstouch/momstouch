@@ -89,6 +89,22 @@
  		update tbl_user_keep set 
  		board_keep=#{board_keep}
  		where board_bno=#{board_bno} and user_id=#{user_id}
- 	</update> 
+ 	</update>
+ 	
+ 	<select id="nextNum" resultType="String">
+ 		select MIN(board_bno) from tbl_board where board_bno <![CDATA[>]]> #{board_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(board_bno) from tbl_board where board_bno <![CDATA[<]]> #{board_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(board_bno) from tbl_board
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(board_bno) from tbl_board
+ 	</select> 
  	
 </mapper>
