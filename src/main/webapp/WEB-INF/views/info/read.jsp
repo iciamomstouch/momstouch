@@ -67,7 +67,7 @@
 	//이전 다음 버튼 비활성화	
 	var max="${max}";
 	var min="${min}";
-	var num="${vo.board_bno}";
+	var num="${vo.info_bno}";
 	
 	if(min==num){
 		$("#pre").attr("disabled", true);
