@@ -38,7 +38,7 @@
 #theart{height:50px;
 		text-align:right;}
 .heart{width:30px;
-	  }
+	  cursor: pointer;}
 	  
 #chat{height:50px;
 		text-align:right;}		
