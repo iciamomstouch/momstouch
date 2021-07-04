@@ -63,10 +63,11 @@
 					border:none;
 					background:#D8D8D8;
 					vertical-align : top;
-					text-align:center;">❌</button>
+					text-align:center;
+					cursor: pointer;">❌</button>
 				</td>
 			</tr>
-			<tr class="row">			
+			<tr>			
 				<td colspan=4 id="r_rely">{{recipe_reply}}</td>	
 			</tr>
 		</table>
@@ -92,11 +93,11 @@
 	
 	$("#rtbl").on("click", ".row .btnDelete", function(){
 		var rno=$(this).attr("recipe_rno");
-		if(!confirm(recipe_rno + "을(를) 삭제하시겠습니까?")) return;
+		if(!confirm(rno + "을(를) 삭제하시겠습니까?")) return;
 		$.ajax({
 			type:"get",
 			url:"reply/delete",
-			data:{"recipe_rno":recipe_rno},
+			data:{"recipe_rno":rno},
 			success:function(){
 				alert("삭제 완료!");
 				getList();
