@@ -15,7 +15,8 @@
 		text-align:right;}
 
 .heart{width:30px;
-	  margin-right:10px;}
+	margin-right:10px;
+	cursor: pointer;}
 
 #rtitle{text-align:left;
 		font-weight:bold;
