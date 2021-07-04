@@ -62,7 +62,7 @@ button{height:30px;
 
 #condition{margin-top:10px;}
 
-#btn01{width:100px;
+.btn01{width:100px;
 		border:5px solid black; 
 		border-radius:5px; 
 		background:black; 
@@ -72,7 +72,7 @@ button{height:30px;
 		font-weight:bold; 
 		cursor: pointer;}
 		
-#btn01:hover{width:100px;
+.btn01:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
 		background:#8E35EF; 

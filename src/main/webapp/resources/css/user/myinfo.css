@@ -10,9 +10,9 @@ button{cursor: pointer;
 		border:none;
 		background:white;} 
 
-#tbl{border:5px solid black; 
+#tbl{border:5px solid #f2f2f2; 
 	border-radius:5px;
-	background:black;
+	background:#f2f2f2;
 	}
 #image{border-radius: 70%;
      overflow: hidden;}
@@ -28,13 +28,13 @@ button{cursor: pointer;
 	color:#8E35EF;}
 
 #mtel{text-align:left;
-	color:white;}
+	color:black;}
 
 #madd{text-align:left;
-	color:white;}
+	color:black;}
 
 #memail{text-align:left;
-		color:white;}
+		color:black;}
 		
 #btnShow1{width:150px;
 		padding:0px;
