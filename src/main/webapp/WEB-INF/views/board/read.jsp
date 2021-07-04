@@ -55,14 +55,28 @@
 				<td colspan=2 id="bcont">${vo.board_content}</td>
 			</tr>		
 		</table>
-		<input type="button" value="수정" id="btnUpdate" onClick="location.href='update?board_bno=${vo.board_bno}'"/>
-		<input type="button" value="삭제" id="btnDelete"/>
-		<input type="button" value="목록" onClick="location.href='list'" id="btnList"/>
+		<input type="button" value="수정" class="btn" onClick="location.href='update?board_bno=${vo.board_bno}'"/>
+		<input type="button" value="삭제" id="btnDelete" class="btn"/>
+		<input type="button" value="목록" onClick="location.href='list'" class="btn"/>
+		<input type="button" value="이전" onClick="location.href='read?board_bno=${pre}'" class="btn" id="pre"/>
+		<input type="button" value="다음" onClick="location.href='read?board_bno=${next}'" class="btn" id="next"/>
 	</form>
 	<hr/>
 	<jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script>
+	//이전 다음 버튼 비활성화	
+	var max="${max}";
+	var min="${min}";
+	var num="${vo.board_bno}";
+	
+	if(min==num){
+		$("#pre").attr("disabled", true);
+	}
+	if(max==num){
+		$("#next").attr("disabled", true);
+	}	
+	
 	//글쓰기 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;

@@ -53,34 +53,35 @@
 				<td colspan=2 id="icont">${vo.info_content}</td>
 			</tr>		
 		</table>
-		<input type="button" value="수정" id="btnUpdate" onClick="location.href='update?info_bno=${vo.info_bno}'"/>
-		<input type="button" value="삭제" id="btnDelete"/>
-		<input type="button" value="목록" onClick="location.href='list'" id="btnList"/>
+		<input type="button" value="수정" id="btnUpdate" class="btn" onClick="location.href='update?info_bno=${vo.info_bno}'"/>
+		<input type="button" value="삭제" id="btnDelete" class="btn"/>
+		<input type="button" value="목록" onClick="location.href='list'" id="btnList" class="btn"/>
+		<input type="button" value="이전" onClick="location.href='read?info_bno=${pre}'" class="btn" id="pre"/>
+		<input type="button" value="다음" onClick="location.href='read?info_bno=${next}'" class="btn" id="next"/>
 	</form>
 	<hr/>
 	<jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script>
+
+	//이전 다음 버튼 비활성화	
+	var max="${max}";
+	var min="${min}";
+	var num="${vo.board_bno}";
+	
+	if(min==num){
+		$("#pre").attr("disabled", true);
+	}
+	if(max==num){
+		$("#next").attr("disabled", true);
+	}
+
 	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;
 		frm.action="delete";
 		frm.method="get";
 		frm.submit();
-	});
-
-	//게시글 수정
-	$(frm).on("submit", function(e){
-			e.preventDefault();
-			var info_title=$(frm.info_title).val();
-			if(info_title==""){
-				alert("제목을 입력하세요!");
-				return;
-			}
-			if(!confirm("게시글을 수정하실래요?")) return;
-			frm.action="update";
-			frm.method="post";
-			frm.submit();
 	});
 
 	$("#image").on("click", function() {

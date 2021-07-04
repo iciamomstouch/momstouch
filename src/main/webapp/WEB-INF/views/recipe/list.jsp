@@ -55,15 +55,12 @@
 	    </p>
 
 	</div>
-	<div id="condition">
-			
-		<div>
-			<span><button id="btn01">산모</button></span>
-			<span><button id="btn02">초기</button></span>
-			<span><button id="btn03">중기</button></span>
-			<span><button id="btn04">후기</button></span>
-			<span><button id="btn05">완료기</button></span>
-		</div>
+	<div id="condition">		
+		<span><button class="btn01" value="산모">산모</button></span>
+		<span><button class="btn01" value="초기">초기</button></span>
+		<span><button class="btn01" value="중기">중기</button></span>
+		<span><button class="btn01" value="후기">후기</button></span>
+		<span><button class="btn01" value="완료기">완료기</button></span>		
 	</div>	
 	
 	<table id="tbl" style="width:800px; margin:0px auto; margin-bottom:10px;"></table>
@@ -105,6 +102,7 @@
 </body>
 <script>
 	var page=1;
+	
 	getList();
 	
 	
@@ -148,6 +146,42 @@
 			}
 		})
 	}
+	
+	$("#condition").on("click", "button", function(){		
+		page=1;
+		var keyword=$(this).val();
+		getList2();	
+		
+		function getList2(){
+			var searchType="recipe_category";		
+			$.ajax({
+				type:"get",
+				url:"list.json",
+				dataType:"json",
+				data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":9},
+				success:function(result){
+					var temp=Handlebars.compile($("#temp").html());
+					$("#tbl").html(temp(result));
+					$("#total").html("검색수 : " + result.pm.totalCount);
+					
+					//페이징 목록 출력
+					var str = "";
+					var prev = result.pm.startPage-1;
+					var next = result.pm.endPage+1;
+					if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
+					for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
+						if(i==page){
+							str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						}else{
+							str += "[<a href='" + i +"'>" + i + "</a>] ";
+						}					
+					}
+					if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
+					$("#pagination").html(str);
+				}
+			})
+		}
+	})	
 	
 	$("#pagination").on("click", "a", function(e){
 		e.preventDefault();

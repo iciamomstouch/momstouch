@@ -76,9 +76,11 @@
 			</td>
 		<tr>		
 	</table>
-	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate"/>
-	<input type="button" value="글삭제" id="btnDelete"/>
-	<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
+	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate" class="btn"/>
+	<input type="button" value="글삭제" id="btnDelete" class="btn"/>
+	<input type="button" value="목록이동" onClick="location.href='list'" id="btnList" class="btn"/>
+	<input type="button" value="이전" onClick="location.href='read?trade_bno=${pre}'" class="btn" id="pre"/>
+		<input type="button" value="다음" onClick="location.href='read?trade_bno=${next}'" class="btn" id="next"/>
 	</form>
 </body>
 <script>
@@ -90,6 +92,18 @@
 		frm.method="get";
 		frm.submit();
 	});
+	
+	//이전 다음 버튼 비활성화	
+	var max="${max}";
+	var min="${min}";
+	var num="${vo.board_bno}";
+	
+	if(min==num){
+		$("#pre").attr("disabled", true);
+	}
+	if(max==num){
+		$("#next").attr("disabled", true);
+	}
 	
 	//첨부파일 출력
 	   getAttach();   
