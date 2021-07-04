@@ -10,7 +10,8 @@
 #iheart{height:50px;
 		text-align:right;}
 .heart{width:30px;
-	  margin-right:10px;}	   
+	margin-right:10px;
+	cursor: pointer;}	   
 	  
 #ivcnt{text-align:left;}
 
