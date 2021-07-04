@@ -6,7 +6,7 @@ input[type=text]{font-size: 20px;
 				border:0 solid black;
 				text-align:left;}
 			
-.btnInsert{width:30px;}
+.btnInsert{width:30px;cursor: pointer;}
 
 hr {border-top: 1px dashed #bbb;}
 
