@@ -7,7 +7,23 @@ button{height:30px;
 		border:none;
 		background:white;
 		text-align:center;}		
-.search{width:20px;} 	  
+.search{width:20px;} 
+
+#pagination a{padding:5px;
+			font-weight: bold;
+			text-decoration-line: none;
+			padding-right:10px;
+			padding-left:10px;
+			color:#8E35EF;
+			border:3px solid #8E35EF; 
+			border-radius:5px;}
+
+#pagination span {cursor: pointer; 
+				padding:5px; 
+				background:white;}
+				
+#pagination .active {background:#8E35EF; 
+					color:white;}	  
 
 #tbl {border-collapse: separate;
   		border-spacing: 1px;

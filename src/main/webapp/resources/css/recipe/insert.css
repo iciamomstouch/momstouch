@@ -7,15 +7,16 @@
 
 #option{width:100px; 
 		height:30px; 
-		text-align:center; 
+		text-align:center;
+		font-weight:bold; 
 	    padding-left: 25px;
 	    font-size: 15px; 
-	    border:5px solid #8E35EF; 
+	    border:3px solid #8E35EF; 
 		border-radius:5px; 
-		background:#8E35EF; 
-		color:white;}
+		background:white; 
+		color:#8E35EF;}
 
-#title{width:700px;
+#title{width:500px;
 	   text-align:left;
        border-bottom: 1px solid #ccc;}            
        
@@ -23,7 +24,7 @@
 	padding-bottom:5px;
 	text-align:center;}
 	
-#content{width:800px;
+#content{width:600px;
 		 font-size: 15px;
          border-bottom: 1px solid #ccc;}
 
