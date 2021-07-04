@@ -7,6 +7,22 @@ button{height:20px;
 		cursor: pointer;}		
 .search{width:20px;}
 
+#pagination a{padding:5px;
+			font-weight: bold;
+			text-decoration-line: none;
+			padding-right:10px;
+			padding-left:10px;
+			color:#8E35EF;
+			border:3px solid #8E35EF; 
+			border-radius:5px;}
+
+#pagination span {cursor: pointer; 
+				padding:5px; 
+				background:white;}
+				
+#pagination .active {background:#8E35EF; 
+					color:white;}
+
 #btnplus{width:800px;
 		text-align:right;
 		margin-bottom:50px;}

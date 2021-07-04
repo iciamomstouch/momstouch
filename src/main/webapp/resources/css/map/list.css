@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+#mimg{margin-bottom:30px;}
+
+#btnmy{width:100px;
+	  background:white;
+	  border: 3px solid #0080FF;
+	  border-radius:5px;
+	  color:#0080FF;
+	  font-size:15px;
+	  font-weight:bold; 
+	  cursor: pointer;}
+#btnmy:hover{background:#0080FF;
+			color:white;}	  
+
+#btnPostpartumcareCenter{width:100px;
+	  background:white;
+	  border: 3px solid #F781BE;
+	  border-radius:5px;
+	  color:#F781BE;
+	  font-size:15px;
+	  font-weight:bold; 
+	  cursor: pointer;}
+#btnPostpartumcareCenter:hover{background:#F781BE;
+		color:white;}	  
+
+#btnObstetricsAndGynecology{width:100px;
+	  background:white;
+	  border: 3px solid #04B404;
+	  border-radius:5px;
+	  color:#04B404;
+	  font-size:15px;
+	  font-weight:bold; 
+	  cursor: pointer;}
+#btnObstetricsAndGynecology:hover{background:#04B404;
+								color:white;}	  
+
+#btnPublicHealth{width:100px;
+	  background:white;
+	  border: 3px solid #FE2E2E;
+	  border-radius:5px;
+	  color:#FE2E2E;
+	  font-size:15px;
+	  font-weight:bold; 
+	  cursor: pointer;}
+#btnPublicHealth:hover{background:#FE2E2E;
+					color:white;}	  

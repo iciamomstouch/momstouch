@@ -10,9 +10,9 @@ button{cursor: pointer;
 		border:none;
 		background:white;} 
 
-#tbl{border:5px solid black; 
+#tbl{border:5px solid #f2f2f2; 
 	border-radius:5px;
-	background:black;
+	background:#f2f2f2;
 	}
 #image{border-radius: 70%;
      overflow: hidden;}
@@ -28,13 +28,13 @@ button{cursor: pointer;
 	color:#8E35EF;}
 
 #mtel{text-align:left;
-	color:white;}
+	color:black;}
 
 #madd{text-align:left;
-	color:white;}
+	color:black;}
 
 #memail{text-align:left;
-		color:white;}
+		color:black;}
 		
 #btnShow1{width:150px;
 		padding:0px;
@@ -149,5 +149,51 @@ button{cursor: pointer;
 #tbl_keep2 td{text-align:center;
 		padding: 10px;
   		vertical-align: top;
-  		border-bottom: 1px solid #ccc;}	  		  													
+  		border-bottom: 1px solid #ccc;}
+  		
+#rtbl1{border-collapse: separate;
+ 	border-spacing: 1px;
+  	text-align: center;
+  	line-height: 1.5;
+  	border-top: 1px solid #ccc;
+  	margin : 20px 10px;}
+  	
+#rtbl1 tr:nth-child(2n+1){background-color: #F2F2F2;
+  					color:black;}  		  		 		
+ 		 
+#rtbl1 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;}
+  		
+  		
+#rtbl2{border-collapse: separate;
+ 	border-spacing: 1px;
+  	text-align: center;
+  	line-height: 1.5;
+  	border-top: 1px solid #ccc;
+  	margin : 20px 10px;}
+  	
+#rtbl2 tr:nth-child(2n+1){background-color: #F2F2F2;
+  					color:black;}  		  		 		
+ 		 
+#rtbl2 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;}
+  		
+#rtbl3{border-collapse: separate;
+ 	border-spacing: 1px;
+  	text-align: center;
+  	line-height: 1.5;
+  	border-top: 1px solid #ccc;
+  	margin : 20px 10px;}
+  	
+#rtbl3 tr:nth-child(2n+1){background-color: #F2F2F2;
+  					color:black;}  		  		 		
+ 		 
+#rtbl3 td{text-align:center;
+		padding: 10px;
+  		vertical-align: top;
+  		border-bottom: 1px solid #ccc;}	  			  			  			  		  													
 

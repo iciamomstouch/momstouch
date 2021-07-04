@@ -6,7 +6,7 @@ input[type=text]{font-size: 20px;
 				border:0 solid black;
 				text-align:left;}
 			
-.btnInsert{width:30px;}
+.btnInsert{width:30px;cursor: pointer;}
 
 hr {border-top: 1px dashed #bbb;}
 
@@ -15,7 +15,8 @@ hr {border-top: 1px dashed #bbb;}
 		font-weight:bold;
 		width:100px;}
 		
-#r_rat{text-align:left;}
+#r_rat{text-align:left;
+	   }
 #star04{text-align:left;}		
 		
 #r_rdate{text-align:left;
