@@ -26,4 +26,8 @@ public interface TradeDAO {
 	public User_keepVO keepRead(@Param("trade_bno")int trade_bno, @Param("user_id")String user_id) throws Exception;
 	public void keepInsert(User_keepVO vo) throws Exception;
 	public void keepUpdate(User_keepVO vo) throws Exception;
+	public String nextNum(int trade_bno) throws Exception;
+	public String preNum(int trade_bno) throws Exception;
+	public String maxNum() throws Exception;
+	public String minNum() throws Exception;
 }

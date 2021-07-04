@@ -172,6 +172,19 @@ public class RecipeController {
 		model.addAttribute("keep", dao.keepRead(recipe_bno, user_id));
 		model.addAttribute("vo", service.read(recipe_bno));
 		model.addAttribute("list", dao.getAttach(recipe_bno));
+		
+		String next = dao.nextNum(recipe_bno);
+		if(next!=null){
+			model.addAttribute("next", Integer.valueOf(next));
+		}
+		
+		String pre = dao.preNum(recipe_bno);
+		if(pre!=null){
+			model.addAttribute("pre", Integer.valueOf(pre));
+		}
+		
+		model.addAttribute("max", dao.maxNum());
+		model.addAttribute("min", dao.minNum());
 		model.addAttribute("pageName", "recipe/read.jsp");
 		return "index";
 	}

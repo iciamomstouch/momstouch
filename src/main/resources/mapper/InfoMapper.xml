@@ -77,5 +77,21 @@
 		order by info_bno desc
 		limit #{pageStart}, #{perPageNum}		
 	</select>
+	
+	<select id="nextNum" resultType="String">
+ 		select MIN(info_bno) from tbl_info where info_bno <![CDATA[>]]> #{info_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(info_bno) from tbl_info where info_bno <![CDATA[<]]> #{info_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(info_bno) from tbl_info
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(info_bno) from tbl_info
+ 	</select>
 		
 </mapper>

@@ -88,6 +88,26 @@ public class InfoDAOImpl implements InfoDAO{
 		map.put("user_id", user_id);		
 		return session.selectList(namespace + ".klist", map);
 	}
+
+	@Override
+	public String nextNum(int info_bno) throws Exception {		
+		return session.selectOne(namespace + ".nextNum", info_bno);
+	}
+
+	@Override
+	public String preNum(int info_bno) throws Exception {
+		return session.selectOne(namespace + ".preNum", info_bno);
+	}
+
+	@Override
+	public String maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
+	public String minNum() throws Exception {
+		return session.selectOne(namespace + ".minNum");
+	}
 	
 
 	

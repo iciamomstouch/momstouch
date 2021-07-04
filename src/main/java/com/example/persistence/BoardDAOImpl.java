@@ -101,5 +101,25 @@ public class BoardDAOImpl implements BoardDAO{
 		map.put("perPageNum", perPageNum);
 		map.put("user_id", user_id);		
 		return session.selectList(namespace + ".klist", map);
+	}
+
+	@Override
+	public String nextNum(int board_bno) throws Exception {		
+		return session.selectOne(namespace + ".nextNum", board_bno);
+	}
+
+	@Override
+	public String preNum(int board_bno) throws Exception {
+		return session.selectOne(namespace + ".preNum", board_bno);
+	}
+
+	@Override
+	public String maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
+	public String minNum() throws Exception {
+		return session.selectOne(namespace + ".minNum");
 	}	
 }

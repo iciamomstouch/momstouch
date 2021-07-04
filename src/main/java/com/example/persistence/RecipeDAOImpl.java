@@ -125,4 +125,24 @@ public class RecipeDAOImpl implements RecipeDAO{
 		map.put("user_id", user_id);		
 		return session.selectList(namespace + ".klist", map);
 	}
+
+	@Override
+	public String nextNum(int recipe_bno) throws Exception {
+		return session.selectOne(namespace + ".nextNum", recipe_bno);
+	}
+
+	@Override
+	public String preNum(int recipe_bno) throws Exception {
+		return session.selectOne(namespace + ".preNum", recipe_bno);
+	}
+
+	@Override
+	public String maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
+	public String minNum() throws Exception {
+		return session.selectOne(namespace + ".minNum");
+	}
 }

@@ -100,5 +100,21 @@
  		trade_keep=#{trade_keep}
  		where trade_bno=#{trade_bno} and user_id=#{user_id}
  	</update>
+ 	
+ 	<select id="nextNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade where trade_bno <![CDATA[>]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade where trade_bno <![CDATA[<]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade
+ 	</select>
 	
 </mapper>

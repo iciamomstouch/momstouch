@@ -104,7 +104,21 @@ public class BoardController {
 		String user_id = (String) session.getAttribute("user_id");
 		System.out.println("로그인아이디............" + user_id);
 		model.addAttribute("keep", dao.keepRead(board_bno, user_id));
-		model.addAttribute("vo", service.read(board_bno));		
+		model.addAttribute("vo", service.read(board_bno));
+		
+		String next = dao.nextNum(board_bno);
+		if(next!=null){
+			model.addAttribute("next", Integer.valueOf(next));
+		}
+		
+		String pre = dao.preNum(board_bno);
+		if(pre!=null){
+			model.addAttribute("pre", Integer.valueOf(pre));
+		}
+		
+		model.addAttribute("max", dao.maxNum());
+		model.addAttribute("min", dao.minNum());
+		
 		model.addAttribute("pageName", "board/read.jsp");
 		return "index";
 	}

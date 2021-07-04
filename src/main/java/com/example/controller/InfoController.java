@@ -104,6 +104,20 @@ public class InfoController {
 		System.out.println("로그인아이디............" + user_id);
 		model.addAttribute("keep", dao.keepRead(info_bno, user_id));
 		model.addAttribute("vo", service.read(info_bno));
+		
+		String next = dao.nextNum(info_bno);
+		if(next!=null){
+			model.addAttribute("next", Integer.valueOf(next));
+		}
+		
+		String pre = dao.preNum(info_bno);
+		if(pre!=null){
+			model.addAttribute("pre", Integer.valueOf(pre));
+		}
+		
+		model.addAttribute("max", dao.maxNum());
+		model.addAttribute("min", dao.minNum());
+		
 		model.addAttribute("pageName", "info/read.jsp");		
 		return "index";
 	}

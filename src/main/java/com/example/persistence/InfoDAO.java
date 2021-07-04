@@ -21,4 +21,8 @@ public interface InfoDAO {
 	public void keepInsert(User_keepVO vo) throws Exception;
 	public void keepUpdate(User_keepVO vo) throws Exception;
 	public List<InfoVO> klist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("user_id")String user_id) throws Exception;
+	public String nextNum(int info_bno) throws Exception;
+	public String preNum(int info_bno) throws Exception;
+	public String maxNum() throws Exception;
+	public String minNum() throws Exception;
 }

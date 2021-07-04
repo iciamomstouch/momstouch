@@ -13,6 +13,9 @@
 		<if test="searchType == 'recipe_writer'">
 			where recipe_writer like concat('%', #{keyword}, '%')
 		</if>
+		<if test="searchType == 'recipe_category'">
+			where recipe_category like concat('%', #{keyword}, '%')
+		</if>		
 		order by recipe_bno desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
@@ -27,6 +30,9 @@
 		</if>		
 		<if test="searchType == 'recipe_writer'">
 			where recipe_writer like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'recipe_category'">
+			where recipe_category like concat('%', #{keyword}, '%')
 		</if>
 	</select>
 	
@@ -107,5 +113,21 @@
 		order by recipe_bno desc
 		limit #{pageStart}, #{perPageNum}		
 	</select>
+	
+	<select id="nextNum" resultType="String">
+ 		select MIN(recipe_bno) from tbl_recipe where recipe_bno <![CDATA[>]]> #{recipe_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(recipe_bno) from tbl_recipe where recipe_bno <![CDATA[<]]> #{recipe_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(recipe_bno) from tbl_recipe
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(recipe_bno) from tbl_recipe
+ 	</select>	
 	
 </mapper>

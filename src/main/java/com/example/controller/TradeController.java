@@ -146,6 +146,19 @@ public class TradeController {
 		model.addAttribute("keep", dao.keepRead(trade_bno, user_id));
 		model.addAttribute("vo", service.read(trade_bno));
 		model.addAttribute("list", dao.getAttach(trade_bno));
+		
+		String next = dao.nextNum(trade_bno);
+		if(next!=null){
+			model.addAttribute("next", Integer.valueOf(next));
+		}
+		
+		String pre = dao.preNum(trade_bno);
+		if(pre!=null){
+			model.addAttribute("pre", Integer.valueOf(pre));
+		}
+		
+		model.addAttribute("max", dao.maxNum());
+		model.addAttribute("min", dao.minNum());
 		model.addAttribute("pageName", "trade/read.jsp");
 		return "index";
 	}

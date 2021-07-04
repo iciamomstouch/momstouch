@@ -23,5 +23,8 @@ public interface BoardDAO {
 	public User_keepVO keepRead(@Param("board_bno")int board_bno, @Param("user_id")String user_id) throws Exception;
 	public void keepInsert(User_keepVO vo) throws Exception;
 	public void keepUpdate(User_keepVO vo) throws Exception;
-	
+	public String nextNum(int board_bno) throws Exception;
+	public String preNum(int board_bno) throws Exception;
+	public String maxNum() throws Exception;
+	public String minNum() throws Exception;
 }
