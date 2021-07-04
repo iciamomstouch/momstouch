@@ -29,8 +29,7 @@
 					</c:if>
 					<c:if test="${vo.info_image!=null }">
 						<img src="/displayFile?fullName=${vo.info_image }" width=600 id="image"/>
-					</c:if>
-					<input type="file" name="file" style="display:none;"/>
+					</c:if>					
 				</td>
 			</tr>
 			<tr>
@@ -82,10 +81,6 @@
 		frm.action="delete";
 		frm.method="get";
 		frm.submit();
-	});
-
-	$("#image").on("click", function() {
-		$(frm.file).click();
 	});
 
 	//이미지 미리보기

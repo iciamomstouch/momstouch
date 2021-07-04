@@ -120,7 +120,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" width=100 class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
+			<td><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
 		</tr>
 		</table>
 		</div>

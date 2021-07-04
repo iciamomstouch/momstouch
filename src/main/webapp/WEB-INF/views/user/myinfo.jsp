@@ -6,8 +6,7 @@
 		<style>
 		#tbl3 {float:center;
 			  width:800px;
-			  overflow: hidden;}
-			
+			  overflow: hidden;}			
 		.box {width:130px;
 			height:210px;
 			padding:5px;
@@ -23,7 +22,35 @@
 				text-overflow: ellipsis;
 				white-space: nowrap;}
 		.price{text-align:left;}
-		.trawriter{text-align:left;}			
+		.trawriter{text-align:left;}
+		.rbox {width:230px;
+			  height:300px;
+			  padding:5px;
+			  margin:5px;
+			  margin-left:13px;
+			  background:white;
+			  color:black;
+			  float:left; 
+			  cursor: pointer;}
+		.rimg{text-align:center;
+			margin-bottom:5px;}
+		.rcate{width:30px;
+			   margin-left:5px;
+			   font-size:15px;
+			   color:#0080FF;
+			   text-align:left;}
+		.rtitle{width:200px;
+				margin-left:5px;
+				font-size:20px;
+				font-weight:bold;
+				text-align:left;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;}
+		.rwriter{text-align:left;
+				margin-left:5px;}
+		.ravg{text-align:left;
+		      vertical-align: middle;}			
 		</style>
 	</head>
 	
@@ -77,14 +104,14 @@
 		<tr class="title">
 			<th width=80>카테고리</th>
 			<th width=200>제목</th>
-			<th width=100>작성자</th>
+			<th width=100>조회수</th>
 			<th width=150>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">
 			<td>{{board_category}}</td>
 			<td>{{board_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{board_replycnt}}]</span></td>
-			<td>{{board_writer}}</td>
+			<td>{{board_viewcnt}}</td>
 			<td>{{board_regdate}}</td>
 		</tr>
 		{{/each}}
@@ -117,13 +144,13 @@
 		<script id="temp2" type="text/x-handlebars-template">
 		<tr class="title">			
 			<th width=200>제목</th>
-			<th width=100>작성자</th>
+			<th width=100>조회수</th>
 			<th width=150>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/question/read?question_bno={{question_bno}}'">			
 			<td>{{question_title}}</td>
-			<td>{{question_writer}}</td>
+			<td>{{question_viewcnt}}</td>
 			<td>{{question_regdate}}</td>
 		</tr>
 		{{/each}}
@@ -205,7 +232,9 @@
     </script>
     
     <div id="rlist"> 
-    <button id="btnHidden2">숨기기</button>  
+    <button id="btnHidden2">
+    	<img src='/resources/css/x-square.svg' class="xbtn">
+    </button>  
     <div id="rlist1">
 		<table id="rtbl1" width=800></table>
 		<script id="rtemp1" type="text/x-handlebars-template">		
@@ -276,7 +305,7 @@
 	</script>
 	
 	<div id="rlist3">
-		<table id="rtbl3"></table>		
+		<table id="rtbl3" width=800></table>		
 		<script id="rtemp3" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">			
@@ -332,6 +361,7 @@
 			<th width=50>카테고리</th>
 			<th width=200>제목</th>
 			<th width=80>작성자</th>
+			<th width=80>조회수</th>
 			<th width=150>작성일</th>
 		</tr>
 		{{#each list}}
@@ -339,11 +369,11 @@
 			<td>{{board_category}}</td>
 			<td>{{board_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{board_replycnt}}]</span></td>
 			<td>{{board_writer}}</td>
+			<td>{{board_viewcnt}}</td>
 			<td>{{board_regdate}}</td>
 		</tr>
 		{{/each}}
-		</script>
-		
+		</script>		
 
 	<br/>
 	
@@ -404,9 +434,50 @@
 	}	
 	</script>	
     
-    <div id="recipe_keep"></div>
+    <div id="recipe_keep">
+    	<table id="tbl_keep4" style="width:800px; margin:0px auto; margin-bottom:10px;"></table>
+		<script id="temp_keep4" type="text/x-handlebars-template">
+		<tr>
+			<td>
+			{{#each list}}
+			<div class="rbox" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">
+				<div class="rimg"><img src="/displayFile?fullName={{recipe_image}}" width=230/></div>
+				<div class="rcate">{{recipe_category}}</div>
+				<div class="rtitle">{{recipe_title}}</div>
+				<div class="rwriter">{{recipe_writer}}</div>
+				<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" width=150 class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
+			</div>
+			{{/each}}
+			</td>
+		</tr>
+		</script>
+		<script>
+		Handlebars.registerHelper("format", function(recipe_userRatingAvg){
+			var userRatingAvg = (Math.round(recipe_userRatingAvg));
+			return userRatingAvg;
+		})
+		</script>
+    </div>    
     
     <br/>
+    
+    <script>
+    getList4();
+    function getList4(){
+    	var user_id = "${vo.user_id }";
+		var page=1;
+		$.ajax({
+			type:"get",
+			url:"/recipe/klist.json",
+			dataType:"json",
+			data:{"page":page, "user_id":user_id},
+			success:function(result){
+				var temp=Handlebars.compile($("#temp_keep4").html());
+				$("#tbl_keep4").html(temp(result));
+			}
+		});
+    }
+    </script>
     
     <hr/>
     <h2>찜한 물건 보기</h2>

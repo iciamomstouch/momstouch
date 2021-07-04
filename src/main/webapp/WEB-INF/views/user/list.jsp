@@ -10,8 +10,6 @@
 	<title>회원관리</title>
 	<link rel="stylesheet" href="/resources/css/user/list.css"/>
 	<style>
-		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}
 		.row{cursor: pointer;}
 	</style>
 </head>
@@ -83,7 +81,7 @@
 		{{/each}}
 		</script>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 	
 </body>
 <script type="text/javascript">
@@ -119,9 +117,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

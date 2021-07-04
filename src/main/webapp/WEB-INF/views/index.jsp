@@ -33,7 +33,7 @@
 				</a>
 			</c:if>
 		</span>
-		<div id="weather" style="text-align:right;"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
+		<div id="weather" style="text-align:center;"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
 		<div id="divMenu">
 			<jsp:include page="menu.jsp"/>
 		</div>		

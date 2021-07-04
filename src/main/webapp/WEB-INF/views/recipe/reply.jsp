@@ -55,7 +55,7 @@
 			<tr class="row">
 				<td width=100 id="r_rer">{{recipe_replyer}}</td>
 				<td id="r_rat">
-					<img src="/resources/image/0{{recipe_userRating}}.png" class="star0{{recipe_userRating}}" width=100>
+					<img src="/resources/image/0{{recipe_userRating}}.png" class="star0{{recipe_userRating}}" style="vertical-align: middle; width:100px;">
 					{{recipe_userRating}}/5</td>			
 				<td width=300 id="r_date">{{recipe_replydate}}</td>
 				<td width=50><button class="btnDelete" recipe_rno="{{recipe_rno}}"

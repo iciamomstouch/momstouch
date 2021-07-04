@@ -9,8 +9,7 @@
 	<title>레시피</title>
 	<link rel="stylesheet" href="/resources/css/recipe/list.css"/>
 	<style>
-		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}	
+		
 		.box {width:230px;
 			  height:300px;
 			  padding:5px;
@@ -73,7 +72,7 @@
 		<div class="rcate">{{recipe_category}}</div>
 		<div class="rtitle">{{recipe_title}}</div>
 		<div class="rwriter">{{recipe_writer}}</div>
-		<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" width=150 class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
+		<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
 	</div>
 	{{/each}}
 	</td>
@@ -98,7 +97,7 @@
 		})
 	</script>
 
-	<div id="pagination" style="margin-top:5px;"></div>			
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>			
 </body>
 <script>
 	var page=1;
@@ -136,9 +135,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
@@ -171,9 +170,9 @@
 					if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 					for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 						if(i==page){
-							str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+							str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 						}else{
-							str += "[<a href='" + i +"'>" + i + "</a>] ";
+							str += "<a href='" + i +"'>" + i + "</a> ";
 						}					
 					}
 					if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

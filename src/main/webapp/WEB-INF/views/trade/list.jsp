@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="/resources/css/trade/list.css"/>
 	<style>
 		.row {cursor:pointer;}
-		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
-		#pagination .active {background:gray; color:white;}
+		
 	</style>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -55,7 +54,7 @@
 			</button>
 			<span id="total"></span>
 		</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script>
 var page=1;
@@ -92,9 +91,9 @@ function getList(){
 			if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 			for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 				if(i==page){
-					str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+					str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 				}else{
-					str += "[<a href='" + i +"'>" + i + "</a>] ";
+					str += "<a href='" + i +"'>" + i + "</a> ";
 				}					
 			}
 			if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
