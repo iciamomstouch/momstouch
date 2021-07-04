@@ -25,4 +25,9 @@
 	<delete id="deleteAll">
 		delete from recipe_reply where recipe_bno=#{recipe_bno}
 	</delete>
+	
+	<select id="read" resultType="com.example.domain.Recipe_replyVO">
+		select * from recipe_reply
+		where recipe_rno=#{recipe_rno}		
+	</select>
 </mapper>
