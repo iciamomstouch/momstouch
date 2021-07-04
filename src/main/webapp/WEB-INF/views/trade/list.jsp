@@ -26,12 +26,12 @@
 	<table id="tbl" width=800></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
-		<td>이미지</td>
-		<td>카테고리</td>
-		<td>제목</td>
-		<td>가격</td>
-		<td>작성자</td>
-		<td>작성일</td>
+		<th>이미지</th>
+		<th>카테고리</th>
+		<th>제목</th>
+		<th>가격</th>
+		<th>작성자</th>
+		<th>작성일</th>
 	</tr>
 	{{#each list}}
 	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
