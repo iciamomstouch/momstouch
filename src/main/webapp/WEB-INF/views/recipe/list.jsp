@@ -9,8 +9,7 @@
 	<title>레시피</title>
 	<link rel="stylesheet" href="/resources/css/recipe/list.css"/>
 	<style>
-		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}	
+		
 		.box {width:230px;
 			  height:300px;
 			  padding:5px;
@@ -55,15 +54,12 @@
 	    </p>
 
 	</div>
-	<div id="condition">
-			
-		<div>
-			<span><button id="btn01">산모</button></span>
-			<span><button id="btn02">초기</button></span>
-			<span><button id="btn03">중기</button></span>
-			<span><button id="btn04">후기</button></span>
-			<span><button id="btn05">완료기</button></span>
-		</div>
+	<div id="condition">		
+		<span><button class="btn01" value="산모">산모</button></span>
+		<span><button class="btn01" value="초기">초기</button></span>
+		<span><button class="btn01" value="중기">중기</button></span>
+		<span><button class="btn01" value="후기">후기</button></span>
+		<span><button class="btn01" value="완료기">완료기</button></span>		
 	</div>	
 	
 	<table id="tbl" style="width:800px; margin:0px auto; margin-bottom:10px;"></table>
@@ -76,7 +72,7 @@
 		<div class="rcate">{{recipe_category}}</div>
 		<div class="rtitle">{{recipe_title}}</div>
 		<div class="rwriter">{{recipe_writer}}</div>
-		<div class="ravg"><img src="/resources/image/00.png" width=150 class="star00"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
+		<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
 	</div>
 	{{/each}}
 	</td>
@@ -90,8 +86,8 @@
 		</select>
 		<input type="text" id="keyword" placeholder="검색어"/>
 		<button>
-				<img src="/resources/css/search.svg" class="search">
-			</button>
+			<img src="/resources/css/search.svg" id="btnSearch" class="search">
+		</button>
 		<span id="total"></span>
 	</div>
 	<script>
@@ -101,10 +97,11 @@
 		})
 	</script>
 
-	<div id="pagination" style="margin-top:5px;"></div>			
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>			
 </body>
 <script>
 	var page=1;
+	
 	getList();
 	
 	
@@ -138,9 +135,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
@@ -148,6 +145,42 @@
 			}
 		})
 	}
+	
+	$("#condition").on("click", "button", function(){		
+		page=1;
+		var keyword=$(this).val();
+		getList2();	
+		
+		function getList2(){
+			var searchType="recipe_category";		
+			$.ajax({
+				type:"get",
+				url:"list.json",
+				dataType:"json",
+				data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":9},
+				success:function(result){
+					var temp=Handlebars.compile($("#temp").html());
+					$("#tbl").html(temp(result));
+					$("#total").html("검색수 : " + result.pm.totalCount);
+					
+					//페이징 목록 출력
+					var str = "";
+					var prev = result.pm.startPage-1;
+					var next = result.pm.endPage+1;
+					if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
+					for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
+						if(i==page){
+							str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						}else{
+							str += "[<a href='" + i +"'>" + i + "</a>] ";
+						}					
+					}
+					if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
+					$("#pagination").html(str);
+				}
+			})
+		}
+	})	
 	
 	$("#pagination").on("click", "a", function(e){
 		e.preventDefault();

@@ -33,13 +33,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
-					<c:if test="${vo.board_image==null }">
-						<img src="http://placehold.it/600x600" width=600 id="image"/>
-					</c:if>
-					<c:if test="${vo.board_image!=null }">
-						<img src="/displayFile?fullName=${vo.board_image }" width=600 id="image"/>
-					</c:if>
-					<input type="file" name="file" style="display:none;"/>
+					<img src="/displayFile?fullName={{board_image}}" width=600 id="image"/>					
 				</td>
 			</tr>
 			<tr>
@@ -59,12 +53,12 @@
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
 			<button>
-				<img src="/resources/css/search.svg" class="search">
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
 			</button>
 			<span id="total"></span>
 		</div>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script type="text/javascript">
 	var page=1;
@@ -99,9 +93,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

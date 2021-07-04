@@ -22,15 +22,17 @@
 	<link rel="stylesheet" href="/resources/css/recipe/reply.css"/>	
 </head>
 <body>
+	<h1>[댓글 목록]</h1>
 	<div class="starRev">
-	<h2>별점주기</h2>
 		<span class="star" onClick="setStar(1)">★</span>
 	    <span class="star" onClick="setStar(2)">★</span>
 	    <span class="star" onClick="setStar(3)">★</span>
 	    <span class="star" onClick="setStar(4)">★</span>
-	    <span class="star" onClick="setStar(5)">★</span>
+	    <span class="star" onClick="setStar(5)">★</span>  
 	</div>
-	<hr/>    
+	
+	<hr/>
+	    
 	<div style="width: 780px; padding:10px; border-bottom: 3px solid black;"> 
 		<input type="hidden" size=10 id="recipe_replyer" value="${user_id}"/>
 		<input type="text" size=58 id="txtReply" placeholder="댓글를 기재해주세요."/>
@@ -40,32 +42,34 @@
 									vertical-align : bottom;
 									text-align:center;">
 			<img src="/resources/css/arrow-down-circle-fill.svg" class="btnInsert">
-		</button>
-			
+		</button>		
 	</div>
+	
 	<div id="rtbl" style="width:800px; margin: 0px auto; margin-top:30px;"></div>
-	<script id="rTemp" type="text/x-handlebars-template">
+	<script id="rTemp" type="text/x-handlebars-template">		
 		{{#each list}}
 		<table style="width:800px; 
 					border:5px solid #D8D8D8;
 					border-radius:5px;
 					background:#D8D8D8;">
-		<tr class="row">
-			<td width=100 id="r_rer">{{recipe_replyer}}</td>
-			<td id="r_rat">
-				<img src="/resources/image/04.png" class="star04" width=100>
-				{{recipe_userRating}}/5</td>			
-			<td width=300 id="r_date">{{recipe_replydate}}</td>
-			<td width=50><button class="btnDelete" recipe_rno="{{recipe_rno}}"
-				style="height:40px;
-				border:none;
-				background:#D8D8D8;
-				vertical-align : top;
-				text-align:center;">❌</button></td>
-		</tr>
-		<tr class="row">			
-			<td colspan=4 id="r_rely">{{recipe_reply}}</td>	
-		</tr>
+			<tr class="row">
+				<td width=100 id="r_rer">{{recipe_replyer}}</td>
+				<td id="r_rat">
+					<img src="/resources/image/0{{recipe_userRating}}.png" class="star0{{recipe_userRating}}" style="vertical-align: middle; width:100px;">
+					{{recipe_userRating}}/5</td>			
+				<td width=300 id="r_date">{{recipe_replydate}}</td>
+				<td width=50><button class="btnDelete" recipe_rno="{{recipe_rno}}"
+					style="height:40px;
+					border:none;
+					background:#D8D8D8;
+					vertical-align : top;
+					text-align:center;
+					cursor: pointer;">❌</button>
+				</td>
+			</tr>
+			<tr>			
+				<td colspan=4 id="r_rely">{{recipe_reply}}</td>	
+			</tr>
 		</table>
 		<br/>
 		{{/each}}
@@ -89,11 +93,11 @@
 	
 	$("#rtbl").on("click", ".row .btnDelete", function(){
 		var rno=$(this).attr("recipe_rno");
-		if(!confirm(recipe_rno + "을(를) 삭제하시겠습니까?")) return;
+		if(!confirm(rno + "을(를) 삭제하시겠습니까?")) return;
 		$.ajax({
 			type:"get",
 			url:"reply/delete",
-			data:{"recipe_rno":recipe_rno},
+			data:{"recipe_rno":rno},
 			success:function(){
 				alert("삭제 완료!");
 				getList();

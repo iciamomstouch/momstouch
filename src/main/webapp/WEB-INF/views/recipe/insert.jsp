@@ -14,7 +14,7 @@
 	<form name="frm" enctype="multipart/form-data">
 		<input type="hidden" name="recipe_bno" value="${bno}"/>
 		<input type="hidden" name="recipe_writer" value="${user_id}" />
-		<table class="tbl" style="width:800px; text-align:center; margin-bottom:10px;">
+		<table class="tbl" style="width:600px; margin: 0px auto; text-align:center; margin-bottom:10px; border-bottom: 1px solid #ccc;">
 			<tr>
 				<td colspan=4 id="id">${user_id}</td>
 			</tr>
@@ -34,7 +34,7 @@
 			<tr>
 				<td width=100 style="border-bottom: 1px solid #ccc; font-weight:bold;">대표 이미지</td>
 				<td width=300 colspan=3 id="img">
-					<img src="http://placehold.it/150x120" style="width:150px; text-align:center;" id="image"/>
+					<img src="http://placehold.it/150x120" style="width:150px; text-align:center; " id="image"/>
 					<input type="file" name="file" style="display:none;"/>
 				</td>
 			</tr>
@@ -58,14 +58,14 @@
 			<tr id="sublist">				
 	     		<td>
 	     			<input type="hidden" name="recipe_attach_no" value="1"/>
-	     			<input type="button" value="행추가" onclick="add_new_row('attach_list',0);"/>
+	     			<input type="button" value="➕" onclick="add_new_row('attach_list',0);" style="border:none; background:white; cursor: pointer;"/>
 	     		</td>
 	     		<td width=100>
 					<img src="http://placehold.it/150x120" width=150 id="image1"/>
 					<input type="file" name="files"/>
 				</td>
 				<td colspan="2">
-					<textarea rows="5" cols="40" name="recipe_attach_text"></textarea>
+					<textarea rows="7" cols="30" name="recipe_attach_text" placeholder="조리방법을 기재해주세요." style="font-size: 15px; border: none;"></textarea>
 				</td>
             	
 			</tr>
@@ -90,7 +90,7 @@
 	    tag +="<input type='file' name='files'/>\n";	   
 	    tag +="</td>\n";
 	    tag +="<td>\n";
-	  	tag +="<textarea rows='5' cols='52' name='recipe_attach_text'></textarea>"
+	  	tag +="<textarea rows='7' cols='30' name='recipe_attach_text' placeholder='조리방법을 기재해주세요.' style='font-size: 15px; border: none;'></textarea>"
 	  	tag +="</td>\n";
 	  	tag +="<td>\n";
 	    tag +="<button type='button'><img src='/resources/css/dash-circle-fill.svg'></button>\n";

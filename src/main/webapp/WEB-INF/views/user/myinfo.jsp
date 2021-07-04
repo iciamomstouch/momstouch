@@ -205,7 +205,9 @@
     </script>
     
     <div id="rlist"> 
-    <button id="btnHidden2">숨기기</button>  
+    <button id="btnHidden2">
+    	<img src='/resources/css/x-square.svg' class="xbtn">
+    </button>  
     <div id="rlist1">
 		<table id="rtbl1" width=800></table>
 		<script id="rtemp1" type="text/x-handlebars-template">		
@@ -276,7 +278,7 @@
 	</script>
 	
 	<div id="rlist3">
-		<table id="rtbl3"></table>		
+		<table id="rtbl3" width=800></table>		
 		<script id="rtemp3" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">			
@@ -419,8 +421,7 @@
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
 			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
 			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{trade_price}}원</div>
-			<div class="trawriter">{{trade_writer}}</div>
+			<div class="price">:{{trade_price}}원</div>			
 		</div>
 		{{/each}}
 		</td>

@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="/resources/css/trade/list.css"/>
 	<style>
 		.row {cursor:pointer;}
-		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
-		#pagination .active {background:gray; color:white;}
+		
 	</style>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -26,12 +25,12 @@
 	<table id="tbl" width=800></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
-		<td>이미지</td>
-		<td>카테고리</td>
-		<td>제목</td>
-		<td>가격</td>
-		<td>작성자</td>
-		<td>작성일</td>
+		<th>이미지</th>
+		<th>카테고리</th>
+		<th>제목</th>
+		<th>가격</th>
+		<th>작성자</th>
+		<th>작성일</th>
 	</tr>
 	{{#each list}}
 	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
@@ -51,11 +50,11 @@
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
 			<button>
-				<img src="/resources/css/search.svg" class="search">
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
 			</button>
 			<span id="total"></span>
 		</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script>
 var page=1;
@@ -92,9 +91,9 @@ function getList(){
 			if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 			for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 				if(i==page){
-					str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+					str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 				}else{
-					str += "[<a href='" + i +"'>" + i + "</a>] ";
+					str += "<a href='" + i +"'>" + i + "</a> ";
 				}					
 			}
 			if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

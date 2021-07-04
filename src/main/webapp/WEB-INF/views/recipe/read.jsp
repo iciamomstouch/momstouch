@@ -69,21 +69,35 @@
 					<tr>
 						<td colspan="2"><textarea style="border: none; font-size:20px;" rows="5" cols="40" >{{recipe_attach_text}}</textarea></td>
 						<td colspan="2" ><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=200/></td>	
-					</tr>										
+					</tr>
 					{{/each}}	
 					</script>
 				</div>					
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate"/>		
-		<input type="button" value="게시글삭제" id="btnDelete"/>
-		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
+		<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate" class="btn"/>		
+		<input type="button" value="게시글삭제" id="btnDelete" class="btn"/>
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList" class="btn"/>
+		<input type="button" value="이전" onClick="location.href='read?recipe_bno=${pre}'" class="btn" id="pre"/>
+		<input type="button" value="다음" onClick="location.href='read?recipe_bno=${next}'" class="btn" id="next"/>
 	</form>
 	 <hr/>
    <jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
+
+	//이전 다음 버튼 비활성화	
+	var max="${max}";
+	var min="${min}";
+	var num="${vo.recipe_bno}";
+	
+	if(min==num){
+		$("#pre").attr("disabled", true);
+	}
+	if(max==num){
+		$("#next").attr("disabled", true);
+	}
 	
 	//이미지 여러개 첨부
 	$("#btnImage").on("click", function(){
@@ -153,7 +167,8 @@
 								url:"keepUpdate",
 								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
 								success:function(){
-									alert("즐겨찾기 추가!");									
+									alert("즐겨찾기 추가!");
+									location.reload();
 								}
 							});
 						}else{
@@ -162,7 +177,8 @@
 								url:"keepUpdate",
 								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":0},
 								success:function(){
-									alert("즐겨찾기 삭제!");									
+									alert("즐겨찾기 삭제!");
+									location.reload();
 								}
 							});
 						}					
@@ -172,7 +188,8 @@
 							url:"keepInsert",
 							data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
 							success:function(){
-								alert("즐겨찾기 추가!");								
+								alert("즐겨찾기 추가!");
+								location.reload();
 							}
 						});
 					}

@@ -5,11 +5,14 @@
 <head>
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=99fc73c0b157f0cc943b0f40fbf34711&libraries=services,clusterer,drawing"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/map/list.css"/>
 	<title>지도</title>
 </head>
 <body>
-	<h1>지도</h1>
-	<input type=button value="내 위치 가져오기" onClick="getCurrentPosBtn()" />
+	<div id="mimg">
+		<img src="/resources/image/mapimg.png" class="mimg" width=800>
+	</div>
+	<input type=button value="현재 위치" onClick="getCurrentPosBtn()" id="btnmy" />
 	<input type=button value="산후조리원" id="btnPostpartumcareCenter" />
 	<input type=button value="산부인과" id="btnObstetricsAndGynecology"/>
 	<input type=button value="보건소" id="btnPublicHealth"/>

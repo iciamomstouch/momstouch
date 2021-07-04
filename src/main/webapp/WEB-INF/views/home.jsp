@@ -12,10 +12,9 @@
 			width: 800px;
 			height: 300px;}
 		.tratitle{overflow: hidden;
-				text-align:left;
-				text-overflow: ellipsis;
-				white-space: nowrap;}
-
+			text-align:left;				
+			text-overflow: ellipsis;
+			white-space: nowrap;}
 	</style>
  	<!-- 게시판1--------------------------------------------------------------- -->
 
@@ -121,7 +120,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><img src="/resources/image/04.png" width=100 class="star04"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
+			<td><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
 		</tr>
 		</table>
 		</div>

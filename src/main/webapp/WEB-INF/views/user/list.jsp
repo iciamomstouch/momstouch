@@ -10,8 +10,6 @@
 	<title>회원관리</title>
 	<link rel="stylesheet" href="/resources/css/user/list.css"/>
 	<style>
-		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}
 		.row{cursor: pointer;}
 	</style>
 </head>
@@ -44,9 +42,9 @@
 		<table style="width:550px;
 					height:180px;
 					margin: 0px auto;
-					border:5px solid #ccc;
+					border:5px solid #f2f2f2;
 					border-radius:5px; 
-					background:#ccc;
+					background:#f2f2f2;
 					color:black;
 					cursor: pointer;" 
 					onClick="location.href='/user/update?user_id={{user_id}}'">
@@ -83,7 +81,7 @@
 		{{/each}}
 		</script>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 	
 </body>
 <script type="text/javascript">
@@ -119,9 +117,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
