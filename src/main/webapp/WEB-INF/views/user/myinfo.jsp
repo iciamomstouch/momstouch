@@ -188,8 +188,7 @@
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
 			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
 			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{trade_price}}원</div>
-			<div class="trawriter">{{trade_writer}}</div>
+			<div class="price">:{{trade_price}}원</div>			
 		</div>
 		{{/each}}
 		</td>
