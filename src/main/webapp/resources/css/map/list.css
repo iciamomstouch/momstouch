@@ -33,7 +33,18 @@
 	  font-weight:bold; 
 	  cursor: pointer;}
 #btnObstetricsAndGynecology:hover{background:#04B404;
-								color:white;}	  
+								color:white;}
+#btnPediatrics{width:100px;
+	  background:white;
+	  border: 3px solid #D9B5FD;
+	  border-radius:5px;
+	  color:#D9B5FD;
+	  font-size:15px;
+	  font-weight:bold; 
+	  cursor: pointer;}
+#btnPediatrics:hover{background:#D9B5FD;
+								color:white;}
+									  
 
 #btnPublicHealth{width:100px;
 	  background:white;
