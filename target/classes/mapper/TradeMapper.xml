@@ -14,6 +14,20 @@
  		limit #{pageStart}, #{perPageNum}
  	</select>
  	
+ 	<select id="ulist" resultType="com.example.domain.TradeVO">
+ 		select * from tbl_trade
+ 		where trade_writer = #{trade_writer}
+ 		order by trade_bno desc
+ 		limit #{pageStart}, #{perPageNum} 		
+ 	</select>
+ 	
+ 	<select id="klist" resultType="com.example.domain.TradeVO">
+		select * from trade_keep
+		where user_id = #{user_id} and trade_keep=1	
+		order by trade_bno desc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+ 	
  	<select id="totalCount" resultType="int">
 		select count(*) from tbl_trade
 		<if test="searchType == 'trade_title'">
@@ -71,13 +85,40 @@
 		select max(trade_bno) from tbl_trade
 	</select>
 	
-	<update id="keepUpdate">
-		update tbl_trade
-	 	set trade_keep = case
-		 	when trade_keep= 0 then 1
-		 	when trade_keep= 1 then 0
-			else trade_keep
-			end
-		where trade_bno=#{trade_bno}
-	</update>
+	<select id="keepRead" resultType="com.example.domain.User_keepVO">
+ 		select * from tbl_user_keep
+ 		where trade_bno=#{trade_bno} and user_id=#{user_id}
+ 	</select>
+ 	
+ 	<insert id="keepInsert">
+ 		insert into tbl_user_keep(user_id, trade_bno, trade_keep)
+ 		values(#{user_id}, #{trade_bno}, #{trade_keep})
+ 	</insert>
+ 	 	
+ 	<update id="keepUpdate">
+ 		update tbl_user_keep set 
+ 		trade_keep=#{trade_keep}
+ 		where trade_bno=#{trade_bno} and user_id=#{user_id}
+ 	</update>
+ 	
+ 	<select id="nextNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade where trade_bno <![CDATA[>]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade where trade_bno <![CDATA[<]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade
+ 	</select>
+ 	
+ 	<select id="clist" resultType="com.example.domain.ChatVO">
+ 		select * from tbl_chat
+ 	</select>
+	
 </mapper>
