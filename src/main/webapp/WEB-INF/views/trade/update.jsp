@@ -109,7 +109,7 @@ var trade_bno=$(frm.trade_bno).val();
 	$(frm.files).on("change", function(){
 		var files=$(frm.files)[0].files;//파일을 여러개 선택할경우		
 		$.each(files, function(index, file){
-			var str = "<img src='" + URL.createObjectURL(file) + "'/>";
+			var str = "<img width=150 src='" + URL.createObjectURL(file) + "'/>";
 			$("#listFile").append(str);
 		});
 	});	

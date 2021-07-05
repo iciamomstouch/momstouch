@@ -15,6 +15,7 @@
 	<input type=button value="현재 위치" onClick="getCurrentPosBtn()" id="btnmy" />
 	<input type=button value="산후조리원" id="btnPostpartumcareCenter" />
 	<input type=button value="산부인과" id="btnObstetricsAndGynecology"/>
+	<input type=button value="소아과" id="btnPediatrics"/>
 	<input type=button value="보건소" id="btnPublicHealth"/>
 	<hr />
 
@@ -71,6 +72,13 @@ if (navigator.geolocation) {
         	var bounds = map.getBounds();
         	var latlon= new daum.maps.LatLng(lat, lon);
         	ps.keywordSearch('보건소', placesSearchCB, {bounds:bounds,location:latlon,sort:kakao.maps.services.SortBy.DISTANCE}); 
+        });
+        
+        $("#btnPediatrics").on("click",function(){
+        	removeMarker();
+        	var bounds = map.getBounds();
+        	var latlon= new daum.maps.LatLng(lat, lon);
+        	ps.keywordSearch('소아과', placesSearchCB, {bounds:bounds,location:latlon,sort:kakao.maps.services.SortBy.DISTANCE}); 
         });
             
       });

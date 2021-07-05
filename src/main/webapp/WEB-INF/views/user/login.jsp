@@ -9,19 +9,20 @@
     <div class="panel-heading"><h2 class="panel-title">LOG IN</h2></div>
     <div class="panel-body">
         <form id="login-form" name="frm">
-            <div style="margin-bottom:10px;">
-                <input type="text" name="user_id" class="form-control" placeholder="아이디 입력" value="user06"/>
-            </div>
-            <div style="margin-bottom:10px;">
-                <input type="password" name="user_pass" class="form-control" placeholder="비밀번호 입력" value="pass"/>
-            </div>
-            <div style="margin-bottom:10px;">
-            	<span><input type="checkbox" name="chkLogin"/>로그인 상태유지</span>
-            	<span><a href="insert"> [회원가입] </a></span>
-            </div>
-            <div style="margin-bottom:10px;">
-                <button type="submit" class="form-control btn btn-primary">로그인</button>
-             </div>
+            <table id="tbl" style="width:250px; margin-bottom:50px; margin:0px auto;">
+                <tr>
+                	<td width=150><input type="text" name="user_id" class="form-control" placeholder="아이디 입력" value="user06"/></td>
+                	<td rowspan=2 id="btnlog"><button type="submit" class="form-control btn btn-primary" id="btnlog">로그인</button></td>
+            	</tr>
+	            <tr>
+	                <td><input type="password" name="user_pass" class="form-control" placeholder="비밀번호 입력" value="pass"/></td>
+	            </tr>
+
+            	<tr>
+	            	<th style="text-align:left;"><input type="checkbox" name="chkLogin"/>로그인 상태유지</th>
+	            	<th><a href="insert"> 회원가입 </a></th>
+            	</tr>
+            </table>
         </form>
     </div>
 </div>   

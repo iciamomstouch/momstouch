@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="/resources/css/recipe/reply.css"/>	
 </head>
 <body>
-	<h1>[댓글 목록]</h1>
+	<h1>별점주기</h1>
 	<div class="starRev">
 		<span class="star" onClick="setStar(1)">★</span>
 	    <span class="star" onClick="setStar(2)">★</span>

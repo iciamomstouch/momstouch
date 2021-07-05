@@ -170,9 +170,9 @@
 					if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 					for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 						if(i==page){
-							str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+							str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 						}else{
-							str += "[<a href='" + i +"'>" + i + "</a>] ";
+							str += "<a href='" + i +"'>" + i + "</a> ";
 						}					
 					}
 					if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
