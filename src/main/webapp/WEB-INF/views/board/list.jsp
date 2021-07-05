@@ -80,7 +80,7 @@
 			type:"get",
 			url:"list.json",
 			dataType:"json",
-			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":10},
+			data:{"page":page, "keyword":keyword, "searchType":searchType, "perPageNum":5},
 			success:function(result){
 				var temp=Handlebars.compile($("#temp").html());
 				$("#tbl").html(temp(result));
