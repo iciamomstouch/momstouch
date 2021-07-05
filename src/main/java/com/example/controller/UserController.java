@@ -152,8 +152,14 @@ public class UserController {
 					response.addCookie(cookie);
 				}
 				session.setAttribute("user_id", vo.getUser_id());
+				session.setAttribute("user_type", vo.getUser_type());
+				session.setAttribute("user_nick", vo.getUser_nick());
 				String id = (String) session.getAttribute("user_id");
+				String type = (String) session.getAttribute("user_type");
+				String nick = (String) session.getAttribute("user_nick");
 				System.out.println("유저아이디................." +id);
+				System.out.println("유저타입.................." +type);
+				System.out.println("유저닉네임.................." + nick);
 				String path =(String)session.getAttribute("path");
 				if(path==null) path="/";			
 				map.put("path", path);
@@ -186,5 +192,16 @@ public class UserController {
 		model.addAttribute("vo", dao.read(user_id));
 		model.addAttribute("pageName", "user/myinfo.jsp");
 		return "index";
+	}
+	
+	@RequestMapping("adminInsert")
+	public String adminInsert(Model model){
+		model.addAttribute("pageName", "user/adminInsert.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value="update2", method=RequestMethod.POST)
+	public void update2(String user_id, HttpSession session) throws Exception{		
+		dao.update2(user_id);				
 	}
 }

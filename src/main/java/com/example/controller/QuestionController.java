@@ -171,9 +171,9 @@ public class QuestionController {
 	@ResponseBody //데이터 자체를 리턴할때
 	public HashMap<String, Object> grpListJson(int question_grpno) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("list", dao.grpList(question_grpno));		
-		
+
 		return map;
 	}
 	

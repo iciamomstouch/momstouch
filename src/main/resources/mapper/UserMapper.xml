@@ -36,12 +36,17 @@
 	</select>
 	
 	<insert id="insert">
-		insert into tbl_user(user_id, user_pass, user_name, user_email, user_address, user_tel, user_image, user_nick)
-		values(#{user_id}, #{user_pass}, #{user_name}, #{user_email}, #{user_address}, #{user_tel}, #{user_image}, #{user_nick})
+		insert into tbl_user(user_id, user_pass, user_name, user_email, user_address, user_tel, user_image, user_nick,user_type)
+		values(#{user_id}, #{user_pass}, #{user_name}, #{user_email}, #{user_address}, #{user_tel}, #{user_image}, #{user_nick}, #{user_type})
 	</insert>
 	
 	<update id="update">
 		update tbl_user set user_name=#{user_name}, user_email=#{user_email}, user_address=#{user_address}, user_tel=#{user_tel}, user_image=#{user_image}, user_nick=#{user_nick}
+		where user_id=#{user_id}
+	</update>
+	
+	<update id="update2">
+		update tbl_user set user_join=0
 		where user_id=#{user_id}
 	</update>
 	

@@ -73,7 +73,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 	}
 
 	@Override
-	public List<QuestionVO> grpList(int question_grpno) throws Exception {		
+	public List<QuestionVO> grpList(int question_grpno) throws Exception {
 		return session.selectList(namespace + ".grpList", question_grpno);
 	}
 
