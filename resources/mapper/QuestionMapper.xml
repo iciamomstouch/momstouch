@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.QuestionMapper">
+
+	<select id="list" resultType="com.example.domain.QuestionVO">
+		select * from tbl_question
+		<if test="searchType == 'question_title'">
+			where question_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'question_content'">
+			where question_content like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'question_writer'">
+			where question_writer like concat('%', #{keyword}, '%')
+		</if>		
+		order by question_grpno desc, question_grpord asc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="ulist" resultType="com.example.domain.QuestionVO">
+		select * from tbl_question
+		where question_writer=#{question_writer}
+		order by question_grpno desc, question_grpord asc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+	
+	<select id="read" resultType="com.example.domain.QuestionVO">
+		select * from tbl_question where question_bno=#{question_bno}
+	</select>
+	 
+	<select id="totalCount" resultType="int">
+	 	select count(*) from tbl_question
+	 	<if test="searchType == 'question_title'">
+			where question_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'question_content'">
+			where question_content like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'question_writer'">
+			where question_writer like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	 
+	<insert id="insert">
+		insert into tbl_question(question_grpno, question_title, question_content, question_writer, question_image)
+		values(#{question_grpno}, #{question_title}, #{question_content}, #{question_writer}, #{question_image})
+	</insert>
+	
+	<insert id="insert2">
+		insert into tbl_question(question_grpno, question_grpord, question_depth, question_title, question_content, question_writer, question_image)
+		values(#{question_grpno}, #{question_grpord}, #{question_depth}, #{question_title}, #{question_content}, #{question_writer}, #{question_image})
+	</insert>
+	 
+	<delete id="delete">
+		delete from tbl_question where question_bno=#{question_bno}
+	</delete>
+	 
+	<update id="update">
+		update tbl_question set question_title=#{question_title}, question_content=#{question_content}, question_image=#{question_image}, question_updatedate=now()
+		where question_bno=#{question_bno}
+	</update>
+	
+	<update id="updateViewCnt">
+ 		update tbl_question set question_viewcnt = question_viewcnt+1
+ 		where question_bno = #{question_bno}
+ 	</update>
+	
+	<select id="lastBno" resultType="int">
+		select max(question_bno) from tbl_question
+	</select>
+	 
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TradeMapper">
+
+ 	<select id="list" resultType="com.example.domain.TradeVO">
+ 		select * from tbl_trade
+ 		<if test="searchType == 'trade_title'">
+			where trade_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'trade_writer'">
+			where trade_writer like concat('%', #{keyword}, '%')
+		</if>
+ 		order by trade_bno desc
+ 		limit #{pageStart}, #{perPageNum}
+ 	</select>
+ 	
+ 	<select id="ulist" resultType="com.example.domain.TradeVO">
+ 		select * from tbl_trade
+ 		where trade_writer = #{trade_writer}
+ 		order by trade_bno desc
+ 		limit #{pageStart}, #{perPageNum} 		
+ 	</select>
+ 	
+ 	<select id="klist" resultType="com.example.domain.TradeVO">
+		select * from trade_keep
+		where user_id = #{user_id} and trade_keep=1	
+		order by trade_bno desc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+ 	
+ 	<select id="totalCount" resultType="int">
+		select count(*) from tbl_trade
+		<if test="searchType == 'trade_title'">
+			where trade_title like concat('%', #{keyword}, '%')
+		</if>		
+		<if test="searchType == 'trade_writer'">
+			where trade_writer like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	
+ 	<select id="read" resultType="com.example.domain.TradeVO">
+ 		select * from tbl_trade
+ 		where trade_bno=#{trade_bno}
+ 	</select>
+ 	
+ 	<update id="updateViewcnt">
+	 	update tbl_trade set trade_viewcnt=trade_viewcnt + 1 where trade_bno=#{trade_bno}
+	</update>
+	
+ 	<insert id="insert">
+ 		insert into tbl_trade(trade_title,trade_category,trade_content,trade_writer,trade_image,trade_price)
+ 		values(#{trade_title}, #{trade_category}, #{trade_content}, #{trade_writer},#{trade_image},#{trade_price})
+ 	</insert>
+ 	
+ 	 <delete id="delete">
+ 		delete from tbl_trade
+ 		where trade_bno=#{trade_bno}
+ 	</delete>
+ 	
+ 	<delete id="delAttach">
+		delete from trade_attach
+		where trade_bno=#{trade_bno}
+	</delete>
+
+	<delete id="delAttach2">
+		delete from trade_attach 
+		where trade_attach_image=#{trade_attach_image}
+	</delete>
+ 	
+ 	<update id="update">
+		update tbl_trade 
+		set trade_title=#{trade_title}, trade_category=#{trade_category}, trade_content=#{trade_content},trade_writer=#{trade_writer}, trade_image=#{trade_image}, trade_price=#{trade_price}, trade_updatedate=#{trade_updatedate}
+		where trade_bno=#{trade_bno}
+	</update>
+	
+	<insert id="addAttach">
+		insert into trade_attach(trade_attach_image, trade_bno) values(#{trade_attach_image}, #{trade_bno})
+	</insert>
+	
+	<select id="getAttach" resultType="com.example.domain.Trade_attachVO">
+		select * from trade_attach where trade_bno=#{trade_bno}
+	</select>
+	
+	<select id="lastBno" resultType="int">
+		select max(trade_bno) from tbl_trade
+	</select>
+	
+	<select id="keepRead" resultType="com.example.domain.User_keepVO">
+ 		select * from tbl_user_keep
+ 		where trade_bno=#{trade_bno} and user_id=#{user_id}
+ 	</select>
+ 	
+ 	<insert id="keepInsert">
+ 		insert into tbl_user_keep(user_id, trade_bno, trade_keep)
+ 		values(#{user_id}, #{trade_bno}, #{trade_keep})
+ 	</insert>
+ 	 	
+ 	<update id="keepUpdate">
+ 		update tbl_user_keep set 
+ 		trade_keep=#{trade_keep}
+ 		where trade_bno=#{trade_bno} and user_id=#{user_id}
+ 	</update>
+ 	
+ 	<select id="nextNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade where trade_bno <![CDATA[>]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade where trade_bno <![CDATA[<]]> #{trade_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(trade_bno) from tbl_trade
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(trade_bno) from tbl_trade
+ 	</select>
+ 	
+ 	<select id="clist" resultType="com.example.domain.ChatVO">
+ 		select * from tbl_chat
+ 	</select>
+	
+</mapper>
