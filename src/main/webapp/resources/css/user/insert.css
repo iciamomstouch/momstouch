@@ -1,28 +1,18 @@
 @CHARSET "UTF-8";
 
-#question_bno{display:none;}
+#tbl{border-collapse:separate;
+	border-spacing:20px;
+     margin:10px;}
 
-#id{width:150px;
-	text-align:left; 
-	font-size:20px;
-	font-weight:bold;}
+#tbl td{padding-top:10px;
+		padding-bottom:10px;
+		text-align: left;
+		vertical-align: middle;
+		border-bottom: 3px solid #ccc;}
+		
+#tbl th{border-left: 3px solid #8E35EF;}		
 
-
-#title{width:600px;
-	   text-align:left;
-       border-bottom: 1px solid #ccc;}
-       
-#img{border-bottom: 1px solid #ccc;
-	padding-bottom:5px;
-	text-align:left;
-	cursor: pointer;}
-	
-#content{width:600px;
-		 font-size: 15px;
-         border-bottom: 1px solid #ccc;}		
-			
-
-#btnUpdate{width:100px;
+#btnInsert{width:100px;
 		border:5px solid black; 
 		border-radius:5px; 
 		background:black; 
@@ -31,7 +21,7 @@
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
-#btnUpdate:hover{width:100px;
+#btnInsert:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
 		background:#8E35EF; 
@@ -39,7 +29,7 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}		
+		cursor: pointer;}
 		
 #btnReset{width:100px;
 		border:5px solid black; 
@@ -51,9 +41,9 @@
 		font-weight:bold; 
 		cursor: pointer;}
 #btnReset:hover{width:100px;
-		border:5px solid red; 
+		border:5px solid #8E35EF; 
 		border-radius:5px; 
-		background:red; 
+		background:#8E35EF; 
 		color:white;
 		padding:0px 3px 0px 3px;
 		font-size:15px;
@@ -68,7 +58,7 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}												
+		cursor: pointer;}
 #btnList:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
@@ -77,4 +67,23 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
+		cursor: pointer;}	
+		
+#btnDel{width:100px;
+		border:5px solid black; 
+		border-radius:5px; 
+		background:black; 
+		color:#8E35EF;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
 		cursor: pointer;}
+#btnDel:hover{width:100px;
+		border:5px solid red; 
+		border-radius:5px; 
+		background:red; 
+		color:white;
+		padding:0px 3px 0px 3px;
+		font-size:15px;
+		font-weight:bold; 
+		cursor: pointer;}					

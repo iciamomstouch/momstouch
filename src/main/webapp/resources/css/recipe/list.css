@@ -4,6 +4,28 @@
 
 h3{text-align:left;}
 
+#pagination a{padding:5px;
+			font-weight: bold;
+			text-decoration-line: none;
+			padding-right:10px;
+			padding-left:10px;
+			color:#8E35EF;
+			border:3px solid #8E35EF; 
+			border-radius:5px;}
+
+#pagination span {cursor: pointer; 
+				padding:5px; 
+				background:white;}
+				
+#pagination .active {background:#8E35EF; 
+					color:white;} 
+
+button{height:30px;
+		border:none;
+		background:white;
+		text-align:center;}		
+.search{width:20px;} 
+
 #tip{width:800px;
 	float:center;
 	text-align:center;
@@ -12,15 +34,12 @@ h3{text-align:left;}
 	border-radius:5px;}
 	
 #atitle{text-align:center;
-		font-weight:bold;}	
+		font-weight:bold;}  			
 
 #tbl {border-collapse: separate;
   		border-spacing: 1px;
   		text-align: center;
   		line-height: 1.5;
-  		border-top: 1px solid #ccc;
-  		overflow: hidden;
-  		text-overflow: ellipsis;
   		margin : 20px 10px;} 		
  		 
 #tbl td{text-align:center;
@@ -29,6 +48,7 @@ h3{text-align:left;}
   		border-bottom: 1px solid #ccc;
   		overflow: hidden;
   		text-overflow: ellipsis;
+  		white-space: nowrap;
   		font-size:15px;
   		cursor: pointer;}
   		
@@ -52,11 +72,13 @@ h3{text-align:left;}
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}		
+		cursor: pointer;}	
+		
+			
 
 #condition{margin-top:10px;}
 
-#btn01{width:100px;
+.btn01{width:100px;
 		border:5px solid black; 
 		border-radius:5px; 
 		background:black; 
@@ -66,7 +88,7 @@ h3{text-align:left;}
 		font-weight:bold; 
 		cursor: pointer;}
 		
-#btn01:hover{width:100px;
+.btn01:hover{width:100px;
 		border:5px solid #8E35EF; 
 		border-radius:5px; 
 		background:#8E35EF; 
