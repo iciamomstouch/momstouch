@@ -71,12 +71,14 @@ hr{width:800px;}
 	  
 #list4{width:800px;}
 	   
-#temp4{
+#tbl4{
 	 padding:10px;
-	 text-align:center;
+	 text-align:left;
 	 box-shadow: 10px 5px 5px gray;
 	 margin-top:50px;
 	 margin-bottom:50px;}
+	 
+#tbl4 td{text-align:left;}	 
 	 	   
 	  	
 #tbl5 {border-collapse: separate;

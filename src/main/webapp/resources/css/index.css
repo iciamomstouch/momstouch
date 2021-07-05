@@ -16,7 +16,11 @@
 		margin:0px auto;
 		border-top:1px solid gray;}
 		
-.login{	width:50px;
+.iogid{width:100px;
+      vertical-align: middle;
+      padding-left:100px;}
+		
+.login-icon{width:40px;
 		heigth:50px;
  	    position: absolute;
     	margin:0px auto;
@@ -24,8 +28,9 @@
     	background-repeat: no-repeat;
     	background-position: center;
     	cursor: pointer;
-    	margin-left:130px;}
-.logout{width:50px;
+    	}
+.logout-icon{width:40px;
+		float:right;
 		heigth:50px;
  	    position: absolute;
     	margin:0px auto;
@@ -33,18 +38,21 @@
     	background-repeat: no-repeat;
     	background-position: center;
     	cursor: pointer;
-    	margin-left:130px;}    	
+    	}    	
 
-#login{width:150px;}
+#login{width:300px;}
 
 .logo{width:150px;
 	heigth:50px;
+	padding-right:200px;
+	padding-left:300px;
 	margin: 0px auto;
 	cursor: pointer;}
 		
 .btnside {
     width: 80px;
     height: 50px;
+    
     position: absolute;
     margin:0px auto;
     top: 0px;
