@@ -47,13 +47,13 @@
 				<td  colspan="2" id="rtitle">${vo.recipe_title }</td>
 			</tr>			
 			<tr>
-				<td colspan="2" id="rcont1">${vo.recipe_content }</td>
+				<td colspan="2" id="rcont1"><div id=cont1 width=100>내용</div>${vo.recipe_content }</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="rcont2">${vo.recipe_ingre }</td>
+				<td colspan="2" id="rcont2"><div id=cont2 width=100>재료</div>${vo.recipe_ingre }</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="rcont3">${vo.recipe_seasoning }</td>
+				<td colspan="2" id="rcont3"><div id=cont3 width=100>양념장</div>${vo.recipe_seasoning }</td>
 			</tr>			
 			<tr>
 				<td colspan="2" id="rno">조리순서</td>
@@ -76,8 +76,10 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate" class="btn"/>		
-		<input type="button" value="게시글삭제" id="btnDelete" class="btn"/>
+		<c:if test="${user_type == 'admin' }">
+			<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate" class="btn"/>		
+			<input type="button" value="게시글삭제" id="btnDelete" class="btn"/>
+		</c:if>
 		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList" class="btn"/>
 		<input type="button" value="이전" onClick="location.href='read?recipe_bno=${pre}'" class="btn" id="pre"/>
 		<input type="button" value="다음" onClick="location.href='read?recipe_bno=${next}'" class="btn" id="next"/>

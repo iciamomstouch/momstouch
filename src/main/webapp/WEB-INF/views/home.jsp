@@ -109,10 +109,10 @@
 		<script id="temp4" type="text/x-handlebars-template">
 		{{#each list}}
 		<div class="swiper-slide">
-		<table>
+		<table id="tbl4" style="width:600px; height: 250px; margin: 0px auto;">
 		<tr class="recipe_box" onClick="location.href='recipe/read?recipe_bno={{recipe_bno}}'">
-			<td rowspan="3"><img src="/displayFile?fullName={{recipe_image}}" width=300/></td>
-			<td style="width:300px;font-size:20px; padding-left:10px;">:{{recipe_category}}</td>
+			<td rowspan="3"><img src="/displayFile?fullName={{recipe_image}}" width=300 height=250/></td>
+			<td style="width:300px;font-size:20px; padding-left:10px; color:#0080FF;">:{{recipe_category}}</td>
 		</tr>
 		<tr>
 			<td style="width:300px; font-weight:bold; font-size:30px; text-overflow: ellipsis; padding-left:10px;">

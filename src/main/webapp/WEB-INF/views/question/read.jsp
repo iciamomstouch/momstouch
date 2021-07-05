@@ -45,7 +45,7 @@
 	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
 	 
-	 <div id="list">
+	  <div id="list">
 		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">						
@@ -64,7 +64,7 @@
 		{{/each}}
 		</script>
 	</div>
-	 
+	
 </body>
 <script>
 	//답글 출력
@@ -82,7 +82,7 @@
 			}
 		});
 	}
-	
+
 	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;

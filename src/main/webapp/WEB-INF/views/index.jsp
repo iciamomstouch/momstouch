@@ -18,23 +18,24 @@
 		</div>
 		<div class="btnside"></div>
 		
-		<span><img src="/resources/image/logo.png" class="logo" onClick="location.href='/'"/></span>
-		
-		<span class="login">
-			<c:if test="${user_id != null }">
-				<span class="logid" onClick="location.href='/user/myinfo?user_id=${user_id}'">${user_id}님</span>
-				<a href="/user/logout">
-					<img src="/resources/css/person-x-fill.svg" class="logout">
-				</a>
-			</c:if>
-			<c:if test="${user_id == null }">
-				<a href="/user/login">
-					<img src="/resources/css/person-fill.svg" class="login"/>
-				</a>
-			</c:if>
-		</span>
+		<div style="width:800px; overflow:hidden; margin:0px auto;">
+			<img src="/resources/image/logo.png" class="logo" onClick="location.href='/'"/ style="float:center;">
+			<div class="login" width=100 style="float:right;">
+				<c:if test="${user_id != null }">
+					<span class="logid" onClick="location.href='/user/myinfo?user_id=${user_id}'">${user_id}님</span>
+					<a href="/user/logout">
+						<img src="/resources/css/person-x-fill.svg" class="logout-icon">
+					</a>
+				</c:if>
+				<c:if test="${user_id == null }">
+					<a href="/user/login">
+						<img src="/resources/css/person-fill.svg" class="login-icon"/>
+					</a>
+				</c:if>
+			</div>
+		</div>
 		<div id="weather" style="text-align:center;"><span id="today"></span>&nbsp;&nbsp;<span id="daum_weather"></span></div>		
-		<div id="divMenu">
+		<div id="divMenu" class="ho">
 			<jsp:include page="menu.jsp"/>
 		</div>		
 	</div>
