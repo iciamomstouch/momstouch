@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+input[type=text]{font-size: 20px;
+				padding:5px;
+				background-color:transparent;
+				border:0 solid black;
+				text-align:left;}
+			
+.btnInsert{width:30px;cursor: pointer;}
+
+hr {border-top: 1px dashed #bbb;}
+
+#r_rer{text-align:left;
+		text-size:15px;
+		font-weight:bold;
+		width:100px;}
+		
+#r_rat{text-align:left;
+	   }
+#star04{text-align:left;}		
+		
+#r_rdate{text-align:left;
+		text-size:8px;
+		color:#A4A4A4;}
+		
+#r_date{text-align:right;}
+
+#r_rely{text-align:left;
+		padding-left:10px;}
