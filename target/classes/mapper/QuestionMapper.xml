@@ -68,5 +68,9 @@
 	<select id="lastBno" resultType="int">
 		select max(question_bno) from tbl_question
 	</select>
+	
+	<select id="grpList" resultType="com.example.domain.QuestionVO">
+		select * from tbl_question where question_grpno=#{question_grpno}
+	</select>
 	 
 </mapper>
