@@ -27,7 +27,7 @@
 			 <td colspan=2 id="content">
 			 	<textarea rows="10" cols="90" name="question_content" placeholder="내용을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left; padding-top:10px;">${vo.question_content }
 			 	
----------------------------------------------------------------------------------------------------------</textarea>
+------------------------------------------------------------------</textarea>
 			 </td>
 		 </tr>		
 		 <tr>

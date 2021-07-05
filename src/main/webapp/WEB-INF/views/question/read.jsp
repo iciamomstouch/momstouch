@@ -12,7 +12,7 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 	 
-	 <table class="tbl" style="width: 800px; margin-bottom:10px;">
+	 <table class="tbl" style="width: 600px; margin:0px auto; margin-bottom:10px;">
 		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
 		 </tr>
@@ -39,8 +39,10 @@
 			<td colspan="3" id="qcont">${vo.question_content}</td>
 		</tr>		 		
 	 </table>
-	 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 
-	 <input type="button" value="삭제" id="btnDelete">
+	 <c:if test="${user_type == 'admin' || user_id == vo.question_writer }">
+		 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 
+		 <input type="button" value="삭제" id="btnDelete">
+	 </c:if>
 	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
 	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>

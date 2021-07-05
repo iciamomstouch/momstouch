@@ -12,22 +12,39 @@
 	</style>
 </head>
 <body>
-	<div style="width: 800px; padding:10px;">
-		<input type="text" size=80 id="txtReply"/>
-		<input type="button" value="댓글입력" id="btnInsert">		
+	<div style="width: 780px; padding:10px; border-bottom: 3px solid black;">
+		<input type="text" size=55 id="txtReply" placeholder="댓글을 기재해주세요."/>
+		<button id="btnInsert" style="height:40px;
+									border:none;
+									background:white;
+									vertical-align : bottom;
+									text-align:center;">
+			<img src="/resources/css/arrow-down-circle-fill.svg" class="btnInsert">
+		</button>
 	</div>
-	<table id="rtbl"></table>
+	
+	<div id="rtbl" style="width:800px; margin: 0px auto; margin-top:30px;"></div>
 	<script id="rTemp" type="text/x-handlebars-template">
 		{{#each list}}
-		<tr class="row">
-			<td id="i_rno">{{info_rno}}</td>
+		<table style="width:800px; 
+					border:5px solid #D8D8D8;
+					border-radius:5px; 
+					background:#D8D8D8;">
+		<tr class="row">		
 			<td id="i_rer">{{info_replyer}}</td>
 			<td id="i_rdate">{{info_replydate}}</td>
-			<td id="idel"><button class="btnDelete" rno="{{info_rno}}">❌</button></td>
+			<td id="idel"><button class="btnDelete" rno="{{info_rno}}"
+				style="height:40px;
+				border:none;
+				background:#D8D8D8;
+				vertical-align : top;
+				text-align:center;">❌</button></td>
 		</tr>
 		<tr>
 			<td colspan="3" id="i_rely">{{info_reply}}</td>			
 		</tr>
+		</table>
+		<br/>
 		{{/each}}
 	</script>	
 </body>
@@ -66,7 +83,7 @@
 	//댓글 등록
 	$("#btnInsert").on("click", function(){
 		var reply=$("#txtReply").val();
-		var replyer="user08";
+		var replyer="${user_id}";
 		if(reply==""){
 			alert("내용을 입력하세요!");
 			return;

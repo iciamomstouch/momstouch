@@ -12,7 +12,7 @@
 	</style>
 </head>
 <body>
-	<div id="condition" style="margin-bottom:5px;">
+	<div id="condition" style="margin-bottom:10px;">
 		<div id="btninsert">
 			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>
@@ -33,20 +33,11 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
-					<c:if test="${vo.board_image==null }">
-						<img src="http://placehold.it/600x600" width=600 id="image"/>
-					</c:if>
-					<c:if test="${vo.board_image!=null }">
-						<img src="/displayFile?fullName=${vo.board_image }" width=800 id="image"/>
-					</c:if>
-					<input type="file" name="file" style="display:none;"/>
+					<img src="/displayFile?fullName={{board_image}}" width=600 id="image"/>					
 				</td>
 			</tr>
 			<tr>
-				<td id="breply">댓글수: {{board_replycnt}}</td>
-				<td id="bheart">
-					<img src="/resources/css/heart.svg" class="heart">
-				</td>
+				<td colspan="2" id="breply">댓글수: {{board_replycnt}}</td>				
 			</tr>
 			<tr>
 				<td colspan="2" id="btitle" onClick="location.href='read?board_bno={{board_bno}}'">{{board_title}}</td>
@@ -61,11 +52,13 @@
 				<option value="board_content">내용</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<button>
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
+			</button>
 			<span id="total"></span>
 		</div>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script type="text/javascript">
 	var page=1;
@@ -100,9 +93,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

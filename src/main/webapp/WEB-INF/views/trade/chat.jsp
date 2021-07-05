@@ -14,17 +14,14 @@
  		<div class="header">채 팅 방</div>
  		<div id="chat"></div>
  		<script id="temp" type="text/x-handlebars-template">
- 			<div class="{{printLeftRight sender}}">
- 				<div class="sender">{{sender}}</div>
- 				<div class="message">{{message}}</div>
- 				<div class="date">{{date}}</div>
- 			</div>
-
+ 			{{#each .}}
+				{{chat_content}}
+			{{/each}}
  		</script>
  		<script>
- 			var uid = "${sessionScope.user_id}";
+ 			var userid = "${sessionScope.user_id}";
  			Handlebars.registerHelper("printLeftRight", function(sender){
- 				if(uid != sender) { return "left"; }
+ 				if(userid != sender) { return "left"; }
  				else { return "right"; }
  			});
  		</script>
@@ -34,7 +31,7 @@
 	</div>
 </body>
 <script>
-	var uid="${sessionScope.user_id}";
+	var userid="${sessionScope.user_id}";
 	//메시지 보내기
 	$("#txtMessage").on("keydown", function(e){
 		if(e.keyCode==13 && !e.shiftKey){
@@ -50,6 +47,20 @@
 		}	
 	});
 	
+	getList
+	function getList(){
+		$.ajax({
+			type:"get",
+			url:"clist.json",
+			dataType:"json",
+			data:{"user_id":user_id},
+			success:function(result){
+				var temp=Handlebars.compile($("#temp").html());
+				$("#chat").html(temp(result));
+			}
+		});
+	}
+				
 	//웹소켓 정의
 	var sock=new SockJS("http://localhost:8088/echo");
 	sock.onmessage=onMessage;

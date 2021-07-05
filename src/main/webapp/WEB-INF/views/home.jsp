@@ -10,8 +10,11 @@
 	<style>
 		.swiper-container {
 			width: 800px;
-			height: 300px;
-		}
+			height: 300px;}
+		.tratitle{overflow: hidden;
+			text-align:left;				
+			text-overflow: ellipsis;
+			white-space: nowrap;}
 	</style>
  	<!-- 게시판1--------------------------------------------------------------- -->
 
@@ -22,10 +25,10 @@
 		<table id="tbl1" width=800></table>
 		<script id="temp1" type="text/x-handlebars-template">
 		<tr class="title">
-			<td width=100>카테고리</td>
-			<td width=200>제목</td>
-			<td width=100>작성자</td>
-			<td width=50>조회수</td>
+			<th width=100>카테고리</th>
+			<th width=200>제목</th>
+			<th width=100>작성자</th>
+			<th width=50>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='board/read?board_bno={{board_bno}}'">
@@ -56,9 +59,7 @@
 			}
 		});
 	}
-	</script>
-	
-	
+	</script>	
 	
 	<!-- 중고거래 게시판--------------------------------------------------------------- -->
 	<h2>중고거래</h2>
@@ -119,7 +120,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><img src="/resources/image/04.png" width=100 class="star04"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
+			<td><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></td>
 		</tr>
 		</table>
 		</div>
@@ -139,7 +140,7 @@
 	
 	<script>
 		Handlebars.registerHelper("format", function(recipe_userRatingAvg) {
-			var userRatingAvg = (Math.round(recipe_userRatingAvg * 10)) / 10;
+			var userRatingAvg = (Math.round(recipe_userRatingAvg));
 			return userRatingAvg;
 		});
 
@@ -195,9 +196,9 @@
 		<table id="tbl2" width=800></table>
 		<script id="temp2" type="text/x-handlebars-template">
 		<tr class="title">		
-			<td>제목</td>
-			<td>작성자</td>
-			<td>조회수</td>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='info/read?info_bno={{info_bno}}'">		

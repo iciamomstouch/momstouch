@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 	
 <!-- 로그인 form------------------------------ -->
-
+<head>
+	<link rel="stylesheet" href="/resources/css/user/login.css"/>
+</head>
 <div class="panel panel-primary" style="width:400px;margin:0px auto;">
-    <div class="panel-heading"><h2 class="panel-title">ShoingMall</h2></div>
+    <div class="panel-heading"><h2 class="panel-title">LOG IN</h2></div>
     <div class="panel-body">
         <form id="login-form" name="frm">
             <div style="margin-bottom:10px;">

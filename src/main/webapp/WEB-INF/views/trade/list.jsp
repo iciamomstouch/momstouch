@@ -9,9 +9,8 @@
 	<title>중고거래</title>
 	<link rel="stylesheet" href="/resources/css/trade/list.css"/>
 	<style>
-		.trade_title {cursor:pointer;}
-		#pagination span {cursor: pointer; color:black; border:1px solid gray; padding:5px; background:white;}
-		#pagination .active {background:gray; color:white;}
+		.row {cursor:pointer;}
+		
 	</style>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -26,23 +25,21 @@
 	<table id="tbl" width=800></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
-		<td>이미지</td>
-		<td>카테고리</td>
-		<td>제목</td>
-		<td>가격</td>
-		<td>작성자</td>
-		<td>작성일</td>
-		<td>keep</td>
+		<th>이미지</th>
+		<th>카테고리</th>
+		<th>제목</th>
+		<th>가격</th>
+		<th>작성자</th>
+		<th>작성일</th>
 	</tr>
 	{{#each list}}
-	<tr class="row">
+	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
 		<td><img src="/displayFile?fullName={{trade_image}}" width=100/></td>
 		<td>{{trade_category}}</td>
-		<td class="trade_title" onClick="location.href='read?trade_bno={{trade_bno}}'">{{trade_title}}</td>
+		<td>{{trade_title}}</td>
 		<td>{{trade_price}}</td>
 		<td>{{trade_writer}}</td>
 		<td>{{trade_regdate}}</td>
-		<td class="trade_keep"><img src={{printImage trade_keep}}></td>
 	</tr>
 	{{/each}}
 	</script>
@@ -52,23 +49,14 @@
 				<option value="trade_writer">작성자</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<button>
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
+			</button>
 			<span id="total"></span>
 		</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script>
-//keep 이미지
-Handlebars.registerHelper("printImage",function(trade_keep){
-	var src;
-	if(trade_keep==0){
-		src="/resources/css/heart.svg"; 
-	}else{
-		src="/resources/css/heart-fill.svg";
-	}
-	return src;
-	});
-	
 var page=1;
 getList();
 
@@ -103,9 +91,9 @@ function getList(){
 			if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 			for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 				if(i==page){
-					str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+					str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 				}else{
-					str += "[<a href='" + i +"'>" + i + "</a>] ";
+					str += "<a href='" + i +"'>" + i + "</a> ";
 				}					
 			}
 			if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";
@@ -118,18 +106,6 @@ $("#pagination").on("click", "a", function(e){
 	e.preventDefault();
 	page = $(this).attr("href");
 	getList();
-});
-
-//즐겨찾기
-$(".trade_keep").on("click", function(){
-	var trade_keep = $(this).attr("fullName");		
-	$.ajax({
-		type:"get",
-		url:"/keepUpdate",
-		data:{"trade_bno":trade_bno},
-		success:function(){
-		}
-	})
 });
       
 </script>

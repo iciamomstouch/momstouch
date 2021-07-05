@@ -5,19 +5,20 @@
 <head>
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=99fc73c0b157f0cc943b0f40fbf34711&libraries=services,clusterer,drawing"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/map/list.css"/>
 	<title>지도</title>
 </head>
 <body>
-	<h1>지도</h1>
-	<input type=button value="내 위치 가져오기" onClick="getCurrentPosBtn()" />
+	<div id="mimg">
+		<img src="/resources/image/mapimg.png" class="mimg" width=800>
+	</div>
+	<input type=button value="현재 위치" onClick="getCurrentPosBtn()" id="btnmy" />
 	<input type=button value="산후조리원" id="btnPostpartumcareCenter" />
 	<input type=button value="산부인과" id="btnObstetricsAndGynecology"/>
+	<input type=button value="소아과" id="btnPediatrics"/>
 	<input type=button value="보건소" id="btnPublicHealth"/>
 	<hr />
 
-	<p style="margin-top: -12px">
-		<b>Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.</b> 참고해주세요.
-	</p>
 	<div id="map" style="width: 100%; height: 500px;"></div>
 
 	<!--지도출력 -->
@@ -40,8 +41,7 @@ var ps = new kakao.maps.services.Places();
 //지도에 idle 이벤트를 등록합니다
 //kakao.maps.event.addListener(map, 'idle', searchPlaces);
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-    
+if (navigator.geolocation) {    
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
         
@@ -49,7 +49,7 @@ if (navigator.geolocation) {
             lon = position.coords.longitude; // 경도
         
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다          
         
         // 마커와 인포윈도우를 표시합니다
         displayMarker2(locPosition, message);
@@ -73,6 +73,13 @@ if (navigator.geolocation) {
         	var latlon= new daum.maps.LatLng(lat, lon);
         	ps.keywordSearch('보건소', placesSearchCB, {bounds:bounds,location:latlon,sort:kakao.maps.services.SortBy.DISTANCE}); 
         });
+        
+        $("#btnPediatrics").on("click",function(){
+        	removeMarker();
+        	var bounds = map.getBounds();
+        	var latlon= new daum.maps.LatLng(lat, lon);
+        	ps.keywordSearch('소아과', placesSearchCB, {bounds:bounds,location:latlon,sort:kakao.maps.services.SortBy.DISTANCE}); 
+        });
             
       });
     
@@ -83,50 +90,53 @@ if (navigator.geolocation) {
         
     displayMarker2(locPosition, message);
 }
-	function displayMarker2(locPosition, message) {
+
+function displayMarker2(locPosition, message) {
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent,
+        removable : iwRemoveable
+    });
+    
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, marker);
+    
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);      
+}    
 	
-	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({  
-	        map: map, 
-	        position: locPosition
-	    }); 
-	    
-	    var iwContent = message, // 인포윈도우에 표시할 내용
-	        iwRemoveable = true;
+function locationLoadSuccess(pos){
+    // 현재 위치 받아오기
+    var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+    map.panTo(currentPos);
+    // 마커 생성
+    var marker = new kakao.maps.Marker({
+        position: currentPos
+    });
+    // 기존에 마커가 있다면 제거
+    marker.setMap(null);
+    marker.setMap(map);
+};
 	
-	    // 인포윈도우를 생성합니다
-	    var infowindow = new kakao.maps.InfoWindow({
-	        content : iwContent,
-	        removable : iwRemoveable
-	    });
-	    
-	    // 인포윈도우를 마커위에 표시합니다 
-	    infowindow.open(map, marker);
-	    
-	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(locPosition);      
-	}    
-	
-	function locationLoadSuccess(pos){
-	    // 현재 위치 받아오기
-	    var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
-	    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
-	    map.panTo(currentPos);
-	    // 마커 생성
-	    var marker = new kakao.maps.Marker({
-	        position: currentPos
-	    });
-	    // 기존에 마커가 있다면 제거
-	    marker.setMap(null);
-	    marker.setMap(map);
-	};
-	function locationLoadError(pos){
-	    alert('위치 정보를 가져오는데 실패했습니다.');
-	};
-	// 위치 가져오기 버튼 클릭시
-	function getCurrentPosBtn(){
-	    navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
-	};
+function locationLoadError(pos){
+    alert('위치 정보를 가져오는데 실패했습니다.');
+};
+
+// 위치 가져오기 버튼 클릭시
+function getCurrentPosBtn(){
+    navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
+};
 //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
@@ -149,10 +159,17 @@ function displayMarker(place) {
         position: new kakao.maps.LatLng(place.y, place.x)
     });
     
-    // 마커에 클릭이벤트를 등록합니다
+    // 마커에 마우스이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '<br/>' + place.address_name + '</div>');
+        infowindow.open(map, marker); 
+    });
+    
+ 	// 마커에 클릭이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'click', function() {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.setContent(window.open(place.place_url));
         infowindow.open(map, marker); 
     });
     

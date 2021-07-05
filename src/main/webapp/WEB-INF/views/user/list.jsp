@@ -8,56 +8,80 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<title>회원관리</title>
-	<link rel="stylesheet" href="/resources/css/board.css"/>
+	<link rel="stylesheet" href="/resources/css/user/list.css"/>
 	<style>
-		#pagination a{text-decoration:none;color:green;}
-		#pagination .active{color:red;}
+		.row{cursor: pointer;}
 	</style>
 </head>
 <body>
-	<h1>[회원목록]</h1>
-	<div id="condition" style="margin-bottom:5px;">
+	<div id="condition" width="800" style="margin-bottom:30px;">
+		<div id="right">
+		<button onClick="location.href='adminInsert'" id="btnplus">
+				<img src="/resources/css/plus-circle-fill.svg" class="plus">
+		</button>
+		</div>
 		<div id="left">
 			<select id="searchType">
 				<option value="user_id">아이디</option>
 				<option value="user_name">이름</option>
 				<option value="user_nick">닉네임</option>
 			</select>
-			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<input type="text" id="keyword" placeholder="검색어를 입력해주세요" style="width:400px; font-size: 15px;background-color:transparent;border:0 solid black; border-bottom: 3px solid black; text-align:left;"/>
+			<button>
+				<img src="/resources/css/search.svg" class="search">
+			</button>
 			<span id="total"></span>
+			
 		</div>
-		<div id="right"></div>
 	</div>
-	<button onClick="location.href='insert'">회원등록</button>
+	
 	<div id="list">
-		<table id="tbl" border=1></table>
+		<div id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;"></div>
 		<script id="temp" type="text/x-handlebars-template">
-			<tr class="title">
-				<td width=100>아이디</td>
-				<td width=100>이름</td>
-				<td width=200>이메일</td>
-				<td width=200>전화번호</td>
-				<td width=200>주소</td>
-				<td width=100>닉네임</td>
-				<td width=100>이미지</td>
-			</tr>
 		{{#each list}}
-			<tr class="row" onClick="location.href='read?user_id={{user_id}}'">
-				<td>{{user_id}}</td>
-				<td>{{user_name}}</td>
-				<td>{{user_email}}</td>
-				<td>{{user_tel}}</td>
-				<td>{{user_address}}</td>
-				<td>{{user_nick}}</td>
-				<td>
-					<img src="/displayFile?fullName={{user_image}}" width=100/>
-				</td>
+		<table style="width:550px;
+					height:180px;
+					margin: 0px auto;
+					border:5px solid #f2f2f2;
+					border-radius:5px; 
+					background:#f2f2f2;
+					color:black;
+					cursor: pointer;" 
+					onClick="location.href='/user/update?user_id={{user_id}}'">
+			<tr class="row">
+				<tr>
+					<td rowspan=7><img src="/displayFile?fullName={{user_image}}" width=100 id="image"/></td>
+				</tr>
+				<tr>
+					<td id="uid" colspan=2>{{user_id}}</td>
+				</tr>
+				<tr>
+					<td width=30 ><img src="/resources/image/name.png" width=30 id="name"/></td>
+					<td id="uname">{{user_name}}</td>
+				</tr>
+				<tr>
+					<td width=30><img src="/resources/image/nick.png" width=30 id="nick"/></td>
+					<td id="unick">{{user_nick}}</td>
+				</tr>
+				<tr>
+					<td width=30><img src="/resources/image/phone.png" width=30 id="phone"/></td>
+					<td id="utel">{{user_tel}}</td>
+				</tr>
+				<tr>
+					<td width=30><img src="/resources/image/add.png" width=30 id="add"/></td>
+					<td id="uadd" width=300>{{user_address}}</td>
+				</tr>
+				<tr>
+					<td width=30><img src="/resources/image/email.png" width=30 id="email"/></td>
+					<td id="uemail">{{user_email}}</td>
+				</tr>
 			</tr>
+		</table>
+		<br/>
 		{{/each}}
 		</script>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 	
 </body>
 <script type="text/javascript">
@@ -93,9 +117,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

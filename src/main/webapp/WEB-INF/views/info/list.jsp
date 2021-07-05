@@ -12,30 +12,28 @@
 	</style>
 </head>
 <body>
-	<div id="condition" style="margin-bottom:5px;">
-		<div id="btninsert">
-			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
+	<c:if test="${user_type == 'admin' }">
+		<div id="condition" style="margin-bottom:10px;">
+			<div id="btninsert">
+				<button onClick="location.href='insert'" id="btninsert">WRITING</button>
+			</div>
 		</div>
-	</div>
+	</c:if>
 	
 	<div id="list">
 		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
-		<tr class="title">
-			<td width=60>글번호</td>			
-			<td width=200>제목</td>
-			<td width=100>작성자</td>
-			<td width=200>작성일</td>
-			<td width=60>댓글수</td>
-			<td width=60>조회수</td>
+		<tr class="title">						
+			<th width=400>제목</th>
+			<th width=100>작성자</th>
+			<th width=200>작성일</th>			
+			<th width=60>조회수</th>
 		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='read?info_bno={{info_bno}}'">
-			<td width=50>{{info_bno}}</td>			
-			<td width=200>{{info_title}}</td>
+		<tr class="row" onClick="location.href='read?info_bno={{info_bno}}'">						
+			<td width=200 style="text-align:left;">{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
 			<td width=100>{{info_writer}}</td>
-			<td width=200>{{info_regdate}}</td>
-			<td width=100>{{info_replycnt}}</td>
+			<td width=200>{{info_regdate}}</td>			
 			<td width=100>{{info_viewcnt}}</td>
 		</tr>
 		{{/each}}
@@ -46,11 +44,13 @@
 				<option value="info_content">내용</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
-			<input type="button" id="btnSearch" value="검 색"/>
+			<button>
+				<img src="/resources/css/search.svg" id="btnSearch" class="search">
+			</button>
 			<span id="total"></span>
 		</div>	
 	</div>
-	<div id="pagination" style="margin-top:5px;"></div>
+	<div id="pagination" style="margin-top:20px; margin-bottom:10px;"></div>
 </body>
 <script type="text/javascript">
 	var page=1;
@@ -85,9 +85,9 @@
 				if(result.pm.prev) str+= "<a href='" + prev + "'>◀</a>";
 				for(var i=result.pm.startPage; i<=result.pm.endPage; i++){
 					if(i==page){
-						str += "[<a class='active' href='" + i +"'>" + i + "</a>] ";
+						str += "<a class='active' href='" + i +"'>" + i + "</a> ";
 					}else{
-						str += "[<a href='" + i +"'>" + i + "</a>] ";
+						str += "<a href='" + i +"'>" + i + "</a> ";
 					}					
 				}
 				if(result.pm.next) str+= "<a href='" + next + "'>▶</a>";

@@ -33,7 +33,15 @@
 				</td>
 			</tr>			
 			<tr>
-				<td  colspan="2" id="rcate">${vo.recipe_category }</td>
+				<td id="rcate">${vo.recipe_category }</td>
+				<td id="bheart">
+					<c:if test="${keep.recipe_keep==1 }">
+						<img src="/resources/css/heart-fill.svg" class="heart">
+					</c:if>
+					<c:if test="${keep.recipe_keep!=1 }">
+						<img src="/resources/css/heart.svg" class="heart">
+					</c:if>					
+				</td>
 			</tr>
 			<tr>	
 				<td  colspan="2" id="rtitle">${vo.recipe_title }</td>
@@ -55,14 +63,12 @@
 					<input type="file" name="files" accept="image/*" multiple style="display:none;"/> 
 					<div id="listFile"></div>
 					<div id="attach">
-					<table id="attachFiles" style="margin:0 auto;"></table>
+					<table id="attachFiles" style="margin:0 auto; padding-top:30px;"></table>
 					<script id="temp" type="text/x-handlebars-template">
 					{{#each list}}
 					<tr>
-						<td colspan="2" ><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=200/></td>
-					</tr>
-					<tr>									
-						<td colspan="2"><textarea rows="8" cols="50" >{{recipe_attach_text}}</textarea></td>					
+						<td colspan="2"><textarea style="border: none; font-size:20px;" rows="5" cols="40" >{{recipe_attach_text}}</textarea></td>
+						<td colspan="2" ><img src="/displayFile?fullName={{recipe_bno}}/{{recipe_attach_image}}" width=200/></td>	
 					</tr>
 					{{/each}}	
 					</script>
@@ -70,14 +76,30 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate"/>		
-		<input type="button" value="게시글삭제" id="btnDelete"/>
-		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
+		<c:if test="${user_type == 'admin' }">
+			<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate" class="btn"/>		
+			<input type="button" value="게시글삭제" id="btnDelete" class="btn"/>
+		</c:if>
+		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList" class="btn"/>
+		<input type="button" value="이전" onClick="location.href='read?recipe_bno=${pre}'" class="btn" id="pre"/>
+		<input type="button" value="다음" onClick="location.href='read?recipe_bno=${next}'" class="btn" id="next"/>
 	</form>
 	 <hr/>
    <jsp:include page="reply.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
+
+	//이전 다음 버튼 비활성화	
+	var max="${max}";
+	var min="${min}";
+	var num="${vo.recipe_bno}";
+	
+	if(min==num){
+		$("#pre").attr("disabled", true);
+	}
+	if(max==num){
+		$("#next").attr("disabled", true);
+	}
 	
 	//이미지 여러개 첨부
 	$("#btnImage").on("click", function(){
@@ -121,39 +143,62 @@
 				$("#attachFiles").append(temp(data));				
 			}
 		})
-	}	
+	}
 	
-	/*첨부 파일들을 선택한경우
-	   $(frm.files).on("change", function(){
-	      var files=$(frm.files)[0].files;
-	      $.each(files, function(index, file){
-	         uploadFile(file);
-	      });
-	   });*/
-	   
-	/*첨부이미지 업로드
-	function uploadFile(file){
-      if(file == null) return;
-      var formData=new FormData();
-      formData.append("file", file);
-      formData.append("pcode", pcode);
-      $.ajax({
-         type:"post",
-         url:"/uploadFile",
-         processData:false,
-         contentType:false,
-         data:formData,
-         success:function(data){
-            var temp=Handlebars.compile($("#temp").html());
-            var tempData={"fullName":data};
-            $("#uploadFiles").append(temp(tempData));
-         }
-      });
-   }*/
-   
-   /*
-   $("#btnImage").on("click", function(){
-      $(frm.files).click();
-   });*/
+	//즐겨찾기 추가 삭제
+	$(".heart").on("click", function(){
+		var recipe_bno = "${vo.recipe_bno}";
+		var user_id = "${user_id}";
+		
+		if(user_id==null || user_id==""){
+			alert("로그인이 필요한 기능입니다.")
+		}else{
+			alert(recipe_bno + user_id);
+			$.ajax({
+				type:"get",
+				url:"keepRead.json",			
+				data:{"recipe_bno":recipe_bno, "user_id":user_id},			
+				success:function(result){				
+					var strUid=result.user_id;
+					var keep=result.recipe_keep;
+					alert(strUid + keep);
+					if(strUid == user_id){
+						if(keep == 0){						
+							$.ajax({
+								type:"post",
+								url:"keepUpdate",
+								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
+								success:function(){
+									alert("즐겨찾기 추가!");
+									location.reload();
+								}
+							});
+						}else{
+							$.ajax({
+								type:"post",
+								url:"keepUpdate",
+								data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":0},
+								success:function(){
+									alert("즐겨찾기 삭제!");
+									location.reload();
+								}
+							});
+						}					
+					}else{					
+						$.ajax({
+							type:"post",
+							url:"keepInsert",
+							data:{"recipe_bno":recipe_bno, "user_id":user_id, "recipe_keep":1},
+							success:function(){
+								alert("즐겨찾기 추가!");
+								location.reload();
+							}
+						});
+					}
+				}
+			});
+		}
+	})
+	
 </script>
 </html>

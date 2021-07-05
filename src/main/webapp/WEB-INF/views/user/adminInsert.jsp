@@ -20,7 +20,16 @@
 			<tr>
 				<th width=100>비밀번호</th>
 				<td width=300><input type="password" name="user_pass" size=30 placeholder="비밀번호를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
-			</tr>			
+			</tr>
+			<tr>
+				<th width=100>유저타입</th>
+				<td>
+					<select name="user_type">
+						<option value="admin">관리자</option>
+						<option value="general">일반유저</option>
+					</select>
+				</td>
+			</tr>				
 			<tr>
 				<th width=100>닉네임</th>
 				<td width=300><input type="text" name="user_nick" size=30 placeholder="닉네임을 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/></td>
