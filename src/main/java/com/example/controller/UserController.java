@@ -70,11 +70,24 @@ public class UserController {
 	}
 	
 	@RequestMapping("insert")
-	public void insert(){}
+	public String insert(Model model){
+		model.addAttribute("pageName", "user/insert.jsp");
+		return "index";
+	}
 	
-	@RequestMapping("read")
-	public void read(Model model, String user_id) throws Exception{
+	@RequestMapping("update")
+	public String read(Model model, String user_id) throws Exception{
 		model.addAttribute("vo", dao.read(user_id));
+		model.addAttribute("pageName", "user/update.jsp");
+		return "index";
+	}
+	
+	@RequestMapping("update2")
+	public String update2(Model model, String user_id, HttpSession session) throws Exception{
+		dao.update2(user_id);
+		model.addAttribute("pageName", "home.jsp");
+		session.invalidate(); //session정보 삭제
+		return "index";
 	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
@@ -147,8 +160,14 @@ public class UserController {
 					response.addCookie(cookie);
 				}
 				session.setAttribute("user_id", vo.getUser_id());
+				session.setAttribute("user_type", vo.getUser_type());
+				session.setAttribute("user_nick", vo.getUser_nick());
 				String id = (String) session.getAttribute("user_id");
+				String type = (String) session.getAttribute("user_type");
+				String nick = (String) session.getAttribute("user_nick");
 				System.out.println("유저아이디................." +id);
+				System.out.println("유저타입.................." +type);
+				System.out.println("유저닉네임.................." + nick);
 				String path =(String)session.getAttribute("path");
 				if(path==null) path="/";			
 				map.put("path", path);
@@ -173,6 +192,19 @@ public class UserController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
+		return "index";
+	}
+	
+	@RequestMapping("myinfo")
+	public String myinfo(Model model, String user_id) throws Exception{
+		model.addAttribute("vo", dao.read(user_id));
+		model.addAttribute("pageName", "user/myinfo.jsp");
+		return "index";
+	}
+	
+	@RequestMapping("adminInsert")
+	public String adminInsert(Model model){
+		model.addAttribute("pageName", "user/adminInsert.jsp");
 		return "index";
 	}
 }

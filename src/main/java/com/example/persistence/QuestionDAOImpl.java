@@ -1,5 +1,6 @@
 package com.example.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -60,6 +61,15 @@ public class QuestionDAOImpl implements QuestionDAO{
 	@Override
 	public void updateViewCnt(int question_bno) throws Exception {
 		session.update(namespace + ".updateViewCnt", question_bno);
+	}
+
+	@Override
+	public List<QuestionVO> ulist(int pageStart, int perPageNum, String question_writer) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("question_writer", question_writer);		
+		return session.selectList(namespace + ".ulist", map);
 	}
 
 }

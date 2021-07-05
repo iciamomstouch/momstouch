@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.example.domain.Criteria;
 import com.example.domain.RecipeVO;
 import com.example.domain.Recipe_attachVO;
+import com.example.domain.User_keepVO;
 
 public interface RecipeDAO {
 	public List<RecipeVO> list(Criteria cri) throws Exception;
@@ -24,4 +25,12 @@ public interface RecipeDAO {
 	public void delAttach(int recipe_bno) throws Exception;
 	public void delAttach2(@Param("recipe_bno") int recipe_bno, @Param("recipe_attach_no") int recipe_attach_no) throws Exception;
 	public void updateUserRating(int recipe_bno) throws Exception;
+	public User_keepVO keepRead(@Param("recipe_bno")int recipe_bno, @Param("user_id")String user_id) throws Exception;
+	public void keepInsert(User_keepVO vo) throws Exception;
+	public void keepUpdate(User_keepVO vo) throws Exception;
+	public List<RecipeVO> klist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("user_id")String user_id) throws Exception;
+	public String nextNum(int recipe_bno) throws Exception;
+	public String preNum(int recipe_bno) throws Exception;
+	public String maxNum() throws Exception;
+	public String minNum() throws Exception;
 }

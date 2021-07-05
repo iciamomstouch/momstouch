@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class RecipeVO {
+public class RecipeVO extends User_keepVO{
 	private int recipe_bno;
 	private String recipe_title;
 	private String recipe_category;

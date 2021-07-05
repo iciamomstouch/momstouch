@@ -52,4 +52,9 @@ public class UserDAOImpl implements UserDAO {
 		return session.selectOne(namespace + ".login", user_id);
 	}
 
+	@Override
+	public void update2(String user_id) throws Exception {
+		session.update(namespace + ".update2", user_id);	
+		
+	}
 }

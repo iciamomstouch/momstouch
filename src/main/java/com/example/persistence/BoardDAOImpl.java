@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
+import com.example.domain.User_keepVO;
 
 
 
@@ -19,8 +20,7 @@ public class BoardDAOImpl implements BoardDAO{
 	SqlSession session;
 	
 	@Override
-	public List<BoardVO> list(Criteria cri) throws Exception {
-		
+	public List<BoardVO> list(Criteria cri) throws Exception {		
 		return  session.selectList(namespace+ ".list", cri);
 	}
 
@@ -31,8 +31,7 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public BoardVO read(int board_bno) throws Exception {
-		
+	public BoardVO read(int board_bno) throws Exception {		
 		 return session.selectOne(namespace + ".read",board_bno);
 	}
 	
@@ -68,9 +67,59 @@ public class BoardDAOImpl implements BoardDAO{
 		session.update(namespace + ".updateReply", map);
 	}
 
-	
-	
-	
+	@Override
+	public List<BoardVO> ulist(int pageStart, int perPageNum, String board_writer) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("board_writer", board_writer);		
+		return session.selectList(namespace + ".ulist", map);
+	}
 
-	
+	@Override
+	public void keepInsert(User_keepVO vo) throws Exception {
+		session.insert(namespace + ".keepInsert", vo);
+	}
+
+	@Override
+	public void keepUpdate(User_keepVO vo) throws Exception {
+		session.update(namespace + ".keepUpdate", vo);
+	}
+
+	@Override
+	public User_keepVO keepRead(int board_bno, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("board_bno", board_bno);
+		map.put("user_id", user_id);
+		return session.selectOne(namespace + ".keepRead", map);
+	}
+
+	@Override
+	public List<BoardVO> klist(int pageStart, int perPageNum, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("user_id", user_id);		
+		return session.selectList(namespace + ".klist", map);
+	}
+
+	@Override
+	public String nextNum(int board_bno) throws Exception {		
+		return session.selectOne(namespace + ".nextNum", board_bno);
+	}
+
+	@Override
+	public String preNum(int board_bno) throws Exception {
+		return session.selectOne(namespace + ".preNum", board_bno);
+	}
+
+	@Override
+	public String maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
+	public String minNum() throws Exception {
+		return session.selectOne(namespace + ".minNum");
+	}	
 }

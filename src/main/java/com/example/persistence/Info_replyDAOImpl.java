@@ -40,4 +40,9 @@ public class Info_replyDAOImpl implements Info_replyDAO{
 		return session.selectOne(namespace + ".read", info_rno);
 	}
 
+	@Override
+	public List<Info_replyVO> ulist(String info_replyer) throws Exception {		
+		return session.selectList(namespace + ".ulist", info_replyer);
+	}
+
 }

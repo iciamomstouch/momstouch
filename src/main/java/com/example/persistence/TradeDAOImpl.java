@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.ChatVO;
 import com.example.domain.Criteria;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
@@ -74,12 +75,7 @@ public class TradeDAOImpl implements TradeDAO{
 	@Override
 	public int lastBno() throws Exception {		
 		return session.selectOne(namespace + ".lastBno");
-	}
-
-	@Override
-	public List<TradeVO> keep(int trade_bno) throws Exception {
-		return session.selectList(namespace + ".keep", trade_bno);
-	}
+	}	
 
 	@Override
 	public void delAttach(int trade_bno) throws Exception {
@@ -92,8 +88,63 @@ public class TradeDAOImpl implements TradeDAO{
 	}
 
 	@Override
-	public void keepUpdate(int trade_bno) throws Exception {
-		session.update(namespace + ".keepUpdate", trade_bno);
-		
+	public List<TradeVO> ulist(int pageStart, int perPageNum, String trade_writer) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("trade_writer", trade_writer);		
+		return session.selectList(namespace + ".ulist", map);
+	}
+
+	@Override
+	public User_keepVO keepRead(int trade_bno, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("trade_bno", trade_bno);
+		map.put("user_id", user_id);
+		return session.selectOne(namespace + ".keepRead", map);
+	}
+
+	@Override
+	public void keepInsert(User_keepVO vo) throws Exception {
+		session.insert(namespace + ".keepInsert", vo);
+	}
+
+	@Override
+	public void keepUpdate(User_keepVO vo) throws Exception {
+		session.update(namespace + ".keepUpdate", vo);
+	}
+
+	@Override
+	public List<TradeVO> klist(int pageStart, int perPageNum, String user_id) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		map.put("user_id", user_id);		
+		return session.selectList(namespace + ".klist", map);
+	}
+
+	@Override
+	public String nextNum(int trade_bno) throws Exception {
+		return session.selectOne(namespace + ".nextNum", trade_bno);
+	}
+
+	@Override
+	public String preNum(int trade_bno) throws Exception {
+		return session.selectOne(namespace + ".preNum", trade_bno);
+	}
+
+	@Override
+	public String maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
+	public String minNum() throws Exception {
+		return session.selectOne(namespace + ".minNum");
+	}
+
+	@Override
+	public List<ChatVO> clist(String user_id) throws Exception {
+		return session.selectList(namespace + ".clist", user_id);
 	}
 }

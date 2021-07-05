@@ -10,4 +10,5 @@ public interface Info_replyDAO {
 	public void insert(Info_replyVO vo) throws Exception;
 	public void delete(int info_rno) throws Exception;
 	public Info_replyVO read(int info_rno) throws Exception;
+	public List<Info_replyVO> ulist(String info_replyer) throws Exception;
 }

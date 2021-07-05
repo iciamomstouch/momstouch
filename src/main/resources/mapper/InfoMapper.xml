@@ -54,5 +54,44 @@
  		info_title=#{info_title}, info_content=#{info_content}, info_writer=#{info_writer}, info_image=#{info_image}
  		where info_bno=#{info_bno}
  	</update>
+ 	
+ 	<select id="keepRead" resultType="com.example.domain.User_keepVO">
+ 		select * from tbl_user_keep
+ 		where info_bno=#{info_bno} and user_id=#{user_id}
+ 	</select>
+ 	
+ 	<insert id="keepInsert">
+ 		insert into tbl_user_keep(user_id, info_bno, info_keep)
+ 		values(#{user_id}, #{info_bno}, #{info_keep})
+ 	</insert>
+ 	 	
+ 	<update id="keepUpdate">
+ 		update tbl_user_keep set 
+ 		info_keep=#{info_keep}
+ 		where info_bno=#{info_bno} and user_id=#{user_id}
+ 	</update>
+ 	
+ 	<select id="klist" resultType="com.example.domain.InfoVO">
+		select * from info_keep
+		where user_id = #{user_id} and info_keep=1	
+		order by info_bno desc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+	
+	<select id="nextNum" resultType="String">
+ 		select MIN(info_bno) from tbl_info where info_bno <![CDATA[>]]> #{info_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(info_bno) from tbl_info where info_bno <![CDATA[<]]> #{info_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(info_bno) from tbl_info
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(info_bno) from tbl_info
+ 	</select>
 		
 </mapper>

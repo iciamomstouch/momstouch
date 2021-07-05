@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.domain.ChatVO;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
+import com.example.domain.Trade_attachVO;
+import com.example.domain.User_keepVO;
 import com.example.persistence.TradeDAO;
 import com.example.service.TradeService;
 
@@ -41,15 +44,6 @@ public class TradeController {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", dao.getAttach(trade_bno));
 		//System.out.println(map.toString());
-		return map;
-	}
-	
-	@RequestMapping("keep")
-	@ResponseBody
-	public HashMap<String, Object> keep(int trade_bno) throws Exception{		
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("list", dao.keep(trade_bno));
-		System.out.println(map.toString());
 		return map;
 	}
 	
@@ -148,9 +142,25 @@ public class TradeController {
 	}
 	
 	@RequestMapping("read")
-	public String read(Model model, int trade_bno) throws Exception{		
+	public String read(Model model, int trade_bno, HttpSession session) throws Exception{
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("로그인아이디............" + user_id);
+		model.addAttribute("keep", dao.keepRead(trade_bno, user_id));
 		model.addAttribute("vo", service.read(trade_bno));
 		model.addAttribute("list", dao.getAttach(trade_bno));
+		
+		String next = dao.nextNum(trade_bno);
+		if(next!=null){
+			model.addAttribute("next", Integer.valueOf(next));
+		}
+		
+		String pre = dao.preNum(trade_bno);
+		if(pre!=null){
+			model.addAttribute("pre", Integer.valueOf(pre));
+		}
+		
+		model.addAttribute("max", dao.maxNum());
+		model.addAttribute("min", dao.minNum());
 		model.addAttribute("pageName", "trade/read.jsp");
 		return "index";
 	}
@@ -159,9 +169,26 @@ public class TradeController {
 	@ResponseBody
 	public HashMap<String, Object> listJson(Criteria cri, int perPageNum) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		cri.setPerPageNum(5);
+		cri.setPerPageNum(perPageNum);
 		
 		map.put("list", dao.list(cri));	
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
+	@RequestMapping("ulist.json")
+	@ResponseBody
+	public HashMap<String, Object> ulistJson(Criteria cri, String trade_writer) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.ulist(cri.getPageStart(), cri.getPerPageNum(), trade_writer));	
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
 		pm.setTotalCount(dao.totalCount(cri));
@@ -176,14 +203,6 @@ public class TradeController {
 	public String list(Model model, Criteria cri) throws Exception{
 		model.addAttribute("pageName", "trade/list.jsp");
 		return "index";
-	}
-	
-	@RequestMapping("tlist.json")
-	@ResponseBody //데이터 자체를 리턴할때
-	public List<TradeVO> tlistJson(Criteria cri) throws Exception{
-		List<TradeVO> array = new ArrayList<>();
-		array = dao.list(cri);
-		return array;
 	}
 	
 	@RequestMapping("deleteFile")
@@ -202,9 +221,66 @@ public class TradeController {
 		return "index";
 	}
 	
-	@RequestMapping("keepUpdate")
+	@RequestMapping("clist.json")
 	@ResponseBody
-	public void keepUpdate(int trade_bno) throws Exception{
-		dao.keepUpdate(trade_bno);
+	public List<ChatVO> clisst(String user_id) throws Exception{		
+		return dao.clist(user_id);
 	}
+	
+	@RequestMapping("keepRead.json")
+	@ResponseBody
+	public User_keepVO keepRead(int trade_bno, String user_id) throws Exception{		
+		return dao.keepRead(trade_bno, user_id);
+	}
+	
+	@RequestMapping(value="keepInsert", method=RequestMethod.POST)
+	@ResponseBody
+	public void keepInsert(User_keepVO vo) throws Exception{
+		dao.keepInsert(vo);
+	}
+	
+	@RequestMapping(value="keepUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public void keepUpdate(User_keepVO vo) throws Exception{
+		System.out.println(vo.toString());
+		dao.keepUpdate(vo);
+	}
+	
+	@RequestMapping("klist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public HashMap<String, Object> klistJson(Criteria cri, String user_id) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.klist(cri.getPageStart(), cri.getPerPageNum(), user_id));		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
+	
+	
+	//안드로이드 리스트
+	   @RequestMapping("alist.json")
+	   @ResponseBody //데이터 자체를 리턴할때
+	   public List<TradeVO> alistJson(Criteria cri) throws Exception{
+	      List<TradeVO> array = new ArrayList<>();
+	      array = dao.list(cri);
+	      return array;
+	   }
+	   
+	   //안드로이드 첨부파일
+	   @RequestMapping("agetAttach.json")
+	      @ResponseBody
+	      public List<Trade_attachVO> agetAttach(int trade_bno) throws Exception{      
+	         List<Trade_attachVO> array = new ArrayList<>();
+	         array = dao.getAttach(trade_bno);
+	         //System.out.println(map.toString());
+	         return array;
+	      }
 }

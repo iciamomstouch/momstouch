@@ -29,6 +29,14 @@ public class Info_replyController {
 		return map;
 	}
 	
+	@RequestMapping("uReply.json")
+	@ResponseBody
+	public HashMap<String,Object> ulist(String info_replyer) throws Exception{
+		HashMap<String,Object> map=new HashMap<String,Object>();		
+		map.put("list", dao.ulist(info_replyer));		
+		return map;
+	}
+	
 	@RequestMapping(value="reply/insert", method=RequestMethod.POST)
 	@ResponseBody
 	public void insert(Info_replyVO vo) throws Exception{		

@@ -10,4 +10,5 @@ public interface Recipe_replyDAO {
 	public void delete(int recipe_rno) throws Exception;
 	public void deleteAll(int recipe_bno) throws Exception;
 	public Recipe_replyVO read(int recipe_rno) throws Exception;
+	public List<Recipe_replyVO> ulist(String recipe_replyer) throws Exception;
 }

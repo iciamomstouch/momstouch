@@ -39,4 +39,9 @@ public class Board_replyDAOImpl implements Board_replyDAO{
 	public Board_replyVO read(int board_rno) throws Exception {		
 		return session.selectOne(namespace + ".read", board_rno);
 	}
+
+	@Override
+	public List<Board_replyVO> ulist(String board_replyer) throws Exception {
+		return session.selectList(namespace + ".ulist", board_replyer);
+	}
 }

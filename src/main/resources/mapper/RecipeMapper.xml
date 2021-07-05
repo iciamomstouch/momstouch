@@ -13,6 +13,9 @@
 		<if test="searchType == 'recipe_writer'">
 			where recipe_writer like concat('%', #{keyword}, '%')
 		</if>
+		<if test="searchType == 'recipe_category'">
+			where recipe_category like concat('%', #{keyword}, '%')
+		</if>		
 		order by recipe_bno desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
@@ -27,6 +30,9 @@
 		</if>		
 		<if test="searchType == 'recipe_writer'">
 			where recipe_writer like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'recipe_category'">
+			where recipe_category like concat('%', #{keyword}, '%')
 		</if>
 	</select>
 	
@@ -84,5 +90,44 @@
 	 	update tbl_recipe set recipe_userRatingAvg=(select avg(recipe_userRating) from recipe_reply where recipe_bno = #{recipe_bno})
 	 	where recipe_bno = #{recipe_bno};
 	</update>
+	
+	<select id="keepRead" resultType="com.example.domain.User_keepVO">
+ 		select * from tbl_user_keep
+ 		where recipe_bno=#{recipe_bno} and user_id=#{user_id}
+ 	</select>
+ 	
+ 	<insert id="keepInsert">
+ 		insert into tbl_user_keep(user_id, recipe_bno, recipe_keep)
+ 		values(#{user_id}, #{recipe_bno}, #{recipe_keep})
+ 	</insert>
+ 	 	
+ 	<update id="keepUpdate">
+ 		update tbl_user_keep set 
+ 		recipe_keep=#{recipe_keep}
+ 		where recipe_bno=#{recipe_bno} and user_id=#{user_id}
+ 	</update>
+ 	
+ 	<select id="klist" resultType="com.example.domain.RecipeVO">
+		select * from recipe_keep
+		where user_id = #{user_id} and recipe_keep=1	
+		order by recipe_bno desc
+		limit #{pageStart}, #{perPageNum}		
+	</select>
+	
+	<select id="nextNum" resultType="String">
+ 		select MIN(recipe_bno) from tbl_recipe where recipe_bno <![CDATA[>]]> #{recipe_bno}
+ 	</select>
+ 	
+ 	<select id="preNum" resultType="String">
+ 		select MAX(recipe_bno) from tbl_recipe where recipe_bno <![CDATA[<]]> #{recipe_bno}
+ 	</select>
+ 	
+ 	<select id="maxNum" resultType="String">
+ 		select MAX(recipe_bno) from tbl_recipe
+ 	</select>
+ 	
+ 	<select id="minNum" resultType="String">
+ 		select MIN(recipe_bno) from tbl_recipe
+ 	</select>	
 	
 </mapper>

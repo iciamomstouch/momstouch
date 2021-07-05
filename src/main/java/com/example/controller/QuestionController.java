@@ -57,6 +57,23 @@ public class QuestionController {
 		return map;
 	}
 	
+	@RequestMapping("ulist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public HashMap<String, Object> ulistJson(Criteria cri, String question_writer) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		cri.setPerPageNum(5);
+		
+		map.put("list", dao.ulist(cri.getPageStart(), cri.getPerPageNum(), question_writer));		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(dao.totalCount(cri));
+		
+		map.put("pm", pm);
+		map.put("cri", cri);
+		
+		return map;
+	}
+	
 	@RequestMapping("insert")
 	public String insert(Model model, HttpSession session) throws Exception{
 		int lastBno = dao.lastBno();

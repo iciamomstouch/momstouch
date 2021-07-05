@@ -3,7 +3,7 @@ package com.example.domain;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class BoardVO {
+public class BoardVO extends User_keepVO{
 	private int board_bno;
 	private String board_title;
 	private String board_category;

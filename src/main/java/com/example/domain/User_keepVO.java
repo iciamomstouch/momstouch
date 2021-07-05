@@ -11,6 +11,7 @@ public class User_keepVO {
 	private int trade_keep;
 	private int recipe_bno;
 	private int recipe_keep;
+	
 	public int getUser_keep_no() {
 		return user_keep_no;
 	}
