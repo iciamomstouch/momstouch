@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Recipe_attachVO {
 	private int recipe_bno;
-	private String recipe_attach_no;
+	private int recipe_attach_no;
 	private Date regDate;
 	private String recipe_attach_image;
 	private String recipe_attach_text;
@@ -14,10 +14,10 @@ public class Recipe_attachVO {
 	public void setRecipe_bno(int recipe_bno) {
 		this.recipe_bno = recipe_bno;
 	}
-	public String getRecipe_attach_no() {
+	public int getRecipe_attach_no() {
 		return recipe_attach_no;
 	}
-	public void setRecipe_attach_no(String recipe_attach_no) {
+	public void setRecipe_attach_no(int recipe_attach_no) {
 		this.recipe_attach_no = recipe_attach_no;
 	}
 	public Date getRegDate() {

@@ -18,4 +18,5 @@ public interface QuestionDAO {
 	public void updateViewCnt(int question_bno) throws Exception;
 	public int lastBno() throws Exception;
 	public List<QuestionVO> ulist(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum, @Param("question_writer")String question_writer) throws Exception;
+	public List<QuestionVO> grpList(int question_grpno) throws Exception;
 }
