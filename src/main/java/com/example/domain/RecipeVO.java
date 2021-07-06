@@ -14,6 +14,7 @@ public class RecipeVO extends User_keepVO{
 	private String recipe_content;
 	private String recipe_writer;
 	private String recipe_image;
+	private String user_nick;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_regdate;
@@ -26,6 +27,12 @@ public class RecipeVO extends User_keepVO{
 	private ArrayList<String> images;
 	private ArrayList<String> recipe_attach_text;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public ArrayList<String> getRecipe_attach_text() {
 		return recipe_attach_text;
 	}

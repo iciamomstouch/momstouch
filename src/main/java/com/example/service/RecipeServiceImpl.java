@@ -50,7 +50,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		for(HashMap<String, Object> map:testList){
 			Recipe_attachVO attachVO = new Recipe_attachVO();
-			attachVO.setRecipe_attach_no((String) map.get("recipe_attach_no"));
+			attachVO.setRecipe_attach_no(Integer.valueOf(((String) map.get("recipe_attach_no"))));
 			attachVO.setRecipe_attach_image((String) map.get("recipe_attach_image"));
 			attachVO.setRecipe_attach_text((String) map.get("recipe_attach_text"));
 			attachVO.setRecipe_bno((int) map.get("recipe_bno"));
@@ -79,7 +79,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		for(HashMap<String, Object> map:testList){
 			Recipe_attachVO attachVO = new Recipe_attachVO();
-			attachVO.setRecipe_attach_no((String) map.get("recipe_attach_no"));
+			attachVO.setRecipe_attach_no(Integer.valueOf(((String) map.get("recipe_attach_no"))));
 			attachVO.setRecipe_attach_image((String) map.get("recipe_attach_image"));
 			attachVO.setRecipe_attach_text((String) map.get("recipe_attach_text"));
 			attachVO.setRecipe_bno((int) map.get("recipe_bno"));

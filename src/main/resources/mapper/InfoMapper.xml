@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.InfoMapper">
 
 	<select id="list" resultType="com.example.domain.InfoVO">
-		select * from tbl_info
+		select * from info_list
 		<if test="searchType == 'info_title'">
 			where info_title like concat('%', #{keyword}, '%')
 		</if>		
@@ -15,7 +15,7 @@
 	</select>	
 	
  	<select id="read" resultType="com.example.domain.InfoVO">
- 		select * from tbl_info
+ 		select * from info_list
  		where info_bno=#{info_bno}
  	</select>
 	

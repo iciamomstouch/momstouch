@@ -10,6 +10,7 @@ public class BoardVO extends User_keepVO{
 	private String board_content;
 	private String board_image;
 	private String board_writer;
+	private String user_nick;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date board_regdate;
@@ -19,6 +20,12 @@ public class BoardVO extends User_keepVO{
 	private String board_viewcnt;
 	private String board_replycnt;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public int getBoard_bno() {
 		return board_bno;
 	}
@@ -80,16 +87,12 @@ public class BoardVO extends User_keepVO{
 	public void setBoard_replycnt(String board_replycnt) {
 		this.board_replycnt = board_replycnt;
 	}
-	
 	@Override
 	public String toString() {
 		return "BoardVO [board_bno=" + board_bno + ", board_title=" + board_title + ", board_category=" + board_category
 				+ ", board_content=" + board_content + ", board_image=" + board_image + ", board_writer=" + board_writer
-				+ ", board_regdate=" + board_regdate + ", board_updatedate=" + board_updatedate + ", board_viewcnt="
-				+ board_viewcnt + ", board_replycnt=" + board_replycnt + "]";
+				+ ", user_nick=" + user_nick + ", board_regdate=" + board_regdate + ", board_updatedate="
+				+ board_updatedate + ", board_viewcnt=" + board_viewcnt + ", board_replycnt=" + board_replycnt + "]";
 	}
 	
-	
-	
-
 }

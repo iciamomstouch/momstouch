@@ -3,8 +3,6 @@ package com.example.persistence;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-
-import com.example.domain.ChatVO;
 import com.example.domain.Criteria;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
@@ -32,5 +30,4 @@ public interface TradeDAO {
 	public String preNum(int trade_bno) throws Exception;
 	public String maxNum() throws Exception;
 	public String minNum() throws Exception;
-	public List<ChatVO> clist(String user_id) throws Exception;
 }

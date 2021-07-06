@@ -12,6 +12,25 @@ public class Info_replyVO {
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date Info_replydate;
+	
+	private String user_nick;
+	private String user_type;
+	
+	public String getUser_nick() {
+		return user_nick;
+	}
+
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
 
 	public int getInfo_rno() {
 		return Info_rno;
@@ -56,6 +75,9 @@ public class Info_replyVO {
 	@Override
 	public String toString() {
 		return "Info_replyVO [Info_rno=" + Info_rno + ", Info_bno=" + Info_bno + ", Info_reply=" + Info_reply
-				+ ", Info_replyer=" + Info_replyer + ", Info_replydate=" + Info_replydate + "]";
-	}		
+				+ ", Info_replyer=" + Info_replyer + ", Info_replydate=" + Info_replydate + ", user_nick=" + user_nick
+				+ ", user_type=" + user_type + "]";
+	}
+
+	
 }

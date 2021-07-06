@@ -14,6 +14,22 @@ public class Recipe_replyVO {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date recipe_replydate;
 	
+	private String user_nick;
+	private String user_type;
+	
+	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+	public String getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
 	public String getRecipe_replyer() {
 		return recipe_replyer;
 	}
@@ -50,11 +66,13 @@ public class Recipe_replyVO {
 	public void setRecipe_replydate(Date recipe_replydate) {
 		this.recipe_replydate = recipe_replydate;
 	}
-	
 	@Override
 	public String toString() {
 		return "Recipe_replyVO [recipe_rno=" + recipe_rno + ", recipe_bno=" + recipe_bno + ", recipe_reply="
 				+ recipe_reply + ", recipe_replyer=" + recipe_replyer + ", recipe_userRating=" + recipe_userRating
-				+ ", recipe_replydate=" + recipe_replydate + "]";
-	}		
+				+ ", recipe_replydate=" + recipe_replydate + ", user_nick=" + user_nick + ", user_type=" + user_type
+				+ "]";
+	}
+	
+	
 }

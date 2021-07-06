@@ -15,7 +15,14 @@ public class InfoVO extends User_keepVO{
 	private Date info_updatedate;
 	private String info_viewcnt;
 	private String info_replycnt;
+	private String user_nick;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public int getInfo_bno() {
 		return info_bno;
 	}
@@ -75,12 +82,6 @@ public class InfoVO extends User_keepVO{
 		return "InfoVO [info_bno=" + info_bno + ", info_title=" + info_title + ", info_content=" + info_content
 				+ ", info_image=" + info_image + ", info_writer=" + info_writer + ", info_regdate=" + info_regdate
 				+ ", info_updatedate=" + info_updatedate + ", info_viewcnt=" + info_viewcnt + ", info_replycnt="
-				+ info_replycnt + "]";
+				+ info_replycnt + ", user_nick=" + user_nick + "]";
 	}
-
-
-
-
-
-
 }

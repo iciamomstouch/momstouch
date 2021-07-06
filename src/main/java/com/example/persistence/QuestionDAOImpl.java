@@ -72,4 +72,9 @@ public class QuestionDAOImpl implements QuestionDAO{
 		return session.selectList(namespace + ".ulist", map);
 	}
 
+	@Override
+	public List<QuestionVO> grpList(int question_grpno) throws Exception {
+		return session.selectList(namespace + ".grpList", question_grpno);
+	}
+
 }

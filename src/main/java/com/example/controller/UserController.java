@@ -82,14 +82,6 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("update2")
-	public String update2(Model model, String user_id, HttpSession session) throws Exception{
-		dao.update2(user_id);
-		model.addAttribute("pageName", "home.jsp");
-		session.invalidate(); //session정보 삭제
-		return "index";
-	}
-	
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(UserVO vo, MultipartHttpServletRequest multi) throws Exception{
 		String password = passEncoder.encode(vo.getUser_pass());
@@ -206,5 +198,10 @@ public class UserController {
 	public String adminInsert(Model model){
 		model.addAttribute("pageName", "user/adminInsert.jsp");
 		return "index";
+	}
+	
+	@RequestMapping(value="update2", method=RequestMethod.POST)
+	public void update2(String user_id, HttpSession session) throws Exception{		
+		dao.update2(user_id);				
 	}
 }

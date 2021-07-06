@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.domain.ChatVO;
 import com.example.domain.Criteria;
 import com.example.domain.TradeVO;
 import com.example.domain.Trade_attachVO;
@@ -141,10 +140,5 @@ public class TradeDAOImpl implements TradeDAO{
 	@Override
 	public String minNum() throws Exception {
 		return session.selectOne(namespace + ".minNum");
-	}
-
-	@Override
-	public List<ChatVO> clist(String user_id) throws Exception {
-		return session.selectList(namespace + ".clist", user_id);
 	}
 }

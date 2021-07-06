@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void update2(String user_id) throws Exception {
-		session.update(namespace + ".update2", user_id);	
-		
+		session.update(namespace + ".update2", user_id);
 	}
+
 }

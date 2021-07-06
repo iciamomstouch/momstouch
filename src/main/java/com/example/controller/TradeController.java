@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.example.domain.ChatVO;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
-import com.example.domain.Trade_attachVO;
 import com.example.domain.User_keepVO;
 import com.example.persistence.TradeDAO;
 import com.example.service.TradeService;
@@ -205,6 +203,14 @@ public class TradeController {
 		return "index";
 	}
 	
+	@RequestMapping("tlist.json")
+	@ResponseBody //데이터 자체를 리턴할때
+	public List<TradeVO> tlistJson(Criteria cri) throws Exception{
+		List<TradeVO> array = new ArrayList<>();
+		array = dao.list(cri);
+		return array;
+	}
+	
 	@RequestMapping("deleteFile")
 	public String deleteFile(int trade_bno) throws Exception{
 		TradeVO vo = dao.read(trade_bno);
@@ -219,12 +225,6 @@ public class TradeController {
 	public String chat(Model model) throws Exception{
 		model.addAttribute("pageName", "trade/chat.jsp");
 		return "index";
-	}
-	
-	@RequestMapping("clist.json")
-	@ResponseBody
-	public List<ChatVO> clisst(String user_id) throws Exception{		
-		return dao.clist(user_id);
 	}
 	
 	@RequestMapping("keepRead.json")
@@ -262,25 +262,4 @@ public class TradeController {
 		
 		return map;
 	}
-	
-	
-	
-	//안드로이드 리스트
-	   @RequestMapping("alist.json")
-	   @ResponseBody //데이터 자체를 리턴할때
-	   public List<TradeVO> alistJson(Criteria cri) throws Exception{
-	      List<TradeVO> array = new ArrayList<>();
-	      array = dao.list(cri);
-	      return array;
-	   }
-	   
-	   //안드로이드 첨부파일
-	   @RequestMapping("agetAttach.json")
-	      @ResponseBody
-	      public List<Trade_attachVO> agetAttach(int trade_bno) throws Exception{      
-	         List<Trade_attachVO> array = new ArrayList<>();
-	         array = dao.getAttach(trade_bno);
-	         //System.out.println(map.toString());
-	         return array;
-	      }
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.RecipeMapper">
 
 	<select id="list" resultType="com.example.domain.RecipeVO">
-		select * from tbl_recipe
+		select * from recipe_list
 		<if test="searchType == 'recipe_title'">
 			where recipe_title like concat('%', #{keyword}, '%')
 		</if>
@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="read" resultType="com.example.domain.RecipeVO">
-		select * from tbl_recipe
+		select * from recipe_list
 		where recipe_bno=#{recipe_bno}
 	</select>
 	
