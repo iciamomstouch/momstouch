@@ -55,8 +55,10 @@
 				<td colspan=2 id="bcont">${vo.board_content}</td>
 			</tr>		
 		</table>
-		<input type="button" value="수정" class="btn" onClick="location.href='update?board_bno=${vo.board_bno}'"/>
-		<input type="button" value="삭제" id="btnDelete" class="btn"/>
+		<c:if test="${user_type == 'admin' || user_id == vo.board_writer }">
+			<input type="button" value="수정" class="btn" onClick="location.href='update?board_bno=${vo.board_bno}'"/>
+			<input type="button" value="삭제" id="btnDelete" class="btn"/>
+		</c:if>
 		<input type="button" value="목록" onClick="location.href='list'" class="btn"/>
 		<input type="button" value="이전" onClick="location.href='read?board_bno=${pre}'" class="btn" id="pre"/>
 		<input type="button" value="다음" onClick="location.href='read?board_bno=${next}'" class="btn" id="next"/>

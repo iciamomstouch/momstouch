@@ -44,8 +44,47 @@
 	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
 	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
+	 
+	  <div id="list">
+		<table id="tbl"  style="width:600px; margin: 0px auto;'"></table>
+		<script id="temp" type="text/x-handlebars-template">
+		{{#each list}}
+		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'" style="{{bold question_bno}}">						
+			<td width=200 style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
+			<td width=80>{{question_writer}}</td>
+			<td width=130>{{question_regdate}}</td>			
+			<td width=80>{{question_viewcnt}}</td>
+		</tr>
+		{{/each}}
+		</script>
+		<script>
+		   Handlebars.registerHelper("bold", function(question_bno){
+			      var bno="${vo.question_bno}";
+			      if(bno==question_bno){
+			         return "display:none;";
+			      }
+			   });
+		</script>
+	</div>
+	
 </body>
 <script>
+	//답글 출력
+	var question_grpno = "${vo.question_grpno}";
+	getList();
+	function getList(){		
+		$.ajax({
+			type:"get",
+			url:"grpList.json",
+			dataType:"json",
+			data:{"question_grpno":question_grpno},
+			success:function(result){
+				var temp=Handlebars.compile($("#temp").html());
+				$("#tbl").html(temp(result));
+			}
+		});
+	}
+
 	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;

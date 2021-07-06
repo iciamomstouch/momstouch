@@ -16,7 +16,7 @@
 <body>
 	<div id="condition" width="800" style="margin-bottom:30px;">
 		<div id="right">
-		<button onClick="location.href='insert'" id="btnplus">
+		<button onClick="location.href='adminInsert'" id="btnplus">
 				<img src="/resources/css/plus-circle-fill.svg" class="plus">
 		</button>
 		</div>
