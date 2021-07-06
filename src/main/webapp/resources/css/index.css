@@ -1,6 +1,9 @@
 @CHARSET "UTF-8";
 
-*{font-family: '빙그레체';}
+@font-face {
+  font-family: 'HMFMPYUN.TTF';
+  src: url(HMFMPYUN.TTF) format('TTF')
+}
 
 
 #divTop{width:800px;
