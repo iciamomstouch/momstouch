@@ -36,9 +36,9 @@
 	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
 		<td><img src="/displayFile?fullName={{trade_image}}" width=100/></td>
 		<td>{{trade_category}}</td>
-		<td>{{trade_title}}</td>
+		<td style="text-align:left;">{{trade_title}}</td>
 		<td>{{trade_price}}</td>
-		<td>{{trade_writer}}</td>
+		<td>{{user_nick}}</td>
 		<td>{{trade_regdate}}</td>
 	</tr>
 	{{/each}}

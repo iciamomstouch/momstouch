@@ -41,7 +41,7 @@
 	</style>
 </head>
 <body>
-	<c:if test="${user_type == 'admin' }">
+	<c:if test="${user_type == 'admin'}">
 		<div id="btninsert">
 			<button onClick="location.href='insert'" id="btninsert">WRITING</button>		
 		</div>
@@ -73,7 +73,7 @@
 		<div class="img"><img src="/displayFile?fullName={{recipe_image}}" width=230/></div>
 		<div class="rcate">{{recipe_category}}</div>
 		<div class="rtitle">{{recipe_title}}</div>
-		<div class="rwriter">{{recipe_writer}}</div>
+		<div class="rwriter">{{user_nick}}</div>
 		<div class="ravg"><img src="/resources/image/0{{format recipe_userRatingAvg}}.png" style="vertical-align: middle; width:150px;" class="star0{{format recipe_userRatingAvg}}"/>{{format recipe_userRatingAvg}}<span>/5</span></div>		
 	</div>
 	{{/each}}

@@ -24,6 +24,7 @@
 <body>
 	<form name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
+	<input type="hidden" name="trade_writer" value="${vo.trade_writer}" style="display:none"/>
 	<table id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;">		
 		<tr>
 			<td rowspan=6>
@@ -48,7 +49,7 @@
 			</td>
 		</tr>
 		<tr style="border-bottom: 1px solid #ccc;">
-			<td id="twriter">${vo.trade_writer}</td>
+			<td id="twriter">${vo.user_nick}</td>
 			<td id="theart">
 				<c:if test="${keep.trade_keep==1 }">
 					<img src="/resources/css/heart-fill.svg" class="heart">
@@ -57,7 +58,7 @@
 					<img src="/resources/css/heart.svg" class="heart">
 				</c:if>	
 			</td>
-			<td id="chat"><img src="/resources/css/chat-left-dots.svg" class="chat" onClick="location.href='chat?user_id=${user_id}'" style="cursor:pointer;"></td>
+			<td id="chat"><img src="/resources/css/chat-left-dots.svg" class="chat" onClick="location.href='chat'" style="cursor:pointer;"></td>
 		</tr>
 		<tr>	
 			<td colspan="2" id="tdate"><fmt:formatDate value="${vo.trade_regdate}" pattern="yyyy-MM-dd kk:mm:ss"/></td>
@@ -72,11 +73,11 @@
 		</tr>
 		<tr>
 			<td colspan=3 id="tcont">
-				<textarea rows="10" cols="52" name="trade_content" style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;" readonly>${vo.trade_content}</textarea>
+				<textarea rows="10" cols="52" name="trade_content" style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">${vo.trade_content}</textarea>
 			</td>
 		<tr>		
 	</table>
-	<c:if test="${user_type == 'admin' || user_id == vo.trade_writer }">
+	<c:if test="${user_type == 'admin' || user_id == vo.trade_writer}">
 		<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate" class="btn"/>
 		<input type="button" value="글삭제" id="btnDelete" class="btn"/>
 	</c:if>

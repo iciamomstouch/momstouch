@@ -12,12 +12,12 @@
 	</style>
 </head>
 <body>
-	<c:if test="${user_type == 'admin' }">
-		<div id="condition" style="margin-bottom:10px;">
-			<div id="btninsert">
-				<button onClick="location.href='insert'" id="btninsert">WRITING</button>
-			</div>
+	<c:if test="${user_type == 'admin'}">
+	<div id="condition" style="margin-bottom:10px;">
+		<div id="btninsert">
+			<button onClick="location.href='insert'" id="btninsert">WRITING</button>
 		</div>
+	</div>
 	</c:if>
 	
 	<div id="list">
@@ -32,7 +32,7 @@
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?info_bno={{info_bno}}'">						
 			<td width=200 style="text-align:left;">{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
-			<td width=100>{{info_writer}}</td>
+			<td width=100>{{user_nick}}</td>
 			<td width=200>{{info_regdate}}</td>			
 			<td width=100>{{info_viewcnt}}</td>
 		</tr>

@@ -15,9 +15,10 @@
 	 <table class="tbl" style="width: 600px; margin:0px auto; margin-bottom:10px;">
 		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
+			 <input type="hidden" name="question_writer" size=50 value="${vo.question_writer}" readonly>
 		 </tr>
 		  <tr id="qtop">
-			 <td width=150 id="qwriter">${vo.question_writer}</td>
+			 <td width=150 id="qwriter">${vo.user_nick}</td>
 			 <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.question_regdate}" /></td>
 			 <td width=150>조회수:${vo.question_viewcnt}</td>
 		 </tr>
@@ -39,15 +40,50 @@
 			<td colspan="3" id="qcont">${vo.question_content}</td>
 		</tr>		 		
 	 </table>
-	 <c:if test="${user_type == 'admin' || user_id == vo.question_writer }">
-		 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 
-		 <input type="button" value="삭제" id="btnDelete">
-	 </c:if>
+	 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 
+	 <input type="button" value="삭제" id="btnDelete">
 	 <input type="button" value="답변" onClick="location.href='reply?question_bno=${vo.question_bno}'" id="btnReply">
 	 <input type="button" value="목록" onClick="location.href='list'" id="btnList">
 	 </form>
+	 
+	  <div id="list">
+		<table id="tbl" width=800></table>
+		<script id="temp" type="text/x-handlebars-template">
+		<tr class="title">						
+			<th width=400>제목</th>
+			<th width=100>작성자</th>
+			<th width=200>작성일</th>			
+			<th width=50>조회수</th>
+		</tr>
+		{{#each list}}
+		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'">						
+			<td style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
+			<td>{{user_nick}}</td>
+			<td>{{question_regdate}}</td>			
+			<td>{{question_viewcnt}}</td>
+		</tr>
+		{{/each}}
+		</script>
+	</div>
+	
 </body>
 <script>
+	//답글 출력
+	var question_grpno = "${vo.question_grpno}";
+	getList();
+	function getList(){		
+		$.ajax({
+			type:"get",
+			url:"grpList.json",
+			dataType:"json",
+			data:{"question_grpno":question_grpno},
+			success:function(result){
+				var temp=Handlebars.compile($("#temp").html());
+				$("#tbl").html(temp(result));
+			}
+		});
+	}
+
 	//게시글 삭제
 	$("#btnDelete").on("click", function(){
 		if(!confirm("삭제하실래요?")) return;

@@ -17,9 +17,10 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="recipe_bno" value="${vo.recipe_bno }" readOnly size=50 />
+		<input type="hidden" name="recipe_writer" value="${vo.recipe_writer}" readOnly size=50 />
 		<table style="width:600px; margin: 0px auto;">
 			<tr>
-				<td colspan="2" id="rwriter">${vo.recipe_writer }</td>
+				<td colspan="2" id="rwriter">${vo.user_nick}</td>
 			</tr>
 			<tr>
 				<td colspan="2" id="rimg">
@@ -47,13 +48,13 @@
 				<td  colspan="2" id="rtitle">${vo.recipe_title }</td>
 			</tr>			
 			<tr>
-				<td colspan="2" id="rcont1">${vo.recipe_content }</td>
+				<td colspan="2" id="rcont1"><div id=cont1 width=100>내용</div>${vo.recipe_content }</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="rcont2">${vo.recipe_ingre }</td>
+				<td colspan="2" id="rcont2"><div id=cont2 width=100>재료</div>${vo.recipe_ingre }</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="rcont3">${vo.recipe_seasoning }</td>
+				<td colspan="2" id="rcont3"><div id=cont3 width=100>양념장</div>${vo.recipe_seasoning }</td>
 			</tr>			
 			<tr>
 				<td colspan="2" id="rno">조리순서</td>

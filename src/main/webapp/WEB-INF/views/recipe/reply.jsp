@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="/resources/css/recipe/reply.css"/>	
 </head>
 <body>
-	<h1>[댓글 목록]</h1>
+	<h1>별점주기</h1>
 	<div class="starRev">
 		<span class="star" onClick="setStar(1)">★</span>
 	    <span class="star" onClick="setStar(2)">★</span>
@@ -53,13 +53,14 @@
 					border-radius:5px;
 					background:#D8D8D8;">
 			<tr class="row">
-				<td width=100 id="r_rer">{{recipe_replyer}}</td>
+				<td width=100 id="r_rer">{{user_nick}}</td>
 				<td id="r_rat">
 					<img src="/resources/image/0{{recipe_userRating}}.png" class="star0{{recipe_userRating}}" style="vertical-align: middle; width:100px;">
 					{{recipe_userRating}}/5</td>			
 				<td width=300 id="r_date">{{recipe_replydate}}</td>
 				<td width=50><button class="btnDelete" recipe_rno="{{recipe_rno}}"
-					style="height:40px;
+					style="{{printDel recipe_replyer}};
+					height:40px;
 					border:none;
 					background:#D8D8D8;
 					vertical-align : top;
@@ -80,6 +81,18 @@
 	var replyer=$("#recipe_replyer").val();
 	var userRating = 0;
 	getList();
+	
+	//로그인한 아이디만 댓글삭제버튼노출 
+	Handlebars.registerHelper("printDel", function(board_replyer){
+	   var user_id="${user_id}";
+	   var user_type="${user_type}";
+	   if(user_id!=board_replyer){
+		   if(user_type == 'admin'){
+			   return "";
+		   }
+	      return "display:none;";
+	   }
+	});
 	
 	$(".starRev span").click(function(){		
 		  $(this).parent().children('span').removeClass('on');

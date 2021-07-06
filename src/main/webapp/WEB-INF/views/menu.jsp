@@ -6,5 +6,5 @@
 	<a href="/board/list">오늘</a>
 	<a href="/trade/list">중고거래</a>
 	<a href="/recipe/list">레시피</a>
-	<a href="/map/map">우리동네</a>
+	<a href="/info/list" id="info">정보방</a>
 </div>

@@ -61,11 +61,10 @@
 		<input type="submit" value="정보수정" id="btnInsert"/>
 		<input type="reset" value="수정취소" id="btnReset"/>			
 		<input type="button" value="목록이동" onClick="location.href='list'" id="btnList"/>
-		<input type="button" value="회원탈퇴" id="btnDel"/>  
+		<input type="button" value="회원탈퇴" id="btnDel"/>	
 	</form>
 </body>
 <script>
-var user_id="${user_id}";
 	//주소검색
 	$("#btnSearch").click(function() {
 		new daum.Postcode({
@@ -80,19 +79,18 @@ var user_id="${user_id}";
 		$("#btnSearch").click();
 	})
 	
-	//회원정보삭제
+	//회원탈퇴
 	$("#btnDel").on("click", function(){
+		var user_id="${user_id}";
 		if(!confirm("회원탈퇴 하실래요?")) return;
-			$.ajax({
-				type:"get",
-				url:"update2",
-				dataType:"json",
-				data:{"user_id":user_id},
-				success:function(){
-					alert("회원탈퇴 성공");
-					
-				}
-			});
+		$.ajax({
+			type:"post",
+			url:"/user/update2",			
+			data:{"user_id":user_id},
+			success:function(){
+				alert("");
+			}
+		});
 	});
 	
 	//주소수정

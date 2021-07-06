@@ -27,8 +27,8 @@
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'">						
-			<td style="text-align:left;">{{question_title}}</td>
-			<td>{{question_writer}}</td>
+			<td style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
+			<td>{{user_nick}}</td>
 			<td>{{question_regdate}}</td>			
 			<td>{{question_viewcnt}}</td>
 		</tr>
