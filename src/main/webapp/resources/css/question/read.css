@@ -103,4 +103,15 @@
 		padding:0px 3px 0px 3px;
 		font-size:15px;
 		font-weight:bold; 
-		cursor: pointer;}		
+		cursor: pointer;}
+		
+		
+#list{width:600px;
+	border-collapse: collapse; 
+	padding-top:10px;
+	border-top: 3px dashed #ccc;
+	margin: 0px auto;
+	margin-top:20px;
+	margin-bottom:30px;
+	background: white;
+	cursor: pointer;}				

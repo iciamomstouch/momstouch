@@ -9,12 +9,13 @@ input[type=text]{font-size: 20px;
 				border:0 solid black;
 				text-align:left;
 				border-bottom: 3px solid #ccc}
+				
 input[type=password]{font-size: 20px;
 				padding:5px;
 				background-color:transparent;
 				border:0 solid black;
 				text-align:left;
-				border-bottom: 3px solid #ccc} 
+				border-bottom: 3px solid #ccc}
 
 #btnlog{width:70px;
 		float:center;
@@ -26,6 +27,7 @@ input[type=password]{font-size: 20px;
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
+		
 #btnlog:hover{width:70px;
 		float:center;
 		border:5px solid #8E35EF; 
@@ -36,8 +38,7 @@ input[type=password]{font-size: 20px;
 		font-size:15px;
 		font-weight:bold; 
 		cursor: pointer;}
-		
-		
+
+
 #tbl a{text-decoration-line: none;
-		color:#8E35EF;}						
-								  
+		color:#8E35EF;} 				  

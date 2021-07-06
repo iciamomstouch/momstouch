@@ -16,7 +16,7 @@
 
 .heart{width:30px;
 	margin-right:10px;
-	cursor: pointer;}	
+	cursor: pointer;}
 
 #rtitle{text-align:left;
 		font-weight:bold;
@@ -30,12 +30,11 @@
 		border-radius:10px;
 		background: #F2F2F2;
 		padding:10px;
-		
 		margin-bottom:30px;}
 		
 #cont1{vertical-align: top;
 		padding-top: 0px;
-		color:#ccc;}	
+		color:#ccc;}
 		
 #rcont2{text-align:left;
 		vertical-align: middle;
@@ -49,7 +48,7 @@
 #cont2{vertical-align: top;
 		padding-top: 0px;
 		color:#ccc;}		
-		
+
 #rcont3{text-align:left;
 		vertical-align: middle;
 		font-size:15px;
@@ -61,7 +60,7 @@
 		
 #cont3{vertical-align: top;
 		padding-top: 0px;
-		color:#ccc;}		
+		color:#ccc;}
 		
 #rno{border-bottom: 3px solid #ccc;
 	padding-top:30px;
