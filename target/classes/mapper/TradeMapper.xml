@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.TradeMapper">
 
  	<select id="list" resultType="com.example.domain.TradeVO">
- 		select * from tbl_trade
+ 		select * from trade_list
  		<if test="searchType == 'trade_title'">
 			where trade_title like concat('%', #{keyword}, '%')
 		</if>		
@@ -39,7 +39,7 @@
 	</select>
 	
  	<select id="read" resultType="com.example.domain.TradeVO">
- 		select * from tbl_trade
+ 		select * from trade_list
  		where trade_bno=#{trade_bno}
  	</select>
  	
@@ -115,10 +115,6 @@
  	
  	<select id="minNum" resultType="String">
  		select MIN(trade_bno) from tbl_trade
- 	</select>
- 	
- 	<select id="clist" resultType="com.example.domain.ChatVO">
- 		select * from tbl_chat
  	</select>
 	
 </mapper>

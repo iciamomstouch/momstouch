@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.BoardMapper">
 
 	<select id="list" resultType="com.example.domain.BoardVO">
-		select * from tbl_board
+		select * from board_list
 		<if test="searchType == 'board_title'">
 			where board_title like concat('%', #{keyword}, '%')
 		</if>
@@ -32,7 +32,7 @@
 	</select>	
 	
  	<select id="read" resultType="com.example.domain.BoardVO">
- 		select * from tbl_board
+ 		select * from board_list
  		where board_bno=#{board_bno}
  	</select>
 	
