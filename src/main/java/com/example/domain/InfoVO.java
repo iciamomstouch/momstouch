@@ -9,9 +9,9 @@ public class InfoVO extends User_keepVO{
 	private String info_content;
 	private String info_image;
 	private String info_writer;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private Date info_regdate;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private Date info_updatedate;
 	private String info_viewcnt;
 	private String info_replycnt;

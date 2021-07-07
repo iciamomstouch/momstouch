@@ -14,10 +14,10 @@ public class TradeVO extends User_keepVO{
 	private String trade_image;
 	private int trade_price;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private Date trade_regdate;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private Date trade_updatedate;
 	private int trade_viewcnt;
 	private ArrayList<String> images;

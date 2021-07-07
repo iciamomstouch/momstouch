@@ -16,10 +16,10 @@ public class RecipeVO extends User_keepVO{
 	private String recipe_image;
 	private String user_nick;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private Date recipe_regdate;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="MM-dd HH:mm", timezone="Asia/Seoul")
 	private String recipe_updatedate;
 	private int recipe_viewcnt;	
 	private double recipe_userRatingAvg;
