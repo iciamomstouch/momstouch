@@ -24,6 +24,7 @@
 <body>
 	<form name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="trade_bno" value="${vo.trade_bno}" style="display:none"/>
+	<input type="hidden" name="trade_writer" value="${vo.trade_writer}" style="display:none"/>
 	<table id="tbl" style="width:600px; margin: 0px auto; margin-bottom:30px;">		
 		<tr>
 			<td rowspan=6>
@@ -48,7 +49,7 @@
 			</td>
 		</tr>
 		<tr style="border-bottom: 1px solid #ccc;">
-			<td id="twriter">${vo.trade_writer}</td>
+			<td id="twriter">${vo.user_nick}</td>
 			<td id="theart">
 				<c:if test="${keep.trade_keep==1 }">
 					<img src="/resources/css/heart-fill.svg" class="heart">
@@ -76,8 +77,10 @@
 			</td>
 		<tr>		
 	</table>
-	<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate" class="btn"/>
-	<input type="button" value="글삭제" id="btnDelete" class="btn"/>
+	<c:if test="${user_type == 'admin' || user_id == vo.trade_writer}">
+		<input type="button" value="글수정" onClick="location.href='update?trade_bno=${vo.trade_bno}'"id="btnUpdate" class="btn"/>
+		<input type="button" value="글삭제" id="btnDelete" class="btn"/>
+	</c:if>
 	<input type="button" value="목록이동" onClick="location.href='list'" id="btnList" class="btn"/>
 	<input type="button" value="이전" onClick="location.href='read?trade_bno=${pre}'" class="btn" id="pre"/>
 		<input type="button" value="다음" onClick="location.href='read?trade_bno=${next}'" class="btn" id="next"/>

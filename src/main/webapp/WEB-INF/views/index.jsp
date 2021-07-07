@@ -22,7 +22,7 @@
 			<img src="/resources/image/logo.png" class="logo" onClick="location.href='/'"/ style="float:center;">
 			<div class="login" width=100 style="float:right;">
 				<c:if test="${user_id != null }">
-					<span class="logid" onClick="location.href='/user/myinfo?user_id=${user_id}'">${user_id}님</span>
+					<span class="logid" onClick="location.href='/user/myinfo?user_id=${user_id}'">${user_nick}님</span>
 					<a href="/user/logout">
 						<img src="/resources/css/person-x-fill.svg" class="logout-icon">
 					</a>

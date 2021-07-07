@@ -83,14 +83,9 @@
 	$("#btnDel").on("click", function(){
 		var user_id="${user_id}";
 		if(!confirm("회원탈퇴 하실래요?")) return;
-		$.ajax({
-			type:"post",
-			url:"/user/update2",			
-			data:{"user_id":user_id},
-			success:function(){
-				alert("");
-			}
-		});
+		frm.action="delete";
+		frm.method="get";
+		frm.submit();
 	});
 	
 	//주소수정

@@ -38,7 +38,7 @@
 		<td>{{trade_category}}</td>
 		<td style="text-align:left;">{{trade_title}}</td>
 		<td>{{trade_price}}</td>
-		<td>{{trade_writer}}</td>
+		<td>{{user_nick}}</td>
 		<td>{{trade_regdate}}</td>
 	</tr>
 	{{/each}}

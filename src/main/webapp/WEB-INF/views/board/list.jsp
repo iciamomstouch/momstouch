@@ -24,7 +24,7 @@
 		{{#each list}}
 		<tr class="row" >
 			<tr>
-				<td id="bwriter">{{board_writer}}</td>
+				<td id="bwriter">{{user_nick}}</td>
 				<td id="bvcnt">조회수: {{board_viewcnt}}</td>
 			</tr>
 			<tr>

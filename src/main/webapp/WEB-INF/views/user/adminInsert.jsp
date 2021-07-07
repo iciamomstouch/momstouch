@@ -23,8 +23,8 @@
 			</tr>
 			<tr>
 				<th width=100>유저타입</th>
-				<td>
-					<select name="user_type">
+				<td style="border:none;">
+					<select name="user_type" id="aid">
 						<option value="admin">관리자</option>
 						<option value="general">일반유저</option>
 					</select>

@@ -24,10 +24,11 @@
 					border-radius:5px; 
 					background:#D8D8D8;">
 			<tr class="row">				
-				<td id="b_rer">{{board_replyer}}</td>
+				<td id="b_rer">{{user_nick}}</td>
 				<td id="b_rdate">{{board_replydate}}</td>
-				<td id="bdel"><button class="btnDelete" rno="{{board_rno}}" 
-					style="height:40px;
+				<td id="bdel"><button class="btnDelete" rno="{{board_rno}}"
+					style="{{printDel board_replyer}};					
+					height:40px;
 					border:none;
 					background:#D8D8D8;
 					vertical-align : top;
@@ -42,6 +43,19 @@
 	</script>	
 
 	<script>
+	//로그인한 아이디만 댓글삭제버튼노출 
+	Handlebars.registerHelper("printDel", function(board_replyer){
+	   var user_id="${user_id}";
+	   var user_type="${user_type}";
+	   if(user_id!=board_replyer){
+		   if(user_type == 'admin'){
+			   return "";
+		   }
+	      return "display:none;";
+	   }
+	});
+	
+	
 	var board_bno="${vo.board_bno }";
 	
 	getList();

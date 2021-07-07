@@ -31,10 +31,10 @@
 			<th width=50>조회수</th>
 		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='board/read?board_bno={{board_bno}}'">
+		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">
 			<td>{{board_category}}</td>
 			<td>{{board_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{board_replycnt}}]</span></td>
-			<td>{{board_writer}}</td>
+			<td>{{user_nick}}</td>
 			<td>{{board_viewcnt}}</td>
 		</tr>
 		{{/each}}
@@ -70,7 +70,7 @@
 		<tr>
 		<td>		
 		{{#each list}}
-		<div class="box" onClick="location.href='trade/read?trade_bno={{trade_bno}}'">
+		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
 			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
 			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
 			<div class="price">:{{trade_price}}원</div>
@@ -110,7 +110,7 @@
 		{{#each list}}
 		<div class="swiper-slide">
 		<table id="tbl4" style="width:600px; height: 250px; margin: 0px auto;">
-		<tr class="recipe_box" onClick="location.href='recipe/read?recipe_bno={{recipe_bno}}'">
+		<tr class="recipe_box" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">
 			<td rowspan="3"><img src="/displayFile?fullName={{recipe_image}}" width=300 height=250/></td>
 			<td style="width:300px;font-size:20px; padding-left:10px; color:#0080FF;">:{{recipe_category}}</td>
 		</tr>
@@ -201,9 +201,9 @@
 			<th>조회수</th>
 		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='info/read?info_bno={{info_bno}}'">		
+		<tr class="row" onClick="location.href='/info/read?info_bno={{info_bno}}'">		
 			<td>{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
-			<td>{{info_writer}}</td>
+			<td>{{user_nick}}</td>
 			<td>{{info_viewcnt}}</td>
 		</tr>
 		{{/each}}

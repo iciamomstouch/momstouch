@@ -10,14 +10,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/resources/css/board/read.css"/>
 	<title>오늘</title>
-	
 </head>
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="board_bno" value="${vo.board_bno}"/>
+		<input type="hidden" name="board_writer" value="${vo.board_writer}"/>
 		<table class="tbl" style="width:600px; margin:0px auto; margin-bottom:10px;">
 			<tr>
-				<td colspan="2" id="bwriter">${vo.board_writer}</td>
+				<td colspan="2" id="bwriter">${vo.user_nick}</td>
 			</tr>
 			<tr>
 				<td id="bcate">${vo.board_category}</td>

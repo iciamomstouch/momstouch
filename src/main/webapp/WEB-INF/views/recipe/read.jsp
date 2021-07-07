@@ -17,9 +17,10 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="recipe_bno" value="${vo.recipe_bno }" readOnly size=50 />
+		<input type="hidden" name="recipe_writer" value="${vo.recipe_writer}" readOnly size=50 />
 		<table style="width:600px; margin: 0px auto;">
 			<tr>
-				<td colspan="2" id="rwriter">${vo.recipe_writer }</td>
+				<td colspan="2" id="rwriter">${vo.user_nick}</td>
 			</tr>
 			<tr>
 				<td colspan="2" id="rimg">

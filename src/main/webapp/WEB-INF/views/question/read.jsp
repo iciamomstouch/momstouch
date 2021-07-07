@@ -15,9 +15,10 @@
 	 <table class="tbl" style="width: 600px; margin:0px auto; margin-bottom:10px;">
 		 <tr id="question_bno">
 			 <td><input type="text" name="question_bno" size=50 value="${vo.question_bno}" readonly></td>
+			 <td><input type="hidden" name="question_writer" size=50 value="${vo.question_writer}" readonly></td>
 		 </tr>
 		  <tr id="qtop">
-			 <td width=150 id="qwriter">${vo.question_writer}</td>
+			 <td width=150 id="qwriter">${vo.user_nick}</td>
 			 <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.question_regdate}" /></td>
 			 <td width=150>조회수:${vo.question_viewcnt}</td>
 		 </tr>
@@ -46,22 +47,24 @@
 	 </form>
 	 
 	  <div id="list">
-		<table id="tbl" width=800></table>
+		<table id="tbl"  style="width:600px; margin: 0px auto;'"></table>
 		<script id="temp" type="text/x-handlebars-template">
-		<tr class="title">						
-			<th width=400>제목</th>
-			<th width=100>작성자</th>
-			<th width=200>작성일</th>			
-			<th width=50>조회수</th>
-		</tr>
 		{{#each list}}
-		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'">						
-			<td style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
-			<td>{{question_writer}}</td>
-			<td>{{question_regdate}}</td>			
-			<td>{{question_viewcnt}}</td>
+		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'" style="{{bold question_bno}}">						
+			<td width=200 style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
+			<td width=80>{{user_nick}}</td>
+			<td width=130>{{question_regdate}}</td>			
+			<td width=80>{{question_viewcnt}}</td>
 		</tr>
 		{{/each}}
+		</script>
+		<script>
+		   Handlebars.registerHelper("bold", function(question_bno){
+			      var bno="${vo.question_bno}";
+			      if(bno==question_bno){
+			         return "display:none;";
+			      }
+			   });
 		</script>
 	</div>
 	

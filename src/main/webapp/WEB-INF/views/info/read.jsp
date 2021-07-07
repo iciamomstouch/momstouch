@@ -15,9 +15,10 @@
 <body>
 	<form name="frm" encType="multipart/form-data">
 		<input type="hidden" name="info_bno" value="${vo.info_bno}"/>
+		<input type="hidden" name="info_writer" value="${vo.info_writer}"/>
 		<table id="tbl" style="width:600px; margin: 0px auto;">
 			<tr>
-				<td colspan="2" id="iwriter">${vo.info_writer}</td>
+				<td colspan="2" id="iwriter">${vo.user_nick}</td>
 			</tr>
 			<tr>
 				<td id="idate"><fmt:formatDate pattern="MM-dd HH:mm:ss" value="${vo.info_regdate }" /></td>
