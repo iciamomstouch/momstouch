@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.Info_replyMapper">
 
 	<select id="rlist" resultType="com.example.domain.Info_replyVO">
-		select * from info_reply
+		select * from ireply_list
 		where info_bno=#{info_bno}
 		order by info_rno desc
 	</select>
