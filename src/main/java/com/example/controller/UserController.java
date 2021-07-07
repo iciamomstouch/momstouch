@@ -121,12 +121,8 @@ public class UserController {
 	
 	@RequestMapping("delete")
 	public String delete(String user_id) throws Exception{
-		UserVO vo = dao.read(user_id);
-		if(vo.getUser_image()!=null){
-			new File(path + "/" + vo.getUser_image()).delete();
-		}		
-		dao.delete(user_id);
-		return "redirect:list";
+		dao.update2(user_id);
+		return "redirect:logout";
 	}
 	
 	@RequestMapping("login")
@@ -198,10 +194,6 @@ public class UserController {
 	public String adminInsert(Model model){
 		model.addAttribute("pageName", "user/adminInsert.jsp");
 		return "index";
-	}
+	}	
 	
-	@RequestMapping(value="update2", method=RequestMethod.POST)
-	public void update2(String user_id, HttpSession session) throws Exception{		
-		dao.update2(user_id);				
-	}
 }

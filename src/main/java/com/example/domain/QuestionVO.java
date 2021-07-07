@@ -13,6 +13,7 @@ public class QuestionVO {
 	private String question_content;
 	private String question_image;
 	private String question_writer;
+	private String user_nick;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date question_regdate;
@@ -21,6 +22,12 @@ public class QuestionVO {
 	private Date question_updatedate;
 	private int question_viewcnt;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public int getQuestion_bno() {
 		return question_bno;
 	}
@@ -87,13 +94,14 @@ public class QuestionVO {
 	public void setQuestion_viewcnt(int question_viewcnt) {
 		this.question_viewcnt = question_viewcnt;
 	}
-	
 	@Override
 	public String toString() {
 		return "QuestionVO [question_bno=" + question_bno + ", question_grpno=" + question_grpno + ", question_grpord="
 				+ question_grpord + ", question_depth=" + question_depth + ", question_title=" + question_title
 				+ ", question_content=" + question_content + ", question_image=" + question_image + ", question_writer="
-				+ question_writer + ", question_regdate=" + question_regdate + ", question_updatedate="
-				+ question_updatedate + ", question_viewcnt=" + question_viewcnt + "]";
-	}	
+				+ question_writer + ", user_nick=" + user_nick + ", question_regdate=" + question_regdate
+				+ ", question_updatedate=" + question_updatedate + ", question_viewcnt=" + question_viewcnt + "]";
+	}
+	
+
 }

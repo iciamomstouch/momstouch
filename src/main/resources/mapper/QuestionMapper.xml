@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.QuestionMapper">
 
 	<select id="list" resultType="com.example.domain.QuestionVO">
-		select * from tbl_question
+		select * from question_list
 		<if test="searchType == 'question_title'">
 			where question_title like concat('%', #{keyword}, '%')
 		</if>		
@@ -25,7 +25,8 @@
 	</select>
 	
 	<select id="read" resultType="com.example.domain.QuestionVO">
-		select * from tbl_question where question_bno=#{question_bno}
+		select * from question_list
+		where question_bno=#{question_bno}
 	</select>
 	 
 	<select id="totalCount" resultType="int">
@@ -70,7 +71,8 @@
 	</select>
 	
 	<select id="grpList" resultType="com.example.domain.QuestionVO">
-		select * from tbl_question where question_grpno=#{question_grpno}
+		select * from  question_list
+		where question_grpno=#{question_grpno}
 	</select>
 	 
 </mapper>

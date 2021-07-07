@@ -4,30 +4,32 @@
 
 	<select id="list" resultType="com.example.domain.UserVO">
 		select * from tbl_user
+		
 		<if test="searchType == 'user_id'">
-			where user_id like concat('%', #{keyword}, '%')
+			where user_id like concat('%', #{keyword}, '%') and user_join=1
 		</if>
 		<if test="searchType == 'user_name'">
-			where user_name like concat('%', #{keyword}, '%')
+			where user_name like concat('%', #{keyword}, '%') and user_join=1
 		</if> 
 		<if test="searchType == 'user_nick'">
-			where user_nick like concat('%', #{keyword}, '%')
-		</if>
+			where user_nick like concat('%', #{keyword}, '%') and user_join=1
+		</if> 
+		
 		order by user_id desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_user
-		<if test="searchType == 'user_id'">
-			where user_id like concat('%', #{keyword}, '%')
+			<if test="searchType == 'user_id'">
+			where user_id like concat('%', #{keyword}, '%') and user_join=1
 		</if>
 		<if test="searchType == 'user_name'">
-			where user_name like concat('%', #{keyword}, '%')
+			where user_name like concat('%', #{keyword}, '%') and user_join=1
 		</if> 
 		<if test="searchType == 'user_nick'">
-			where user_nick like concat('%', #{keyword}, '%')
-		</if>
+			where user_nick like concat('%', #{keyword}, '%') and user_join=1
+		</if> 
 	</select>
 	
 	<select id="read" resultType="com.example.domain.UserVO">
