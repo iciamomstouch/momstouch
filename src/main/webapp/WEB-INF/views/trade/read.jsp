@@ -69,11 +69,11 @@
 			<td colspan=2 id="ttitle">${vo.trade_title}</td>
 		</tr>
 		<tr>
-			<td colspan=3 id="tprice">${vo.trade_price}원</td>			
+			<td colspan=3 id="tprice"><fmt:formatNumber value="${vo.trade_price}" pattern="#,###"/>원</td>			
 		</tr>
 		<tr>
 			<td colspan=3 id="tcont">
-				<textarea rows="10" cols="52" name="trade_content" style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;">${vo.trade_content}</textarea>
+				<textarea rows="10" cols="52" name="trade_content" style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;" readonly>${vo.trade_content}</textarea>
 			</td>
 		<tr>		
 	</table>

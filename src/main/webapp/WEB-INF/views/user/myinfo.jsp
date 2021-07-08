@@ -50,7 +50,8 @@
 		.rwriter{text-align:left;
 				margin-left:5px;}
 		.ravg{text-align:left;
-		      vertical-align: middle;}			
+		      vertical-align: middle;}
+		.row{cursor: pointer;}			
 		</style>
 	</head>
 	

@@ -48,6 +48,7 @@
 	</form>
 </body>
 <script>
+
 $(frm).on("submit", function(e){
 	e.preventDefault();
 	
@@ -56,6 +57,13 @@ $(frm).on("submit", function(e){
 		alert("제목을 입력하세요!");
 		return;
 	}
+	var file=$(frm.file).val();
+	if(file == null || file == ""){
+		alert("이미지를 선택하세요.");
+		return;
+	}
+	
+	if(img)
 	
 	if(!confirm("게시글을 등록하실래요?")) return;
 	frm.action="insert";
@@ -69,7 +77,7 @@ $("#image").on("click", function() {
 
 //이미지 미리보기
 $(frm.file).on("change", function() {
-	var file = $(frm.file)[0].files[0];
+	file = $(frm.file)[0].files[0];
 	$("#image").attr("src", URL.createObjectURL(file));
 });
 

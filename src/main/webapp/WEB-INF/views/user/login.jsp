@@ -11,7 +11,7 @@
         <form id="login-form" name="frm">
              <table id="tbl" style="width:250px; margin-bottom:50px; margin:0px auto;">
                 <tr>
-                	<td width=150><input type="text" name="user_id" class="form-control" placeholder="아이디 입력" value="user06"/></td>
+                	<td width=150><input type="text" name="user_id" class="form-control" placeholder="아이디 입력" value="admin"/></td>
                 	<td rowspan=2 id="btnlog"><button type="submit" class="form-control btn btn-primary" id="btnlog">로그인</button></td>
             	</tr>
 	            <tr>

@@ -41,11 +41,9 @@
 	</style>
 </head>
 <body>
-	<c:if test="${user_type == 'admin'}">
-		<div id="btninsert">
-			<button onClick="location.href='insert'" id="btninsert">WRITING</button>		
-		</div>
-	</c:if>
+	<div id="btninsert">
+		<button onClick="location.href='insert'" id="btninsert">WRITING</button>		
+	</div>
 	<div id="tip">
 		<p>
 			<a id="atitle">이유식 개월 수</a>

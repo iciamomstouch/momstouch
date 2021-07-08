@@ -21,7 +21,7 @@
 				<td colspan="2" id="iwriter">${vo.user_nick}</td>
 			</tr>
 			<tr>
-				<td id="idate"><fmt:formatDate pattern="MM-dd HH:mm:ss" value="${vo.info_regdate }" /></td>
+				<td id="idate"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.info_regdate }" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" id="iimg">
@@ -50,7 +50,7 @@
 				<td colspan=2 id="ititle">${vo.info_title}</td>
 			</tr>	
 			<tr>
-				<td colspan=2 id="icont">${vo.info_content}</td>
+				<td colspan=2 id="icont" style="white-space:pre-wrap;">${vo.info_content}</td>
 			</tr>		
 		</table>
 		<c:if test="${user_type == 'admin' }">

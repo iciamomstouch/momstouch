@@ -10,6 +10,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="/resources/css/trade/insert.css"/>
 	<title>중고거래  글작성</title>
+	<style>
+		#image{cursor:pointer;}
+	</style>
 </head>
 <body>
 	<form name="frm" enctype="multipart/form-data">
@@ -17,7 +20,7 @@
 		<input type="hidden" name="trade_writer" value="${user_id}" />
 		<table class="tbl" style="width:600px; margin:0px auto; margin-bottom:10px;">
 			<tr>
-				<td id="id">${user_id}</td>
+				<td id="id">${user_nick}</td>
 			</tr>
 			<tr>
 				<td>

@@ -22,9 +22,9 @@
 
  		</script>
  		<script>
- 			var uid = "${sessionScope.user_id}";
+ 			var unick = "${sessionScope.user_nick}";
  			Handlebars.registerHelper("printLeftRight", function(sender){
- 				if(uid != sender) { return "left"; }
+ 				if(unick != sender) { return "left"; }
  				else { return "right"; }
  			});
  		</script>
@@ -34,7 +34,7 @@
 	</div>
 </body>
 <script>
-	var uid="${sessionScope.user_id}";
+	var unick="${sessionScope.user_nick}";
 	//메시지 보내기
 	$("#txtMessage").on("keydown", function(e){
 		if(e.keyCode==13 && !e.shiftKey){
@@ -45,7 +45,7 @@
 				return;
 			}
 			//서버로 메시지를 보냄
-			sock.send(uid + "|" + message);
+			sock.send(unick + "|" + message);
 			$("#txtMessage").val("");
 		}	
 	});

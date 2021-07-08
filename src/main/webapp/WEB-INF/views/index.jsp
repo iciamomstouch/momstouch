@@ -8,7 +8,10 @@
 	<link rel="stylesheet" href="/resources/css/index.css"/>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<title>FIRST TIME</title>	
+	<title>FIRST TIME</title>
+	<style>
+		.logid{cursor:pointer}
+	</style>
 </head>
 <body>
 	<div id="divTop">

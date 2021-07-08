@@ -43,6 +43,15 @@
 	</tr>
 	{{/each}}
 	</script>
+	<script>
+	/*Handlebars.registerHelper("pattern", function(trade_price){
+		var trade_price = "${trade_price}";
+		if(trade_price == 0){
+			trade_price="무료"
+		}
+		return trade_price;
+	});*/
+	</script>
 	<div id="left" style="margin-top:10px;">
 			<select id="searchType">
 				<option value="trade_title">제목</option>

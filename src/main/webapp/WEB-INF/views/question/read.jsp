@@ -37,7 +37,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="3" id="qcont">${vo.question_content}</td>
+			<td colspan=3 id="qcont" style="white-space:pre-wrap;">${vo.question_content}</td>
 		</tr>		 		
 	 </table>
 	 <input type="button" value="수정" id="btnUpdate" onClick="location.href='update?question_bno=${vo.question_bno}'">	 

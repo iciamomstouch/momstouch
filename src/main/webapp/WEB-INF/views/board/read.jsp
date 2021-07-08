@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td id="bcate">${vo.board_category}</td>
-				<td id="bdate"><fmt:formatDate pattern="MM-dd HH:mm:ss" value="${vo.board_regdate}" /></td>
+				<td id="bdate"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${vo.board_regdate}" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg">
@@ -52,7 +52,7 @@
 			</tr>
 			
 			<tr>
-				<td colspan=2 id="bcont">${vo.board_content}</td>
+				<td colspan=2 id="bcont" style="white-space:pre-wrap;">${vo.board_content}</td>
 			</tr>		
 		</table>
 		<c:if test="${user_type == 'admin' || user_id == vo.board_writer }">
