@@ -57,4 +57,8 @@ public class UserDAOImpl implements UserDAO {
 		session.update(namespace + ".update2", user_id);
 	}
 
+	@Override
+	public int idChk(String user_id) throws Exception {
+		return session.selectOne(namespace + ".idChk",user_id);
+	}
 }

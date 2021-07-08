@@ -14,4 +14,6 @@ public interface UserDAO {
 	public void delete(String user_id) throws Exception;
 	public UserVO login(String user_id) throws Exception;
 	public void update2(String user_id) throws Exception;
+	// 아이디 중복 검사
+	public int idChk(String user_id) throws Exception;
 }

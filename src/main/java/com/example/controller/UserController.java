@@ -25,6 +25,7 @@ import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.UserVO;
 import com.example.persistence.UserDAO;
+import com.example.service.TradeService;
 
 @Controller
 @RequestMapping("/user/")
@@ -139,8 +140,9 @@ public class UserController {
 		int result=0; //아이디가 없는 경우
 		if(vo!=null){				
 			if(passEncoder.matches(user_pass, vo.getUser_pass())){
-				System.out.println("로그인 성공.....");
+				if(vo.getUser_join() == 1){
 				result=1; //로그인 성공
+				}
 				if(chkLogin){
 					Cookie cookie = new Cookie("user_id", vo.getUser_id());
 					cookie.setPath("/");
@@ -150,12 +152,6 @@ public class UserController {
 				session.setAttribute("user_id", vo.getUser_id());
 				session.setAttribute("user_type", vo.getUser_type());
 				session.setAttribute("user_nick", vo.getUser_nick());
-				String id = (String) session.getAttribute("user_id");
-				String type = (String) session.getAttribute("user_type");
-				String nick = (String) session.getAttribute("user_nick");
-				System.out.println("유저아이디................." +id);
-				System.out.println("유저타입.................." +type);
-				System.out.println("유저닉네임.................." + nick);
 				String path =(String)session.getAttribute("path");
 				if(path==null) path="/";			
 				map.put("path", path);
@@ -194,6 +190,18 @@ public class UserController {
 	public String adminInsert(Model model){
 		model.addAttribute("pageName", "user/adminInsert.jsp");
 		return "index";
-	}	
+	}
 	
+	// 회원 확인
+	@ResponseBody
+	@RequestMapping("idChk")
+	public int idChk(String user_id) throws Exception {
+	 
+	int result = dao.idChk(user_id);
+	 
+		if(result == 1) {
+			return result;
+		}
+		return result;
+	}
 }

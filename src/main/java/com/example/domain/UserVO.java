@@ -72,12 +72,10 @@ public class UserVO {
 	public void setUser_image(String user_image) {
 		this.user_image = user_image;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "UserVO [user_id=" + user_id + ", user_pass=" + user_pass + ", user_name=" + user_name + ", user_email="
 				+ user_email + ", user_address=" + user_address + ", user_tel=" + user_tel + ", user_nick=" + user_nick
-				+ ", user_image=" + user_image + "]";
+				+ ", user_image=" + user_image + ", user_type=" + user_type + ", user_join=" + user_join + "]";
 	}	
 }

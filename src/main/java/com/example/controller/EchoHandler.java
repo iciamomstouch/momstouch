@@ -30,7 +30,7 @@ Map<String, String> sessionUser=new HashMap<>();
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		System.out.println("연결됨:" + session.getId());
-		super.afterConnectionEstablished(session);
+		super.afterConnectionEstablished(session);	
 	}
 
 	//클라이언트가 서버로 메시지를 전송했을때
