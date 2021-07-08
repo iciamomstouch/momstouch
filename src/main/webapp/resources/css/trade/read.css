@@ -20,7 +20,7 @@
   #pos3:checked~.pos>label:nth-child(3){background:#666;}
   #pos4:checked~.pos>label:nth-child(4){background:#666;}
   
-#twriter{
+#twriter{width:100px;
 		font-weight:bold;
 		font-size:20px;
 		text-align:left;}
