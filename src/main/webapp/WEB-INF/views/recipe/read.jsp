@@ -77,7 +77,7 @@
 				</td>
 			</tr>
 		</table>
-		<c:if test="${user_type == 'admin' }">
+		<c:if test="${user_type == 'admin' || user_id == vo.recipe_writer}">
 			<input type="button" value="게시글수정" onClick="location.href='update?recipe_bno=${vo.recipe_bno}'" id="btnUpdate" class="btn"/>		
 			<input type="button" value="게시글삭제" id="btnDelete" class="btn"/>
 		</c:if>

@@ -47,7 +47,6 @@
 				if(data.result==0){
 					alert("아이디가 존재하지 않습니다!");
 				}else if(data.result==1){					
-					alert(data.path);
 					location.href="" + data.path;
 				}else{
 					alert("비밀번호가 일치하지 않습니다!");

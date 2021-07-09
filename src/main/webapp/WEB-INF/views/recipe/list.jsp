@@ -68,7 +68,7 @@
 	<td>
 	{{#each list}}
 	<div class="box" onClick="location.href='read?recipe_bno={{recipe_bno}}'">
-		<div class="img"><img src="/displayFile?fullName={{recipe_image}}" width=230/></div>
+		<div class="img"><img src="/displayFile?fullName={{recipe_image}}" width=230 height=130/></div>
 		<div class="rcate">{{recipe_category}}</div>
 		<div class="rtitle">{{recipe_title}}</div>
 		<div class="rwriter">{{user_nick}}</div>
@@ -82,7 +82,7 @@
 		<select id="searchType">
 			<option value="recipe_title">요리명</option>
 			<option value="recipe_ingre">요리재료</option>
-			<option value="recipe_writer">작성자</option>
+			<option value="user_nick">작성자</option>
 		</select>
 		<input type="text" id="keyword" placeholder="검색어"/>
 		<button>

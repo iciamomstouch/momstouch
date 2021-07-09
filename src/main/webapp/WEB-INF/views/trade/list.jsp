@@ -34,28 +34,27 @@
 	</tr>
 	{{#each list}}
 	<tr class="row" onClick="location.href='read?trade_bno={{trade_bno}}'">
-		<td><img src="/displayFile?fullName={{trade_image}}" width=100/></td>
+		<td><img src="/displayFile?fullName={{trade_image}}" width=100 height=80/></td>
 		<td>{{trade_category}}</td>
 		<td style="text-align:left;">{{trade_title}}</td>
-		<td>{{trade_price}}</td>
+		<td>{{pattern trade_price}}</td>
 		<td>{{user_nick}}</td>
 		<td>{{trade_regdate}}</td>
 	</tr>
 	{{/each}}
 	</script>
 	<script>
-	/*Handlebars.registerHelper("pattern", function(trade_price){
-		var trade_price = "${trade_price}";
-		if(trade_price == 0){
-			trade_price="무료"
-		}
-		return trade_price;
-	});*/
-	</script>
+      Handlebars.registerHelper("pattern", function(trade_price){         
+         if(trade_price == 0){
+            return "무료";
+         }
+         return trade_price + "원";
+      });
+   </script>
 	<div id="left" style="margin-top:10px;">
 			<select id="searchType">
 				<option value="trade_title">제목</option>
-				<option value="trade_writer">작성자</option>
+				<option value="user_nick">작성자</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
 			<button>

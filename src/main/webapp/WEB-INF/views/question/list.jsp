@@ -38,7 +38,7 @@
 			<select id="searchType">
 				<option value="question_title">제목</option>				
 				<option value="question_content">내용</option>
-				<option value="question_writer">작성자</option>
+				<option value="user_nick">작성자</option>
 			</select>
 			<input type="text" id="keyword" placeholder="검색어"/>
 			<button>

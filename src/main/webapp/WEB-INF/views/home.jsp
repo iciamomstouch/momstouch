@@ -71,13 +71,21 @@
 		<td>		
 		{{#each list}}
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
-			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
+			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100" height="130"/></div>
 			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{trade_price}}원</div>
+			<div class="price">:{{pattern trade_price}}</div>
 		</div>
 		{{/each}}
 		</td>
 		</tr>
+		</script>
+		<script>
+	   	Handlebars.registerHelper("pattern", function(trade_price){         
+	    	if(trade_price == 0){
+	        	return "무료";
+	        }
+	        return trade_price + "원";
+	    });
 		</script>
 	</div>
 	
