@@ -10,8 +10,8 @@
 		<if test="searchType == 'question_content'">
 			where question_content like concat('%', #{keyword}, '%')
 		</if>
-		<if test="searchType == 'question_writer'">
-			where question_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>		
 		order by question_grpno desc, question_grpord asc
 		limit #{pageStart}, #{perPageNum}
@@ -30,15 +30,15 @@
 	</select>
 	 
 	<select id="totalCount" resultType="int">
-	 	select count(*) from tbl_question
+	 	select count(*) from question_list
 	 	<if test="searchType == 'question_title'">
 			where question_title like concat('%', #{keyword}, '%')
 		</if>		
 		<if test="searchType == 'question_content'">
 			where question_content like concat('%', #{keyword}, '%')
 		</if>
-		<if test="searchType == 'question_writer'">
-			where question_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>
 	</select>
 	 

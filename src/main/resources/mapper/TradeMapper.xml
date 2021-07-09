@@ -7,8 +7,8 @@
  		<if test="searchType == 'trade_title'">
 			where trade_title like concat('%', #{keyword}, '%')
 		</if>		
-		<if test="searchType == 'trade_writer'">
-			where trade_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>
  		order by trade_bno desc
  		limit #{pageStart}, #{perPageNum}
@@ -29,12 +29,12 @@
 	</select>
  	
  	<select id="totalCount" resultType="int">
-		select count(*) from tbl_trade
+		select count(*) from trade_list
 		<if test="searchType == 'trade_title'">
 			where trade_title like concat('%', #{keyword}, '%')
 		</if>		
-		<if test="searchType == 'trade_writer'">
-			where trade_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>
 	</select>
 	

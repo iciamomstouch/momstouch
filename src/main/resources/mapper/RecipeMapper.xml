@@ -10,8 +10,8 @@
 		<if test="searchType == 'recipe_ingre'">
 			where recipe_ingre like concat('%', #{keyword}, '%')
 		</if>		
-		<if test="searchType == 'recipe_writer'">
-			where recipe_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>
 		<if test="searchType == 'recipe_category'">
 			where recipe_category like concat('%', #{keyword}, '%')
@@ -21,15 +21,15 @@
 	</select>
 	
 	<select id="totalCount" resultType="int">
-		select count(*) from tbl_recipe
+		select count(*) from recipe_list
 		<if test="searchType == 'recipe_title'">
 			where recipe_title like concat('%', #{keyword}, '%')
 		</if>
 		<if test="searchType == 'recipe_ingre'">
 			where recipe_ingre like concat('%', #{keyword}, '%')
 		</if>		
-		<if test="searchType == 'recipe_writer'">
-			where recipe_writer like concat('%', #{keyword}, '%')
+		<if test="searchType == 'user_nick'">
+			where user_nick like concat('%', #{keyword}, '%')
 		</if>
 		<if test="searchType == 'recipe_category'">
 			where recipe_category like concat('%', #{keyword}, '%')

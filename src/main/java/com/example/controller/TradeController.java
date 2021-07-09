@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.TradeVO;
+import com.example.domain.Trade_attachVO;
 import com.example.domain.User_keepVO;
 import com.example.persistence.TradeDAO;
 import com.example.service.TradeService;
@@ -203,13 +204,23 @@ public class TradeController {
 		return "index";
 	}
 	
-	@RequestMapping("tlist.json")
+	@RequestMapping("alist.json")
 	@ResponseBody //데이터 자체를 리턴할때
 	public List<TradeVO> tlistJson(Criteria cri) throws Exception{
 		List<TradeVO> array = new ArrayList<>();
 		array = dao.list(cri);
 		return array;
 	}
+	
+	//안드로이드 첨부파일
+    @RequestMapping("agetAttach.json")
+       @ResponseBody
+       public List<Trade_attachVO> agetAttach(int trade_bno) throws Exception{      
+          List<Trade_attachVO> array = new ArrayList<>();
+          array = dao.getAttach(trade_bno);
+          //System.out.println(map.toString());
+          return array;
+       }
 	
 	@RequestMapping("deleteFile")
 	public String deleteFile(int trade_bno) throws Exception{
