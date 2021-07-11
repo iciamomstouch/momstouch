@@ -17,7 +17,7 @@
 				<th width=100>아이디</th>
 				<td width=300>
 					<input id="user_id" type="text" name="user_id" size=30 placeholder="아이디를 기재해주세요." style="font-size: 15px;background-color:transparent;border:0 solid black;text-align:left;"/>
-					<button type="button" class="idChk">아이디 확인</button>
+					<button type="button" class="idChk">중복체크</button>
 					<p class="result">
 						<span class="msg">아이디를 확인해주세요.</span>
 					</p>
@@ -86,8 +86,7 @@
 		  	type : "get",
 		  	datatype:"json",
 		  	data : {"user_id":user_id},
-		  	success : function(data) {
-		  		alert(data);
+		  	success : function(data) {		  		
 			  	if(data == 1) {		  			
 			    	$(".result .msg").text("사용 불가");
 			    	$(".result .msg").attr("style", "color:#f00");    

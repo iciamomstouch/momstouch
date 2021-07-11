@@ -60,8 +60,7 @@
 	     			<input type="hidden" name="recipe_attach_no" value="1"/>
 	     			<input type="button" value="➕" onclick="add_new_row('attach_list',0);" style="border:none; background:white; cursor: pointer;"/>
 	     		</td>
-	     		<td width=100>
-					<img src="http://placehold.it/150x120" width=150 id="image1"/>
+	     		<td width=100>					
 					<input type="file" name="files"/>
 				</td>
 				<td colspan="2">
@@ -86,7 +85,7 @@
 	    tag +="<tr id='tr_id"+(new_row_num + n)+ "'>\n";
 	    tag +="<td>"+"<input type='hidden' name='recipe_attach_no' value='" + ((new_row_num + n) +1)+ "'/></td>\n";
 	    tag +="<td>\n";
-	    tag +="<img src='http://placehold.it/150x120' width=150 id='image" + ((new_row_num + n) +1) + "'/>\n";
+	    //tag +="<img src='http://placehold.it/150x120' width=150 id='image" + ((new_row_num + n) +1) + "'/>\n";
 	    tag +="<input type='file' name='files'/>\n";	   
 	    tag +="</td>\n";
 	    tag +="<td>\n";
@@ -135,10 +134,12 @@
 	});
 	
 	//이미지 미리보기
-	$(frm.files).on("change", function(){
+	$(frm.files).on("change", each(function(){
+		var i=1;
 		var file=$(frm.files)[0].files[0];
-		$(".images").attr("src", URL.createObjectURL(file));
-	});
+		$('"#'+"image"+i+'"' ).attr("src", URL.createObjectURL(file));
+		i=i+1;
+	}));
 	
 	//첨부 파일들을 선택한경우
 	   $(frm.files).on("change", function(){

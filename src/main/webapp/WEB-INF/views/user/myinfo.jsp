@@ -103,10 +103,10 @@
 		<table id="tbl1" width=800></table>
 		<script id="temp1" type="text/x-handlebars-template">
 		<tr class="title">
-			<th width=80>카테고리</th>
-			<th width=200>제목</th>
-			<th width=100>조회수</th>
-			<th width=150>작성일</th>
+			<th width=100>카테고리</th>
+			<th width=480>제목</th>
+			<th width=80>조회수</th>
+			<th width=110>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">
@@ -144,9 +144,9 @@
 		<table id="tbl2" width=800></table>
 		<script id="temp2" type="text/x-handlebars-template">
 		<tr class="title">			
-			<th width=200>제목</th>
-			<th width=100>조회수</th>
-			<th width=150>작성일</th>
+			<th width=590>제목</th>
+			<th width=80>조회수</th>
+			<th width=110>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/question/read?question_bno={{question_bno}}'">			
@@ -187,13 +187,21 @@
 		<td>		
 		{{#each list}}
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
-			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
-			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{trade_price}}원</div>			
+			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="120" height="130" style="margin-bottom:10px;"/></div>
+			<div class="tratitle">[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
+			<div class="price" style="font-weight:bold">{{pattern trade_price}}</div>			
 		</div>
 		{{/each}}
 		</td>
 		</tr>
+		</script>
+		<script>
+	   	Handlebars.registerHelper("pattern", function(trade_price){         
+	    	if(trade_price == 0){
+	        	return "무료";
+	        }
+	        return trade_price + "원";
+	    });
 		</script>
 	</div>
 	
@@ -240,9 +248,9 @@
 		<script id="rtemp1" type="text/x-handlebars-template">		
 		{{#each list}}
 		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">			
-			<td>{{board_reply}}</td>
-			<td>{{board_replyer}}</td>
-			<td>{{board_replydate}}</td>
+			<td width=480>{{board_reply}}</td>
+			<td width=100>{{board_replyer}}</td>
+			<td width=200>{{board_replydate}}</td>
 		</tr>
 		{{/each}}
 		</script>	
@@ -274,9 +282,9 @@
 		<script id="rtemp2" type="text/x-handlebars-template">		
 		{{#each list}}
 		<tr class="row" onClick="location.href='/info/read?info_bno={{info_bno}}'">			
-			<td>{{info_reply}}</td>
-			<td>{{info_replyer}}</td>
-			<td>{{info_replydate}}</td>
+			<td width=480>{{info_reply}}</td>
+			<td width=100>{{info_replyer}}</td>
+			<td width=200>{{info_replydate}}</td>
 		</tr>
 		{{/each}}
 		</script>	
@@ -309,9 +317,9 @@
 		<script id="rtemp3" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row" onClick="location.href='/recipe/read?recipe_bno={{recipe_bno}}'">			
-			<td>{{recipe_reply}}</td>
-			<td>{{recipe_replyer}}</td>
-			<td>{{recipe_replydate}}</td>
+			<td width=480>{{recipe_reply}}</td>
+			<td width=100>{{recipe_replyer}}</td>
+			<td width=200>{{recipe_replydate}}</td>
 		</tr>
 		{{/each}}
 		</script>
@@ -358,11 +366,11 @@
     	<table id="tbl_keep1" width=800></table>
 		<script id="temp_keep1" type="text/x-handlebars-template">
 		<tr class="title">
-			<th width=50>카테고리</th>
-			<th width=200>제목</th>
-			<th width=80>작성자</th>
+			<th width=80>카테고리</th>
+			<th width=400>제목</th>
+			<th width=100>작성자</th>
 			<th width=80>조회수</th>
-			<th width=150>작성일</th>
+			<th width=120>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">
@@ -400,10 +408,10 @@
     	<table id="tbl_keep2" width=800></table>
 		<script id="temp_keep2" type="text/x-handlebars-template">
 		<tr class="title">		
-			<th>제목</th>
-			<th>작성자</th>
-			<th>조회수</th>
-			<th>작성일</th>
+			<th width=480>제목</th>
+			<th width=100>작성자</th>
+			<th width=80>조회수</th>
+			<th width=120>작성일</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/info/read?info_bno={{info_bno}}'">		
@@ -488,13 +496,21 @@
 		<td>		
 		{{#each list}}
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
-			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100"/></div>
-			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{trade_price}}원</div>			
+			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="120" height=130 style="margin-bottom:10px;"/></div>
+			<div class="tratitle">[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
+			<div class="price" style="font-weight:bold">{{pattern trade_price}}</div>			
 		</div>
 		{{/each}}
 		</td>
 		</tr>
+		</script>
+		<script>
+	   	Handlebars.registerHelper("pattern", function(trade_price){         
+	    	if(trade_price == 0){
+	        	return "무료";
+	        }
+	        return trade_price + "원";
+	    });
 		</script>
 	</div>
 	

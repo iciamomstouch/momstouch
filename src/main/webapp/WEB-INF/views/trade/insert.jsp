@@ -52,7 +52,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="border-bottom: 1px solid #ccc;"><input type="button" value="첨부이미지" style="border:none; background:white; cursor: pointer; text-align:left; font-size:15px;" id="btnImage" /></td>
+				<td style="border-bottom: 1px solid #ccc;"><input type="button" value="➕" style="border:none; background:white; cursor: pointer; text-align:left; font-size:15px;" id="btnImage" /></td>
 				<td style="height:150px;padding:10px;border-bottom: 1px solid #ccc;">
 	            	<input type="file" name="files" accept="image/*" multiple style="display:none"/>
 	            	<div id="listFile"></div>	     			

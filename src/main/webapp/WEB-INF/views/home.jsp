@@ -14,7 +14,8 @@
 		.tratitle{overflow: hidden;
 			text-align:left;				
 			text-overflow: ellipsis;
-			white-space: nowrap;}
+			white-space: nowrap;
+			margin-bottom:5px;}
 	</style>
  	<!-- 게시판1--------------------------------------------------------------- -->
 
@@ -71,9 +72,9 @@
 		<td>		
 		{{#each list}}
 		<div class="box" onClick="location.href='/trade/read?trade_bno={{trade_bno}}'">
-			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="100" height="130"/></div>
-			<div class="tratitle">:[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
-			<div class="price">:{{pattern trade_price}}</div>
+			<div class="img"><img src="/displayFile?fullName={{trade_image}}" width="120" height="130" style="margin-bottom:10px;"/></div>
+			<div class="tratitle">[<span>{{trade_category}}</span>]&nbsp;<span>{{trade_title}}</span></div>
+			<div class="price">{{pattern trade_price}}</div>
 		</div>
 		{{/each}}
 		</td>

@@ -20,10 +20,10 @@
 		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">						
-			<th width=400>제목</th>
+			<th width=500>제목</th>
 			<th width=100>작성자</th>
-			<th width=200>작성일</th>			
-			<th width=50>조회수</th>
+			<th width=110>작성일</th>			
+			<th width=70>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'">						

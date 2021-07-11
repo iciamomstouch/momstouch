@@ -99,8 +99,7 @@
 		
 		if(user_id==null || user_id==""){
 			alert("로그인이 필요한 기능입니다.")
-		}else{
-			alert(info_bno + user_id);
+		}else{			
 			$.ajax({
 				type:"get",
 				url:"keepRead.json",			
@@ -108,7 +107,7 @@
 				success:function(result){				
 					var strUid=result.user_id;
 					var keep=result.info_keep;
-					alert(strUid + keep);
+					
 					if(strUid == user_id){
 						if(keep == 0){						
 							$.ajax({

@@ -95,22 +95,27 @@
 	
 	//댓글 등록
 	$("#btnInsert").on("click", function(){
+		
 		var reply=$("#txtReply").val();
 		var replyer="${user_id}";
-		if(reply==""){
-			alert("내용을 입력하세요!");
-			return;
-		}
-		$.ajax({
-			type:"post",
-			url:"reply/insert",
-			data:{"info_bno":info_bno, "info_reply":reply, "info_replyer":replyer},
-			success:function(){
-				alert("댓글추가완료!");
-				$("#txtReply").val("");
-				getList();
+		if(replyer == "" ){
+			alert("로그인 후 이용가능합니다.")
+		}else{
+			if(reply==""){
+				alert("내용을 입력하세요!");
+				return;
 			}
-		});
+			$.ajax({
+				type:"post",
+				url:"reply/insert",
+				data:{"info_bno":info_bno, "info_reply":reply, "info_replyer":replyer},
+				success:function(){
+					alert("댓글추가완료!");
+					$("#txtReply").val("");
+					getList();
+				}
+			});
+		}
 	});
 	</script>
 </html>

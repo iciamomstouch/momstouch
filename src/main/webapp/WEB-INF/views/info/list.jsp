@@ -24,17 +24,17 @@
 		<table id="tbl" width=800></table>
 		<script id="temp" type="text/x-handlebars-template">
 		<tr class="title">						
-			<th width=400>제목</th>
-			<th width=100>작성자</th>
-			<th width=200>작성일</th>			
+			<th width=550>제목</th>
+			<th width=80>작성자</th>
+			<th width=110>작성일</th>			
 			<th width=60>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?info_bno={{info_bno}}'">						
-			<td width=200 style="text-align:left;">{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
-			<td width=100>{{user_nick}}</td>
-			<td width=200>{{info_regdate}}</td>			
-			<td width=100>{{info_viewcnt}}</td>
+			<td style="text-align:left;">{{info_title}}<span style="font-weight:bold;">&nbsp;&nbsp;[{{info_replycnt}}]</span></td>
+			<td>{{user_nick}}</td>
+			<td>{{info_regdate}}</td>			
+			<td>{{info_viewcnt}}</td>
 		</tr>
 		{{/each}}
 		</script>
