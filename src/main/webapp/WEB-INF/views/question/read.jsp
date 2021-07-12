@@ -51,10 +51,10 @@
 		<script id="temp" type="text/x-handlebars-template">
 		{{#each list}}
 		<tr class="row" onClick="location.href='read?question_bno={{question_bno}}'" style="{{bold question_bno}}">						
-			<td width=200 style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
+			<td width=350 style="text-align:left;text-indent:{{question_depth}}em;">{{question_title}}</td>
 			<td width=80>{{user_nick}}</td>
-			<td width=130>{{question_regdate}}</td>			
-			<td width=80>{{question_viewcnt}}</td>
+			<td width=120>{{question_regdate}}</td>			
+			<td width=40>{{question_viewcnt}}</td>
 		</tr>
 		{{/each}}
 		</script>

@@ -27,9 +27,9 @@
 		<script id="temp1" type="text/x-handlebars-template">
 		<tr class="title">
 			<th width=100>카테고리</th>
-			<th width=200>제목</th>
+			<th width=500>제목</th>
 			<th width=100>작성자</th>
-			<th width=50>조회수</th>
+			<th width=80>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/board/read?board_bno={{board_bno}}'">
@@ -206,8 +206,8 @@
 		<script id="temp2" type="text/x-handlebars-template">
 		<tr class="title">		
 			<th>제목</th>
-			<th>작성자</th>
-			<th>조회수</th>
+			<th width=100>작성자</th>
+			<th width=80>조회수</th>
 		</tr>
 		{{#each list}}
 		<tr class="row" onClick="location.href='/info/read?info_bno={{info_bno}}'">		

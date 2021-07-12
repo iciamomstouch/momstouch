@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="bimg" onClick="location.href='read?board_bno={{board_bno}}'">
-					<img src="/displayFile?fullName={{board_image}}" width=600 id="image"/>					
+					<img src="/displayFile?fullName={{board_image}}" width=600 height=400 id="image"/>					
 				</td>
 			</tr>
 			<tr>
